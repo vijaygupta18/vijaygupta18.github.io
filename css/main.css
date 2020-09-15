@@ -131,93 +131,7 @@ blockquote {
 	padding-left: 4rem;
 	position: relative;
 }
-blockquote:before {
-	content: "\201C";
-	font-size: 8rem;
-	line-height: 0px;
-	margin: 0;
-	color: #313131;
-	font-family: arial, sans-serif;
-	position: absolute;
-	top: 3rem;
-	left: 0;
-}
-blockquote p {
-	font-family: georgia, serif;
-	font-style: italic;
-	padding: 0;
-	font-size: 1.9rem;
-	line-height: 1.737;
-}
-blockquote cite {
-	display: block;
-	font-size: 1.3rem;
-	font-style: normal;
-	line-height: 1.616;
-}
-blockquote cite:before {
-	content: "\2014 \0020";
-}
-blockquote cite a, blockquote cite a:visited {
-	color: #888888;
-	border: none;
-}
-abbr {
-	font-family: "poppins-bold", serif;
-	font-variant: small-caps;
-	text-transform: lowercase;
-	letter-spacing: .05rem;
-	color: #888888;
-}
-var, kbd, samp, code, pre {
-	font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
-}
-pre {
-	padding: 2.4rem 3rem 3rem;
-	background: #F1F1F1;
-}
-code {
-	font-size: 1.4rem;
-	margin: 0 .2rem;
-	padding: .3rem .6rem;
-	white-space: nowrap;
-	background: #F1F1F1;
-	border: 1px solid #E1E1E1;
-	border-radius: 3px;
-}
-pre > code {
-	display: block;
-	white-space: pre;
-	line-height: 2;
-	padding: 0;
-	margin: 0;
-}
-pre.prettyprint > code {
-	border: none;
-}
-del {
-	text-decoration: line-through;
-}
-abbr[title], dfn[title] {
-	border-bottom: 1px dotted;
-	cursor: help;
-}
-mark {
-	background: #FFF49B;
-	color: #000;
-}
-hr {
-	border: solid #d2d2d2;
-	border-width: 1px 0 0;
-	clear: both;
-	margin: 2.4rem 0 1.5rem;
-	height: 0;
-}
 
-/**
- * Lists - (_document-setup.scss)  
- * -------------------------------------------------------------------
- */
 ol {
 	list-style: decimal;
 }
@@ -295,68 +209,6 @@ th:last-child, td:last-child {
 	-webkit-overflow-scrolling: touch;
 }
 
-/**
- * Spacing - (_document-setup.scss)  
- * -------------------------------------------------------------------
- */
-button, .button {
-	margin-bottom: 1.2;
-}
-fieldset {
-	margin-bottom: 1.5rem;
-}
-input,
-textarea,
-select,
-pre,
-blockquote,
-figure,
-table,
-p,
-ul,
-ol,
-dl,
-form,
-.fluid-video-wrapper,
-.ss-custom-select {
-	margin-bottom: 3rem;
-}
-
-/**
- * floated image - (_document-setup.scss)  
- * -------------------------------------------------------------------
- */
-img.pull-right {
-	margin: .9rem 0 0 2.4rem;
-}
-img.pull-left {
-	margin: .9rem 2.4rem 0 0;
-}
-
-
-.bgrid {
-	padding: 0 20px;
-}
-@media only screen and (max-width:1024px) {
-	.bgrid {
-		padding: 0 18px;
-	}
-}
-@media only screen and (max-width:768px) {
-	.bgrid {
-		padding: 0 15px;
-	}
-}
-@media only screen and (max-width:600px) {
-	.bgrid {
-		padding: 0 10px;
-	}
-}
-@media only screen and (max-width:400px) {
-	.bgrid {
-		padding: 0;
-	}
-}
 
 
 .pace {
@@ -398,7 +250,7 @@ img.pull-left {
 	position: absolute;
 	left: 48%;
 	top: 50%;
-	width: 60px;
+	width: 55px;
 	height: 60px;
 	margin: -30px 0 0 -30px;
 	padding: 0;
