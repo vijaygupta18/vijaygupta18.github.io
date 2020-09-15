@@ -1,5 +1,7 @@
 
 @import url("fonts.css");
+@import url("font-awesome/css/font-awesome.min.css");
+@import url("micons/micons.css");
 html {
 	font-size: 10px;
 }
@@ -1769,7 +1771,7 @@ footer .social {
 }
 footer .footer-social {
 	display: inline-block;
-	font-size: 2.1rem;
+	font-size: 2.5rem;
 	margin: 0;
 	padding: 0;
 	position: relative;
