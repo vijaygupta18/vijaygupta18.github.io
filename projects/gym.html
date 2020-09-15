@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vijay Fitness Club</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+
+<style>
+    
+    body {
+        font-family: 'Baloo Bhai', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background-image: url("./web/gym.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .left {
+        display: inline-block;
+        /* border: 2px solid red; */
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .left img {
+        width: 136px;
+        filter: invert(100%);
+        border-radius: 5%;
+    }
+
+    .left div {
+        line-height: 19px;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .mid {
+        display: block;
+        width: 46%;
+        margin: 29px auto;
+        /* border: 2px solid green; */
+    }
+
+    .right {
+        position: absolute;
+        right: 34px;
+        top: 23px;
+        display: inline-block;
+        /* border: 2px solid yellow; */
+    }
+
+    .navbar {margin-top: 0px;
+        border-radius: 20px;
+        display: inline-block;
+    }
+
+    .navbar li {
+        display: inline-block;
+        font-size: 25px;
+    }
+
+    .navbar li a {
+        color: rgb(216, 204, 204);
+        text-decoration: none;
+        padding: 14px 8px;
+
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+
+    }
+
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+    }
+
+    .container {
+        border: 2px solid white;
+        margin: 96px 40px;
+        padding: 15px;
+        width: 23%;
+        border-radius: 28px;
+        
+    }
+
+    .form-group input {
+        font-family: 'Baloo Bhai', cursive;
+        text-align: center;
+        display: block;
+        width: 308px;
+        padding: 1px;
+        border: 2px solid black;
+        margin: 11px auto;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+
+    .container h3 {
+        text-align: center;
+    }
+
+    .container button {
+        display: block;
+        width: 44%;
+        margin:  auto;
+    }
+
+    @media only screen and (max-width: 600px){
+        .mid {
+        display: inline-block;
+        width: 90%;
+        margin: 29px auto;
+        margin-left: 20px;
+        /* border: 2px solid green; */
+    }
+
+
+        .right{
+            display: flex;
+            flex-direction: column
+            flex-wrap: wrap;
+        }
+
+        body{
+            font-size: 5.5vw;
+        }
+        
+        .container{
+            display: flex;
+        }
+       .btn{
+            display: none;
+        }
+        .container {
+            display: table;
+        border: 2px solid white;
+        margin:auto;
+        width: 60%;
+        border-radius: 28px;
+        
+        
+    }
+    h3{
+        font-size: 5.5vw;
+    }
+    .left img {
+        width: 136px;
+        filter: invert(100%);
+        border-radius: 5%;
+    }
+    .left {
+               display: inline-block;
+               
+
+        left: 110px;
+        top: 20px;
+        position: relative;
+    }
+
+    .navbar {
+        border-radius: 200px;
+       
+    }
+
+    .navbar li {display: inline;    
+        font-size: 15px;
+    }
+
+    .navbar li a {
+        color: rgb(216, 204, 204);
+        text-decoration: none;
+        padding: 14px 8px;
+
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+
+    }
+    body {
+        font-family: 'Baloo Bhai', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background-image: url("./web/gym.jpg");
+        background-attachment: fixed;
+    }
+    
+    
+
+</style>
+
+<body>
+    <header class="header">
+        <!-- Left box for logo -->
+        <div class="left">
+            <img src="./web/gym2.jpg" alt="">
+            <div>Vijay Fitness</div>
+        </div>
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="https://www.calculator.net/fitness-and-health-calculator.html">Fitness Calculator</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn">Call Us Now</button>
+            <button class="btn">Email Us</button>
+        </div>
+    </header>
+    <div class="container">
+        <h3>Join the best gym of Sultanpur now</h3>
+        <form action="noaction.php">
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Name">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Age">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Gender">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Locality">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Email Id">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Enter your Phone Number">
+            </div>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

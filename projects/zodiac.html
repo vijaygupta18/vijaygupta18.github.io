@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Find Your Zodiac</title>
+		 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <style>
+            
+
+/*General */
+html{    
+  
+}
+body
+{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	background:url(https://wallpapercave.com/wp/gpTufVI.jpg) no-repeat;
+  background-size: cover;
+  height:100%;
+  background-attachment: fixed;
+  
+}
+
+#feedback-page{
+	text-align:center;
+}
+
+#form-main{
+	margin-top: auto;
+	width:100%;
+	float:left;
+	padding-top:0px;
+}
+
+#form-div {
+	background-color:rgba(72,72,72,0.4);
+	padding-left:35px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+	width: 350px;
+	float: left;
+	left: 55%;
+	position: absolute;
+  margin-top:30px;
+	margin-left: -260px;
+  border-radius: 7px;
+  
+}
+
+.montform .feedback-input {
+	color:#3c3c3c;
+	font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+	font-size: 18px;
+	border-radius: 0;
+	line-height: 22px;
+	background-color: #fbfbfb;
+	padding: 13px 13px 13px 54px;
+	margin-bottom: 10px;
+	width:100%;
+	box-sizing: border-box;
+	border: 3px solid rgba(0,0,0,0);
+}
+/*Inputs styles*/
+.montform .feedback-input:focus{
+	background: #fff;
+	border: 3px solid #3498db;
+	color: #3498db;
+	outline: none;
+  padding: 13px 13px 13px 54px;
+}
+
+.montform  textarea {
+    width: 100%;
+    height: 100%;
+    line-height: 150%;
+    resize:vertical;
+}
+
+.montform  input:hover, .montform  textarea:hover,
+.montform  input:focus, .montform  textarea:focus {
+	background-color:#e6e6e6;
+}
+
+.button-blue{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width:100%;
+	border: #fbfbfb solid 4px;
+	cursor:pointer;
+	background-color: #7bc0ee;
+	color:rgb(50, 51, 51);
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+
+.button-blue:hover{
+	background-color: rgba(0,0,0,0);
+	color: #0493bd;
+}
+	
+.montform  .submit:hover {
+	color: #3498db;
+}
+	
+/*Styles for small screens*/
+
+@media  only screen and (max-width: 580px) {
+	#form-div{
+		left: 3%;
+		margin-right: 3%;
+		width: 88%;
+		margin-left: 0;
+		padding-left: 3%;
+		padding-right: 3%;
+	}
+}
+
+
+        </style>
+        <script>
+            function showzodiac()
+{
+ var d,m,z;
+ d=document.myform.date.value;
+ m=document.myform.month.value;
+ if(m==""){
+	 z="Enter Valid Month";
+ }
+ if(d==""){
+	 z="Enter Valid Date";
+ }
+ if(d>31){
+	 z="Enter Valid Date";
+ }
+ if(m=="" && d==""){
+	 z="Enter Valid Date and Month";
+ }
+ if(m=="january")
+ {
+ if(d<=19 && d>=1 )
+ z="Capricon";
+ else
+ z="Aquarius";
+ }
+ if(m=="february")
+ {
+ if(d<=19 && d>=1)
+ z="Aquarius";
+ else
+ z="Pisces";
+ }
+ if(m=="march")
+ {
+ if(d<=20 && d>=1)
+ z="Pisces";
+ else
+ z="Aries";
+ }
+ if(m=="april")
+ {
+ if(d<=20 && d>=1)
+ z="Aries";
+ else
+ z="Taurus";
+ }
+ if(m=="may")
+ {
+ if(d<=20 && d>=1)
+ z="Taurus";
+ else
+ z="Gemini";
+ }
+ if(m=="june")
+ {
+ if(d<=20 && d>=1)
+ z="Gemini";
+ else
+ z="Cancer";
+ }
+ if(m=="july")
+ {
+ if(d<=22 && d>=1)
+ z="Cancer";
+ else
+ z="Leo";
+ }
+ if(m=="august")
+ {
+ if(d<=22 && d>=1)
+ z="Leo";
+ else
+ z="Virgio";
+ }
+ if(m=="september")
+ {
+ if(d<=22 && d>=1)
+ z="Virgo";
+ else
+ z="Libra";
+ }
+ if(m=="october")
+ {
+ if(d<=22 && d>=1)
+ z="Libra";
+ else
+ z="Scorpio";
+ }
+ if(m=="november")
+ {
+ if(d<=22 && d>=1)
+ z="Scorpio";
+ else
+ z="Sagattarius";
+ }
+ if(m=="december")
+ {
+ if(d<=21 && d>=1)
+ z="Sagattarius";
+ else
+ z="Capricon";
+ }
+ document.myform.sign.value=z;
+}
+        </script>
+    </head>
+    <body > 
+        <div class="container">
+			
+            <div id="form-main">
+                <div id="form-div">
+					<p style="font-size: x-large; color: #e6e6e6;  font-weight: bolder;">Zodiac Calculator</p>
+                    <form class="montform" method="post" name="myform" >
+                        <p class="name">
+                            <input name="date" type="number" class="feedback-input" required placeholder="Date" id="name" />
+                        </p>
+                        <p class="email">
+                            <input name="month" type="text" required class="feedback-input" id="email" placeholder="Month in lowercase" />
+                        </p>
+                        <p class="text">
+                            <textarea name="sign" class="feedback-input" id="comment" placeholder="Your Zodiac is?"></textarea>
+                        </p>
+                        <div class="submit">
+                            <input type="button" class="button-blue" value="Show" onClick="showzodiac()"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
