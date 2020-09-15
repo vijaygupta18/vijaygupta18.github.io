@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<title>Vijay's Portfolio</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/vendor.css">
+	<script src="js/modernizr.js"></script>
+	<script src="js/pace.min.js"></script>
+	<link rel="icon" href="favicon.ico">
+</head>
+<body id="top">
+	<header>
+		<div class="row">
+			<div class="top-bar">
+				<a class="menu-toggle" href="#"><span>Menu</span></a>
+				<div class="logo">
+					<a href="index.html">Menu</a>
+				</div>
+				<nav id="main-nav-wrap">
+					<ul class="main-navigation">
+						<li class="current"><a class="smoothscroll" href="#intro" title="">Home</a></li>
+						<li><a class="smoothscroll" href="#about" title="">About</a></li>
+						<li><a class="smoothscroll" class="anim" href="#skills" title="">Skills</a></li>
+						<li><a class="smoothscroll" href="#portfolio" title="">Projects</a></li>
+						<li><a class="smoothscroll" href="#" title="">Resume</a></li>
+						<li><a class="smoothscroll" href="#contact" title="">Contact</a></li>
+						
+					</ul>
+				</nav>
+			</div>
+
+		</div> 
+	</header>
+
+	
+	<section id="intro">
+
+		<div class="intro-overlay"></div>
+
+		<div class="intro-content">
+			<div class="row">
+
+				<div class="col-twelve">
+
+					<h5>Hello....</h5>
+					<h1>I'm Vijay.</h1>
+					
+
+					<p class="intro-position">
+						<span>Software Developer</span>
+						<span>Front-end Developer</span>
+					</p>
+
+					<a class="button stroke smoothscroll" href="#about" title="">Know About Me</a>
+
+				</div>
+
+			</div>
+		</div> 
+
+		<ul class="intro-social">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-github"></i></a></li>
+			<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+		</ul> 
+
+	</section> 
+
+
+
+	<section id="about">
+
+		<div class="row section-intro">
+			<div class="col-twelve">
+
+				<h5><-About Me-></h5>
+
+				<div class="intro-info">
+
+					<img src="images/profile.jpg" alt="Profile Pic">
+
+					<p class="lead">I'm an upcoming Web and Software developer engineer. I am a college student and currently pursuing my bachelor's degree and studying B.tech in Information Technology from Kamla Nehru Institute of Technology(2018-2022), Sultanpur. I have enjoyed learning the web development and I am working each day to further grow my coding skill set and knowledge.</p>
+				</div>
+
+			</div>
+		</div> 
+
+		
+
+
+		</div>
+<br>
+	</section> 
+
+<section  id="skills">
+	<br><br><br>
+	<h2>My Skills:</h2><br><br>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<div class="skill">
+	
+<div class="skillbar clearfix " data-percent="85%">
+	<div class="skillbar-title" style="background: #d35400;"><span>HTML</span></div>
+	<div class="skillbar-bar" style="background: #e67e22;"></div>
+	<div class="skill-bar-percent">85%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="80%">
+	<div class="skillbar-title" style="background: #2980b9;"><span>CSS</span></div>
+	<div class="skillbar-bar" style="background: #3498db;"></div>
+	<div class="skill-bar-percent">80%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="75%">
+	<div class="skillbar-title" style="background: #2c3e50;"><span>Python</span></div>
+	<div class="skillbar-bar" style="background: #2c3e50;"></div>
+	<div class="skill-bar-percent">75%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="70%">
+	<div class="skillbar-title" style="background: #46465e;"><span>C++</span></div>
+	<div class="skillbar-bar" style="background: #5a68a5;"></div>
+	<div class="skill-bar-percent">70%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="45%">
+	<div class="skillbar-title" style="background: #333333;"><span>Javascript</span></div>
+	<div class="skillbar-bar" style="background: #525252;"></div>
+	<div class="skill-bar-percent">45%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="40%">
+	<div class="skillbar-title" style="background: #27ae60;"><span>JAVA</span></div>
+	<div class="skillbar-bar" style="background: #2ecc71;"></div>
+	<div class="skill-bar-percent">40%</div>
+</div> 
+
+<div class="skillbar clearfix " data-percent="70%">
+	<div class="skillbar-title" style="background: #124e8c;"><span>Photoshop</span></div>
+	<div class="skillbar-bar" style="background: #4288d0;"></div>
+	<div class="skill-bar-percent">70%</div>
+</div> 
+
+
+
+<script>
+	$(window).scroll(function() {
+   var hT = $('.skill').offset().top,
+       hH = $('.skill').outerHeight(),
+       wH = $(window).height(),
+       wS = $(this).scrollTop();
+   if (wS > (hT+hH-wH)){
+	jQuery(document).ready(function(){
+        jQuery('.skillbar').each(function(){
+            jQuery(this).find('.skillbar-bar').animate({
+                width:jQuery(this).attr('data-percent')
+            },5000);
+        });
+    });
+       
+   }
+});
+	</script>
+
+
+
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</section>
+
+
+	<section id="portfolio">
+
+		<div class="row section-intro">
+			<div class="col-twelve">
+
+				<h5>Projects</h5>
+				<h1>Check Out Some of My Projects.</h1>
+
+				<p class="lead">Here is the list of projects. </p>
+
+			</div>
+		</div> 
+
+		<div class="row portfolio-content">
+
+			<div class="col-twelve">
+
+				<!-- portfolio-wrapper -->
+				<div id="folio-wrapper" class="block-1-2 block-mob-full stack">
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/fb.jpeg" alt="Facebook">
+							<a href="#modal-06" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">Facebook autologin BOT</h3>
+										<span class="folio-types">
+											Programming
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/gossip.JPG" alt="Gossipdotcom">
+							<a href="#modal-02" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">GossipDotCom</h3>
+										<span class="folio-types">
+											WebChat Application
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/covid.JPG" alt="Covid">
+							<a href="#modal-03" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">Covid-19 Stats Calculator</h3>
+										<span class="folio-types">
+											Web Application
+								
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div> <!-- /folio-item -->
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/blog.JPG" alt="eCoder Blog">
+							<a href="#modal-01" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">eCoder Blog</h3>
+										<span class="folio-types">
+											Web Development
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div> 
+
+
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/zodiac.JPG" alt="zodiac">
+							<a href="#modal-05" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">Zodiac Sign Predictor</h3>
+										<span class="folio-types">
+											Web Development
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+
+					<div class="bgrid folio-item">
+						<div class="item-wrap">
+							<img src="images/portfolio/gym.JPG" alt="gym">
+							<a href="#modal-04" class="overlay">
+								<div class="folio-item-table">
+									<div class="folio-item-cell">
+										<h3 class="folio-title">Gym Website Front-end</h3>
+										<span class="folio-types">
+											Web Development
+										</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					
+					<div id="modal-01" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/blog.JPG" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>eCoder Blog</h4>
+							<p>A simple Blog template built using bootstrap.
+								You can add your content on this blog by contacting me.
+							</p>
+
+							<div class="categories">Web Development</div>
+						</div>
+
+						<div class="link-box">
+							<a href="./projects/web/indexweb.html">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> <!-- /modal-01 -->
+
+					<div id="modal-02" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/gossip.JPG" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>GossipDotCom</h4>
+							<p>A realtime chat application built using node js deployed on heroku.
+								By this app app you can chat with your friends.</p>
+
+							<div class="categories">WebChat Application</div>
+						</div>
+
+						<div class="link-box">
+							<a href="https://gossipsdotcom.herokuapp.com">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> <!-- /modal-02 -->
+
+					<div id="modal-03" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/covid.JPG" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>Covid-19 Stats Viewer</h4>
+							<p>A web based application to view stats of covid-19 of different countries.
+								I have used open source API from Github and It is built by Javascript,html and css.
+							</p>
+
+							<div class="categories">Web Application</div>
+						</div>
+
+						<div class="link-box">
+							<a href="./projects/covid19.html">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> <!-- /modal-03 -->
+
+					<div id="modal-05" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/zodiac.JPG" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>Zodiac Sign Predictor</h4>
+							<p>It's a simple web Application built for predicting your zodiac signs.
+								Built using Javascript,HTML and CSS.
+							</p>
+
+							<div class="categories">Web Application</div>
+						</div>
+
+						<div class="link-box">
+							<a href="./projects/zodiac.html">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> <!-- /modal-05 -->
+
+					<div id="modal-04" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/gym.JPG" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>Gym Website Front-end</h4>
+							<p>This is the Front-end of a website for Gym.
+								This is simple page built using HTML and CSS.
+							</p>
+
+							<div class="categories">Web Development</div>
+						</div>
+
+						<div class="link-box">
+							<a href="./projects/gym.html">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> <!-- /modal-05 -->
+
+					<div id="modal-06" class="popup-modal slider mfp-hide">
+
+						<div class="media">
+							<img src="images/portfolio/fb.jpeg" alt="" />
+						</div>
+
+						<div class="description-box">
+							<h4>Facebook autologin BOT</h4>
+							<p>It is a Python based programme to login your social sites automatically.
+								Input your username and password in the given file and run with your command.
+							</p>
+
+							<div class="categories">Programming</div>
+						</div>
+
+						<div class="link-box">
+							<a href="https://github.com/vijaygupta18/FacebookAutobot">View</a>
+							<a href="#" class="popup-modal-dismiss">Close</a>
+						</div>
+
+					</div> 
+
+
+
+				</div>
+
+			</div> 
+
+		</div>
+
+	</section> 
+
+
+	
+	
+
+
+	
+
+	<!-- contact
+   ================================================== -->
+	<section id="contact">
+
+		<div class="row section-intro">
+			<div class="col-twelve">
+<br><br>
+				<h5>Contact Me</h5>
+				<h1>I would love to connect with you .</h1>
+
+				
+			</div>
+		</div> 
+
+		<div class="row contact-form">
+
+			<div class="col-twelve">
+
+				<!-- form -->
+				<form name="contactForm" id="contactForm" method="post" action="">
+					<fieldset>
+
+						<div class="form-field">
+							<input name="contactName" type="text" id="contactName" placeholder="Name" value=""
+								minlength="2" required="">
+						</div>
+						<div class="form-field">
+							<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value=""
+								required="">
+						</div>
+						<div class="form-field">
+							<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+						</div>
+						<div class="form-field">
+							<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10"
+								cols="50" required=""></textarea>
+						</div>
+						<div class="form-field">
+							<button class="submitform">Submit</button>
+							<div id="submit-loader">
+								<div class="text-loader">Sending...</div>
+								<div class="s-loader">
+									<div class="bounce1"></div>
+									<div class="bounce2"></div>
+									<div class="bounce3"></div>
+								</div>
+							</div>
+						</div>
+
+					</fieldset>
+				</form> 
+
+				
+				<div id="message-warning">
+				</div>
+				
+				<div id="message-success">
+					<i class="fa fa-check"></i>Your message was sent, Thank You for Contacting!<br>
+				</div>
+
+			</div> 
+
+		</div> 
+
+		<div class="row contact-info">
+
+			<div class="col-four tab-full">
+
+				<div class="icon">
+					<i class="icon-pin"></i>
+				</div>
+
+				<h5><Address></Address></h5>
+
+				<p>
+					KNIT Sultanpur<br>
+					(U,P.)<br>
+					228118
+				</p>
+
+			</div>
+
+			<div class="col-four tab-full collapse">
+
+				<div class="icon">
+					<i class="icon-mail"></i>
+				</div>
+
+				<h5>You can also mail Me At</h5>
+
+				<p>vijayrauniyar1818@gmail.com<br>
+		
+				</p>
+
+			</div>
+
+			<div class="col-four tab-full">
+
+				<div class="icon">
+					<i class="icon-phone"></i>
+				</div>
+
+				<h5>You can Call Me</h5>
+
+				<p>
+					Mobile: (+91) 8565017450<br>
+					Whatsapp: (+91) 8565017450<br>
+					
+				</p>
+
+			</div>
+
+		</div>
+
+	</section> 
+
+
+	<footer>
+		<div class="row">
+
+			<div class="col-four tab-full pull-right social">
+
+				<ul class="footer-social">
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-github"></i></a></li>
+					<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+				</ul>
+
+			</div>
+
+
+			<div id="go-top">
+				<a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
+			</div>
+
+		</div> <!-- /row -->
+	</footer>
+
+	<div id="preloader">
+		<div id="loader"></div>
+	</div>
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>
