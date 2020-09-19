@@ -1687,9 +1687,10 @@ footer .copyright span:last-child::after {
 #go-top a {
 	text-decoration: none;
 	border: 0 none;
+	border-radius: 50%;
 	display: block;
 	height: 6.6rem;
-	width: 6rem;
+	width: 6.6rem;
 	line-height: 6.6rem;
 	text-align: center;
 	background: #cc005f;
@@ -1707,7 +1708,7 @@ footer .copyright span:last-child::after {
 	line-height: inherit;
 }
 #go-top a:hover {
-	background: #000000;
+	background: #0e9bec;
 }
 
 .skillbar {
