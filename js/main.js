@@ -140,24 +140,38 @@
    var toggleButton = $('.menu-toggle'),
        nav = $('.main-navigation');
 
+   function isMobile() {
+       return window.innerWidth <= 768;
+   }
+
    // toggle button
    toggleButton.on('click', function(e) {
-
+        if (!isMobile()) return; // Only toggle on mobile
 		e.preventDefault();
 		toggleButton.toggleClass('is-clicked');
 		nav.slideToggle();
-
 	});
 
    // nav items
-  	nav.find('li a').on("click", function() {   
+   nav.find('li a').on("click", function() {
+        if (!isMobile()) return;
+    	// update the toggle button 		
+    	toggleButton.toggleClass('is-clicked'); 
+    	// fadeout the navigation panel
+    	nav.fadeOut();    		
+   });
 
-   	// update the toggle button 		
-   	toggleButton.toggleClass('is-clicked'); 
-   	// fadeout the navigation panel
-   	nav.fadeOut();   		
-   	     
-  	});
+   // Always show nav on desktop
+   function handleResize() {
+       if (!isMobile()) {
+           nav.show();
+           toggleButton.removeClass('is-clicked');
+       } else {
+           nav.hide();
+       }
+   }
+   $(window).on('resize', handleResize);
+   $(document).ready(handleResize);
 
 
    /*---------------------------------------------------- */
@@ -287,5 +301,89 @@
 		}		
 
 	});		
+
+	// --- Animated Carousel Slider Logic ---
+	function initAnimatedSlider(sliderSelector) {
+	    var $slider = $(sliderSelector);
+	    var $track = $slider.find('.slider-track');
+	    var $slides = $track.find('.slide');
+	    var totalSlides = $slides.length;
+	    var currentIndex = 0;
+
+	    function getSlideWidth() {
+	        // Get the width of a single slide including its margin-right
+	        return $slides.eq(0).outerWidth(true);
+	    }
+
+	    function updateSliderPosition() {
+	        // var isMobile = window.innerWidth <= 900; // Not needed for single line
+	        // var slidesVisible = isMobile ? 1 : 2; // Not needed for single line
+
+	        // Calculate the offset needed to bring the current slide into view
+	        // We move by the width of one slide (including its margin) for each step
+	        var offset = -currentIndex * getSlideWidth();
+	        
+	        $track.css('transform', 'translateX(' + offset + 'px)');
+
+	        // Optional: Disable arrows at the beginning/end if not looping
+	        // $slider.find('.slider-prev').prop('disabled', currentIndex === 0);
+	        // $slider.find('.slider-next').prop('disabled', currentIndex >= totalSlides - slidesVisible);
+	    }
+
+	    $slider.find('.slider-prev').off('click').on('click', function() {
+	        if (currentIndex > 0) {
+	            currentIndex--;
+	            updateSliderPosition();
+	        } else {
+			// Loop to the end if at the beginning
+	            currentIndex = totalSlides - 1; // Go to the last slide
+	            updateSliderPosition();
+	        }
+	    });
+
+	    $slider.find('.slider-next').off('click').on('click', function() {
+	        if (currentIndex < totalSlides - 1) { // Changed condition to check against last slide index
+	            currentIndex++;
+	            updateSliderPosition();
+	        } else {
+			// Loop to the beginning if at the end
+			currentIndex = 0; // Go to the first slide
+			updateSliderPosition();
+	        }
+	    });
+
+        // Initialize position
+        updateSliderPosition();
+
+        // Handle window resize to re-calculate position and potentially re-enable/disable slider
+        // $(window).on('resize', updateSliderPosition);
+	}
+
+    // Initialize cert-slider only on desktop
+    function checkAndInitCertSlider() {
+        if (window.innerWidth > 900) { // Use 900px as the breakpoint based on CSS media query
+            initAnimatedSlider('.cert-slider');
+             // Ensure slider arrows are visible on desktop
+            $('.cert-slider .slider-arrow').show();
+        } else {
+            // Reset styles for mobile (list view)
+            $('.cert-slider .slider-track').css('transform', 'translateX(0)');
+            // Hide slider arrows on mobile
+            $('.cert-slider .slider-arrow').hide();
+        }
+    }
+
+    // Initial check on document ready
+    $(document).ready(function(){
+        checkAndInitCertSlider();
+    });
+
+    // Re-check on window resize
+    $(window).on('resize', function(){
+        checkAndInitCertSlider();
+    });
+
+
+	// --- Project Grid Horizontal Scroll for Mobile ---
 
 })(jQuery);
