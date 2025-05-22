@@ -1438,24 +1438,26 @@
     /* Projects Section */
     .projects-container {
       position: relative;
-      overflow: visible;
+      overflow: hidden; /* Changed to hidden for smooth infinite scroll */
       padding: var(--space-xl) 0;
       margin: 0 var(--space-xl);
     }
 
     .projects-carousel {
       display: flex;
+      align-items: flex-start; /* Align carousel items to top */
       gap: var(--space-lg);
-      transition: transform 0.5s ease;
       will-change: transform;
       overflow: visible;
       padding: var(--space-md) 0;
+      transition: none; /* Disable default transition for smooth infinite scroll */
     }
 
     .projects-grid {
       display: flex;
+      align-items: flex-start; /* Ensure all cards align to the top */
       gap: var(--space-lg);
-      min-width: 100%;
+      min-width: 300%; /* Accommodate tripled cards for seamless infinite scroll */
       overflow: visible;
     }
 
@@ -1472,6 +1474,8 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      align-self: flex-start; /* Ensure consistent vertical alignment */
+      margin: 0; /* Reset margins */
     }
 
     .carousel-controls {
@@ -1728,6 +1732,16 @@
       background: var(--text-tertiary);
     }
 
+    /* Ensure cloned cards have consistent styling and positioning */
+    .card-clone {
+      pointer-events: auto;
+      opacity: 1;
+      position: relative;
+      align-self: flex-start; /* Ensure cloned cards align to top */
+      margin: 0; /* Reset any inherited margins */
+      vertical-align: top; /* Additional vertical alignment */
+    }
+
     /* Education Section */
     .education-container {
       max-width: 1200px;
@@ -1798,21 +1812,23 @@
       /* Recommendations Section */
       .recommendations-container {
         position: relative;
-        overflow: hidden;
+        overflow: hidden; /* Ensure hidden for smooth infinite scroll */
         padding: var(--space-md) 0;
       }
 
       .recommendations-carousel {
         display: flex;
+        align-items: flex-start; /* Align carousel items to top */
         gap: var(--space-lg);
-        transition: transform 0.5s ease;
         will-change: transform;
+        transition: none; /* Disable default transition for smooth infinite scroll */
       }
 
       .recommendations-grid {
         display: flex;
+        align-items: flex-start; /* Ensure all cards align to the top */
         gap: var(--space-lg);
-        min-width: 100%;
+        min-width: 300%; /* Accommodate tripled cards for seamless infinite scroll */
       }
 
       .recommendation-card {
@@ -1828,6 +1844,8 @@
         height: 450px;
         display: flex;
         flex-direction: column;
+        align-self: flex-start; /* Ensure consistent vertical alignment */
+        margin: 0; /* Reset margins */
       }
 
       .recommendation-card:hover {
@@ -4433,85 +4451,151 @@ ${cleanMessage}
         });
       });
 
-      // Carousel Controls
-      function setupCarousel(carouselId, prevBtnId, nextBtnId, cardWidth, gap) {
+      // True Infinite Carousel with Seamless Looping
+      function setupInfiniteCarousel(carouselId, prevBtnId, nextBtnId, cardWidth, gap) {
         const carousel = document.getElementById(carouselId);
         const prevBtn = document.getElementById(prevBtnId);
         const nextBtn = document.getElementById(nextBtnId);
         
         if (!carousel || !prevBtn || !nextBtn) return;
 
-        let currentIndex = 0;
-        const cards = carousel.querySelectorAll('.project-card, .recommendation-card');
+        const originalGrid = carousel.querySelector('.projects-grid, .recommendations-grid');
+        if (!originalGrid) return;
+
+        const cards = Array.from(originalGrid.querySelectorAll('.project-card, .recommendation-card'));
         const totalCards = cards.length;
         const cardWidthWithGap = cardWidth + gap;
-
-        function updateCarousel() {
-          const translateX = -currentIndex * cardWidthWithGap;
-          carousel.style.transform = `translateX(${translateX}px)`;
-          
-          // Remove disabled states for infinite loop
-          prevBtn.disabled = false;
-          nextBtn.disabled = false;
-          
-          // Update button opacity for visual feedback
-          prevBtn.style.opacity = currentIndex === 0 ? '0.6' : '1';
-          nextBtn.style.opacity = '1';
-        }
-
-        function slideNext() {
-          const maxVisibleCards = Math.floor(carousel.parentElement.clientWidth / cardWidthWithGap) || 1;
-          if (currentIndex < totalCards - maxVisibleCards) {
-            currentIndex++;
-          } else {
-            // Loop to beginning
-            currentIndex = 0;
+        
+        // Clear existing clones
+        const existingClones = originalGrid.querySelectorAll('.card-clone');
+        existingClones.forEach(clone => clone.remove());
+        
+        // Create seamless infinite scroll by tripling the cards for smooth looping
+        // Add clones at the end
+        cards.forEach(card => {
+          const clone1 = card.cloneNode(true);
+          const clone2 = card.cloneNode(true);
+          clone1.classList.add('card-clone');
+          clone2.classList.add('card-clone');
+          originalGrid.appendChild(clone1);
+          originalGrid.appendChild(clone2);
+        });
+        
+        // Set up continuous animation
+        let animationId;
+        let currentTranslate = 0;
+        const singleSetWidth = totalCards * cardWidthWithGap;
+        const animationSpeed = 0.5; // pixels per frame - smooth infinite scroll
+        let isPaused = false;
+        let isManualControl = false;
+        
+        function animateCarousel() {
+          if (!isPaused && !isManualControl) {
+            currentTranslate -= animationSpeed;
+            
+            // Seamless reset when we've moved one complete set
+            if (Math.abs(currentTranslate) >= singleSetWidth) {
+              currentTranslate = 0;
+            }
+            
+            carousel.style.transform = `translateX(${currentTranslate}px)`;
           }
-          updateCarousel();
+          animationId = requestAnimationFrame(animateCarousel);
+        }
+        
+        // Manual controls for user interaction
+        let currentIndex = 0;
+        
+        function slideNext() {
+          isManualControl = true;
+          currentIndex = (currentIndex + 1) % totalCards;
+          const targetTranslate = -currentIndex * cardWidthWithGap;
+          
+          // Smooth transition to next card
+          carousel.style.transition = 'transform 0.4s ease-out';
+          carousel.style.transform = `translateX(${targetTranslate}px)`;
+          currentTranslate = targetTranslate;
+          
+          setTimeout(() => {
+            carousel.style.transition = 'none';
+            isManualControl = false;
+          }, 400);
         }
 
         function slidePrev() {
-          if (currentIndex > 0) {
-            currentIndex--;
-          } else {
-            // Loop to end
-            const maxVisibleCards = Math.floor(carousel.parentElement.clientWidth / cardWidthWithGap) || 1;
-            currentIndex = Math.max(0, totalCards - maxVisibleCards);
-          }
-          updateCarousel();
+          isManualControl = true;
+          currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+          const targetTranslate = -currentIndex * cardWidthWithGap;
+          
+          // Smooth transition to previous card
+          carousel.style.transition = 'transform 0.4s ease-out';
+          carousel.style.transform = `translateX(${targetTranslate}px)`;
+          currentTranslate = targetTranslate;
+          
+          setTimeout(() => {
+            carousel.style.transition = 'none';
+            isManualControl = false;
+          }, 400);
         }
 
-        // Remove any existing event listeners
-        nextBtn.removeEventListener('click', slideNext);
-        prevBtn.removeEventListener('click', slidePrev);
-        
-        // Add event listeners
-        nextBtn.addEventListener('click', slideNext);
-        prevBtn.addEventListener('click', slidePrev);
-
-        // Handle window resize
-        window.addEventListener('resize', updateCarousel);
-
-        // Initial update
-        updateCarousel();
-
-        // Auto-slide functionality (optional) - cleared any existing intervals
-        const autoSlideInterval = setInterval(slideNext, 6000);
-        
-        // Pause auto-slide on hover
-        carousel.parentElement.addEventListener('mouseenter', () => {
-          clearInterval(autoSlideInterval);
+        // Event listeners for manual controls
+        nextBtn.addEventListener('click', () => {
+          isPaused = true;
+          slideNext();
+          setTimeout(() => {
+            isPaused = false;
+          }, 800);
         });
+        
+        prevBtn.addEventListener('click', () => {
+          isPaused = true;
+          slidePrev();
+          setTimeout(() => {
+            isPaused = false;
+          }, 800);
+        });
+
+        // Pause on hover for better user experience
+        carousel.addEventListener('mouseenter', () => {
+          isPaused = true;
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+          isPaused = false;
+        });
+
+        // Start the animation
+        carousel.style.transition = 'none';
+        animateCarousel();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+          }
+          // Recalculate and restart
+          setTimeout(() => {
+            animateCarousel();
+          }, 100);
+        });
+
+        // Cleanup function
+        return () => {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+          }
+        };
       }
 
-      // Setup carousels with responsive card sizes
+      // Setup carousels with responsive card sizes for infinite scrolling
       function setupResponsiveCarousels() {
         const isMobile = window.innerWidth <= 768;
         const projectCardWidth = isMobile ? 350 : 400;
         const recommendationCardWidth = isMobile ? 380 : 480;
+        const gap = 24; // Gap between cards
         
-        setupCarousel('projectsCarousel', 'projectsPrev', 'projectsNext', projectCardWidth, 24);
-        setupCarousel('recommendationsCarousel', 'recommendationsPrev', 'recommendationsNext', recommendationCardWidth, 24);
+        setupInfiniteCarousel('projectsCarousel', 'projectsPrev', 'projectsNext', projectCardWidth, gap);
+        setupInfiniteCarousel('recommendationsCarousel', 'recommendationsPrev', 'recommendationsNext', recommendationCardWidth, gap);
       }
 
       // Initial setup
