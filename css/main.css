@@ -2027,40 +2027,11 @@ footer .copyright span:last-child::after {
 	border-radius: 12px;
 	padding: 2.5rem; /* Increased padding */
 	min-width: 260px; /* Increased min-width */
-	box-shadow: 0 2px 12px rgba(44,62,80,0.07);\
+	box-shadow: 0 2px 12px rgba(44,62,80,0.07);
 	transition: box-shadow 0.2s, transform 0.2s;
 	border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.skills-category:hover {
-	box-shadow: 0 8px 32px rgba(44,62,80,0.13);\
-	transform: translateY(-5px) scale(1.03);\
-	border-color: #FF0077;\
-}
-.skills-category h4 {
-	color: #FF0077;\
-	margin-bottom: 1.5rem; /* Standardized margin-bottom for h4 in skills */
-	font-size: 1.3rem; /* Adjusted font size */
-	text-align: center;\
-}
-.skill-badge {
-	display: inline-block;\
-	background: #FF0077;\
-	color: #fff;\
-	border-radius: 16px;\
-	padding: 0.4rem 1.2rem; /* Adjusted padding */
-	margin: 0.4rem 0.5rem 0.4rem 0; /* Adjusted margin */
-	font-size: 1.2rem; /* Adjusted font size */
-	font-weight: 500;\
-	box-shadow: 0 1px 4px rgba(44,62,80,0.08);\
-	transition: background 0.2s, color 0.2s, box-shadow 0.2s;\
-	border: 1px solid transparent;\
-}
-.skill-badge:hover {
-	background: #fff;\
-	color: #FF0077;\
-	box-shadow: 0 2px 8px rgba(44,62,80,0.13);\
-	border-color: #FF0077;\
-}
+
 /* Remove old skillbar styles */
 .skillbar, .skillbar-title, .skillbar-bar, .skill-bar-percent, .skill { display: none !important; }
 @media (max-width: 900px) {
@@ -2121,25 +2092,25 @@ footer .copyright span:last-child::after {
 	background: #232946;
 	border-radius: 12px;
 	padding: 2.5rem; /* Increased padding */
-	box-shadow: 0 2px 12px rgba(0,0,0,0.07);\
-	color: #fff;\
+	box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+	color: #fff;
 }
 .experience-content h4 {
 	margin-top: 0;
 	margin-bottom: 1rem; /* Standardized margin-bottom for h4 in experience */
 	font-size: 1.4rem; /* Adjusted font size */
-	color: #FF0077;\
+	color: #FF0077;
 }
 .experience-role {
 	font-size: 1.2rem; /* Adjusted font size */
 	margin-bottom: 1rem; /* Standardized margin-bottom */
-	color: #bdbdbd;\
+	color: #bdbdbd;
 }
 .experience-content ul {
 	list-style: disc;
 	margin-left: 1.5rem; /* Added margin-left for list */
 	margin-bottom: 1.5rem; /* Standardized margin-bottom for ul */
-	color: #eaeaea;\
+	color: #eaeaea;
 }
 .experience-content ul li {
 	margin-bottom: 0.5rem; /* Standardized margin-bottom for list items */
@@ -3334,4 +3305,83 @@ section {
   --grey-light: #d8d8d8;
   --grey-medium: #bebebe;
   --grey-dark: #7d7d7d;
+}
+
+.about-quick-facts {
+	display: flex;
+	gap: 2rem;
+	margin: 1rem 0 0.7rem 0;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.about-fact {
+	background: #eaeaea;
+	color: #232946;
+	border-radius: 8px;
+	padding: 0.35rem 1rem 0.35rem 0.8rem;
+	font-size: 1.05rem;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	box-shadow: 0 1px 4px rgba(44,62,80,0.07);
+	transition: background 0.18s, color 0.18s;
+}
+.about-fact i {
+	color: #FF0077;
+	font-size: 1.1rem;
+	margin-right: 0.4rem;
+}
+@media (max-width: 600px) {
+	.about-quick-facts {
+		flex-direction: column;
+		gap: 0.7rem;
+		align-items: flex-start;
+	}
+	.about-fact {
+		font-size: 0.98rem;
+		padding: 0.32rem 0.8rem 0.32rem 0.7rem;
+	}
+}
+
+.about-card.enhanced-about {
+	min-height: 370px;
+	padding-top: 4.5rem;
+	padding-bottom: 4.5rem;
+	justify-content: center;
+}
+.enhanced-about-details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.about-social {
+	margin-top: 2.2rem;
+	justify-content: center;
+	align-items: center;
+}
+.about-social ul {
+	justify-content: center;
+	align-items: center;
+}
+.about-social a {
+	font-size: 3.7rem;
+	color: #FF0077;
+	transition: color 0.2s;
+}
+.about-social a:hover {
+	color: #231946;
+	border-radius: 10%;
+	box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+}
+
+@media (max-width: 900px) {
+	.about-card.enhanced-about {
+		padding-top: 2.5rem;
+		padding-bottom: 2.5rem;
+	}
+	.skills-grid {
+		grid-template-columns: 1fr;
+	}
 }
