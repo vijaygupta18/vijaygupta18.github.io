@@ -1971,7 +1971,7 @@ footer .copyright span:last-child::after {
 }
 .about-summary {
 	margin-top: 1rem;
-	font-size: 1.2rem; /* Slightly adjusted for better flow */
+	font-size: 2.5rem; /* Slightly adjusted for better flow */
 	line-height: 1.8;
 	color: #eaeaea;
 }
@@ -2267,10 +2267,10 @@ footer .copyright span:last-child::after {
 	font-size: 1.4rem; /* Increased headline size */	
 }
 .enhanced-about-details .about-summary {
-	font-size: 1.25rem; /* Increased summary font size */
+	font-size: 1.5rem; /* Increased summary font size */
 	font-weight: 500;
 	margin-top: 1.5rem; /* Increased top margin */
-	line-height: 1.8; /* Increased line height */
+	line-height: 1.8;
 }
 
 /* Enhanced Experience Timeline */
@@ -3047,7 +3047,7 @@ footer .copyright span:last-child::after {
   border-radius: 12px;
   box-shadow: 0 1px 8px rgba(44,62,80,0.08); /* Subtle shadow */
   padding: 1.8rem 2rem 1.5rem 2rem; /* Adjusted padding */
-  min-width: 180px;
+  min-width: 180px; /* Slightly increased max-width */
   max-width: 280px; /* Slightly increased max-width */
   flex: 1 1 180px;
   display: flex;
@@ -3305,6 +3305,8 @@ section {
   --grey-light: #d8d8d8;
   --grey-medium: #bebebe;
   --grey-dark: #7d7d7d;
+  --background-grey: #f7f7fa;
+  --divider: #eaeaea;
 }
 
 .about-quick-facts {
