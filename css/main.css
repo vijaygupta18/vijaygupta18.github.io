@@ -1074,9 +1074,11 @@ header .logo a {
  * ------------------------------------------------------------------- 
  */
 #portfolio {
-	background: #FFFFFF;
-	padding-top: 8rem; /* Reduced from 12rem */
-	padding-bottom: 1rem; /* Reduced from 12rem */
+  background: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 16px rgba(44,62,80,0.04);
+  padding: 3.5rem 0 3.5rem 0;
+  margin-bottom: 2.5rem;
 }
 #portfolio .folio-item {
 	padding: 0;
@@ -2919,105 +2921,34 @@ footer .copyright span:last-child::after {
 .modern-project-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 2.5rem;
-	justify-content: flex-start;
-	margin-top: 2.5rem;
+	gap: 2.2rem;
+	justify-content: center;
+	align-items: stretch;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1000px;
 }
-
 .project-card {
-	background: var(--background-light); /* Use light background variable */
-	border-radius: 18px;
-	box-shadow: 0 4px 24px rgba(44,62,80,0.10);
-	padding: 2.2rem 2.2rem 1.7rem 2.2rem;
-	min-width: 320px;
+	flex: 1 1 320px;
 	max-width: 370px;
-	flex: 1 1 340px;
-	display: flex;
-	flex-direction: column;
-	gap: 1.1rem;
-	transition: box-shadow 0.18s, transform 0.18s;
-	margin-bottom: 0.5rem;
-	border: 1px solid var(--grey-light); /* Add a subtle border */
-}
-.project-card:hover {
-	box-shadow: 0 8px 32px rgba(44,62,80,0.16);
-	transform: translateY(-4px) scale(1.03);
-	border-color: var(--primary-color); /* Highlight border on hover */
-}
-.project-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1.2rem;
-	flex-wrap: wrap;
-}
-.project-title {
-	font-size: 1.22rem;
-	font-weight: 700;
-	color: #232946;
-	text-decoration: none;
-	transition: color 0.18s;
-	word-break: break-word;
-}
-.project-title:hover {
-	color: #FF0077;
-	text-decoration: underline;
-}
-.project-badges {
-	display: flex;
-	gap: 0.5rem;
-	flex-wrap: wrap;
-}
-.badge {
-	background: var(--secondary-color); /* Use secondary color for badge */
-	color: #fff;
-	border-radius: 16px;
-	padding: 0.25rem 0.9rem;
-	font-size: 0.98rem;
-	font-weight: 600;
-	box-shadow: 0 1px 4px rgba(44,62,80,0.08);
-	transition: background 0.18s, color 0.18s;
-	white-space: nowrap;
-}
-.badge:hover {
-	background: var(--primary-color); /* Hover state background using variable */
-	color: var(--background-light); /* Hover state text color using variable */
-	box-shadow: 0 2px 8px rgba(44,62,80,0.13);
-}
-.project-desc {
-	font-size: 1.15rem; /* Increased for consistency */
-	line-height: 1.7;
-	margin-bottom: 0.2rem;
-}
-.project-meta {
-	display: flex;
-	gap: 1rem;
-	flex-wrap: wrap;
-	font-size: 0.98rem;
-	color: #888;
-	margin-top: 0.2rem;
-}
-.meta {
-	background: #eaeaea;
-	border-radius: 12px;
-	padding: 0.18rem 0.8rem;
-	font-weight: 500;
-	color: #6e6e6e;
+	min-width: 280px;
+	margin-bottom: 2.2rem;
 }
 @media (max-width: 1100px) {
 	.modern-project-list {
-		gap: 1.5rem;
+		gap: 1.2rem;
+		max-width: 100%;
 	}
 	.project-card {
-		min-width: 260px;
+		min-width: 220px;
 		max-width: 100%;
-		padding: 1.3rem 1.1rem 1.1rem 1.1rem;
 	}
 }
 @media (max-width: 800px) {
 	.modern-project-list {
 		flex-direction: column;
 		gap: 1.2rem;
+		align-items: center;
 	}
 	.project-card {
 		min-width: 0;
@@ -3211,14 +3142,14 @@ footer .copyright span:last-child::after {
   width: auto; /* Auto width */
   text-align: left; /* Align text to the left */
   margin-bottom: 0.5rem; /* Add some bottom margin */
-  font-size: 1rem; /* Adjusted font size */
+  font-size: 1.5rem; /* Adjusted font size */
   color: var(--grey-dark); /* Use dark grey for date color */
   font-family: "poppins-regular", sans-serif; /* Adjusted font family */
   letter-spacing: 0; /* Remove letter spacing */
   font-weight: 400; /* Normal font weight */
 }
 .experience-card h4 {
-  font-size: 1.25rem; /* Adjusted font size */
+  font-size: 2rem; /* Adjusted font size */
   color: var(--background-light); /* White color for heading */
   font-weight: 700;
   margin-bottom: 0.5rem; /* Adjusted margin-bottom */
@@ -3227,7 +3158,7 @@ footer .copyright span:last-child::after {
   display: block; /* Display as block */
   background: none; /* Remove background */
   color: var(--grey-medium); /* Medium grey color */
-  font-size: 1rem; /* Adjusted font size */
+  font-size: 1.3rem; /* Adjusted font size */
   font-weight: 500; /* Adjusted font weight */
   border-radius: 0; /* Remove border-radius */
   padding: 0; /* Remove padding */
@@ -3236,14 +3167,15 @@ footer .copyright span:last-child::after {
   letter-spacing: 0; /* Remove letter spacing */
 }
 .experience-role {
-  font-size: 1.1rem; /* Adjusted font size */
-  color: var(--grey-light); /* Light grey color */
+  font-size: 1.3rem; /* Adjusted font size */
+  color: #FF0077;
   font-weight: 600;
   margin-bottom: 1rem; /* Adjusted margin-bottom */
+
 }
 .experience-desc {
   color: var(--text-color-light); /* Light text color */
-  font-size: 1rem; /* Adjusted font size */
+  font-size: 1.3rem; /* Adjusted font size */
   margin-bottom: 1rem; /* Adjusted margin-bottom */
   line-height: 1.7;
 }
@@ -3251,15 +3183,16 @@ footer .copyright span:last-child::after {
   margin-top: 1.2rem; /* Adjusted margin-top */
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem; /* Adjusted gap */
+  gap: 1.7rem; /* Adjusted gap */
+  font-weight: 700;
 }
 .tech-pill {
   background: var(--primary-color); /* Primary color background */
   color: var(--background-light); /* White text */
   border-radius: 12px; /* Adjusted border-radius */
   padding: 0.2rem 0.7rem; /* Adjusted padding */
-  font-size: 0.9rem; /* Adjusted font size */
-  font-weight: 500; /* Adjusted font weight */
+  font-size: 1.1rem; /* Adjusted font size */
+  font-weight: 700; /* Adjusted font weight */
   box-shadow: none; /* Remove shadow */
   transition: background 0.18s, color 0.18s;
   white-space: nowrap;
@@ -3386,4 +3319,105 @@ section {
 	.skills-grid {
 		grid-template-columns: 1fr;
 	}
+}
+
+/* Standardize section widths for all main sections */
+.row {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.col-twelve {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+/* Remove section-specific max-widths for carousels */
+.project-slider,
+.cert-slider {
+  max-width: 100%;
+}
+
+#education {
+  background: #fff !important;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 16px rgba(44,62,80,0.04);
+  padding: 3.5rem 0 3.5rem 0;
+  margin-bottom: 2.5rem;
+}
+.cert-slider {
+  background: #fff;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 16px rgba(44,62,80,0.04);
+  padding: 2.2rem 0 2.2rem 0;
+  margin-bottom: 1.5rem;
+}
+.cert-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(44,62,80,0.08);
+  border: 1px solid var(--divider);
+  padding: 1.7rem 1.5rem 1.3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 180px;
+  max-width: 280px;
+  flex: 1 1 180px;
+  font-size: 1.08rem;
+  color: var(--text-color-dark);
+}
+.cert-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-right: 1.2rem;
+}
+.cert-details {
+  font-size: 1.08rem;
+  color: var(--text-color-dark);
+}
+.cert-link {
+  color: var(--primary-color-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.18s;
+}
+.cert-link:hover {
+  color: var(--primary-color);
+}
+
+/* Resume overlay button group */
+#resume-frame-overlay .resume-btn-group {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  z-index: 10001;
+}
+#resume-frame-overlay .resume-btn {
+  background: #fff;
+  color: #FF0077;
+  border: none;
+  border-radius: 100%;
+  width: 2.7rem;
+  height: 2.7rem;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  outline: none;
+  text-decoration: none;
+}
+#resume-frame-overlay .resume-btn:hover, #resume-frame-overlay .resume-btn:focus {
+  background: #FF0077;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(44,62,80,0.16);
 }

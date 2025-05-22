@@ -148,7 +148,7 @@
 				<h5>Work History &amp; Timeline</h5>
 			</div>
 		</div>
-
+		<br><br>
 		<div class="row experience-timeline">
 
 			<div class="col-twelve">
@@ -479,7 +479,7 @@
 		</div>
 	</section>
 
-	<section id="education" class="grey-section">
+	<section id="education">
 		<br>
 		<div class="row section-intro">
 			<div class="col-twelve">
@@ -780,14 +780,33 @@
 	</section>
 
 	<!-- Add after the contact section, before footer -->
-	<section id="resume-view" style="display:none; background:#fff; padding:3rem 0; min-height:80vh; text-align:center;">
-		<div class="row">
-			<div class="col-twelve">
-				<h2>Resume</h2>
-				<iframe src="https://drive.google.com/file/d/1NloJGEkZ3Lmuvo5vP6ciTq9RNiFFlVHn/preview" width="90%" height="700px" style="border:none; box-shadow:0 2px 16px rgba(44,62,80,0.10);"></iframe>
-			</div>
+	<div id="resume-frame-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(34,34,34,0.92); z-index:9999; align-items:center; justify-content:center; flex-direction:column; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); transform: translateY(-100%);">
+		<div class="resume-btn-group">
+			<button id="close-resume-frame" class="resume-btn" title="Close Resume" aria-label="Close Resume">&times;</button>
 		</div>
-	</section>
+		<iframe src="images/Vijay2025.pdf" width="80%" height="80%" style="border:none; border-radius:1rem; box-shadow:0 2px 16px rgba(44,62,80,0.10);"></iframe>
+	</div>
+	<script>
+	const resumeLink = document.getElementById('resume-link');
+	const resumeOverlay = document.getElementById('resume-frame-overlay');
+	const closeResume = document.getElementById('close-resume-frame');
+	resumeLink.addEventListener('click', function(e) {
+		e.preventDefault();
+		resumeOverlay.style.display = 'flex';
+		setTimeout(() => { resumeOverlay.style.transform = 'translateY(0)'; }, 10);
+		document.body.style.overflow = 'hidden';
+	});
+	closeResume.addEventListener('click', function() {
+		resumeOverlay.style.transform = 'translateY(-100%)';
+		setTimeout(() => { resumeOverlay.style.display = 'none'; document.body.style.overflow = ''; }, 500);
+	});
+	// Hide overlay if user presses Escape
+	window.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' && resumeOverlay.style.display === 'flex') {
+			closeResume.click();
+		}
+	});
+	</script>
 
 	<footer>
 		<div class="row">
@@ -820,20 +839,6 @@
 	<script src="js/jquery-2.1.3.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/main.js"></script>
-	<script>
-	// Resume link logic
-	const resumeLink = document.getElementById('resume-link');
-	const resumeSection = document.getElementById('resume-view');
-	resumeLink.addEventListener('click', function(e) {
-		e.preventDefault();
-		// Hide all sections except resume
-		document.querySelectorAll('section').forEach(sec => {
-			if (sec.id !== 'resume-view') sec.style.display = '';
-			else sec.style.display = 'block';
-		});
-		window.scrollTo({ top: resumeSection.offsetTop - 40, behavior: 'smooth' });
-	});
-	</script>
 
 
 
