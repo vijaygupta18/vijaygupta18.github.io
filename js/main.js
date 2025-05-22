@@ -303,82 +303,105 @@
 	});		
 
 	// --- Animated Carousel Slider Logic ---
-	function initAnimatedSlider(sliderSelector) {
+	function initAnimatedSlider(sliderSelector, options = {}) {
 	    var $slider = $(sliderSelector);
 	    var $track = $slider.find('.slider-track');
 	    var $slides = $track.find('.slide');
 	    var totalSlides = $slides.length;
 	    var currentIndex = 0;
+	    var autoplay = options.autoplay || false;
+	    var autoplayInterval = options.autoplayInterval || 3000;
+	    var autoplayTimer = null;
+	    var isHovered = false;
 
 	    function getSlideWidth() {
-	        // Get the width of a single slide including its margin-right
 	        return $slides.eq(0).outerWidth(true);
 	    }
 
 	    function updateSliderPosition() {
-	        // var isMobile = window.innerWidth <= 900; // Not needed for single line
-	        // var slidesVisible = isMobile ? 1 : 2; // Not needed for single line
-
-	        // Calculate the offset needed to bring the current slide into view
-	        // We move by the width of one slide (including its margin) for each step
 	        var offset = -currentIndex * getSlideWidth();
-	        
 	        $track.css('transform', 'translateX(' + offset + 'px)');
+	    }
 
-	        // Optional: Disable arrows at the beginning/end if not looping
-	        // $slider.find('.slider-prev').prop('disabled', currentIndex === 0);
-	        // $slider.find('.slider-next').prop('disabled', currentIndex >= totalSlides - slidesVisible);
+	    function goToNext() {
+	        if (currentIndex < totalSlides - 1) {
+	            currentIndex++;
+	        } else {
+	            currentIndex = 0;
+	        }
+	        updateSliderPosition();
+	    }
+
+	    function goToPrev() {
+	        if (currentIndex > 0) {
+	            currentIndex--;
+	        } else {
+	            currentIndex = totalSlides - 1;
+	        }
+	        updateSliderPosition();
 	    }
 
 	    $slider.find('.slider-prev').off('click').on('click', function() {
-	        if (currentIndex > 0) {
-	            currentIndex--;
-	            updateSliderPosition();
-	        } else {
-			// Loop to the end if at the beginning
-	            currentIndex = totalSlides - 1; // Go to the last slide
-	            updateSliderPosition();
-	        }
+	        goToPrev();
 	    });
 
 	    $slider.find('.slider-next').off('click').on('click', function() {
-	        if (currentIndex < totalSlides - 1) { // Changed condition to check against last slide index
-	            currentIndex++;
-	            updateSliderPosition();
-	        } else {
-			// Loop to the beginning if at the end
-			currentIndex = 0; // Go to the first slide
-			updateSliderPosition();
-	        }
+	        goToNext();
 	    });
 
-        // Initialize position
-        updateSliderPosition();
+	    // Autoplay logic
+	    function startAutoplay() {
+	        if (autoplay && !autoplayTimer) {
+	            autoplayTimer = setInterval(function() {
+	                if (!isHovered) {
+	                    goToNext();
+	                }
+	            }, autoplayInterval);
+	        }
+	    }
+	    function stopAutoplay() {
+	        if (autoplayTimer) {
+	            clearInterval(autoplayTimer);
+	            autoplayTimer = null;
+	        }
+	    }
+	    $slider.on('mouseenter', function() {
+	        isHovered = true;
+	    });
+	    $slider.on('mouseleave', function() {
+	        isHovered = false;
+	    });
 
-        // Handle window resize to re-calculate position and potentially re-enable/disable slider
-        // $(window).on('resize', updateSliderPosition);
+	    // Initialize position
+	    updateSliderPosition();
+	    if (autoplay) {
+	        startAutoplay();
+	    }
+	    // Clean up on window unload
+	    $(window).on('unload', function() { stopAutoplay(); });
 	}
 
     // Initialize cert-slider only on desktop
     function checkAndInitCertSlider() {
-        if (window.innerWidth > 900) { // Use 900px as the breakpoint based on CSS media query
+        if (window.innerWidth > 900) {
             initAnimatedSlider('.cert-slider');
-             // Ensure slider arrows are visible on desktop
             $('.cert-slider .slider-arrow').show();
         } else {
-            // Reset styles for mobile (list view)
             $('.cert-slider .slider-track').css('transform', 'translateX(0)');
-            // Hide slider arrows on mobile
             $('.cert-slider .slider-arrow').hide();
         }
     }
 
-    // Initial check on document ready
+    // Initialize project-slider (always, with autoplay)
+    function initProjectSlider() {
+        initAnimatedSlider('.project-slider', { autoplay: true, autoplayInterval: 3000 });
+    }
+
     $(document).ready(function(){
         checkAndInitCertSlider();
+        initProjectSlider();
     });
 
-    // Re-check on window resize
     $(window).on('resize', function(){
         checkAndInitCertSlider();
     });

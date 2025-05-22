@@ -1,847 +1,2048 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-	<title>Vijay's Portfolio</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/base.css">
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="/css/vendor.css">
-	<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijay Gupta - Software Development Engineer | Portfolio</title>
+  <meta name="description" content="Vijay Gupta - Experienced Software Development Engineer specializing in backend systems, distributed architecture, and cloud infrastructure at NammaYatri.">
+  <meta name="keywords" content="software engineer, backend developer, distributed systems, Haskell, Node.js, AWS, Kubernetes">
+  <meta name="author" content="Vijay Gupta">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vijaygupta18.github.io/">
+  <meta property="og:title" content="Vijay Gupta - Software Development Engineer">
+  <meta property="og:description" content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="og:image" content="https://vijaygupta18.github.io/images/profile.jpg">
 
-	<script src="/js/modernizr.js"></script>
-	<script src="/js/pace.min.js"></script>
-	<link rel="icon" href="/favicon.ico">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://vijaygupta18.github.io/">
+  <meta property="twitter:title" content="Vijay Gupta - Software Development Engineer">
+  <meta property="twitter:description" content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="twitter:image" content="https://vijaygupta18.github.io/images/profile.jpg">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* CSS Custom Properties */
+    :root {
+      /* Colors - Light Theme */
+      --color-primary: #2563eb;
+      --color-primary-dark: #1d4ed8;
+      --color-primary-light: #3b82f6;
+      --color-secondary: #8b5cf6;
+      --color-accent: #06b6d4;
+      --color-success: #10b981;
+      --color-warning: #f59e0b;
+      --color-error: #ef4444;
+      
+      /* Backgrounds */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --bg-overlay: rgba(255, 255, 255, 0.95);
+      --bg-glass: rgba(255, 255, 255, 0.1);
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --bg-hero: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+      
+      /* Text Colors */
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-tertiary: #64748b;
+      --text-inverse: #ffffff;
+      --text-muted: #94a3b8;
+      
+      /* Borders & Shadows */
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      
+      /* Border Radius */
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.5rem;
+      
+      /* Typography */
+      --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+      
+      /* Font Sizes */
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
+      --text-6xl: 3.75rem;
+      
+      /* Line Heights */
+      --leading-tight: 1.25;
+      --leading-normal: 1.5;
+      --leading-relaxed: 1.625;
+      
+      /* Transitions */
+      --transition-fast: 150ms ease-in-out;
+      --transition-normal: 250ms ease-in-out;
+      --transition-slow: 350ms ease-in-out;
+      
+      /* Z-index */
+      --z-dropdown: 1000;
+      --z-sticky: 1020;
+      --z-fixed: 1030;
+      --z-modal-backdrop: 1040;
+      --z-modal: 1050;
+      --z-popover: 1060;
+      --z-tooltip: 1070;
+    }
+
+    /* Dark Theme */
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --bg-overlay: rgba(15, 23, 42, 0.95);
+      --bg-glass: rgba(255, 255, 255, 0.05);
+      --bg-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-tertiary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --border-color: #334155;
+      --border-light: #475569;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+    }
+
+    body {
+      font-family: var(--font-family-primary);
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      transition: color var(--transition-normal), background-color var(--transition-normal);
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: var(--leading-tight);
+      color: var(--text-primary);
+    }
+
+    h1 { font-size: var(--text-5xl); }
+    h2 { font-size: var(--text-4xl); }
+    h3 { font-size: var(--text-3xl); }
+    h4 { font-size: var(--text-2xl); }
+    h5 { font-size: var(--text-xl); }
+    h6 { font-size: var(--text-lg); }
+
+    p { color: var(--text-secondary); }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-primary-dark);
+    }
+
+    /* Utility Classes */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .glass {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-glass);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-lg);
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header & Navigation */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-sticky);
+      background: var(--bg-overlay);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) 0;
+    }
+
+    .nav-brand {
+      font-size: var(--text-xl);
+      font-weight: 800;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: var(--space-sm) 0;
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-primary);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-tertiary);
+      transform: scale(1.05);
+    }
+
+    .portfolio-switcher {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      color: var(--text-primary);
+      font-size: var(--text-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      background-size: 1rem;
+      padding-right: 2.5rem;
+    }
+
+    .portfolio-switcher:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: var(--text-xl);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--bg-hero);
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: var(--text-6xl);
+      font-weight: 800;
+      margin-bottom: var(--space-lg);
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: var(--text-xl);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-xl);
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* About Section */
+    .section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: var(--radius-sm);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-xl);
+      transition: transform var(--transition-slow);
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: var(--radius-2xl);
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .about-content h3 {
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .fact {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+    }
+
+    .fact i {
+      color: var(--color-primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .social-link:hover {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .skill-category {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-category::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .skill-category h4 {
+      margin-bottom: var(--space-lg);
+      color: var(--text-primary);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .skill-tag {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-mono);
+    }
+
+    .skill-tag:hover {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      transform: scale(1.05);
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding-left: var(--space-xl);
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary) 0%, var(--color-secondary) 100%);
+    }
+
+    .experience-item {
+      position: relative;
+      margin-bottom: var(--space-2xl);
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: var(--space-xl);
+      width: 12px;
+      height: 12px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      border: 4px solid var(--bg-primary);
+    }
+
+    .experience-item:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .experience-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .experience-title {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .experience-meta {
+      color: var(--text-tertiary);
+      font-size: var(--text-sm);
+    }
+
+    .experience-description {
+      margin-bottom: var(--space-lg);
+    }
+
+    .experience-description ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .experience-description li {
+      position: relative;
+      padding-left: var(--space-lg);
+      margin-bottom: var(--space-sm);
+      color: var(--text-secondary);
+    }
+
+    .experience-description li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .tech-tag {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-xs);
+      font-weight: 500;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .project-header {
+      padding: var(--space-xl);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      color: var(--text-inverse);
+    }
+
+    .project-title {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .project-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .project-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-xs);
+      font-weight: 500;
+    }
+
+    .project-content {
+      padding: var(--space-xl);
+    }
+
+    .project-description {
+      margin-bottom: var(--space-lg);
+      color: var(--text-secondary);
+    }
+
+    .project-features {
+      list-style: none;
+      margin-bottom: var(--space-lg);
+    }
+
+    .project-features li {
+      position: relative;
+      padding-left: var(--space-lg);
+      margin-bottom: var(--space-sm);
+      color: var(--text-secondary);
+    }
+
+    .project-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: bold;
+    }
+
+    /* Education Section */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .education-card,
+    .cert-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+    }
+
+    .education-card:hover,
+    .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .cert-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .cert-link {
+      color: var(--color-primary);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color var(--transition-fast);
+    }
+
+    .cert-link:hover {
+      text-decoration-color: var(--color-primary);
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .contact-form {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: var(--space-md);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: inherit;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: var(--space-xl) 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .back-to-top:hover {
+      color: var(--color-primary);
+    }
+
+    /* Resume Modal */
+    .resume-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: var(--z-modal);
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .resume-modal.active {
+      display: flex;
+    }
+
+    .resume-modal iframe {
+      width: 90%;
+      max-width: 1000px;
+      height: 90vh;
+      border: none;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .resume-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: var(--text-inverse);
+      color: var(--text-primary);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: var(--text-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--space-sm);
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: var(--text-4xl);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-timeline {
+        padding-left: var(--space-md);
+      }
+
+      .experience-item::before {
+        left: -18px;
+      }
+    }
+
+    /* Loading Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: var(--z-modal);
+      transition: opacity var(--transition-slow), visibility var(--transition-slow);
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border-color);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      z-index: var(--z-tooltip);
+      transition: width 0.1s ease-out;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Particle Background */
+    .particles-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    [data-theme="dark"] .particles-background {
+      opacity: 0.6;
+    }
+
+    #particlesCanvas {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
-
-<body id="top">
-
-	<div id='stars'></div>
-	<div id='stars2'></div>
-	<div id='stars3'></div>
-
-
-
-	<header>
-		<div class="row">
-			<div class="top-bar">
-				<a class="menu-toggle" href="#"><span>Menu</span></a>
-				<nav id="main-nav-wrap">
-					<ul class="main-navigation">
-						<li class="current"><a class="smoothscroll" href="#about" title="">About</a></li>
-						<li><a class="smoothscroll" href="#skills" title="">Skills</a></li>
-						<li><a class="smoothscroll" href="#experience" title="">Experience</a></li>
-						<li><a class="smoothscroll" href="#portfolio" title="">Projects</a></li>
-						<li><a class="smoothscroll" href="#education" title="">Education</a></li>
-						<li><a href="#resume" class="smoothscroll" id="resume-link" title="">Resume</a></li>
-						<li><a class="smoothscroll" href="#contact" title="">Contact</a></li>
-
-					</ul>
-				</nav>
-			</div>
-
-		</div>
-	</header>
-
-
-	<section id="about">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>About Me</h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-twelve">
-				<div class="about-card enhanced-about">
-					<img src="images/profile.jpg" alt="Profile picture of Vijay Gupta" class="about-profile-img">
-					<div class="about-details enhanced-about-details">
-						<h2>Vijay Gupta</h2>
-						<div class="about-quick-facts">
-							<span class="about-fact"><i class="fa fa-briefcase"></i> Software Development Engineer @ NammaYatri</span>
-							<span class="about-fact"><i class="fa fa-map-marker"></i> Bengaluru, India</span>
-							<span class="about-fact"><i class="fa fa-calendar"></i> 3+ Years Experience</span>
-						</div>
-						<p class="about-headline">Building scalable, high-performance systems | Ex-Juspay, Vahan</p>
-						<p class="about-summary">
-							I am a results-driven software engineer specializing in backend and distributed systems. With a proven track record at high-growth startups, I architect and deliver robust, scalable solutions using technologies like Haskell, Node.js, Kafka, Redis, AWS, and Kubernetes. My expertise spans system design, cloud infrastructure, and performance optimization. I thrive in fast-paced environments, blending deep technical skills with a collaborative, product-focused mindset to solve complex challenges and drive business impact.
-						</p>
-						<ul class="about-social">
-							<li><a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank" aria-label="Facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://twitter.com/vijaygupta1818" target="_blank" aria-label="Twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="https://www.instagram.com/vijayguptaa18/" target="_blank" aria-label="Instagram"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-							<li><a href="https://github.com/vijaygupta18" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-							<li><a href="mailto:vijayrauniyar1818@gmail.com" target="_blank" aria-label="Email"><i class="fa fa-envelope"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section id="skills">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Skills / Tech Stack</h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-twelve">
-				<div class="skills-grid centered-skills">
-					<div class="skills-category">
-						<h4>Languages</h4>
-						<span class="skill-badge">Haskell</span>
-						<span class="skill-badge">Python</span>
-						<span class="skill-badge">C++</span>
-						<span class="skill-badge">JavaScript</span>
-						<span class="skill-badge">PureScript</span>
-						<span class="skill-badge">C</span>
-						<span class="skill-badge">SQL</span>
-						<span class="skill-badge">HTML</span>
-						<span class="skill-badge">CSS</span>
-					</div>
-					<div class="skills-category">
-						<h4>Backend & Databases</h4>
-						<span class="skill-badge">Node.js</span>
-						<span class="skill-badge">Express.js</span>
-						<span class="skill-badge">Redis (Valkey)</span>
-						<span class="skill-badge">Kafka</span>
-						<span class="skill-badge">RabbitMQ</span>
-						<span class="skill-badge">PostgreSQL</span>
-						<span class="skill-badge">MongoDB</span>
-						<span class="skill-badge">Clickhouse</span>
-						<span class="skill-badge">REST APIs</span>
-						<span class="skill-badge">Microservices</span>
-					</div>
-					<div class="skills-category">
-						<h4>Cloud & DevOps</h4>
-						<span class="skill-badge">AWS</span>
-						<span class="skill-badge">Kubernetes</span>
-						<span class="skill-badge">Docker</span>
-						<span class="skill-badge">Git</span>
-						<span class="skill-badge">CI/CD</span>
-					</div>
-					<div class="skills-category">
-						<h4>Tools & Frameworks</h4>
-						<span class="skill-badge">React.js</span>
-						<span class="skill-badge">Visual Studio Code</span>
-						<span class="skill-badge">Appsmith</span>
-						<span class="skill-badge">n8n</span>
-						<span class="skill-badge">Bootstrap</span>
-					</div>
-					<div class="skills-category">
-						<h4>Engineering Concepts</h4>
-						<span class="skill-badge">System Design</span>
-						<span class="skill-badge">OOP</span>
-						<span class="skill-badge">Design Patterns</span>
-						<span class="skill-badge">DSA</span>
-						<span class="skill-badge">Performance Tuning</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="experience">
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Work History &amp; Timeline</h5>
-			</div>
-		</div>
-		<br><br>
-		<div class="row experience-timeline">
-
-			<div class="col-twelve">
-
-				<div class="timeline-wrap">
-
-					<!-- Namma Yatri -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>NammaYatri - Software Development Engineer</h4>
-							<span class="experience-meta">Mar 2024 - Present (1 yr 3 mos) &bull; Bengaluru, India &bull;
-								On-site</span>
-							<div class="experience-role">Software Development Engineer</div>
-							<ul class="experience-desc">
-								<li>Optimized Redis performance and reduced costs by implementing zone-aware replica
-									selection, ensuring pods use same-zone replicas, minimizing cross-zone data
-									transfer, and improving load distribution.</li>
-								<li>Implemented same AZ data scraping for metrics using VM agents, resulting in zero
-									cross-zone data transfer costs (Integrated Kyverno for Pod Zone Injection).</li>
-								<li>Optimized API polling efficiency by implementing a connection pool using OkHttp,
-									reducing the need to create a new connection for each API call. This improved
-									performance, reduced latency, and optimized resource utilization.</li>
-								<li>Reduced Redis memory usage by implementing data compression for stored values. This
-									optimization lowered memory consumption, allowing us to reduce the number of Redis
-									nodes required, saving costs.</li>
-								<li>Improved Redis performance by maximizing slot utilization and making Redis pipeline
-									usage more efficient. Achieved this by introducing table-level sharding and using
-									asynchronous Redis calls, which reduced latency and improved response times.</li>
-								<li>Developed a data scraping script to collect and analyze pricing data for the
-									NammaYatri app, enabling real-time dynamic pricing analysis.</li>
-								<li>Enabled auto-scaling for Redis and RDS replicas, ensuring they could automatically
-									scale up during high traffic and scale down during idle times. This improved load
-									handling while optimizing cloud costs.</li>
-								<li>Reduced ALB (Application Load Balancer) costs by implementing API response
-									compression and optimizing responses by eliminating unnecessary fields and headers,
-									reducing overall data transfer size.</li>
-								<li>Enhanced backend performance by profiling the application and making key
-									optimizations, which significantly improved efficiency and reduced API latency by
-									nearly 50%.</li>
-								<li>Developed an ART (Automated Regression Testing) framework to record real production
-									data and replay test flows. This helped detect changes in API responses and enabled
-									smoother deployments by identifying potential issues before release.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Purescript</span>
-								<span class="tech-pill">Kafka</span>
-								<span class="tech-pill">PostgreSQL</span>
-								<span class="tech-pill">Kubernetes</span>
-								<span class="tech-pill">Automation</span>
-								<span class="tech-pill">Haskell</span>
-								<span class="tech-pill">Databases</span>
-								<span class="tech-pill">AWS</span>
-								<span class="tech-pill">Redis</span>
-							</div>
-						</div>
-					</div>
-
-					<!-- JUSPAY (Software Development Engineer) -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>Juspay - Software Development Engineer</h4>
-							<span class="experience-meta">Jan 2024 - Mar 2024 (3 mos) &bull; Bengaluru, India &bull;
-								On-site</span>
-							<div class="experience-role">Software Development Engineer</div>
-							<ul class="experience-desc">
-								<li>Separated the data drainer service from the application, ensuring smooth data flow
-									into the database and ClickHouse. This also made deployments easier by removing
-									dependencies on the application and database type.</li>
-								<li>Reduced testing sandbox costs by implementing automated Horizontal Pod Autoscaler
-									(HPA) and optimizing pod requests based on actual resource needs, ensuring better
-									resource utilization and cost savings during idle periods.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Purescript</span>
-								<span class="tech-pill">Kafka</span>
-								<span class="tech-pill">PostgreSQL</span>
-								<span class="tech-pill">Kubernetes</span>
-								<span class="tech-pill">Haskell</span>
-								<span class="tech-pill">Databases</span>
-								<span class="tech-pill">ClickHouse</span>
-								<span class="tech-pill">Redis</span>
-							</div>
-						</div>
-					</div>
-
-					<!-- Juspay - Product Engineer -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>Juspay - Product Engineer</h4>
-							<span class="experience-meta">May 2023 - Dec 2023 (8 mos)</span>
-							<div class="experience-role">Product Engineer</div>
-							<ul class="experience-desc">
-								<li>Developed a cost-saving framework called KV which uses Redis to store real-time
-									database data efficiently. This solution effectively downsized the primary database,
-									optimizing costs while maintaining seamless data access and synchronization
-									capabilities.</li>
-								<li>Created a drainer service to seamlessly transfer data from Redis streams to the
-									database. This service also shapes the data within itself, eliminating the need for
-									additional data shaping services before pushing to Kafka. This streamlined process
-									enhances efficiency and drain data from Kafka to Clickhouse directly for analytics.
-								</li>
-								<li>Added multithreading to scheduler services along with thread safe execution, which
-									reduced the need for extra pods. This made our system more efficient by using CPU
-									resources better.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Purescript</span>
-								<span class="tech-pill">Kafka</span>
-								<span class="tech-pill">PostgreSQL</span>
-								<span class="tech-pill">Kubernetes</span>
-								<span class="tech-pill">Haskell</span>
-								<span class="tech-pill">Databases</span>
-								<span class="tech-pill">ClickHouse</span>
-								<span class="tech-pill">Redis</span>
-							</div>
-						</div>
-					</div>
-
-					<!-- Vahan -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>Vahan - Software Engineer-I</h4>
-							<span class="experience-meta">Jun 2022 - Mar 2023 (10 mos) &bull; Bangalore Urban,
-								India</span>
-							<div class="experience-role">Software Engineer-I</div>
-							<ul class="experience-desc">
-								<li>Worked on backend architecture for AI-driven WhatsApp Bot, designed to assist users
-									in finding relevant blue-collar job opportunities based on their responses.</li>
-								<li>Implemented concurrent chat capability in WhatsApp Bot flow, resulting in reduced
-									telecalling expenses.</li>
-								<li>Developed a fallback data collection mechanism for Uber, increasing data accuracy to
-									98% during system outages.</li>
-								<li>Automated application status tracking by integrating offline data uploads into the
-									data warehouse, enhancing operational visibility.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Node.js</span>
-								<span class="tech-pill">JavaScript</span>
-								<span class="tech-pill">RabbitMQ</span>
-								<span class="tech-pill">PostgreSQL</span>
-								<span class="tech-pill">Automation</span>
-								<span class="tech-pill">REST APIs</span>
-								<span class="tech-pill">React.js</span>
-								<span class="tech-pill">Redis</span>
-							</div>
-						</div>
-					</div>
-
-					<!-- Chegg India -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>Subject Matter Expert</h4>
-							<span class="experience-meta">May 2021 - Apr 2022 (1 yr) &bull; India</span>
-							<div class="experience-role">Chegg India · Freelance</div>
-							<ul class="experience-desc">
-								<li>Mentored 300+ students globally in data structures and algorithms, achieving a 90%
-									satisfaction rate via tailored tutoring.</li>
-								<li>Resolved 500+ technical queries with hands-on debugging, enhancing student
-									comprehension.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Algorithms</span>
-								<span class="tech-pill">OOP</span>
-							</div>
-						</div>
-					</div>
-
-					<!-- CodeChef -->
-					<div class="experience-item">
-						<div class="timeline-dot"></div>
-						<div class="timeline-line"></div>
-						<div class="experience-card">
-							<h4>College Chapter Representative</h4>
-							<span class="experience-meta">Jul 2020 - Feb 2022 (1 yr 8 mos)</span>
-							<div class="experience-role">CodeChef · Full-time</div>
-							<ul class="experience-desc">
-								<li>Managed and promoted CodeChef activities within the college chapter.</li>
-								<li>Organized coding contests and workshops to encourage competitive programming.</li>
-								<li>Served as a point of contact for students interested in competitive programming and
-									CodeChef platform.</li>
-							</ul>
-							<div class="experience-tech">
-								<span class="tech-pill">Competitive Programming</span>
-								<span class="tech-pill">Leadership</span>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-
-	</section>
-
-	<section id="portfolio" class="grey-section">
-
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Projects</h5>
-			</div>
-		</div>
-		<div class="row portfolio-content">
-			<div class="col-twelve">
-				<div class="modern-project-list">
-					<!-- Project 1: Master Oogway -->
-					<div class="project-card">
-						<div class="project-header">
-							<a href="https://github.com/nammayatri/Master-Oogway" target="_blank"
-								class="project-title">🐢 Master Oogway - Post-Release Monitoring Service</a>
-							<span class="project-badges">
-								<span class="badge">Python</span>
-								<span class="badge">FastAPI</span>
-								<span class="badge">Slack</span>
-								<span class="badge">AWS</span>
-								<span class="badge">Kubernetes</span>
-								<span class="badge">Prometheus</span>
-								<span class="badge">Docker</span>
-							</span>
-						</div>
-						<div class="project-desc">
-							Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause
-							analysis, and delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and
-							supports real-time alerts, PDF reports, and AI-powered RCA.
-						</div>
-						<div class="project-meta">
-							<span class="meta">MIT License</span>
-							<span class="meta">Slack Integration</span>
-							<span class="meta">AI Assistant</span>
-						</div>
-					</div>
-
-					<!-- Project 2: Bus Route Tracker -->
-					<div class="project-card">
-						<div class="project-header">
-							<a href="https://github.com/nammayatri/bus-route-tracker" target="_blank"
-								class="project-title">🚌 Bus Route Tracker</a>
-							<span class="project-badges">
-								<span class="badge">Python</span>
-								<span class="badge">Docker</span>
-								<span class="badge">API</span>
-								<span class="badge">Mobile-first UI</span>
-							</span>
-						</div>
-						<div class="project-desc">
-							Open-source tool for collecting, confirming, and managing bus stop and route data. Features
-							secure login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field
-							teams and open mobility enthusiasts.
-						</div>
-						<div class="project-meta">
-							<span class="meta">MIT License</span>
-							<span class="meta">Admin APIs</span>
-							<span class="meta">Live GPS</span>
-						</div>
-					</div>
-
-					<!-- Project 4: GossipDotCom -->
-					<div class="project-card">
-						<div class="project-header">
-							<a href="https://gossipsdotcom.herokuapp.com/" target="_blank" class="project-title">Online
-								Web Chat app</a>
-							<div class="project-badges">
-								<span class="badge">Node.js</span>
-								<span class="badge">Socket.IO</span>
-								<span class="badge">Heroku</span>
-								<span class="badge">JioSaavan API</span>
-							</div>
-						</div>
-						<div class="project-desc">
-							Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends
-							and listen to music together using JioSaavn API commands directly in chat.
-						</div>
-						<div class="project-meta">
-							<span class="meta">WebChat Application</span>
-						</div>
-					</div>
-
-					<!-- Project 6: SaavanDL -->
-					<div class="project-card">
-						<div class="project-header">
-							<a href="https://saavandl.herokuapp.com" target="_blank" class="project-title">🎵
-								SaavanDL</a>
-							<span class="project-badges">
-								<span class="badge">Node.js</span>
-								<span class="badge">Express.js</span>
-								<span class="badge">EJS</span>
-							</span>
-						</div>
-						<div class="project-desc">
-							A web app to download music from JioSaavan. Built with Node.js, Express.js, and EJS.
-						</div>
-						<div class="project-meta">
-							<span class="meta">Music Web Application</span>
-						</div>
-					</div>
-
-					<!-- Project 8: Write My Text -->
-					<div class="project-card">
-						<div class="project-header">
-							<a href="https://writemytext.herokuapp.com" target="_blank" class="project-title">✍️ Write
-								My Text</a>
-							<span class="project-badges">
-								<span class="badge">JavaScript</span>
-								<span class="badge">Web App</span>
-							</span>
-						</div>
-						<div class="project-desc">
-							A web application to convert your typed text into a handwritten style. Built with JavaScript
-							and deployed on Heroku.
-						</div>
-						<div class="project-meta">
-							<span class="meta">Web Application</span>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="education">
-		<br>
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<h5>Education & Certifications</h5>
-			</div>
-		</div>
-		<div class="row about-extra">
-			<div class="col-twelve">
-				<h6>Education</h6>
-				<div class="about-cards education-horizontal">
-					<div class="about-card-item">
-						<i class="fa fa-graduation-cap about-card-icon"></i>
-						<div>
-							<strong>Kamla Nehru Institute of Technology, Sultanpur</strong><br>
-							<p class="experience-meta">Aug 2018 - Jun 2022 &bull; India</p>
-							<span>Bachelor of Technology - BTech, Information Technology</span><br>
-							<span>8.5 CGPA (Top 5% of class)</span>
-						</div>
-					</div>
-					<div class="about-card-item">
-						<i class="fa fa-university about-card-icon"></i>
-						<div>
-							<strong>Swami Harsewanand Public School - India</strong><br>
-							<span>Intermediate, Science (2015 - 2017)</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row about-extra">
-			<div class="col-twelve">
-				<h6 class="cert-section-title">Licenses & Certifications</h6>
-				<div class="slider cert-slider">
-					<div class="about-cards education-horizontal slider-track">
-						<div class="cert-card slide">
-							<img src="images/coursera-logo.png" alt="Coursera logo" class="cert-logo">
-							<div class="cert-details">
-								<strong>Applied Machine Learning in Python</strong><br>
-								<span>Coursera</span><br>
-								<a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-									target="_blank" class="cert-link">Show credential</a>
-							</div>
-						</div>
-						<div class="cert-card slide">
-							<img src="images/coursera-logo.png" alt="Coursera logo" class="cert-logo">
-							<div class="cert-details">
-								<strong>Crash Course on Python</strong><br>
-								<span>Coursera</span><br>
-								<a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-									target="_blank" class="cert-link">Show credential</a>
-							</div>
-						</div>
-						<div class="cert-card slide">
-							<img src="images/google.png" alt="Google logo" class="cert-logo">
-							<div class="cert-details">
-								<strong>Google Hashcode</strong><br>
-								<span>Google</span><br>
-								<a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view"
-									target="_blank" class="cert-link">Show credential</a>
-							</div>
-						</div>
-						<div class="cert-card slide">
-							<img src="images/coursera-logo.png" alt="Coursera logo" class="cert-logo">
-							<div class="cert-details">
-								<strong>HTML, CSS, and Javascript for Web Developers</strong><br>
-								<span>Coursera</span><br>
-								<a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-									target="_blank" class="cert-link">Show credential</a>
-							</div>
-						</div>
-						<div class="cert-card slide">
-							<img src="images/coursera-logo.png" alt="Coursera logo" class="cert-logo">
-							<div class="cert-details">
-								<strong>Python Data Structures</strong><br>
-								<span>Coursera</span><br>
-								<a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-									target="_blank" class="cert-link">Show credential</a>
-							</div>
-						</div>
-					</div>
-					<button class="slider-arrow slider-prev">&#8592;</button>
-					<button class="slider-arrow slider-next">&#8594;</button>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row about-extra">
-			<div class="col-six">
-				<h6>Volunteering</h6>
-				<div class="about-cards">
-					<div class="about-card-item">
-						<i class="fa fa-leaf about-card-icon"></i>
-						<div>
-							<ul class="about-list">
-								<li>Campaign Volunteer at Indian Road Safety Campaign</li>
-								<li>Student Volunteer at Save Million Trees</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-six">
-				<h6>Languages</h6>
-				<div class="about-cards">
-					<div class="about-card-item">
-						<i class="fa fa-language about-card-icon"></i>
-						<div>
-							<ul class="about-list">
-								<li>English (Professional working proficiency)</li>
-								<li>Hindi (Native or bilingual proficiency)</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row about-extra">
-			<div class="col-twelve">
-				<h6>Recommendations</h6>
-				<div class="recommendations-grid">
-					<!-- <div class="recommendation-card">
-						<div class="recommendation-header">
-							<i class="fa fa-user-circle recommendation-icon"></i>
-							<div>
-								<strong>Aditya Singh</strong><br>
-								<span>Tech (Senior to Vijay, not direct manager)</span>
-							</div>
-						</div>
-						<blockquote>Vijay has great work ethics and undying hunger to learn new things. He has been diligent in delivering the tasks with great precision and within timelines.</blockquote>
-					</div> -->
-					<div class="recommendation-card">
-						<div class="recommendation-header">
-							<i class="fa fa-user-circle recommendation-icon"></i>
-							<div>
-								<strong>Naman Samaiya</strong><br>
-								<span>SDE3 @Vahan Inc (YC S19) | IIIT Bhagalpur (Worked with Vijay on same team)</span>
-							</div>
-						</div>
-						<blockquote>Vijay was a fantastic person to work with and is not only a multi-skilled and
-							insightful colleague but also a person with very strong problem-solving skills. His focus
-							keeps everything moving smoothly, he makes sure all the deadlines are met and makes sure
-							that whatever project he is working on meets the highest standards. Vijay is an asset to any
-							company.</blockquote>
-					</div>
-					<div class="recommendation-card">
-						<div class="recommendation-header">
-							<i class="fa fa-user-circle recommendation-icon"></i>
-							<div>
-								<strong>Ketan Patil</strong><br>
-								<span>Manager at Vahan (Managed Vijay directly)</span>
-							</div>
-						</div>
-						<blockquote>I had the pleasure of working with Vijay during his time at Vahan, where he joined
-							as a fresher in the engineering team. Vijay impressed me with his positive attitude and
-							strong work ethic. He is always eager to learn, and shows great initiative in tackling
-							challenging projects. Vijay's technical skills are equally impressive, and it was clear from
-							the beginning that he has a great deal of potential. Overall, I highly recommend Vijay for
-							any future opportunities. He is a hard-working individual and I am sure he holds a bright
-							future ahead of him.</blockquote>
-					</div>
-					<div class="recommendation-card">
-						<div class="recommendation-header">
-							<i class="fa fa-user-circle recommendation-icon"></i>
-							<div>
-								<strong>Aditya Kale</strong><br>
-								<span>SSE @Vahan | IIIT Pune (Worked with Vijay on same team)</span>
-							</div>
-						</div>
-						<blockquote>Vijay's technical knowledge, attention to detail, and problem-solving skills are
-							unmatched, and he was always a key contributor to our team's projects. I highly recommend
-							Vijay for any job opportunity he pursue.</blockquote>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<br>
-	</section>
-
-
-	<!-- contact
-   ================================================== -->
-	<section id="contact">
-
-		<div class="row section-intro">
-			<div class="col-twelve">
-				<br><br>
-				<h5>Contact Me</h5>
-				<h1>I would love to connect with you .</h1>
-
-
-			</div>
-		</div>
-
-		<div class="row contact-form">
-
-			<div class="col-twelve">
-
-				<!-- form -->
-				<form name="contactForm" id="contactForm" method="post" action="inc/sendEmail.php">
-					<fieldset>
-
-						<div class="form-field">
-							<input name="contactName" type="text" id="contactName" placeholder="Name" value=""
-								minlength="2" required="">
-						</div>
-						<div class="form-field">
-							<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value=""
-								required="">
-						</div>
-						<div class="form-field">
-							<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
-						</div>
-						<div class="form-field">
-							<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10"
-								cols="50" required=""></textarea>
-						</div>
-						<div class="form-field">
-							<button class="submitform">Submit</button>
-							<div id="submit-loader">
-								<div class="text-loader">Sending...</div>
-								<div class="s-loader">
-									<div class="bounce1"></div>
-									<div class="bounce2"></div>
-									<div class="bounce3"></div>
-								</div>
-							</div>
-						</div>
-
-					</fieldset>
-				</form>
-
-
-				<div id="message-warning">
-				</div>
-
-				<div id="message-success">
-					<i class="fa fa-check"></i>Your message was sent, Thank You for Contacting!<br>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="row contact-info">
-
-			<div class="col-four tab-full">
-
-				<div class="icon">
-					<i class="icon-pin"></i>
-				</div>
-
-				<h5>
-					<Address></Address>
-				</h5>
-
-				<p>
-					KNIT Sultanpur<br>
-					(U,P.)<br>
-					228118
-				</p>
-
-			</div>
-
-			<div class="col-four tab-full collapse">
-
-				<div class="icon">
-					<i class="icon-mail"></i>
-				</div>
-
-				<h5>You can also mail Me At</h5>
-
-				<p>vijayrauniyar1818@gmail.com<br>
-
-				</p>
-
-			</div>
-
-			<div class="col-four tab-full">
-
-				<div class="icon">
-					<i class="icon-phone"></i>
-				</div>
-
-				<h5>You can Call Me</h5>
-
-				<p>
-					Mobile: (+91) 8565017450<br>
-					Whatsapp: (+91) 8565017450<br>
-
-				</p>
-
-			</div>
-
-		</div>
-
-	</section>
-
-	<!-- Add after the contact section, before footer -->
-	<div id="resume-frame-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(34,34,34,0.92); z-index:9999; align-items:center; justify-content:center; flex-direction:column; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); transform: translateY(-100%);">
-		<div class="resume-btn-group">
-			<button id="close-resume-frame" class="resume-btn" title="Close Resume" aria-label="Close Resume">&times;</button>
-		</div>
-		<iframe src="images/Vijay2025.pdf" width="80%" height="80%" style="border:none; border-radius:1rem; box-shadow:0 2px 16px rgba(44,62,80,0.10);"></iframe>
-	</div>
-	<script>
-	const resumeLink = document.getElementById('resume-link');
-	const resumeOverlay = document.getElementById('resume-frame-overlay');
-	const closeResume = document.getElementById('close-resume-frame');
-	resumeLink.addEventListener('click', function(e) {
-		e.preventDefault();
-		resumeOverlay.style.display = 'flex';
-		setTimeout(() => { resumeOverlay.style.transform = 'translateY(0)'; }, 10);
-		document.body.style.overflow = 'hidden';
-	});
-	closeResume.addEventListener('click', function() {
-		resumeOverlay.style.transform = 'translateY(-100%)';
-		setTimeout(() => { resumeOverlay.style.display = 'none'; document.body.style.overflow = ''; }, 500);
-	});
-	// Hide overlay if user presses Escape
-	window.addEventListener('keydown', function(e) {
-		if (e.key === 'Escape' && resumeOverlay.style.display === 'flex') {
-			closeResume.click();
-		}
-	});
-	</script>
-
-	<footer>
-		<div class="row">
-
-			<div class="col-four tab-full pull-right social">
-
-				<ul class="footer-social">
-					<li><a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588"><i
-								class="fa fa-facebook"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/vijaygupta18/"><i class="fa fa-linkedin"></i></a></li>
-					<li><a href="https://twitter.com/vijaygupta1818"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="https://github.com/vijaygupta18"><i class="fa fa-github"></i></a></li>
-					<li><a href="https://www.instagram.com/vijayguptaa18/"><i class="fa fa-instagram"></i></a></li>
-
-				</ul>
-
-			</div>
-
-
-			<div id="go-top">
-				<a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-			</div>
-
-		</div> <!-- /row -->
-	</footer>
-
-	<div id="preloader">
-		<div id="loader"></div>
-	</div>
-	<script src="js/jquery-2.1.3.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
-
-
-
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  
+  <!-- Particle Background -->
+  <div class="particles-background">
+    <canvas id="particlesCanvas"></canvas>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="nav-brand">Vijay Gupta</a>
+        
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <select class="portfolio-switcher" id="portfolioSwitcher" aria-label="Select Portfolio Version">
+              <option value="indexV1.html">V1</option>
+              <option value="indexV2.html">V2</option>
+              <option value="indexV3.html">V3</option>
+              <option value="indexV4.html">V4</option>
+              <option value="index.html" selected>V5</option>
+            </select>
+          </li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <h1 class="hero-title">Vijay Gupta</h1>
+        <p class="hero-subtitle">Software Development Engineer • Building Scalable, High-Performance Systems</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-envelope"></i>
+            Get In Touch
+          </a>
+          <a href="#" class="btn btn-secondary" id="resumeBtn">
+            <i class="fas fa-file-pdf"></i>
+            View Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img src="images/profile.jpg" alt="Vijay Gupta - Software Development Engineer">
+        </div>
+        <div class="about-content fade-in">
+          <h3>Software Engineer</h3>
+          <div class="about-facts">
+            <div class="fact">
+              <i class="fas fa-briefcase"></i>
+              <span>Software Development Engineer @ NammaYatri</span>
+            </div>
+            <div class="fact">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Bengaluru, India</span>
+            </div>
+            <div class="fact">
+              <i class="fas fa-calendar"></i>
+              <span>3+ Years Experience</span>
+            </div>
+          </div>
+          <p><strong>Building scalable, high-performance systems | Ex-Juspay, Vahan</strong></p>
+          <p>I am a results-driven software engineer specializing in backend and distributed systems. With a proven track record at high-growth startups, I architect and deliver robust, scalable solutions using technologies like Haskell, Node.js, Kafka, Redis, AWS, and Kubernetes. My expertise spans system design, cloud infrastructure, and performance optimization. I thrive in fast-paced environments, blending deep technical skills with a collaborative, product-focused mindset to solve complex challenges and drive business impact.</p>
+          
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/vijaygupta18" target="_blank" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-category fade-in">
+          <h4><i class="fas fa-code"></i> Programming Languages</h4>
+          <div class="skills-list">
+            <span class="skill-tag">Haskell</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PureScript</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">TypeScript</span>
+          </div>
+        </div>
+        
+        <div class="skill-category fade-in">
+          <h4><i class="fas fa-server"></i> Backend & Databases</h4>
+          <div class="skills-list">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">Redis (Valkey)</span>
+            <span class="skill-tag">Kafka</span>
+            <span class="skill-tag">RabbitMQ</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">ClickHouse</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Microservices</span>
+          </div>
+        </div>
+        
+        <div class="skill-category fade-in">
+          <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+          <div class="skills-list">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Jenkins</span>
+            <span class="skill-tag">Terraform</span>
+          </div>
+        </div>
+        
+        <div class="skill-category fade-in">
+          <h4><i class="fas fa-tools"></i> Tools & Frameworks</h4>
+          <div class="skills-list">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Visual Studio Code</span>
+            <span class="skill-tag">Appsmith</span>
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">Grafana</span>
+            <span class="skill-tag">Prometheus</span>
+          </div>
+        </div>
+        
+        <div class="skill-category fade-in">
+          <h4><i class="fas fa-brain"></i> Engineering Concepts</h4>
+          <div class="skills-list">
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">Design Patterns</span>
+            <span class="skill-tag">DSA</span>
+            <span class="skill-tag">Performance Tuning</span>
+            <span class="skill-tag">Distributed Systems</span>
+            <span class="skill-tag">Event-Driven Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="section-title fade-in">Professional Experience</h2>
+      <div class="experience-timeline">
+        
+        <!-- NammaYatri -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <h3 class="experience-title">Software Development Engineer • NammaYatri</h3>
+            <p class="experience-meta">Mar 2024 - Present (1 yr 3 mos) • Bengaluru, India • On-site</p>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Optimized Redis performance and reduced costs by implementing zone-aware replica selection, ensuring pods use same-zone replicas, minimizing cross-zone data transfer, and improving load distribution</li>
+              <li>Implemented same AZ data scraping for metrics using VM agents, resulting in zero cross-zone data transfer costs (Integrated Kyverno for Pod Zone Injection)</li>
+              <li>Optimized API polling efficiency by implementing a connection pool using OkHttp, reducing the need to create a new connection for each API call. This improved performance, reduced latency, and optimized resource utilization</li>
+              <li>Reduced Redis memory usage by implementing data compression for stored values. This optimization lowered memory consumption, allowing us to reduce the number of Redis nodes required, saving costs</li>
+              <li>Improved Redis performance by maximizing slot utilization and making Redis pipeline usage more efficient. Achieved this by introducing table-level sharding and using asynchronous Redis calls, which reduced latency and improved response times</li>
+              <li>Developed a data scraping script to collect and analyze pricing data for the NammaYatri app, enabling real-time dynamic pricing analysis</li>
+              <li>Enabled auto-scaling for Redis and RDS replicas, ensuring they could automatically scale up during high traffic and scale down during idle times. This improved load handling while optimizing cloud costs</li>
+              <li>Reduced ALB (Application Load Balancer) costs by implementing API response compression and optimizing responses by eliminating unnecessary fields and headers, reducing overall data transfer size</li>
+              <li>Enhanced backend performance by profiling the application and making key optimizations, which significantly improved efficiency and reduced API latency by nearly 50%</li>
+              <li>Developed an ART (Automated Regression Testing) framework to record real production data and replay test flows. This helped detect changes in API responses and enabled smoother deployments by identifying potential issues before release</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Performance Optimization</span>
+            <span class="tech-tag">Auto-scaling</span>
+            <span class="tech-tag">Data Compression</span>
+          </div>
+        </div>
+
+        <!-- Juspay SDE -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <h3 class="experience-title">Software Development Engineer • Juspay</h3>
+            <p class="experience-meta">Jan 2024 - Mar 2024 (3 months) • Bengaluru, India • Full-time</p>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Separated the data drainer service from the application, ensuring smooth data flow into the database and ClickHouse while making deployments easier by removing dependencies</li>
+              <li>Reduced testing sandbox costs by implementing automated Horizontal Pod Autoscaler (HPA) and optimizing pod requests based on actual resource needs</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">ClickHouse</span>
+            <span class="tech-tag">Kubernetes</span>
+          </div>
+        </div>
+
+        <!-- Juspay Product Engineer -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <h3 class="experience-title">Product Engineer • Juspay</h3>
+            <p class="experience-meta">May 2023 - Dec 2023 (8 months) • Bengaluru, India • Full-time</p>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Developed a cost-saving framework called KV which uses Redis to store real-time database data efficiently, effectively downsizing the primary database while optimizing costs</li>
+              <li>Created a drainer service to seamlessly transfer data from Redis streams to the database, streamlining the process and enhancing efficiency for analytics</li>
+              <li>Added multithreading to scheduler services with thread-safe execution, reducing the need for extra pods and improving CPU resource utilization</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">ClickHouse</span>
+          </div>
+        </div>
+
+        <!-- Vahan -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <h3 class="experience-title">Software Engineer-I • Vahan</h3>
+            <p class="experience-meta">Jun 2022 - Mar 2023 (10 months) • Bengaluru, India • Full-time</p>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Worked on backend architecture for AI-driven WhatsApp Bot, designed to assist users in finding relevant blue-collar job opportunities based on their responses</li>
+              <li>Implemented concurrent chat capability in WhatsApp Bot flow, resulting in reduced telecalling expenses</li>
+              <li>Developed a fallback data collection mechanism for Uber, increasing data accuracy to 98% during system outages</li>
+              <li>Automated application status tracking by integrating offline data uploads into the data warehouse, enhancing operational visibility</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">RabbitMQ</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">React.js</span>
+          </div>
+        </div>
+
+        <!-- Chegg -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <h3 class="experience-title">Subject Matter Expert • Chegg India</h3>
+            <p class="experience-meta">May 2021 - Apr 2022 (1 year) • Remote • Freelance</p>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Mentored 300+ students globally in data structures and algorithms, achieving a 90% satisfaction rate via tailored tutoring</li>
+              <li>Resolved 500+ technical queries with hands-on debugging, enhancing student comprehension</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Data Structures</span>
+            <span class="tech-tag">Algorithms</span>
+            <span class="tech-tag">Mentoring</span>
+            <span class="tech-tag">Problem Solving</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in">Featured Projects</h2>
+      <div class="projects-grid">
+        
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <h3 class="project-title">🐢 Master Oogway</h3>
+            <div class="project-badges">
+              <span class="project-badge">Python</span>
+              <span class="project-badge">FastAPI</span>
+              <span class="project-badge">Slack</span>
+              <span class="project-badge">AWS</span>
+              <span class="project-badge">Kubernetes</span>
+              <span class="project-badge">Prometheus</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause analysis, and delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and supports real-time alerts, PDF reports, and AI-powered RCA.
+            </p>
+            <ul class="project-features">
+              <li>Real-time anomaly detection & alerting</li>
+              <li>Slack integration for team notifications</li>
+              <li>Automated root cause analysis (AI-powered)</li>
+              <li>PDF reporting & dashboard</li>
+            </ul>
+            <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" class="btn btn-primary">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <h3 class="project-title">🚌 Bus Route Tracker</h3>
+            <div class="project-badges">
+              <span class="project-badge">Python</span>
+              <span class="project-badge">Docker</span>
+              <span class="project-badge">API</span>
+              <span class="project-badge">Mobile-first UI</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Open-source tool for collecting, confirming, and managing bus stop and route data. Features secure login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field teams and open mobility enthusiasts.
+            </p>
+            <ul class="project-features">
+              <li>Live GPS tracking & offline fallback</li>
+              <li>Admin APIs for data management</li>
+              <li>Mobile-first responsive UI</li>
+            </ul>
+            <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" class="btn btn-primary">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <h3 class="project-title">💬 GossipDotCom</h3>
+            <div class="project-badges">
+              <span class="project-badge">Node.js</span>
+              <span class="project-badge">Socket.IO</span>
+              <span class="project-badge">Heroku</span>
+              <span class="project-badge">JioSaavn API</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends and listen to music together using JioSaavn API commands directly in chat.
+            </p>
+            <ul class="project-features">
+              <li>Real-time group chat</li>
+              <li>Music streaming via JioSaavn API</li>
+              <li>Deployed on Heroku</li>
+            </ul>
+            <a href="https://github.com/vijaygupta18/gossipsdotcom" target="_blank" class="btn btn-primary">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <h3 class="project-title">🎵 SaavanDL</h3>
+            <div class="project-badges">
+              <span class="project-badge">Node.js</span>
+              <span class="project-badge">Express.js</span>
+              <span class="project-badge">EJS</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              A web application to download music from JioSaavn. Built with Node.js, Express.js, and EJS with a clean, intuitive user interface.
+            </p>
+            <ul class="project-features">
+              <li>Music download from JioSaavn</li>
+              <li>Simple, clean UI</li>
+              <li>Deployed on Heroku</li>
+            </ul>
+            <a href="https://github.com/vijaygupta18/saavandl" target="_blank" class="btn btn-primary">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <h3 class="project-title">✍️ Write My Text</h3>
+            <div class="project-badges">
+              <span class="project-badge">JavaScript</span>
+              <span class="project-badge">Canvas API</span>
+              <span class="project-badge">Web App</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              A web application to convert typed text into handwritten style. Built with vanilla JavaScript and Canvas API, deployed on Heroku.
+            </p>
+            <ul class="project-features">
+              <li>Text-to-handwriting conversion</li>
+              <li>Download as image</li>
+              <li>Multiple handwriting styles</li>
+            </ul>
+            <a href="https://github.com/vijaygupta18/writemytext" target="_blank" class="btn btn-primary">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title fade-in">Education & Certifications</h2>
+      
+      <h3 style="margin-bottom: var(--space-xl); color: var(--text-primary);" class="fade-in">🎓 Education</h3>
+      <div class="education-grid">
+        <div class="education-card fade-in">
+          <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+            <i class="fas fa-graduation-cap" style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+            <div>
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Kamla Nehru Institute of Technology, Sultanpur</h4>
+              <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">Aug 2018 - Jun 2022 • India</p>
+              <p style="color: var(--text-secondary); margin-bottom: var(--space-xs);">Bachelor of Technology - BTech, Information Technology</p>
+              <p style="color: var(--color-primary); font-weight: 600;">8.5 CGPA (Top 5% of class)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="education-card fade-in">
+          <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+            <i class="fas fa-university" style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+            <div>
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Swami Harsewanand Public School</h4>
+              <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">2015 - 2017 • India</p>
+              <p style="color: var(--text-secondary);">Intermediate, Science</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: var(--space-2xl) 0 var(--space-xl) 0; color: var(--text-primary);" class="fade-in">📜 Licenses & Certifications</h3>
+      <div class="cert-grid">
+        <div class="cert-card fade-in">
+          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Applied Machine Learning in Python</h4>
+          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA" target="_blank" class="cert-link">Show credential</a>
+        </div>
+        
+        <div class="cert-card fade-in">
+          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Crash Course on Python</h4>
+          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM" target="_blank" class="cert-link">Show credential</a>
+        </div>
+        
+        <div class="cert-card fade-in">
+          <img src="images/google.png" alt="Google" class="cert-logo">
+          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Google HashCode</h4>
+          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Google</p>
+          <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank" class="cert-link">Show credential</a>
+        </div>
+        
+        <div class="cert-card fade-in">
+          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">HTML, CSS, and Javascript for Web Developers</h4>
+          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3" target="_blank" class="cert-link">Show credential</a>
+        </div>
+        
+        <div class="cert-card fade-in">
+          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Python Data Structures</h4>
+          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3" target="_blank" class="cert-link">Show credential</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in">Get In Touch</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);" class="fade-in">I would love to connect with you and discuss opportunities.</p>
+      
+      <div class="contact-grid">
+        <div class="contact-form fade-in">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" id="name" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-input">
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" class="form-textarea" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+        
+        <div class="contact-info fade-in">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Location</h4>
+              <p style="color: var(--text-secondary);">KNIT Sultanpur<br>Uttar Pradesh, India<br>228118</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Email</h4>
+              <p style="color: var(--text-secondary);">vijayrauniyar1818@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Phone</h4>
+              <p style="color: var(--text-secondary);">Mobile: (+91) 8565017450<br>WhatsApp: (+91) 8565017450</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Modal -->
+  <div class="resume-modal" id="resumeModal">
+    <button class="resume-close" id="resumeClose">&times;</button>
+    <iframe src="images/Vijay2025.pdf" title="Vijay Gupta Resume"></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/vijaygupta18" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <a href="#hero" class="back-to-top">
+          <i class="fas fa-arrow-up"></i>
+          Back to Top
+        </a>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
+        <p>&copy; 2024 Vijay Gupta. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide loader
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1000);
+
+      // Theme management
+      const themeToggle = document.getElementById('themeToggle');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const storedTheme = localStorage.getItem('theme');
+      const defaultTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+      // Set initial theme
+      document.documentElement.setAttribute('data-theme', defaultTheme);
+      updateThemeToggle(defaultTheme);
+
+      // Theme toggle handler
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeToggle(newTheme);
+      });
+
+      function updateThemeToggle(theme) {
+        const icon = themeToggle.querySelector('i');
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      }
+
+      // Portfolio switcher
+      const portfolioSwitcher = document.getElementById('portfolioSwitcher');
+      portfolioSwitcher.addEventListener('change', (e) => {
+        if (e.target.value !== 'index.html') {
+          window.location.href = e.target.value;
+        }
+      });
+
+      // Scroll progress bar
+      const scrollProgress = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + '%';
+      });
+
+      // Header scroll effect
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Active navigation link
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Resume modal
+      const resumeBtn = document.getElementById('resumeBtn');
+      const resumeModal = document.getElementById('resumeModal');
+      const resumeClose = document.getElementById('resumeClose');
+
+      resumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      resumeClose.addEventListener('click', () => {
+        resumeModal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      // Close modal on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+          resumeClose.click();
+        }
+      });
+
+      // Close modal on backdrop click
+      resumeModal.addEventListener('click', (e) => {
+        if (e.target === resumeModal) {
+          resumeClose.click();
+        }
+      });
+
+      // Contact form
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Show success message (in a real app, you'd send this to a server)
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Performance optimization: Lazy load images
+      const images = document.querySelectorAll('img[src]');
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach(img => imageObserver.observe(img));
+
+      // Add hover effects for cards
+      const cards = document.querySelectorAll('.skill-category, .experience-item, .project-card, .education-card, .cert-card');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0)';
+        });
+      });
+
+      // Particle Animation System
+      const canvas = document.getElementById('particlesCanvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId;
+
+      // Resize canvas
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      // Particle class
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5;
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.size = Math.random() * 2 + 1;
+          this.opacity = Math.random() * 0.5 + 0.2;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Wrap around edges
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+        }
+
+        draw() {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const color = currentTheme === 'dark' ? '255, 255, 255' : '59, 130, 246';
+          
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${color}, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
+
+      // Initialize particles
+      function initParticles() {
+        particles = [];
+        const particleCount = Math.min(50, Math.floor(canvas.width * canvas.height / 10000));
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+
+        // Draw connections
+        particles.forEach((particle, i) => {
+          particles.slice(i + 1).forEach(otherParticle => {
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+              const currentTheme = document.documentElement.getAttribute('data-theme');
+              const color = currentTheme === 'dark' ? '255, 255, 255' : '59, 130, 246';
+              const opacity = (100 - distance) / 100 * 0.1;
+              
+              ctx.beginPath();
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(otherParticle.x, otherParticle.y);
+              ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          });
+        });
+
+        animationId = requestAnimationFrame(animate);
+      }
+
+      // Mouse interaction
+      let mouse = { x: 0, y: 0 };
+      canvas.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        
+        particles.forEach(particle => {
+          const dx = mouse.x - particle.x;
+          const dy = mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            const force = (100 - distance) / 100;
+            particle.vx += (dx / distance) * force * 0.01;
+            particle.vy += (dy / distance) * force * 0.01;
+            
+            // Limit velocity
+            particle.vx = Math.max(-2, Math.min(2, particle.vx));
+            particle.vy = Math.max(-2, Math.min(2, particle.vy));
+          }
+        });
+      });
+
+      // Initialize and start animation
+      resizeCanvas();
+      initParticles();
+      animate();
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+      });
+
+      // Pause animation when tab is not visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(animationId);
+        } else {
+          animate();
+        }
+      });
+
+      console.log('🚀 Portfolio V5 Ultimate loaded successfully!');
+    });
+  </script>
 </body>
-
-</html>
+</html> 
