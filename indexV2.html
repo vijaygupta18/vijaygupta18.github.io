@@ -777,9 +777,7 @@
     const mobilePortfolioSwitcher = document.getElementById('mobile-portfolio-switcher');
     const switchPortfolio = (e) => {
       const selectedPortfolio = e.target.value;
-      if (selectedPortfolio !== 'indexV2.html') {
-        window.location.href = selectedPortfolio;
-      }
+      window.location.href = selectedPortfolio;
     };
     if (portfolioSwitcher) portfolioSwitcher.addEventListener('change', switchPortfolio);
     if (mobilePortfolioSwitcher) mobilePortfolioSwitcher.addEventListener('change', switchPortfolio);

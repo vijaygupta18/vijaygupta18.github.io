@@ -961,9 +961,7 @@
 		if (portfolioSwitcher) {
 			portfolioSwitcher.addEventListener('change', (e) => {
 				const selectedPortfolio = e.target.value;
-				if (selectedPortfolio !== 'indexV1.html') {
-					window.location.href = selectedPortfolio;
-				}
+				window.location.href = selectedPortfolio;
 			});
 		}
 	</script>

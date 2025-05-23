@@ -3798,9 +3798,7 @@
       // Portfolio switcher
       const portfolioSwitcher = document.getElementById('portfolioSwitcher');
       portfolioSwitcher.addEventListener('change', (e) => {
-        if (e.target.value !== 'index.html') {
-          window.location.href = e.target.value;
-        }
+        window.location.href = e.target.value;
       });
 
       // Scroll progress bar
