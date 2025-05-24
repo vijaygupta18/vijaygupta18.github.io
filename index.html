@@ -27,13 +27,56 @@
     content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
   <meta property="twitter:image" content="https://vijaygupta18.github.io/images/profile.jpg">
 
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Performance & SEO Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
+  <!-- Critical Resource Preloads -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/images/profile.jpg" as="image">
+  
+  <!-- Fallback for JavaScript disabled -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vijay Gupta",
+    "jobTitle": "Software Development Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "NammaYatri"
+    },
+    "url": "https://vijaygupta18.github.io",
+    "image": "https://vijaygupta18.github.io/images/profile.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/vijaygupta18/",
+      "https://github.com/vijaygupta18",
+      "https://twitter.com/vijaygupta1818"
+    ],
+    "knowsAbout": ["Backend Development", "Distributed Systems", "Cloud Architecture", "Haskell", "Node.js", "AWS", "Kubernetes"],
+    "description": "Experienced Software Development Engineer specializing in backend systems and distributed architecture",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressCountry": "India"
+    }
+  }
+  </script>
+
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -2940,7 +2983,7 @@
   <header class="header" id="header">
     <div class="container">
       <nav class="nav">
-        <a href="#" class="nav-brand">Vijay Gupta</a>
+        <a href="#hero" class="nav-brand">Vijay Gupta</a>
 
         <ul class="nav-menu" id="navMenu">
           <li><a href="#about" class="nav-link">About</a></li>
@@ -4257,9 +4300,15 @@ ${cleanMessage}
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnText = submitBtn.innerHTML;
       let lastSubmissionTime = 0;
+      let isSubmitting = false; // Add submission guard
 
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Prevent multiple rapid submissions
+        if (isSubmitting) {
+          return;
+        }
 
         // Rate limiting on client side (additional to EmailJS limits)
         const now = Date.now();
@@ -4267,6 +4316,9 @@ ${cleanMessage}
           showNotification('⏰ Please wait 10 seconds between submissions.', 'error');
           return;
         }
+
+        // Set submission guard
+        isSubmitting = true;
 
         // Update button to show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
@@ -4282,7 +4334,6 @@ ${cleanMessage}
           const formData = new FormData(contactForm);
           const sanitizedData = validateAndSanitizeForm(formData);
 
-
           // Send email using EmailJS with sanitized data
           const result = await emailjs.send(
             EMAILJS_CONFIG.serviceId,
@@ -4294,12 +4345,12 @@ ${cleanMessage}
           // Show success message
           showNotification('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
           contactForm.reset();
+          
+          // Clear any field errors
+          contactForm.querySelectorAll('.field-error').forEach(error => error.remove());
 
         } catch (error) {
           console.error('Failed to send email:', error);
-
-          // Show appropriate error message with detailed debugging
-          console.error('Full error details:', error);
 
           if (error.message && error.message.includes('Template ID not configured')) {
             showNotification('❌ Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
@@ -4320,7 +4371,8 @@ ${cleanMessage}
             showNotification('❌ Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'error');
           }
         } finally {
-          // Reset button
+          // Reset submission guard and button
+          isSubmitting = false;
           submitBtn.innerHTML = originalBtnText;
           submitBtn.disabled = false;
         }
@@ -5007,6 +5059,229 @@ ${cleanMessage}
           }, 600);
         });
       });
+
+
+      // Advanced Intersection Observer for animations
+      const animationObserverOptions = {
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+        rootMargin: '-50px 0px -100px 0px'
+      };
+
+      const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            
+            // Add entrance animations based on element type
+            if (element.classList.contains('experience-item')) {
+              element.style.animation = 'slideInFromLeft 0.6s ease-out forwards';
+            } else if (element.classList.contains('project-card')) {
+              element.style.animation = 'scaleIn 0.5s ease-out forwards';
+            } else if (element.classList.contains('skill-category')) {
+              element.style.animation = 'fadeInUp 0.4s ease-out forwards';
+            } else {
+              element.classList.add('visible');
+            }
+            
+            // Trigger any custom animations
+            if (element.dataset.animation) {
+              element.style.animation = element.dataset.animation;
+            }
+            
+            animationObserver.unobserve(element);
+          }
+        });
+      }, animationObserverOptions);
+
+      // Observe all animatable elements
+      document.querySelectorAll('.fade-in, .experience-item, .project-card, .skill-category, .contact-item').forEach(el => {
+        animationObserver.observe(el);
+      });
+
+      // Enhanced keyboard navigation
+      function initializeKeyboardNavigation() {
+        const focusableElements = 'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+        const modal = document.querySelector('.resume-modal');
+        
+        // Trap focus in modal when open
+        modal?.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeResumeModal();
+            return;
+          }
+          
+          if (e.key === 'Tab') {
+            const focusable = modal.querySelectorAll(focusableElements);
+            const firstFocusable = focusable[0];
+            const lastFocusable = focusable[focusable.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstFocusable) {
+              e.preventDefault();
+              lastFocusable.focus();
+            } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+              e.preventDefault();
+              firstFocusable.focus();
+            }
+          }
+        });
+        
+        // Skip link for screen readers
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className = 'skip-link';
+        skipLink.style.cssText = `
+          position: absolute;
+          top: -40px;
+          left: 6px;
+          background: var(--color-primary);
+          color: white;
+          padding: 8px;
+          text-decoration: none;
+          z-index: 10000;
+          border-radius: 4px;
+          transition: top 0.3s;
+        `;
+        skipLink.addEventListener('focus', () => {
+          skipLink.style.top = '6px';
+        });
+        skipLink.addEventListener('blur', () => {
+          skipLink.style.top = '-40px';
+        });
+        document.body.insertBefore(skipLink, document.body.firstChild);
+      }
+
+      initializeKeyboardNavigation();
+
+      // Enhanced form validation and submission
+      function enhanceContactForm() {
+        const form = document.querySelector('#contactForm');
+        if (!form) return;
+
+        const inputs = form.querySelectorAll('input, textarea');
+        let validationTimeouts = new Map();
+        
+        // Real-time validation with debounce
+        inputs.forEach(input => {
+          input.addEventListener('blur', validateField);
+          input.addEventListener('input', (e) => {
+            clearErrors(e);
+            
+            // Debounce validation for input events
+            if (validationTimeouts.has(input)) {
+              clearTimeout(validationTimeouts.get(input));
+            }
+            
+            const timeoutId = setTimeout(() => {
+              if (input.value.trim()) { // Only validate if there's content
+                validateField(e);
+              }
+              validationTimeouts.delete(input);
+            }, 500); // 500ms debounce
+            
+            validationTimeouts.set(input, timeoutId);
+          });
+        });
+
+        function validateField(e) {
+          const field = e.target;
+          const value = field.value.trim();
+          const type = field.type;
+          
+          clearFieldError(field);
+          
+          if (field.hasAttribute('required') && !value) {
+            showFieldError(field, 'This field is required');
+            return false;
+          }
+          
+          if (type === 'email' && value && !isValidEmail(value)) {
+            showFieldError(field, 'Please enter a valid email address');
+            return false;
+          }
+          
+          // Add message length validation for real-time feedback
+          if (field.name === 'message' && value && value.length < 10) {
+            showFieldError(field, `Message must be at least 10 characters long (${value.length}/10)`);
+            return false;
+          }
+          
+          return true;
+        }
+
+        function clearErrors(e) {
+          clearFieldError(e.target);
+        }
+
+        function showFieldError(field, message) {
+          // Remove existing error first to prevent duplicates
+          clearFieldError(field);
+          
+          const errorElement = document.createElement('div');
+          errorElement.className = 'field-error';
+          errorElement.textContent = message;
+          errorElement.style.cssText = 'color: var(--color-error); font-size: 0.875rem; margin-top: 0.25rem; transition: opacity 0.2s ease;';
+          
+          field.parentNode.appendChild(errorElement);
+          field.setAttribute('aria-invalid', 'true');
+          field.setAttribute('aria-describedby', errorElement.id = `error-${field.name}`);
+          
+          // Animate in
+          setTimeout(() => {
+            errorElement.style.opacity = '1';
+          }, 10);
+        }
+
+        function clearFieldError(field) {
+          const error = field.parentNode.querySelector('.field-error');
+          if (error) {
+            error.style.opacity = '0';
+            setTimeout(() => {
+              if (error.parentNode) {
+                error.remove();
+              }
+            }, 200);
+            field.removeAttribute('aria-invalid');
+            field.removeAttribute('aria-describedby');
+          }
+        }
+
+        function isValidEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Note: Form submission is handled by the main contactForm event listener above
+        // This function only handles real-time validation to avoid duplicate submissions
+      }
+
+      enhanceContactForm();
+
+      // Add custom CSS animations
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideInFromLeft {
+          from { transform: translateX(-100px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .field-error {
+          color: var(--color-error);
+          font-size: 0.875rem;
+          margin-top: 0.25rem;
+        }
+      `;
+      document.head.appendChild(style);
+
     });
   </script>
 </body>
