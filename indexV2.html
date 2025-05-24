@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
     }
+
     .resume-overlay {
       display: none;
       position: fixed;
@@ -26,10 +28,12 @@
       justify-content: center;
       transition: opacity 0.5s ease;
     }
+
     .resume-overlay.active {
       display: flex;
       opacity: 1;
     }
+
     .resume-iframe {
       width: 90%;
       max-width: 1200px;
@@ -38,6 +42,7 @@
       border-radius: 0.5rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
+
     .close-resume {
       position: absolute;
       top: 1rem;
@@ -49,7 +54,10 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
-    .skill-badge, .tech-pill, .badge {
+
+    .skill-badge,
+    .tech-pill,
+    .badge {
       display: inline-block;
       background: #e5e7eb;
       color: #1f2937;
@@ -58,22 +66,27 @@
       margin: 0.25rem;
       font-size: 0.875rem;
     }
+
     .project-card:hover {
       transform: translateY(-5px);
       transition: transform 0.3s ease;
     }
+
     .slider {
       position: relative;
       overflow: hidden;
     }
+
     .slider-track {
       display: flex;
       transition: transform 0.5s ease;
     }
+
     .slide {
       min-width: 100%;
       padding: 0 1rem;
     }
+
     .slider-arrow {
       position: absolute;
       top: 50%;
@@ -84,23 +97,28 @@
       cursor: pointer;
       z-index: 10;
     }
+
     .slider-prev {
       left: 0;
     }
+
     .slider-next {
       right: 0;
     }
+
     @media (max-width: 768px) {
       .resume-iframe {
         width: 95%;
         height: 70vh;
       }
+
       .slider-track {
         flex-wrap: nowrap;
       }
     }
   </style>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
   <!-- Preloader -->
   <div id="preloader" class="fixed inset-0 bg-gray-800 flex items-center justify-center z-50">
@@ -116,13 +134,21 @@
         </div>
         <div class="hidden md:flex items-center space-x-4">
           <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
-          <a href="#skills" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
-          <a href="#experience" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-          <a href="#portfolio" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-          <a href="#education" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Education</a>
-          <a href="#resume" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium resume-link">Resume</a>
-          <a href="#contact" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-          <select id="portfolio-switcher" class="p-2 border border-gray-300 rounded-md bg-white text-gray-900 shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" aria-label="Select Portfolio Version">
+          <a href="#skills"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+          <a href="#experience"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+          <a href="#portfolio"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+          <a href="#education"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Education</a>
+          <a href="#resume"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium resume-link">Resume</a>
+          <a href="#contact"
+            class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          <select id="portfolio-switcher"
+            class="p-2 border border-gray-300 rounded-md bg-white text-gray-900 shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+            aria-label="Select Portfolio Version">
             <option value="indexV1.html">V1</option>
             <option value="indexV2.html" selected>V2</option>
             <option value="indexV3.html">V3</option>
@@ -138,14 +164,23 @@
       </div>
       <div id="mobile-menu" class="hidden md:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#about" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">About</a>
-          <a href="#skills" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Skills</a>
-          <a href="#experience" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Experience</a>
-          <a href="#portfolio" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Projects</a>
-          <a href="#education" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Education</a>
-          <a href="#resume" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium resume-link">Resume</a>
-          <a href="#contact" class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Contact</a>
-          <select id="mobile-portfolio-switcher" class="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-900 shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 mt-2" aria-label="Select Portfolio Version">
+          <a href="#about"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">About</a>
+          <a href="#skills"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Skills</a>
+          <a href="#experience"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Experience</a>
+          <a href="#portfolio"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Projects</a>
+          <a href="#education"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Education</a>
+          <a href="#resume"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium resume-link">Resume</a>
+          <a href="#contact"
+            class="block text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">Contact</a>
+          <select id="mobile-portfolio-switcher"
+            class="w-full p-2 border border-gray-300 rounded-md bg-white text-gray-900 shadow-sm hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 mt-2"
+            aria-label="Select Portfolio Version">
             <option value="indexV1.html">V1</option>
             <option value="indexV2.html" selected>V2</option>
             <option value="indexV3.html">V3</option>
@@ -168,21 +203,34 @@
         <div class="w-full md:w-2/3">
           <h3 class="text-2xl font-semibold mb-4">Vijay Gupta</h3>
           <div class="flex flex-wrap gap-4 mb-4">
-            <span class="text-gray-600"><i class="fas fa-briefcase mr-2"></i> Software Development Engineer @ NammaYatri</span>
+            <span class="text-gray-600"><i class="fas fa-briefcase mr-2"></i> Software Development Engineer @
+              NammaYatri</span>
             <span class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i> Bengaluru, India</span>
             <span class="text-gray-600"><i class="fas fa-calendar mr-2"></i> 3+ Years Experience</span>
           </div>
           <p class="text-lg text-gray-600 mb-4">Building scalable, high-performance systems | Ex-Juspay, Vahan</p>
           <p class="text-gray-600 leading-relaxed">
-            I am a results-driven software engineer specializing in backend and distributed systems. With a proven track record at high-growth startups, I architect and deliver robust, scalable solutions using technologies like Haskell, Node.js, Kafka, Redis, AWS, and Kubernetes. My expertise spans system design, cloud infrastructure, and performance optimization. I thrive in fast-paced environments, blending deep technical skills with a collaborative, product-focused mindset to solve complex challenges and drive business impact.
+            I am a results-driven software engineer specializing in backend and distributed systems. With a proven track
+            record at high-growth startups, I architect and deliver robust, scalable solutions using technologies like
+            Haskell, Node.js, Kafka, Redis, AWS, and Kubernetes. My expertise spans system design, cloud infrastructure,
+            and performance optimization. I thrive in fast-paced environments, blending deep technical skills with a
+            collaborative, product-focused mindset to solve complex challenges and drive business impact.
           </p>
           <div class="flex flex-wrap gap-4 mt-6">
-            <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="Facebook"><i class="fab fa-facebook-f text-xl"></i></a>
-            <a href="https://twitter.com/vijaygupta1818" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="Twitter"><i class="fab fa-twitter text-xl"></i></a>
-            <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
-            <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
-            <a href="https://github.com/vijaygupta18" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
-            <a href="mailto:vijayrauniyar1818@gmail.com" class="text-gray-600 hover:text-blue-600" aria-label="Email"><i class="fas fa-envelope text-xl"></i></a>
+            <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank"
+              class="text-gray-600 hover:text-blue-600" aria-label="Facebook"><i
+                class="fab fa-facebook-f text-xl"></i></a>
+            <a href="https://twitter.com/vijaygupta1818" target="_blank" class="text-gray-600 hover:text-blue-600"
+              aria-label="Twitter"><i class="fab fa-twitter text-xl"></i></a>
+            <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="text-gray-600 hover:text-blue-600"
+              aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
+            <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank"
+              class="text-gray-600 hover:text-blue-600" aria-label="LinkedIn"><i
+                class="fab fa-linkedin-in text-xl"></i></a>
+            <a href="https://github.com/vijaygupta18" target="_blank" class="text-gray-600 hover:text-blue-600"
+              aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
+            <a href="mailto:vijayrauniyar1818@gmail.com" class="text-gray-600 hover:text-blue-600" aria-label="Email"><i
+                class="fas fa-envelope text-xl"></i></a>
           </div>
         </div>
       </div>
@@ -270,16 +318,30 @@
             <p class="text-gray-600">Mar 2024 - Present (1 yr 3 mos) • Bengaluru, India • On-site</p>
             <p class="text-gray-600 mt-2">Software Development Engineer</p>
             <ul class="list-disc pl-5 mt-4 text-gray-600">
-              <li>Optimized Redis performance and reduced costs by implementing zone-aware replica selection, ensuring pods use same-zone replicas, minimizing cross-zone data transfer, and improving load distribution.</li>
-              <li>Implemented same AZ data scraping for metrics using VM agents, resulting in zero cross-zone data transfer costs (Integrated Kyverno for Pod Zone Injection).</li>
-              <li>Optimized API polling efficiency by implementing a connection pool using OkHttp, reducing the need to create a new connection for each API call. This improved performance, reduced latency, and optimized resource utilization.</li>
-              <li>Reduced Redis memory usage by implementing data compression for stored values. This optimization lowered memory consumption, allowing us to reduce the number of Redis nodes required, saving costs.</li>
-              <li>Improved Redis performance by maximizing slot utilization and making Redis pipeline usage more efficient. Achieved this by introducing table-level sharding and using asynchronous Redis calls, which reduced latency and improved response times.</li>
-              <li>Developed a data scraping script to collect and analyze pricing data for the NammaYatri app, enabling real-time dynamic pricing analysis.</li>
-              <li>Enabled auto-scaling for Redis and RDS replicas, ensuring they could automatically scale up during high traffic and scale down during idle times. This improved load handling while optimizing cloud costs.</li>
-              <li>Reduced ALB (Application Load Balancer) costs by implementing API response compression and optimizing responses by eliminating unnecessary fields and headers, reducing overall data transfer size.</li>
-              <li>Enhanced backend performance by profiling the application and making key optimizations, which significantly improved efficiency and reduced API latency by nearly 50%.</li>
-              <li>Developed an ART (Automated Regression Testing) framework to record real production data and replay test flows. This helped detect changes in API responses and enabled smoother deployments by identifying potential issues before release.</li>
+              <li>Optimized Redis performance and reduced costs by implementing zone-aware replica selection, ensuring
+                pods use same-zone replicas, minimizing cross-zone data transfer, and improving load distribution.</li>
+              <li>Implemented same AZ data scraping for metrics using VM agents, resulting in zero cross-zone data
+                transfer costs (Integrated Kyverno for Pod Zone Injection).</li>
+              <li>Optimized API polling efficiency by implementing a connection pool using OkHttp, reducing the need to
+                create a new connection for each API call. This improved performance, reduced latency, and optimized
+                resource utilization.</li>
+              <li>Reduced Redis memory usage by implementing data compression for stored values. This optimization
+                lowered memory consumption, allowing us to reduce the number of Redis nodes required, saving costs.</li>
+              <li>Improved Redis performance by maximizing slot utilization and making Redis pipeline usage more
+                efficient. Achieved this by introducing table-level sharding and using asynchronous Redis calls, which
+                reduced latency and improved response times.</li>
+              <li>Developed a data scraping script to collect and analyze pricing data for the NammaYatri app, enabling
+                real-time dynamic pricing analysis.</li>
+              <li>Enabled auto-scaling for Redis and RDS replicas, ensuring they could automatically scale up during
+                high traffic and scale down during idle times. This improved load handling while optimizing cloud costs.
+              </li>
+              <li>Reduced ALB (Application Load Balancer) costs by implementing API response compression and optimizing
+                responses by eliminating unnecessary fields and headers, reducing overall data transfer size.</li>
+              <li>Enhanced backend performance by profiling the application and making key optimizations, which
+                significantly improved efficiency and reduced API latency by nearly 50%.</li>
+              <li>Developed an ART (Automated Regression Testing) framework to record real production data and replay
+                test flows. This helped detect changes in API responses and enabled smoother deployments by identifying
+                potential issues before release.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="tech-pill">Purescript</span>
@@ -302,8 +364,12 @@
             <p class="text-gray-600">Jan 2024 - Mar 2024 (3 mos) • Bengaluru, India • On-site</p>
             <p class="text-gray-600 mt-2">Software Development Engineer</p>
             <ul class="list-disc pl-5 mt-4 text-gray-600">
-              <li>Separated the data drainer service from the application, ensuring smooth data flow into the database and ClickHouse. This also made deployments easier by removing dependencies on the application and database type.</li>
-              <li>Reduced testing sandbox costs by implementing automated Horizontal Pod Autoscaler (HPA) and optimizing pod requests based on actual resource needs, ensuring better resource utilization and cost savings during idle periods.</li>
+              <li>Separated the data drainer service from the application, ensuring smooth data flow into the database
+                and ClickHouse. This also made deployments easier by removing dependencies on the application and
+                database type.</li>
+              <li>Reduced testing sandbox costs by implementing automated Horizontal Pod Autoscaler (HPA) and optimizing
+                pod requests based on actual resource needs, ensuring better resource utilization and cost savings
+                during idle periods.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="tech-pill">Purescript</span>
@@ -325,9 +391,15 @@
             <p class="text-gray-600">May 2023 - Dec 2023 (8 mos)</p>
             <p class="text-gray-600 mt-2">Product Engineer</p>
             <ul class="list-disc pl-5 mt-4 text-gray-600">
-              <li>Developed a cost-saving framework called KV which uses Redis to store real-time database data efficiently. This solution effectively downsized the primary database, optimizing costs while maintaining seamless data access and synchronization capabilities.</li>
-              <li>Created a drainer service to seamlessly transfer data from Redis streams to the database. This service also shapes the data within itself, eliminating the need for additional data shaping services before pushing to Kafka. This streamlined process enhances efficiency and drain data from Kafka to Clickhouse directly for analytics.</li>
-              <li>Added multithreading to scheduler services along with thread safe execution, which reduced the need for extra pods. This made our system more efficient by using CPU resources better.</li>
+              <li>Developed a cost-saving framework called KV which uses Redis to store real-time database data
+                efficiently. This solution effectively downsized the primary database, optimizing costs while
+                maintaining seamless data access and synchronization capabilities.</li>
+              <li>Created a drainer service to seamlessly transfer data from Redis streams to the database. This service
+                also shapes the data within itself, eliminating the need for additional data shaping services before
+                pushing to Kafka. This streamlined process enhances efficiency and drain data from Kafka to Clickhouse
+                directly for analytics.</li>
+              <li>Added multithreading to scheduler services along with thread safe execution, which reduced the need
+                for extra pods. This made our system more efficient by using CPU resources better.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="tech-pill">Purescript</span>
@@ -349,10 +421,14 @@
             <p class="text-gray-600">Jun 2022 - Mar 2023 (10 mos) • Bangalore Urban, India</p>
             <p class="text-gray-600 mt-2">Software Engineer-I</p>
             <ul class="list-disc pl-5 mt-4 text-gray-600">
-              <li>Worked on backend architecture for AI-driven WhatsApp Bot, designed to assist users in finding relevant blue-collar job opportunities based on their responses.</li>
-              <li>Implemented concurrent chat capability in WhatsApp Bot flow, resulting in reduced telecalling expenses.</li>
-              <li>Developed a fallback data collection mechanism for Uber, increasing data accuracy to 98% during system outages.</li>
-              <li>Automated application status tracking by integrating offline data uploads into the data warehouse, enhancing operational visibility.</li>
+              <li>Worked on backend architecture for AI-driven WhatsApp Bot, designed to assist users in finding
+                relevant blue-collar job opportunities based on their responses.</li>
+              <li>Implemented concurrent chat capability in WhatsApp Bot flow, resulting in reduced telecalling
+                expenses.</li>
+              <li>Developed a fallback data collection mechanism for Uber, increasing data accuracy to 98% during system
+                outages.</li>
+              <li>Automated application status tracking by integrating offline data uploads into the data warehouse,
+                enhancing operational visibility.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="tech-pill">Node.js</span>
@@ -374,7 +450,8 @@
             <p class="text-gray-600">May 2021 - Apr 2022 (1 yr) • India</p>
             <p class="text-gray-600 mt-2">Chegg India · Freelance</p>
             <ul class="list-disc pl-5 mt-4 text-gray-600">
-              <li>Mentored 300+ students globally in data structures and algorithms, achieving a 90% satisfaction rate via tailored tutoring.</li>
+              <li>Mentored 300+ students globally in data structures and algorithms, achieving a 90% satisfaction rate
+                via tailored tutoring.</li>
               <li>Resolved 500+ technical queries with hands-on debugging, enhancing student comprehension.</li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
@@ -393,7 +470,8 @@
             <ul class="list-disc pl-5 mt-4 text-gray-600">
               <li>Managed and promoted CodeChef activities within the college chapter.</li>
               <li>Organized coding contests and workshops to encourage competitive programming.</li>
-              <li>Served as a point of contact for students interested in competitive programming and CodeChef platform.</li>
+              <li>Served as a point of contact for students interested in competitive programming and CodeChef platform.
+              </li>
             </ul>
             <div class="flex flex-wrap gap-2 mt-4">
               <span class="tech-pill">Competitive Programming</span>
@@ -414,7 +492,8 @@
         <div class="slider-track">
           <div class="slide">
             <div class="project-card bg-gray-100 rounded-lg shadow-md p-6">
-              <h3 class="text-xl font-semibold"><a href="https://github.com/nammayatri/Master-Oogway" target="_blank">🐢 Master Oogway</a></h3>
+              <h3 class="text-xl font-semibold"><a href="https://github.com/nammayatri/Master-Oogway" target="_blank">🐢
+                  Master Oogway</a></h3>
               <div class="flex flex-wrap gap-2 my-2">
                 <span class="badge">Python</span>
                 <span class="badge">FastAPI</span>
@@ -424,7 +503,9 @@
                 <span class="badge">Prometheus</span>
                 <span class="badge">Docker</span>
               </div>
-              <p class="text-gray-600">Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause analysis, and delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and supports real-time alerts, PDF reports, and AI-powered RCA.</p>
+              <p class="text-gray-600">Advanced post-release monitoring for NammaYatri: detects anomalies, automates
+                root cause analysis, and delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and
+                supports real-time alerts, PDF reports, and AI-powered RCA.</p>
               <ul class="list-disc pl-5 mt-2 text-gray-600">
                 <li>Real-time anomaly detection & alerting</li>
                 <li>Slack integration for team notifications</li>
@@ -432,84 +513,103 @@
                 <li>PDF reporting & dashboard</li>
               </ul>
               <div class="mt-4">
-                <a href="https://github.com/nammayatri/Master-Oogway" class="inline-block text-blue-600 font-semibold hover:underline" aria-label="View Master Oogway on GitHub">GitHub</a>
+                <a href="https://github.com/nammayatri/Master-Oogway"
+                  class="inline-block text-blue-600 font-semibold hover:underline"
+                  aria-label="View Master Oogway on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
             <div class="project-card bg-gray-100 rounded-lg shadow-md p-6">
-              <h3 class="text-xl font-semibold"><a href="https://github.com/nammayatri/bus-route-tracker" target="_blank">🚌 Bus Route Tracker</a></h3>
+              <h3 class="text-xl font-semibold"><a href="https://github.com/nammayatri/bus-route-tracker"
+                  target="_blank">🚌 Bus Route Tracker</a></h3>
               <div class="flex flex-wrap gap-2 my-2">
                 <span class="badge">Python</span>
                 <span class="badge">Docker</span>
                 <span class="badge">API</span>
                 <span class="badge">Mobile-first UI</span>
               </div>
-              <p class="text-gray-600">Open-source tool for collecting, confirming, and managing bus stop and route data. Features secure login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field teams and open mobility enthusiasts.</p>
+              <p class="text-gray-600">Open-source tool for collecting, confirming, and managing bus stop and route
+                data. Features secure login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field
+                teams and open mobility enthusiasts.</p>
               <ul class="list-disc pl-5 mt-2 text-gray-600">
                 <li>Live GPS tracking & offline fallback</li>
                 <li>Admin APIs for data management</li>
                 <li>Mobile-first responsive UI</li>
               </ul>
               <div class="mt-4">
-                <a href="https://github.com/nammayatri/bus-route-tracker" class="inline-block text-blue-600 font-semibold hover:underline" aria-label="View Bus Route Tracker on GitHub">GitHub</a>
+                <a href="https://github.com/nammayatri/bus-route-tracker"
+                  class="inline-block text-blue-600 font-semibold hover:underline"
+                  aria-label="View Bus Route Tracker on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
             <div class="project-card bg-gray-100 rounded-lg shadow-md p-6">
-              <h3 class="text-xl font-semibold"><a href="https://gossipsdotcom.herokuapp.com/" target="_blank">💬 GossipDotCom</a></h3>
+              <h3 class="text-xl font-semibold"><a href="https://gossipsdotcom.herokuapp.com/" target="_blank">💬
+                  GossipDotCom</a></h3>
               <div class="flex flex-wrap gap-2 my-2">
                 <span class="badge">Node.js</span>
                 <span class="badge">Socket.IO</span>
                 <span class="badge">Heroku</span>
                 <span class="badge">JioSaavan API</span>
               </div>
-              <p class="text-gray-600">Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends and listen to music together using JioSaavn API commands directly in chat.</p>
+              <p class="text-gray-600">Real-time chat web app built with Node.js and Socket.IO. Enables users to chat
+                with friends and listen to music together using JioSaavn API commands directly in chat.</p>
               <ul class="list-disc pl-5 mt-2 text-gray-600">
                 <li>Real-time group chat</li>
                 <li>Music streaming via JioSaavn API</li>
                 <li>Deployed on Heroku</li>
               </ul>
               <div class="mt-4">
-                <a href="https://github.com/vijaygupta18/gossipsdotcom" class="inline-block text-blue-600 font-semibold hover:underline" aria-label="View GossipDotCom on GitHub">GitHub</a>
+                <a href="https://github.com/vijaygupta18/gossipsdotcom"
+                  class="inline-block text-blue-600 font-semibold hover:underline"
+                  aria-label="View GossipDotCom on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
             <div class="project-card bg-gray-100 rounded-lg shadow-md p-6">
-              <h3 class="text-xl font-semibold"><a href="https://saavandl.herokuapp.com" target="_blank">🎵 SaavanDL</a></h3>
+              <h3 class="text-xl font-semibold"><a href="https://saavandl.herokuapp.com" target="_blank">🎵 SaavanDL</a>
+              </h3>
               <div class="flex flex-wrap gap-2 my-2">
                 <span class="badge">Node.js</span>
                 <span class="badge">Express.js</span>
                 <span class="badge">EJS</span>
               </div>
-              <p class="text-gray-600">A web app to download music from JioSaavan. Built with Node.js, Express.js, and EJS.</p>
+              <p class="text-gray-600">A web app to download music from JioSaavan. Built with Node.js, Express.js, and
+                EJS.</p>
               <ul class="list-disc pl-5 mt-2 text-gray-600">
                 <li>Music download from JioSaavn</li>
                 <li>Simple, clean UI</li>
                 <li>Deployed on Heroku</li>
               </ul>
               <div class="mt-4">
-                <a href="https://github.com/vijaygupta18/saavandl" class="inline-block text-blue-600 font-semibold hover:underline" aria-label="View SaavanDL on GitHub">GitHub</a>
+                <a href="https://github.com/vijaygupta18/saavandl"
+                  class="inline-block text-blue-600 font-semibold hover:underline"
+                  aria-label="View SaavanDL on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
             <div class="project-card bg-gray-100 rounded-lg shadow-md p-6">
-              <h3 class="text-xl font-semibold"><a href="https://writemytext.herokuapp.com" target="_blank">✍️ Write My Text</a></h3>
+              <h3 class="text-xl font-semibold"><a href="https://writemytext.herokuapp.com" target="_blank">✍️ Write My
+                  Text</a></h3>
               <div class="flex flex-wrap gap-2 my-2">
                 <span class="badge">JavaScript</span>
                 <span class="badge">Web App</span>
               </div>
-              <p class="text-gray-600">A web application to convert your typed text into a handwritten style. Built with JavaScript and deployed on Heroku.</p>
+              <p class="text-gray-600">A web application to convert your typed text into a handwritten style. Built with
+                JavaScript and deployed on Heroku.</p>
               <ul class="list-disc pl-5 mt-2 text-gray-600">
                 <li>Text-to-handwriting conversion</li>
                 <li>Download as image</li>
                 <li>Deployed on Heroku</li>
               </ul>
               <div class="mt-4">
-                <a href="https://github.com/vijaygupta18/writemytext" class="inline-block text-blue-600 font-semibold hover:underline" aria-label="View Write My Text on GitHub">GitHub</a>
+                <a href="https://github.com/vijaygupta18/writemytext"
+                  class="inline-block text-blue-600 font-semibold hover:underline"
+                  aria-label="View Write My Text on GitHub">GitHub</a>
               </div>
             </div>
           </div>
@@ -557,7 +657,8 @@
                   <div>
                     <strong>Applied Machine Learning in Python</strong>
                     <p>Coursera</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile" target="_blank" class="text-blue-600 hover:underline">Show credential</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
+                      target="_blank" class="text-blue-600 hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -567,7 +668,8 @@
                   <div>
                     <strong>Crash Course on Python</strong>
                     <p>Coursera</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile" target="_blank" class="text-blue-600 hover:underline">Show credential</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
+                      target="_blank" class="text-blue-600 hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -577,7 +679,8 @@
                   <div>
                     <strong>Google Hashcode</strong>
                     <p>Google</p>
-                    <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank" class="text-blue-600 hover:underline">Show credential</a>
+                    <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank"
+                      class="text-blue-600 hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -587,7 +690,8 @@
                   <div>
                     <strong>HTML, CSS, and Javascript for Web Developers</strong>
                     <p>Coursera</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile" target="_blank" class="text-blue-600 hover:underline">Show credential</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
+                      target="_blank" class="text-blue-600 hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -597,7 +701,8 @@
                   <div>
                     <strong>Python Data Structures</strong>
                     <p>Coursera</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile" target="_blank" class="text-blue-600 hover:underline">Show credential</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
+                      target="_blank" class="text-blue-600 hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -637,11 +742,15 @@
                 <i class="fas fa-user-circle text-2xl text-blue-600"></i>
                 <div>
                   <strong>Naman Samaiya</strong>
-                  <p class="text-gray-600">SDE3 @Vahan Inc (YC S19) | IIIT Bhagalpur (Worked with Vijay on same team)</p>
+                  <p class="text-gray-600">SDE3 @Vahan Inc (YC S19) | IIIT Bhagalpur (Worked with Vijay on same team)
+                  </p>
                 </div>
               </div>
               <blockquote class="mt-4 text-gray-600">
-                Vijay was a fantastic person to work with and is not only a multi-skilled and insightful colleague but also a person with very strong problem-solving skills. His focus keeps everything moving smoothly, he makes sure all the deadlines are met and makes sure that whatever project he is working on meets the highest standards. Vijay is an asset to any company.
+                Vijay was a fantastic person to work with and is not only a multi-skilled and insightful colleague but
+                also a person with very strong problem-solving skills. His focus keeps everything moving smoothly, he
+                makes sure all the deadlines are met and makes sure that whatever project he is working on meets the
+                highest standards. Vijay is an asset to any company.
               </blockquote>
             </div>
             <div class="bg-white rounded-lg shadow-md p-6">
@@ -653,7 +762,12 @@
                 </div>
               </div>
               <blockquote class="mt-4 text-gray-600">
-                I had the pleasure of working with Vijay during his time at Vahan, where he joined as a fresher in the engineering team. Vijay impressed me with his positive attitude and strong work ethic. He is always eager to learn, and shows great initiative in tackling challenging projects. Vijay's technical skills are equally impressive, and it was clear from the beginning that he has a great deal of potential. Overall, I highly recommend Vijay for any future opportunities. He is a hard-working individual and I am sure he holds a bright future ahead of him.
+                I had the pleasure of working with Vijay during his time at Vahan, where he joined as a fresher in the
+                engineering team. Vijay impressed me with his positive attitude and strong work ethic. He is always
+                eager to learn, and shows great initiative in tackling challenging projects. Vijay's technical skills
+                are equally impressive, and it was clear from the beginning that he has a great deal of potential.
+                Overall, I highly recommend Vijay for any future opportunities. He is a hard-working individual and I am
+                sure he holds a bright future ahead of him.
               </blockquote>
             </div>
             <div class="bg-white rounded-lg shadow-md p-6">
@@ -665,7 +779,9 @@
                 </div>
               </div>
               <blockquote class="mt-4 text-gray-600">
-                Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched, and he was always a key contributor to our team's projects. I highly recommend Vijay for any job opportunity he pursue.
+                Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched, and he was
+                always a key contributor to our team's projects. I highly recommend Vijay for any job opportunity he
+                pursue.
               </blockquote>
             </div>
           </div>
@@ -682,19 +798,26 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <form id="contactForm" class="space-y-4" method="post" action="inc/sendEmail.php">
           <div>
-            <input type="text" id="contactName" name="contactName" placeholder="Name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" minlength="2" required>
+            <input type="text" id="contactName" name="contactName" placeholder="Name"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" minlength="2"
+              required>
           </div>
           <div>
-            <input type="email" id="contactEmail" name="contactEmail" placeholder="Email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+            <input type="email" id="contactEmail" name="contactEmail" placeholder="Email"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
           </div>
           <div>
-            <input type="text" id="contactSubject" name="contactSubject" placeholder="Subject" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <input type="text" id="contactSubject" name="contactSubject" placeholder="Subject"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
           </div>
           <div>
-            <textarea id="contactMessage" name="contactMessage" placeholder="Message" rows="5" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required></textarea>
+            <textarea id="contactMessage" name="contactMessage" placeholder="Message" rows="5"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required></textarea>
           </div>
           <div>
-            <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition">Submit</button>
+            <button type="submit"
+              class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition">Submit</button>
             <div id="submit-loader" class="hidden flex items-center gap-2 mt-2">
               <span class="text-gray-600">Sending...</span>
               <div class="flex space-x-1">
@@ -710,7 +833,7 @@
             <i class="fas fa-map-marker-alt text-2xl text-blue-600"></i>
             <div>
               <h3 class="text-lg font-semibold">Address</h3>
-              <p>KNIT Sultanpur<br>U.P.<br>228118</p>
+              <p>Bengaluru, Karnataka<br>India</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
@@ -747,13 +870,19 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex gap-4">
-          <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank" class="hover:text-blue-400"><i class="fab fa-facebook-f text-xl"></i></a>
-          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin-in text-xl"></i></a>
-          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
-          <a href="https://github.com/vijaygupta18" target="_blank" class="hover:text-blue-400"><i class="fab fa-github text-xl"></i></a>
-          <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="hover:text-blue-400"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank"
+            class="hover:text-blue-400"><i class="fab fa-facebook-f text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="hover:text-blue-400"><i
+              class="fab fa-linkedin-in text-xl"></i></a>
+          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="hover:text-blue-400"><i
+              class="fab fa-twitter text-xl"></i></a>
+          <a href="https://github.com/vijaygupta18" target="_blank" class="hover:text-blue-400"><i
+              class="fab fa-github text-xl"></i></a>
+          <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="hover:text-blue-400"><i
+              class="fab fa-instagram text-xl"></i></a>
         </div>
-        <a href="#top" class="text-white hover:text-blue-400"><i class="fas fa-long-arrow-alt-up text-xl"></i> Back to Top</a>
+        <a href="#top" class="text-white hover:text-blue-400"><i class="fas fa-long-arrow-alt-up text-xl"></i> Back to
+          Top</a>
       </div>
     </div>
   </footer>
@@ -834,7 +963,7 @@
       const loader = document.getElementById('submit-loader');
       const success = document.getElementById('message-success');
       const warning = document.getElementById('message-warning');
-      
+
       loader.classList.remove('hidden');
       setTimeout(() => {
         loader.classList.add('hidden');
@@ -845,4 +974,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -32,15 +32,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  
+
   <!-- Critical Resource Preloads -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="/images/profile.jpg" as="image">
-  
+
   <!-- Fallback for JavaScript disabled -->
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </noscript>
 
@@ -72,6 +76,8 @@
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560095",
       "addressCountry": "India"
     }
   }
@@ -754,12 +760,12 @@
       transform: translateX(-50%);
       width: 100px;
       height: 1px;
-      background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--color-primary) 20%, 
-        var(--color-secondary) 50%, 
-        var(--color-accent) 80%, 
-        transparent 100%);
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--color-primary) 20%,
+          var(--color-secondary) 50%,
+          var(--color-accent) 80%,
+          transparent 100%);
       box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
     }
 
@@ -773,7 +779,7 @@
       height: 8px;
       background: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 70%, transparent 100%);
       border-radius: 50%;
-      box-shadow: 
+      box-shadow:
         0 0 0 3px rgba(59, 130, 246, 0.2),
         0 0 0 6px rgba(59, 130, 246, 0.1),
         0 0 20px rgba(59, 130, 246, 0.4);
@@ -781,11 +787,14 @@
     }
 
     @keyframes pulse-dot {
-      0%, 100% { 
+
+      0%,
+      100% {
         transform: translateX(-50%) scale(1);
         opacity: 1;
       }
-      50% { 
+
+      50% {
         transform: translateX(-50%) scale(1.2);
         opacity: 0.8;
       }
@@ -3573,7 +3582,8 @@
           <div class="experience-description">
             <ul>
               <li>Mentored <strong>300+ students globally</strong> in data structures and algorithms, achieving
-                <strong>90% satisfaction rate</strong></li>
+                <strong>90% satisfaction rate</strong>
+              </li>
               <li>Resolved <strong>500+ technical queries</strong> with hands-on debugging and personalized guidance
               </li>
             </ul>
@@ -4007,7 +4017,7 @@
               </div>
               <div class="contact-item-content">
                 <h4>Location</h4>
-                <p>KNIT Sultanpur<br>Uttar Pradesh, India<br>228118</p>
+                <p>Bengaluru, Karnataka<br>India</p>
               </div>
             </div>
 
@@ -4345,7 +4355,7 @@ ${cleanMessage}
           // Show success message
           showNotification('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
           contactForm.reset();
-          
+
           // Clear any field errors
           contactForm.querySelectorAll('.field-error').forEach(error => error.remove());
 
@@ -4422,7 +4432,7 @@ ${cleanMessage}
           if (target) {
             const headerHeight = document.getElementById('header').offsetHeight;
             const targetPosition = target.offsetTop - headerHeight;
-            
+
             window.scrollTo({
               top: Math.max(0, targetPosition),
               behavior: 'smooth'
@@ -4438,13 +4448,13 @@ ${cleanMessage}
       function updateActiveNavigation() {
         const headerHeight = document.getElementById('header').offsetHeight;
         const scrollPosition = window.scrollY + headerHeight + 50; // Buffer for better detection
-        
+
         let currentSection = '';
-        
+
         sections.forEach(section => {
           const sectionTop = section.offsetTop;
           const sectionBottom = sectionTop + section.offsetHeight;
-          
+
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             currentSection = section.getAttribute('id');
           }
@@ -4465,33 +4475,33 @@ ${cleanMessage}
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
-        
+
         // Update scroll progress
         scrollProgress.style.width = scrolled + '%';
-        
+
         // Update header scroll state
         if (window.scrollY > 50) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
         }
-        
+
         // Update active navigation
         updateActiveNavigation();
-        
+
         // Enhanced section-based progress indication
         const currentScrollWithOffset = window.scrollY + headerHeight + 100;
         let currentSectionIndex = 0;
-        
+
         sections.forEach((section, index) => {
           const sectionTop = section.offsetTop;
           const sectionBottom = sectionTop + section.offsetHeight;
-          
+
           if (currentScrollWithOffset >= sectionTop && currentScrollWithOffset < sectionBottom) {
             currentSectionIndex = index;
           }
         });
-        
+
         // Update progress bar color based on section
         const hue = (currentSectionIndex / sections.length) * 360;
         scrollProgress.style.background = `linear-gradient(90deg, hsl(${hue}, 70%, 50%) 0%, hsl(${hue + 60}, 70%, 60%) 100%)`;
@@ -5071,7 +5081,7 @@ ${cleanMessage}
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
-            
+
             // Add entrance animations based on element type
             if (element.classList.contains('experience-item')) {
               element.style.animation = 'slideInFromLeft 0.6s ease-out forwards';
@@ -5082,12 +5092,12 @@ ${cleanMessage}
             } else {
               element.classList.add('visible');
             }
-            
+
             // Trigger any custom animations
             if (element.dataset.animation) {
               element.style.animation = element.dataset.animation;
             }
-            
+
             animationObserver.unobserve(element);
           }
         });
@@ -5102,19 +5112,19 @@ ${cleanMessage}
       function initializeKeyboardNavigation() {
         const focusableElements = 'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
         const modal = document.querySelector('.resume-modal');
-        
+
         // Trap focus in modal when open
         modal?.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             closeResumeModal();
             return;
           }
-          
+
           if (e.key === 'Tab') {
             const focusable = modal.querySelectorAll(focusableElements);
             const firstFocusable = focusable[0];
             const lastFocusable = focusable[focusable.length - 1];
-            
+
             if (e.shiftKey && document.activeElement === firstFocusable) {
               e.preventDefault();
               lastFocusable.focus();
@@ -5124,7 +5134,7 @@ ${cleanMessage}
             }
           }
         });
-        
+
         // Skip link for screen readers
         const skipLink = document.createElement('a');
         skipLink.href = '#main-content';
@@ -5160,25 +5170,25 @@ ${cleanMessage}
 
         const inputs = form.querySelectorAll('input, textarea');
         let validationTimeouts = new Map();
-        
+
         // Real-time validation with debounce
         inputs.forEach(input => {
           input.addEventListener('blur', validateField);
           input.addEventListener('input', (e) => {
             clearErrors(e);
-            
+
             // Debounce validation for input events
             if (validationTimeouts.has(input)) {
               clearTimeout(validationTimeouts.get(input));
             }
-            
+
             const timeoutId = setTimeout(() => {
               if (input.value.trim()) { // Only validate if there's content
                 validateField(e);
               }
               validationTimeouts.delete(input);
             }, 500); // 500ms debounce
-            
+
             validationTimeouts.set(input, timeoutId);
           });
         });
@@ -5187,25 +5197,25 @@ ${cleanMessage}
           const field = e.target;
           const value = field.value.trim();
           const type = field.type;
-          
+
           clearFieldError(field);
-          
+
           if (field.hasAttribute('required') && !value) {
             showFieldError(field, 'This field is required');
             return false;
           }
-          
+
           if (type === 'email' && value && !isValidEmail(value)) {
             showFieldError(field, 'Please enter a valid email address');
             return false;
           }
-          
+
           // Add message length validation for real-time feedback
           if (field.name === 'message' && value && value.length < 10) {
             showFieldError(field, `Message must be at least 10 characters long (${value.length}/10)`);
             return false;
           }
-          
+
           return true;
         }
 
@@ -5216,16 +5226,16 @@ ${cleanMessage}
         function showFieldError(field, message) {
           // Remove existing error first to prevent duplicates
           clearFieldError(field);
-          
+
           const errorElement = document.createElement('div');
           errorElement.className = 'field-error';
           errorElement.textContent = message;
           errorElement.style.cssText = 'color: var(--color-error); font-size: 0.875rem; margin-top: 0.25rem; transition: opacity 0.2s ease;';
-          
+
           field.parentNode.appendChild(errorElement);
           field.setAttribute('aria-invalid', 'true');
           field.setAttribute('aria-describedby', errorElement.id = `error-${field.name}`);
-          
+
           // Animate in
           setTimeout(() => {
             errorElement.style.opacity = '1';
