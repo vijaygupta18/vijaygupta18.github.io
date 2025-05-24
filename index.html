@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vijay Gupta - Software Development Engineer | Portfolio</title>
-  <meta name="description" content="Vijay Gupta - Experienced Software Development Engineer specializing in backend systems, distributed architecture, and cloud infrastructure at NammaYatri.">
-  <meta name="keywords" content="software engineer, backend developer, distributed systems, Haskell, Node.js, AWS, Kubernetes">
+  <meta name="description"
+    content="Vijay Gupta - Experienced Software Development Engineer specializing in backend systems, distributed architecture, and cloud infrastructure at NammaYatri.">
+  <meta name="keywords"
+    content="software engineer, backend developer, distributed systems, Haskell, Node.js, AWS, Kubernetes">
   <meta name="author" content="Vijay Gupta">
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vijaygupta18.github.io/">
   <meta property="og:title" content="Vijay Gupta - Software Development Engineer">
-  <meta property="og:description" content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="og:description"
+    content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
   <meta property="og:image" content="https://vijaygupta18.github.io/images/profile.jpg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://vijaygupta18.github.io/">
   <meta property="twitter:title" content="Vijay Gupta - Software Development Engineer">
-  <meta property="twitter:description" content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="twitter:description"
+    content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
   <meta property="twitter:image" content="https://vijaygupta18.github.io/images/profile.jpg">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  
+
   <!-- 
   EmailJS Setup Instructions (SECURE CONFIGURATION):
   
@@ -66,7 +73,7 @@
      - Input validation prevents injection attacks
      - Template-based system limits what can be sent
   -->
-  
+
   <style>
     /* CSS Custom Properties */
     :root {
@@ -79,7 +86,7 @@
       --color-success: #10b981;
       --color-warning: #f59e0b;
       --color-error: #ef4444;
-      
+
       /* Backgrounds */
       --bg-primary: #ffffff;
       --bg-secondary: #f8fafc;
@@ -88,14 +95,14 @@
       --bg-glass: rgba(255, 255, 255, 0.1);
       --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --bg-hero: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
-      
+
       /* Text Colors */
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-tertiary: #64748b;
       --text-inverse: #ffffff;
       --text-muted: #94a3b8;
-      
+
       /* Borders & Shadows */
       --border-color: #e2e8f0;
       --border-light: #f1f5f9;
@@ -104,7 +111,7 @@
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      
+
       /* Spacing */
       --space-xs: 0.25rem;
       --space-sm: 0.5rem;
@@ -113,18 +120,18 @@
       --space-xl: 2rem;
       --space-2xl: 3rem;
       --space-3xl: 4rem;
-      
+
       /* Border Radius */
       --radius-sm: 0.375rem;
       --radius-md: 0.5rem;
       --radius-lg: 0.75rem;
       --radius-xl: 1rem;
       --radius-2xl: 1.5rem;
-      
+
       /* Typography */
       --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
-      
+
       /* Font Sizes */
       --text-xs: 0.75rem;
       --text-sm: 0.875rem;
@@ -136,17 +143,17 @@
       --text-4xl: 2.25rem;
       --text-5xl: 3rem;
       --text-6xl: 3.75rem;
-      
+
       /* Line Heights */
       --leading-tight: 1.25;
       --leading-normal: 1.5;
       --leading-relaxed: 1.625;
-      
+
       /* Transitions */
       --transition-fast: 150ms ease-in-out;
       --transition-normal: 250ms ease-in-out;
       --transition-slow: 350ms ease-in-out;
-      
+
       /* Z-index */
       --z-dropdown: 1000;
       --z-sticky: 1020;
@@ -165,15 +172,15 @@
       --bg-overlay: rgba(15, 23, 42, 0.95);
       --bg-glass: rgba(255, 255, 255, 0.05);
       --bg-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-      
+
       --text-primary: #f8fafc;
       --text-secondary: #cbd5e1;
       --text-tertiary: #94a3b8;
       --text-muted: #64748b;
-      
+
       --border-color: #334155;
       --border-light: #475569;
-      
+
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
@@ -181,7 +188,9 @@
     }
 
     /* Reset & Base Styles */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -203,20 +212,44 @@
     }
 
     /* Typography */
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-weight: 700;
       line-height: var(--leading-tight);
       color: var(--text-primary);
     }
 
-    h1 { font-size: var(--text-5xl); }
-    h2 { font-size: var(--text-4xl); }
-    h3 { font-size: var(--text-3xl); }
-    h4 { font-size: var(--text-2xl); }
-    h5 { font-size: var(--text-xl); }
-    h6 { font-size: var(--text-lg); }
+    h1 {
+      font-size: var(--text-5xl);
+    }
 
-    p { color: var(--text-secondary); }
+    h2 {
+      font-size: var(--text-4xl);
+    }
+
+    h3 {
+      font-size: var(--text-3xl);
+    }
+
+    h4 {
+      font-size: var(--text-2xl);
+    }
+
+    h5 {
+      font-size: var(--text-xl);
+    }
+
+    h6 {
+      font-size: var(--text-lg);
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
 
     a {
       color: var(--color-primary);
@@ -431,8 +464,15 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
     .hero-content {
@@ -463,9 +503,11 @@
       0% {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
       }
+
       70% {
         box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
       }
+
       100% {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       }
@@ -495,8 +537,16 @@
     }
 
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0.3; }
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0.3;
+      }
     }
 
     .hero-title {
@@ -515,8 +565,15 @@
     }
 
     @keyframes gradient-shift {
-      0%, 100% { filter: hue-rotate(0deg); }
-      50% { filter: hue-rotate(30deg); }
+
+      0%,
+      100% {
+        filter: hue-rotate(0deg);
+      }
+
+      50% {
+        filter: hue-rotate(30deg);
+      }
     }
 
     .hero-subtitle-container {
@@ -548,8 +605,16 @@
     }
 
     @keyframes blink-cursor {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
     }
 
     .hero-description {
@@ -629,18 +694,120 @@
       text-align: center;
       margin-bottom: var(--space-2xl);
       position: relative;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-primary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-bottom: var(--space-xl);
+    }
+
+    .section-title::before {
+      content: '';
+      position: absolute;
+      bottom: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--color-primary) 20%, 
+        var(--color-secondary) 50%, 
+        var(--color-accent) 80%, 
+        transparent 100%);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
     }
 
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: -var(--space-md);
+      bottom: calc(var(--space-lg) - 3px);
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-      border-radius: var(--radius-sm);
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, var(--color-primary) 0%, var(--color-secondary) 70%, transparent 100%);
+      border-radius: 50%;
+      box-shadow: 
+        0 0 0 3px rgba(59, 130, 246, 0.2),
+        0 0 0 6px rgba(59, 130, 246, 0.1),
+        0 0 20px rgba(59, 130, 246, 0.4);
+      animation: pulse-dot 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      50% { 
+        transform: translateX(-50%) scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    /* Enhanced section title with decorative elements */
+    .section-title.enhanced {
+      position: relative;
+      padding: 0 var(--space-3xl);
+    }
+
+    .section-title.enhanced::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: var(--space-2xl);
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--color-primary) 100%);
+      transform: translateY(-50%);
+      border-radius: 2px;
+    }
+
+    .section-title.enhanced::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: var(--space-2xl);
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
+      transform: translateY(-50%);
+      border-radius: 2px;
+    }
+
+    /* Decorative corner elements for section titles */
+    .section-title-wrapper {
+      position: relative;
+      display: inline-block;
+      padding: var(--space-lg) var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title-wrapper::before,
+    .section-title-wrapper::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid;
+      border-image: linear-gradient(45deg, var(--color-primary), var(--color-secondary)) 1;
+    }
+
+    .section-title-wrapper::before {
+      top: 0;
+      left: 0;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .section-title-wrapper::after {
+      bottom: 0;
+      right: 0;
+      border-left: none;
+      border-top: none;
     }
 
     /* About Section */
@@ -777,8 +944,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
     }
 
     .about-details {
@@ -847,10 +1021,21 @@
       text-decoration: none;
     }
 
-    .social-link.linkedin { background: #0077b5; }
-    .social-link.github { background: #333; }
-    .social-link.twitter { background: #1da1f2; }
-    .social-link.email { background: var(--color-primary); }
+    .social-link.linkedin {
+      background: #0077b5;
+    }
+
+    .social-link.github {
+      background: #333;
+    }
+
+    .social-link.twitter {
+      background: #1da1f2;
+    }
+
+    .social-link.email {
+      background: var(--color-primary);
+    }
 
     .social-link:hover {
       transform: translateY(-3px);
@@ -1116,123 +1301,80 @@
       text-align: center;
     }
 
-    /* Experience Section */
+    /* Experience Section - Best-in-Class Professional Design */
     .experience-timeline {
       position: relative;
       padding-left: var(--space-3xl);
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
-      border-radius: var(--radius-2xl);
-      padding: var(--space-2xl) var(--space-3xl);
-      border: 1px solid rgba(59, 130, 246, 0.1);
+      margin-top: var(--space-2xl);
+      max-width: 1000px;
     }
 
     .experience-timeline::before {
       content: '';
       position: absolute;
-      left: var(--space-xl);
-      top: var(--space-2xl);
-      bottom: var(--space-2xl);
-      width: 4px;
-      background: linear-gradient(to bottom, 
-        var(--color-primary) 0%, 
-        var(--color-secondary) 25%, 
-        var(--color-accent) 50%,
-        var(--color-success) 75%,
-        var(--color-primary) 100%
-      );
-      border-radius: 4px;
-      box-shadow: 
-        0 0 20px rgba(59, 130, 246, 0.4),
-        0 0 40px rgba(59, 130, 246, 0.2),
-        inset 0 0 10px rgba(255, 255, 255, 0.2);
-      animation: timeline-glow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes timeline-glow {
-      0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2); }
-      100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3); }
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--color-primary) 0%, var(--border-color) 100%);
+      border-radius: 2px;
     }
 
     .experience-item {
       position: relative;
       margin-bottom: var(--space-3xl);
-      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-      border-radius: var(--radius-2xl);
+      background: var(--bg-primary);
+      border-radius: var(--radius-xl);
       padding: var(--space-3xl);
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      transition: all var(--transition-slow);
-      overflow: hidden;
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 4px 16px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
     .experience-item::before {
       content: '';
       position: absolute;
-      left: -50px;
+      left: -36px;
       top: var(--space-3xl);
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      width: 16px;
+      height: 16px;
+      background: var(--color-primary);
+      border: 4px solid var(--bg-primary);
       border-radius: 50%;
-      border: 6px solid var(--bg-primary);
-      box-shadow: 
-        0 0 0 6px var(--color-primary), 
-        0 0 30px rgba(59, 130, 246, 0.6),
-        0 0 60px rgba(59, 130, 246, 0.3);
-      z-index: 3;
-      animation: pulse-timeline 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-timeline {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 6px var(--color-primary), 0 0 30px rgba(59, 130, 246, 0.6); }
-      50% { transform: scale(1.1); box-shadow: 0 0 0 8px var(--color-primary), 0 0 40px rgba(59, 130, 246, 0.8); }
-    }
-
-    .experience-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, 
-        var(--color-primary) 0%, 
-        var(--color-secondary) 25%, 
-        var(--color-accent) 50%,
-        var(--color-success) 75%,
-        var(--color-primary) 100%
-      );
-      border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-      animation: gradient-flow 4s ease-in-out infinite;
-    }
-
-    @keyframes gradient-flow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      box-shadow: 0 0 0 4px var(--border-color);
+      transition: all 0.3s ease;
     }
 
     .experience-item:hover {
-      transform: translateX(20px) translateY(-10px) rotateY(2deg);
-      box-shadow: 
-        0 20px 60px rgba(59, 130, 246, 0.2),
-        0 10px 30px rgba(0, 0, 0, 0.1),
-        0 0 0 2px var(--color-primary),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      border-color: var(--color-primary);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .experience-item:hover::before {
+      background: var(--color-primary);
+      box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.1);
+      transform: scale(1.1);
     }
 
     .experience-header {
       margin-bottom: var(--space-2xl);
-      position: relative;
-      padding-bottom: var(--space-lg);
-      border-bottom: 2px solid transparent;
-      background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
-                  linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent)) border-box;
-      border-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent)) 1;
+    }
+
+    .experience-company {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-lg);
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
     }
 
     .experience-title {
@@ -1240,128 +1382,129 @@
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: var(--space-md);
-      background: linear-gradient(135deg, 
-        var(--color-primary) 0%, 
-        var(--color-secondary) 30%,
-        var(--color-accent) 60%,
-        var(--color-primary) 100%
-      );
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-text 3s ease-in-out infinite;
-      position: relative;
-    }
-
-    @keyframes gradient-text {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .experience-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-      border-radius: 2px;
-      animation: title-underline 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes title-underline {
-      0% { width: 60px; }
-      100% { width: 120px; }
+      line-height: var(--leading-tight);
+      letter-spacing: -0.025em;
     }
 
     .experience-meta {
       display: flex;
       align-items: center;
-      gap: var(--space-md);
-      color: var(--text-tertiary);
-      font-size: var(--text-sm);
-      font-weight: 500;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--border-light);
+      flex-wrap: wrap;
     }
 
-    .experience-meta::before {
-      content: '';
-      width: 20px;
-      height: 2px;
-      background: var(--color-primary);
-      border-radius: 2px;
+    .experience-meta span:not(:last-child)::after {
+      content: '•';
+      margin-left: var(--space-md);
+      color: var(--text-muted);
+      font-weight: normal;
     }
 
     .experience-duration {
-      background: var(--bg-primary);
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-color);
-      font-weight: 600;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
       color: var(--color-primary);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      border: 1px solid var(--border-color);
+      letter-spacing: 0.025em;
+      white-space: nowrap;
+    }
+
+    .experience-location {
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      white-space: nowrap;
+    }
+
+    .experience-location::before {
+      content: '📍';
+      font-size: var(--text-sm);
+    }
+
+    .experience-type {
+      color: var(--text-tertiary);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      text-transform: capitalize;
+      white-space: nowrap;
     }
 
     .experience-description {
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-2xl);
     }
 
     .experience-description ul {
       list-style: none;
       padding-left: 0;
       display: grid;
-      gap: var(--space-md);
+      gap: var(--space-lg);
     }
 
     .experience-description li {
       position: relative;
-      padding: var(--space-md);
-      padding-left: var(--space-2xl);
-      background: var(--bg-primary);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-light);
+      padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-2xl);
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(59, 130, 246, 0.02) 100%);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--color-primary);
       color: var(--text-secondary);
-      transition: all var(--transition-fast);
       line-height: var(--leading-relaxed);
+      font-size: var(--text-base);
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     }
 
     .experience-description li:hover {
-      transform: translateX(5px);
-      border-color: var(--color-primary);
-      box-shadow: var(--shadow-sm);
+      background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(59, 130, 246, 0.05) 100%);
+      transform: translateX(8px);
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
     }
 
     .experience-description li::before {
-      content: '🚀';
-      position: absolute;
-      left: var(--space-md);
-      top: var(--space-md);
-      font-size: var(--text-sm);
+      content: '▸';
+      left: var(--space-lg);
+      color: var(--color-primary);
+      font-weight: bold;
+      font-size: var(--text-lg);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      height: calc(var(--text-base) * var(--leading-relaxed));
+    }
+
+    .experience-description strong {
+      color: var(--text-primary);
+      font-weight: 700;
     }
 
     .tech-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-sm);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border-light);
     }
 
     .tech-tag {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
-      color: var(--text-inverse);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
       padding: var(--space-sm) var(--space-lg);
-      border-radius: 25px;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      transition: all var(--transition-fast);
-      box-shadow: 
-        0 4px 12px rgba(59, 130, 246, 0.3),
-        0 2px 6px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.025em;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .tech-tag::before {
@@ -1371,8 +1514,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-      transition: left 0.5s ease;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transition: left 0.6s ease;
     }
 
     .tech-tag:hover::before {
@@ -1380,84 +1523,41 @@
     }
 
     .tech-tag:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 
-        0 8px 20px rgba(59, 130, 246, 0.4),
-        0 4px 10px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-
-    .experience-company {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-md);
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      background: var(--color-primary);
       color: var(--text-inverse);
-      padding: var(--space-md) var(--space-xl);
-      border-radius: var(--radius-xl);
-      border: none;
-      margin-bottom: var(--space-lg);
-      font-weight: 700;
-      font-size: var(--text-lg);
-      box-shadow: 
-        0 8px 25px rgba(59, 130, 246, 0.3),
-        0 4px 12px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      transition: all var(--transition-fast);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .experience-company::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .experience-company:hover::before {
-      left: 100%;
-    }
-
-    .experience-company:hover {
+      border-color: var(--color-primary);
       transform: translateY(-2px);
-      box-shadow: 
-        0 12px 35px rgba(59, 130, 246, 0.4),
-        0 6px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    .experience-company i {
-      color: var(--text-inverse);
-      font-size: var(--text-xl);
+      box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.5);
     }
 
     /* Projects Section */
     .projects-container {
       position: relative;
-      overflow: hidden; /* Changed to hidden for smooth infinite scroll */
+      overflow: hidden;
+      /* Changed to hidden for smooth infinite scroll */
       padding: var(--space-xl) 0;
       margin: 0 var(--space-xl);
     }
 
     .projects-carousel {
       display: flex;
-      align-items: flex-start; /* Align carousel items to top */
+      align-items: flex-start;
+      /* Align carousel items to top */
       gap: var(--space-lg);
       will-change: transform;
       overflow: visible;
       padding: var(--space-md) 0;
-      transition: none; /* Disable default transition for smooth infinite scroll */
+      transition: none;
+      /* Disable default transition for smooth infinite scroll */
     }
 
     .projects-grid {
       display: flex;
-      align-items: flex-start; /* Ensure all cards align to the top */
+      align-items: flex-start;
+      /* Ensure all cards align to the top */
       gap: var(--space-lg);
-      min-width: 300%; /* Accommodate tripled cards for seamless infinite scroll */
+      min-width: 300%;
+      /* Accommodate tripled cards for seamless infinite scroll */
       overflow: visible;
     }
 
@@ -1474,8 +1574,10 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      align-self: flex-start; /* Ensure consistent vertical alignment */
-      margin: 0; /* Reset margins */
+      align-self: flex-start;
+      /* Ensure consistent vertical alignment */
+      margin: 0;
+      /* Reset margins */
     }
 
     .carousel-controls {
@@ -1737,9 +1839,12 @@
       pointer-events: auto;
       opacity: 1;
       position: relative;
-      align-self: flex-start; /* Ensure cloned cards align to top */
-      margin: 0; /* Reset any inherited margins */
-      vertical-align: top; /* Additional vertical alignment */
+      align-self: flex-start;
+      /* Ensure cloned cards align to top */
+      margin: 0;
+      /* Reset any inherited margins */
+      vertical-align: top;
+      /* Additional vertical alignment */
     }
 
     /* Education Section */
@@ -1790,158 +1895,165 @@
       gap: var(--space-xl);
     }
 
-          .cert-logo {
-        width: 48px;
-        height: 48px;
-        border-radius: var(--radius-md);
-        margin-bottom: var(--space-md);
-      }
+    .cert-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+    }
 
-      .cert-link {
-        color: var(--color-primary);
-        font-weight: 500;
-        text-decoration: underline;
-        text-decoration-color: transparent;
-        transition: text-decoration-color var(--transition-fast);
-      }
+    .cert-link {
+      color: var(--color-primary);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color var(--transition-fast);
+    }
 
-      .cert-link:hover {
-        text-decoration-color: var(--color-primary);
-      }
+    .cert-link:hover {
+      text-decoration-color: var(--color-primary);
+    }
 
-      /* Recommendations Section */
-      .recommendations-container {
-        position: relative;
-        overflow: hidden; /* Ensure hidden for smooth infinite scroll */
-        padding: var(--space-md) 0;
-      }
+    /* Recommendations Section */
+    .recommendations-container {
+      position: relative;
+      overflow: hidden;
+      /* Ensure hidden for smooth infinite scroll */
+      padding: var(--space-md) 0;
+    }
 
-      .recommendations-carousel {
-        display: flex;
-        align-items: flex-start; /* Align carousel items to top */
-        gap: var(--space-lg);
-        will-change: transform;
-        transition: none; /* Disable default transition for smooth infinite scroll */
-      }
+    .recommendations-carousel {
+      display: flex;
+      align-items: flex-start;
+      /* Align carousel items to top */
+      gap: var(--space-lg);
+      will-change: transform;
+      transition: none;
+      /* Disable default transition for smooth infinite scroll */
+    }
 
-      .recommendations-grid {
-        display: flex;
-        align-items: flex-start; /* Ensure all cards align to the top */
-        gap: var(--space-lg);
-        min-width: 300%; /* Accommodate tripled cards for seamless infinite scroll */
-      }
+    .recommendations-grid {
+      display: flex;
+      align-items: flex-start;
+      /* Ensure all cards align to the top */
+      gap: var(--space-lg);
+      min-width: 300%;
+      /* Accommodate tripled cards for seamless infinite scroll */
+    }
 
-      .recommendation-card {
-        background: var(--bg-primary);
-        border-radius: var(--radius-xl);
-        padding: var(--space-xl);
-        border: 1px solid var(--border-color);
-        transition: all var(--transition-normal);
-        flex: 0 0 480px;
-        max-width: 480px;
-        position: relative;
-        overflow: visible;
-        height: 450px;
-        display: flex;
-        flex-direction: column;
-        align-self: flex-start; /* Ensure consistent vertical alignment */
-        margin: 0; /* Reset margins */
-      }
+    .recommendation-card {
+      background: var(--bg-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+      flex: 0 0 480px;
+      max-width: 480px;
+      position: relative;
+      overflow: visible;
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      /* Ensure consistent vertical alignment */
+      margin: 0;
+      /* Reset margins */
+    }
 
-      .recommendation-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--color-primary);
-        z-index: 10;
-      }
+    .recommendation-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary);
+      z-index: 10;
+    }
 
-      .recommendation-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-      }
+    .recommendation-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    }
 
-      .recommendation-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--color-primary);
-      }
+    .recommendation-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary);
+    }
 
-      .recommendation-header {
-        display: flex;
-        align-items: flex-start;
-        gap: var(--space-lg);
-        margin-bottom: var(--space-xl);
-        min-height: 100px;
-      }
+    .recommendation-header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      min-height: 100px;
+    }
 
-      .recommendation-avatar {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-inverse);
-        font-size: var(--text-2xl);
-        flex-shrink: 0;
-      }
+    .recommendation-avatar {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-inverse);
+      font-size: var(--text-2xl);
+      flex-shrink: 0;
+    }
 
-      .recommendation-info h4 {
-        color: var(--text-primary);
-        margin-bottom: var(--space-xs);
-        font-size: var(--text-lg);
-        font-weight: 600;
-      }
+    .recommendation-info h4 {
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-lg);
+      font-weight: 600;
+    }
 
-      .recommendation-info p {
-        color: var(--text-secondary);
-        font-size: var(--text-sm);
-        margin-bottom: var(--space-xs);
-        line-height: var(--leading-normal);
-      }
+    .recommendation-info p {
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-xs);
+      line-height: var(--leading-normal);
+    }
 
-      .recommendation-relation {
-        display: inline-block;
-        background: var(--bg-secondary);
-        color: var(--color-primary);
-        padding: var(--space-xs) var(--space-sm);
-        border-radius: var(--radius-sm);
-        font-size: var(--text-xs);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
+    .recommendation-relation {
+      display: inline-block;
+      background: var(--bg-secondary);
+      color: var(--color-primary);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-      .recommendation-text {
-        color: var(--text-secondary);
-        font-style: italic;
-        line-height: 1.6;
-        position: relative;
-        padding-left: var(--space-lg);
-        border-left: 3px solid var(--color-primary);
-        margin: 0;
-        font-size: var(--text-base);
-        flex: 1;
-        overflow: visible;
-        word-wrap: break-word;
-        hyphens: auto;
-      }
+    .recommendation-text {
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.6;
+      position: relative;
+      padding-left: var(--space-lg);
+      border-left: 3px solid var(--color-primary);
+      margin: 0;
+      font-size: var(--text-base);
+      flex: 1;
+      overflow: visible;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
 
-      .recommendation-text::before {
-        content: '"';
-        position: absolute;
-        left: -10px;
-        top: -10px;
-        font-size: var(--text-3xl);
-        color: var(--color-primary);
-        font-weight: bold;
-      }
+    .recommendation-text::before {
+      content: '"';
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      font-size: var(--text-3xl);
+      color: var(--color-primary);
+      font-weight: bold;
+    }
 
     /* Contact Section */
     .contact-grid {
@@ -2294,8 +2406,8 @@
 
       .experience-item::before {
         left: -22px;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         top: var(--space-lg);
       }
 
@@ -2311,6 +2423,10 @@
         flex-direction: column;
         gap: var(--space-xs);
         align-items: flex-start;
+      }
+
+      .experience-meta span:not(:first-child):not(:last-child)::after {
+        display: none;
       }
 
       .contact-grid {
@@ -2388,7 +2504,9 @@
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* Scroll Progress Bar */
@@ -2578,8 +2696,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
     }
 
     /* Improved Focus States for Accessibility */
@@ -2677,6 +2802,7 @@
 
     /* Print styles */
     @media print {
+
       .header,
       .hero-cta,
       .portfolio-switcher,
@@ -2697,8 +2823,105 @@
         line-height: 1.4;
       }
     }
+
+    /* Experience Section Mobile Styles */
+    .experience-timeline {
+      padding-left: var(--space-xl);
+      max-width: 100%;
+    }
+
+    .experience-timeline::before {
+      left: 18px;
+    }
+
+    .experience-item {
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .experience-item::before {
+      left: -28px;
+      width: 12px;
+      height: 12px;
+      top: var(--space-xl);
+    }
+
+    .experience-title {
+      font-size: var(--text-2xl);
+    }
+
+    .experience-company {
+      font-size: var(--text-xs);
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    .experience-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--border-light);
+      flex-wrap: wrap;
+    }
+
+    .experience-meta span:not(:last-child)::after {
+      content: '•';
+      margin-left: var(--space-md);
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .experience-duration {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      color: var(--color-primary);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      border: 1px solid var(--border-color);
+      letter-spacing: 0.025em;
+      white-space: nowrap;
+    }
+
+    .experience-location {
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      white-space: nowrap;
+    }
+
+    .experience-location::before {
+      content: '📍';
+      font-size: var(--text-sm);
+    }
+
+    .experience-type {
+      color: var(--text-tertiary);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .experience-description li::before {
+      content: '▸';
+      position: absolute;
+      left: var(--space-lg);
+      top: var(--space-lg);
+      color: var(--color-primary);
+      font-weight: bold;
+      font-size: var(--text-lg);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      height: calc(var(--text-base) * var(--leading-relaxed));
+    }
   </style>
 </head>
+
 <body>
   <!-- Loader -->
   <div class="loader" id="loader">
@@ -2707,7 +2930,7 @@
 
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
-  
+
   <!-- Particle Background -->
   <div class="particles-background">
     <canvas id="particlesCanvas"></canvas>
@@ -2718,7 +2941,7 @@
     <div class="container">
       <nav class="nav">
         <a href="#" class="nav-brand">Vijay Gupta</a>
-        
+
         <ul class="nav-menu" id="navMenu">
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -2741,7 +2964,7 @@
             </button>
           </li>
         </ul>
-        
+
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
           <i class="fas fa-bars"></i>
         </button>
@@ -2767,7 +2990,7 @@
           <span class="typing-cursor">|</span>
         </div>
         <p class="hero-description">
-          Passionate about building scalable, high-performance systems that make a difference. 
+          Passionate about building scalable, high-performance systems that make a difference.
           With 3+ years of experience at high-growth startups, I architect solutions that drive business impact.
         </p>
         <div class="hero-cta">
@@ -2819,11 +3042,15 @@
             </h3>
             <p class="about-tagline">Building scalable, high-performance systems that drive business impact</p>
           </div>
-          
+
           <div class="about-description">
-            <p>I am a results-driven software engineer specializing in <strong>backend and distributed systems</strong>. With a proven track record at high-growth startups like NammaYatri, Juspay, and Vahan, I architect and deliver robust, scalable solutions that optimize performance and reduce costs.</p>
-            
-            <p>My expertise spans <strong>system design, cloud infrastructure, and performance optimization</strong> using cutting-edge technologies. I thrive in fast-paced environments, blending deep technical skills with a collaborative, product-focused mindset to solve complex challenges.</p>
+            <p>I am a results-driven software engineer specializing in <strong>backend and distributed systems</strong>.
+              With a proven track record at high-growth startups like NammaYatri, Juspay, and Vahan, I architect and
+              deliver robust, scalable solutions that optimize performance and reduce costs.</p>
+
+            <p>My expertise spans <strong>system design, cloud infrastructure, and performance optimization</strong>
+              using cutting-edge technologies. I thrive in fast-paced environments, blending deep technical skills with
+              a collaborative, product-focused mindset to solve complex challenges.</p>
           </div>
 
           <div class="about-highlights">
@@ -2896,13 +3123,15 @@
           <div class="social-connect">
             <h4>Connect With Me</h4>
             <div class="social-links">
-              <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link linkedin"
+                aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <a href="https://github.com/vijaygupta18" target="_blank" class="social-link github" aria-label="GitHub">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link twitter" aria-label="Twitter">
+              <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link twitter"
+                aria-label="Twitter">
                 <i class="fab fa-twitter"></i>
               </a>
               <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link email" aria-label="Email">
@@ -2918,7 +3147,7 @@
   <!-- Achievements Section -->
   <section class="section" id="achievements" style="background: var(--bg-secondary);">
     <div class="container">
-      <h2 class="section-title fade-in">Impact & Achievements</h2>
+      <h2 class="section-title fade-in"><i class="fas fa-trophy"></i> Impact & Achievements</h2>
       <div class="achievements-grid">
         <div class="achievement-card fade-in" style="animation-delay: 0.1s;">
           <div class="achievement-icon">
@@ -2927,7 +3156,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="50">0</h3>
             <p class="achievement-label">% API Latency Reduction</p>
-            <span class="achievement-description">Optimized backend performance through profiling and key optimizations</span>
+            <span class="achievement-description">Optimized backend performance through profiling and key
+              optimizations</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.2s;">
@@ -2937,7 +3167,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="40">0</h3>
             <p class="achievement-label">% Cost Reduction</p>
-            <span class="achievement-description">Reduced infrastructure costs through Redis optimization and auto-scaling</span>
+            <span class="achievement-description">Reduced infrastructure costs through Redis optimization and
+              auto-scaling</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.3s;">
@@ -2947,7 +3178,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="80">0</h3>
             <p class="achievement-label">% Data Transfer Savings</p>
-            <span class="achievement-description">Achieved zero cross-zone data transfer costs with zone-aware optimization</span>
+            <span class="achievement-description">Achieved zero cross-zone data transfer costs with zone-aware
+              optimization</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.4s;">
@@ -2957,7 +3189,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="15">0</h3>
             <p class="achievement-label">+ Major Projects</p>
-            <span class="achievement-description">Delivered scalable solutions across multiple high-growth startups</span>
+            <span class="achievement-description">Delivered scalable solutions across multiple high-growth
+              startups</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.5s;">
@@ -2967,7 +3200,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="300">0</h3>
             <p class="achievement-label">+ Students Mentored</p>
-            <span class="achievement-description">Achieved 90% satisfaction rate in algorithmic problem-solving mentorship</span>
+            <span class="achievement-description">Achieved 90% satisfaction rate in algorithmic problem-solving
+              mentorship</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.6s;">
@@ -2977,7 +3211,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="98">0</h3>
             <p class="achievement-label">% Data Accuracy</p>
-            <span class="achievement-description">Improved system reliability through fallback mechanisms and automation</span>
+            <span class="achievement-description">Improved system reliability through fallback mechanisms and
+              automation</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.7s;">
@@ -2987,7 +3222,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="100">0</h3>
             <p class="achievement-label">% Service Decoupling</p>
-            <span class="achievement-description">Separated data drainer from application enabling smooth, independent deployments</span>
+            <span class="achievement-description">Separated data drainer from application enabling smooth, independent
+              deployments</span>
           </div>
         </div>
         <div class="achievement-card fade-in" style="animation-delay: 0.8s;">
@@ -2997,7 +3233,8 @@
           <div class="achievement-content">
             <h3 class="achievement-number" data-count="100">0</h3>
             <p class="achievement-label">% Auto-scaling Efficiency</p>
-            <span class="achievement-description">Implemented auto-scaling for Redis & RDS replicas optimizing performance and costs</span>
+            <span class="achievement-description">Implemented auto-scaling for Redis & RDS replicas optimizing
+              performance and costs</span>
           </div>
         </div>
       </div>
@@ -3007,7 +3244,7 @@
   <!-- Skills Section -->
   <section class="section" id="skills">
     <div class="container">
-      <h2 class="section-title fade-in">Skills & Technologies</h2>
+      <h2 class="section-title fade-in"><i class="fas fa-code"></i> Skills & Technologies</h2>
       <div class="skills-container">
         <div class="skills-grid">
           <div class="skill-category fade-in">
@@ -3036,7 +3273,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="skill-category fade-in">
             <div class="skill-header">
               <i class="fas fa-server skill-icon"></i>
@@ -3063,7 +3300,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="skill-category fade-in">
             <div class="skill-header">
               <i class="fas fa-cloud skill-icon"></i>
@@ -3091,7 +3328,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="skills-specializations fade-in">
           <h4><i class="fas fa-brain"></i> Core Specializations</h4>
           <div class="specialization-grid">
@@ -3128,9 +3365,9 @@
   <!-- Experience Section -->
   <section class="section" id="experience">
     <div class="container">
-      <h2 class="section-title fade-in">Professional Experience</h2>
+      <h2 class="section-title fade-in"><i class="fas fa-briefcase"></i> Professional Experience</h2>
       <div class="experience-timeline">
-        
+
         <!-- NammaYatri -->
         <div class="experience-item fade-in">
           <div class="experience-header">
@@ -3141,22 +3378,26 @@
             <h3 class="experience-title">Software Development Engineer</h3>
             <div class="experience-meta">
               <span class="experience-duration">Mar 2024 - Present</span>
-              <span>Bengaluru, India</span>
-              <span>On-site</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">On-site</span>
             </div>
           </div>
           <div class="experience-description">
             <ul>
-              <li>Optimized Redis performance and reduced costs by implementing zone-aware replica selection, ensuring pods use same-zone replicas, minimizing cross-zone data transfer, and improving load distribution</li>
-              <li>Implemented same AZ data scraping for metrics using VM agents, resulting in zero cross-zone data transfer costs (Integrated Kyverno for Pod Zone Injection)</li>
-              <li>Optimized API polling efficiency by implementing a connection pool using OkHttp, reducing the need to create a new connection for each API call. This improved performance, reduced latency, and optimized resource utilization</li>
-              <li>Reduced Redis memory usage by implementing data compression for stored values. This optimization lowered memory consumption, allowing us to reduce the number of Redis nodes required, saving costs</li>
-              <li>Improved Redis performance by maximizing slot utilization and making Redis pipeline usage more efficient. Achieved this by introducing table-level sharding and using asynchronous Redis calls, which reduced latency and improved response times</li>
-              <li>Developed a data scraping script to collect and analyze pricing data for the NammaYatri app, enabling real-time dynamic pricing analysis</li>
-              <li>Enabled auto-scaling for Redis and RDS replicas, ensuring they could automatically scale up during high traffic and scale down during idle times. This improved load handling while optimizing cloud costs</li>
-              <li>Reduced ALB (Application Load Balancer) costs by implementing API response compression and optimizing responses by eliminating unnecessary fields and headers, reducing overall data transfer size</li>
-              <li>Enhanced backend performance by profiling the application and making key optimizations, which significantly improved efficiency and reduced API latency by nearly 50%</li>
-              <li>Developed an ART (Automated Regression Testing) framework to record real production data and replay test flows. This helped detect changes in API responses and enabled smoother deployments by identifying potential issues before release</li>
+              <li>Optimized <strong>Redis performance</strong> and reduced cloud costs by implementing zone-aware
+                replica selection, achieving <strong>zero cross-zone data transfer costs</strong></li>
+              <li>Enhanced API efficiency with <strong>OkHttp connection pooling</strong>, reducing latency and
+                improving resource utilization across high-traffic endpoints</li>
+              <li>Implemented <strong>data compression for Redis</strong> storage, reducing memory usage and enabling
+                infrastructure cost savings through node optimization</li>
+              <li>Improved Redis performance by <strong>50% through pipeline optimization</strong> and table-level
+                sharding with asynchronous calls</li>
+              <li>Developed automated pricing analysis system for real-time dynamic pricing using <strong>data scraping
+                  and analytics</strong></li>
+              <li>Enabled <strong>auto-scaling for Redis and RDS replicas</strong>, optimizing performance during peak
+                traffic while reducing idle costs</li>
+              <li>Built <strong>ART framework</strong> for automated regression testing using production data replay,
+                improving deployment reliability</li>
             </ul>
           </div>
           <div class="tech-tags">
@@ -3167,9 +3408,6 @@
             <span class="tech-tag">Kubernetes</span>
             <span class="tech-tag">AWS</span>
             <span class="tech-tag">Redis</span>
-            <span class="tech-tag">Performance Optimization</span>
-            <span class="tech-tag">Auto-scaling</span>
-            <span class="tech-tag">Data Compression</span>
           </div>
         </div>
 
@@ -3183,14 +3421,16 @@
             <h3 class="experience-title">Software Development Engineer</h3>
             <div class="experience-meta">
               <span class="experience-duration">Jan 2024 - Mar 2024</span>
-              <span>Bengaluru, India</span>
-              <span>Full-time</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
             </div>
           </div>
           <div class="experience-description">
             <ul>
-              <li>Separated the data drainer service from the application, ensuring smooth data flow into the database and ClickHouse while making deployments easier by removing dependencies</li>
-              <li>Reduced testing sandbox costs by implementing automated Horizontal Pod Autoscaler (HPA) and optimizing pod requests based on actual resource needs</li>
+              <li>Decoupled <strong>data drainer service</strong> from main application, enabling independent
+                deployments and improved system reliability</li>
+              <li>Reduced testing infrastructure costs by implementing <strong>automated HPA</strong> and optimizing pod
+                resource allocation</li>
             </ul>
           </div>
           <div class="tech-tags">
@@ -3213,15 +3453,18 @@
             <h3 class="experience-title">Product Engineer</h3>
             <div class="experience-meta">
               <span class="experience-duration">May 2023 - Dec 2023</span>
-              <span>Bengaluru, India</span>
-              <span>Full-time</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
             </div>
           </div>
           <div class="experience-description">
             <ul>
-              <li>Developed a cost-saving framework called KV which uses Redis to store real-time database data efficiently, effectively downsizing the primary database while optimizing costs</li>
-              <li>Created a drainer service to seamlessly transfer data from Redis streams to the database, streamlining the process and enhancing efficiency for analytics</li>
-              <li>Added multithreading to scheduler services with thread-safe execution, reducing the need for extra pods and improving CPU resource utilization</li>
+              <li>Developed <strong>KV framework</strong> using Redis for real-time data storage, effectively downsizing
+                primary database and optimizing costs</li>
+              <li>Created seamless <strong>data pipeline</strong> from Redis streams to database, streamlining analytics
+                processing</li>
+              <li>Enhanced scheduler services with <strong>multithreading</strong> and thread-safe execution, improving
+                CPU utilization and reducing infrastructure needs</li>
             </ul>
           </div>
           <div class="tech-tags">
@@ -3241,19 +3484,23 @@
               <i class="fas fa-car"></i>
               <span>Vahan</span>
             </div>
-            <h3 class="experience-title">Software Engineer-I</h3>
+            <h3 class="experience-title">Software Engineer I</h3>
             <div class="experience-meta">
               <span class="experience-duration">Jun 2022 - Mar 2023</span>
-              <span>Bengaluru, India</span>
-              <span>Full-time</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
             </div>
           </div>
           <div class="experience-description">
             <ul>
-              <li>Worked on backend architecture for AI-driven WhatsApp Bot, designed to assist users in finding relevant blue-collar job opportunities based on their responses</li>
-              <li>Implemented concurrent chat capability in WhatsApp Bot flow, resulting in reduced telecalling expenses</li>
-              <li>Developed a fallback data collection mechanism for Uber, increasing data accuracy to 98% during system outages</li>
-              <li>Automated application status tracking by integrating offline data uploads into the data warehouse, enhancing operational visibility</li>
+              <li>Architected backend for <strong>AI-driven WhatsApp Bot</strong> serving blue-collar job matching,
+                reducing telecalling expenses</li>
+              <li>Implemented <strong>concurrent chat capability</strong> for WhatsApp Bot, improving user experience
+                and operational efficiency</li>
+              <li>Developed fallback data collection system for <strong>Uber integration</strong>, achieving <strong>98%
+                  data accuracy</strong> during outages</li>
+              <li>Automated application tracking by integrating offline data uploads into data warehouse, enhancing
+                operational visibility</li>
             </ul>
           </div>
           <div class="tech-tags">
@@ -3276,14 +3523,16 @@
             <h3 class="experience-title">Subject Matter Expert</h3>
             <div class="experience-meta">
               <span class="experience-duration">May 2021 - Apr 2022</span>
-              <span>Remote</span>
-              <span>Freelance</span>
+              <span class="experience-location">Remote</span>
+              <span class="experience-type">Freelance</span>
             </div>
           </div>
           <div class="experience-description">
             <ul>
-              <li>Mentored 300+ students globally in data structures and algorithms, achieving a 90% satisfaction rate via tailored tutoring</li>
-              <li>Resolved 500+ technical queries with hands-on debugging, enhancing student comprehension</li>
+              <li>Mentored <strong>300+ students globally</strong> in data structures and algorithms, achieving
+                <strong>90% satisfaction rate</strong></li>
+              <li>Resolved <strong>500+ technical queries</strong> with hands-on debugging and personalized guidance
+              </li>
             </ul>
           </div>
           <div class="tech-tags">
@@ -3301,7 +3550,7 @@
   <!-- Projects Section -->
   <section class="section" id="projects" style="background: var(--bg-secondary);">
     <div class="container">
-      <h2 class="section-title fade-in">Featured Projects</h2>
+      <h2 class="section-title fade-in"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
       <div class="projects-container">
         <div class="carousel-controls prev">
           <button class="carousel-btn prev" id="projectsPrev">
@@ -3315,246 +3564,268 @@
         </div>
         <div class="projects-carousel" id="projectsCarousel">
           <div class="projects-grid">
-        
-        <div class="project-card fade-in">
-          <div class="project-header">
-            <h3 class="project-title">🐢 Master Oogway</h3>
-            <div class="project-badges">
-              <span class="project-badge">Python</span>
-              <!-- <span class="project-badge">FastAPI</span> -->
-              <span class="project-badge">Slack</span>
-              <span class="project-badge">AWS</span>
-              <span class="project-badge">Kubernetes</span>
-              <span class="project-badge">Prometheus</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause analysis, and delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and supports real-time alerts, PDF reports, and AI-powered RCA.
-            </p>
-            <ul class="project-features">
-              <li> Real-time anomaly detection & alerting on Slack</li>
-              <li>Automated root cause analysis (AI-powered)</li>
-              <li>PDF reporting & dashboard</li>
-            </ul>
-            <div class="project-links">
-              <span class="project-status">
-                <i class="fas fa-circle"></i>
-                Active
-              </span>
-              <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" class="btn btn-primary">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="project-card fade-in">
-          <div class="project-header">
-            <h3 class="project-title">🚌 Bus Route Tracker</h3>
-            <div class="project-badges">
-              <span class="project-badge">Python</span>
-              <span class="project-badge">Docker</span>
-              <span class="project-badge">API</span>
-              <span class="project-badge">Mobile-first UI</span>
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🐢 Master Oogway</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Python</span>
+                  <!-- <span class="project-badge">FastAPI</span> -->
+                  <span class="project-badge">Slack</span>
+                  <span class="project-badge">AWS</span>
+                  <span class="project-badge">Kubernetes</span>
+                  <span class="project-badge">Prometheus</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause analysis, and
+                  delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and supports real-time
+                  alerts, PDF reports, and AI-powered RCA.
+                </p>
+                <ul class="project-features">
+                  <li> Real-time anomaly detection & alerting on Slack</li>
+                  <li>Automated root cause analysis (AI-powered)</li>
+                  <li>PDF reporting & dashboard</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Open-source tool for collecting, confirming, and managing bus stop and route data. Features secure login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field teams and open mobility enthusiasts.
-            </p>
-            <ul class="project-features">
-              <li>Live GPS tracking & offline fallback</li>
-              <li>Admin APIs for data management</li>
-              <li>Mobile-first responsive UI</li>
-            </ul>
-            <div class="project-links">
-              <span class="project-status">
-                <i class="fas fa-circle"></i>
-                Active
-              </span>
-              <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" class="btn btn-primary">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="project-card fade-in">
-          <div class="project-header">
-            <h3 class="project-title">💬 GossipDotCom</h3>
-            <div class="project-badges">
-              <span class="project-badge">Node.js</span>
-              <span class="project-badge">Socket.IO</span>
-              <span class="project-badge">Heroku</span>
-              <span class="project-badge">JioSaavn API</span>
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🚌 Bus Route Tracker</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Python</span>
+                  <span class="project-badge">Docker</span>
+                  <span class="project-badge">API</span>
+                  <span class="project-badge">Mobile-first UI</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Open-source tool for collecting, confirming, and managing bus stop and route data. Features secure
+                  login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field teams and open
+                  mobility enthusiasts.
+                </p>
+                <ul class="project-features">
+                  <li>Live GPS tracking & offline fallback</li>
+                  <li>Admin APIs for data management</li>
+                  <li>Mobile-first responsive UI</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends and listen to music together using JioSaavn API commands directly in chat.
-            </p>
-            <ul class="project-features">
-              <li>Real-time group chat</li>
-              <li>Music streaming via JioSaavn API</li>
-              <li>Deployed on Heroku</li>
-            </ul>
-            <div class="project-links">
-              <span class="project-status active">
-                <i class="fas fa-circle"></i>
-                Active
-              </span>
-              <a href="https://github.com/vijaygupta18/gossipsdotcom" target="_blank" class="btn btn-primary">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="project-card fade-in">
-          <div class="project-header">
-            <h3 class="project-title">🎵 SaavanDL</h3>
-            <div class="project-badges">
-              <span class="project-badge">Node.js</span>
-              <span class="project-badge">Express.js</span>
-              <span class="project-badge">EJS</span>
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">💬 GossipDotCom</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Node.js</span>
+                  <span class="project-badge">Socket.IO</span>
+                  <span class="project-badge">Heroku</span>
+                  <span class="project-badge">JioSaavn API</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends and listen
+                  to music together using JioSaavn API commands directly in chat.
+                </p>
+                <ul class="project-features">
+                  <li>Real-time group chat</li>
+                  <li>Music streaming via JioSaavn API</li>
+                  <li>Deployed on Heroku</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/gossipsdotcom" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              A web application to download music from JioSaavn. Built with Node.js, Express.js, and EJS with a clean, intuitive user interface.
-            </p>
-            <ul class="project-features">
-              <li>Music download from JioSaavn</li>
-              <li>Simple, clean UI</li>
-              <li>Deployed on Heroku</li>
-            </ul>
-            <div class="project-links">
-              <span class="project-status active">
-                <i class="fas fa-circle"></i>
-                Active
-              </span>
-              <a href="https://github.com/vijaygupta18/saavandl" target="_blank" class="btn btn-primary">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="project-card fade-in">
-          <div class="project-header">
-            <h3 class="project-title">✍️ Write My Text</h3>
-            <div class="project-badges">
-              <span class="project-badge">JavaScript</span>
-              <span class="project-badge">Canvas API</span>
-              <span class="project-badge">Web App</span>
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🎵 SaavanDL</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Node.js</span>
+                  <span class="project-badge">Express.js</span>
+                  <span class="project-badge">EJS</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  A web application to download music from JioSaavn. Built with Node.js, Express.js, and EJS with a
+                  clean, intuitive user interface.
+                </p>
+                <ul class="project-features">
+                  <li>Music download from JioSaavn</li>
+                  <li>Simple, clean UI</li>
+                  <li>Deployed on Heroku</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/saavandl" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              A web application to convert typed text into handwritten style. Built with vanilla JavaScript and Canvas API, deployed on Heroku.
-            </p>
-            <ul class="project-features">
-              <li>Text-to-handwriting conversion</li>
-              <li>Download as image</li>
-              <li>Multiple handwriting styles</li>
-            </ul>
-            <div class="project-links">
-              <span class="project-status active">
-                <i class="fas fa-circle"></i>
-                Active
-              </span>
-              <a href="https://github.com/vijaygupta18/writemytext" target="_blank" class="btn btn-primary">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">✍️ Write My Text</h3>
+                <div class="project-badges">
+                  <span class="project-badge">JavaScript</span>
+                  <span class="project-badge">Canvas API</span>
+                  <span class="project-badge">Web App</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  A web application to convert typed text into handwritten style. Built with vanilla JavaScript and
+                  Canvas API, deployed on Heroku.
+                </p>
+                <ul class="project-features">
+                  <li>Text-to-handwriting conversion</li>
+                  <li>Download as image</li>
+                  <li>Multiple handwriting styles</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/writemytext" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
   </section>
 
   <!-- Education Section -->
   <section class="section" id="education">
     <div class="container">
-      <h2 class="section-title fade-in">Education & Certifications</h2>
-      
+      <h2 class="section-title fade-in"><i class="fas fa-graduation-cap"></i> Education & Certifications</h2>
+
       <div class="education-container">
         <h3 style="margin-bottom: var(--space-xl); color: var(--text-primary);" class="fade-in">🎓 Education</h3>
         <div class="education-grid">
-        <div class="education-card fade-in">
-          <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
-            <i class="fas fa-graduation-cap" style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
-            <div>
-              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Kamla Nehru Institute of Technology, Sultanpur</h4>
-              <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">Aug 2018 - Jun 2022 • India</p>
-              <p style="color: var(--text-secondary); margin-bottom: var(--space-xs);">Bachelor of Technology - BTech, Information Technology</p>
-              <p style="color: var(--color-primary); font-weight: 600;">8.5 CGPA (Top 5% of class)</p>
+          <div class="education-card fade-in">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <i class="fas fa-graduation-cap"
+                style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+              <div>
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Kamla Nehru Institute of
+                  Technology, Sultanpur</h4>
+                <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">Aug 2018 - Jun 2022 • India</p>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-xs);">Bachelor of Technology - BTech,
+                  Information Technology</p>
+                <p style="color: var(--color-primary); font-weight: 600;">8.5 CGPA (Top 5% of class)</p>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="education-card fade-in">
-          <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
-            <i class="fas fa-university" style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
-            <div>
-              <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Swami Harsewanand Public School</h4>
-              <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">2015 - 2017 • India</p>
-              <p style="color: var(--text-secondary);">Intermediate, Science</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <h3 style="margin: var(--space-2xl) 0 var(--space-xl) 0; color: var(--text-primary);" class="fade-in">📜 Licenses & Certifications</h3>
-      <div class="cert-grid">
-        <div class="cert-card fade-in">
-          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Applied Machine Learning in Python</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
-          <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA" target="_blank" class="cert-link">Show credential</a>
+          <div class="education-card fade-in">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <i class="fas fa-university"
+                style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+              <div>
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Swami Harsewanand Public School
+                </h4>
+                <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">2015 - 2017 • India</p>
+                <p style="color: var(--text-secondary);">Intermediate, Science</p>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div class="cert-card fade-in">
-          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Crash Course on Python</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
-          <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM" target="_blank" class="cert-link">Show credential</a>
+
+        <h3 style="margin: var(--space-2xl) 0 var(--space-xl) 0; color: var(--text-primary);" class="fade-in">📜
+          Licenses & Certifications</h3>
+        <div class="cert-grid">
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Applied Machine Learning in Python
+            </h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Crash Course on Python</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/google.png" alt="Google" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Google HashCode</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Google</p>
+            <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">HTML, CSS, and Javascript for Web
+              Developers</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Python Data Structures</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/haskell-logo.png" alt="Haskell" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Haskell Programming Certification
+            </h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Professional Development</p>
+            <a href="https://drive.google.com/file/d/11-MYtt-jtSsx-wepPboQ-_7aQWfwjf1E/view?usp=sharing" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
         </div>
-        
-        <div class="cert-card fade-in">
-          <img src="images/google.png" alt="Google" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Google HashCode</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Google</p>
-          <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank" class="cert-link">Show credential</a>
-        </div>
-        
-        <div class="cert-card fade-in">
-          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">HTML, CSS, and Javascript for Web Developers</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
-          <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3" target="_blank" class="cert-link">Show credential</a>
-        </div>
-        
-        <div class="cert-card fade-in">
-          <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Python Data Structures</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
-          <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3" target="_blank" class="cert-link">Show credential</a>
-        </div>
-        
-        <div class="cert-card fade-in">
-          <img src="images/haskell-logo.png" alt="Haskell" class="cert-logo">
-          <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Haskell Programming Certification</h4>
-          <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Professional Development</p>
-          <a href="https://drive.google.com/file/d/11-MYtt-jtSsx-wepPboQ-_7aQWfwjf1E/view?usp=sharing" target="_blank" class="cert-link">Show credential</a>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -3562,9 +3833,10 @@
   <!-- Recommendations Section -->
   <section class="section" id="recommendations" style="background: var(--bg-secondary);">
     <div class="container">
-      <h2 class="section-title fade-in">💬 What People Say</h2>
-      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);" class="fade-in">Testimonials from colleagues and managers I've worked with</p>
-      
+      <h2 class="section-title fade-in"><i class="fas fa-comments"></i> What People Say</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);"
+        class="fade-in">Testimonials from colleagues and managers I've worked with</p>
+
       <div class="recommendations-container">
         <div class="carousel-controls prev">
           <button class="carousel-btn prev" id="recommendationsPrev">
@@ -3590,7 +3862,10 @@
                 </div>
               </div>
               <blockquote class="recommendation-text">
-                "Vijay was a fantastic person to work with and is not only a multi-skilled and insightful colleague but also a person with very strong problem-solving skills. His focus keeps everything moving smoothly, he makes sure all the deadlines are met and makes sure that whatever project he is working on meets the highest standards. Vijay is an asset to any company."
+                "Vijay was a fantastic person to work with and is not only a multi-skilled and insightful colleague but
+                also a person with very strong problem-solving skills. His focus keeps everything moving smoothly, he
+                makes sure all the deadlines are met and makes sure that whatever project he is working on meets the
+                highest standards. Vijay is an asset to any company."
               </blockquote>
             </div>
 
@@ -3606,7 +3881,11 @@
                 </div>
               </div>
               <blockquote class="recommendation-text">
-                "I had the pleasure of working with Vijay during his time at Vahan, where he joined as a fresher in the engineering team. Vijay impressed me with his positive attitude and strong work ethic. He is always eager to learn, and shows great initiative in tackling challenging projects. Vijay's technical skills are equally impressive, and it was clear from the beginning that he has a great deal of potential. Overall, I highly recommend Vijay for any future opportunities."
+                "I had the pleasure of working with Vijay during his time at Vahan, where he joined as a fresher in the
+                engineering team. Vijay impressed me with his positive attitude and strong work ethic. He is always
+                eager to learn, and shows great initiative in tackling challenging projects. Vijay's technical skills
+                are equally impressive, and it was clear from the beginning that he has a great deal of potential.
+                Overall, I highly recommend Vijay for any future opportunities."
               </blockquote>
             </div>
 
@@ -3622,7 +3901,9 @@
                 </div>
               </div>
               <blockquote class="recommendation-text">
-                "Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched, and he was always a key contributor to our team's projects. I highly recommend Vijay for any job opportunity he pursue."
+                "Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched, and he was
+                always a key contributor to our team's projects. I highly recommend Vijay for any job opportunity he
+                pursue."
               </blockquote>
             </div>
           </div>
@@ -3634,9 +3915,10 @@
   <!-- Contact Section -->
   <section class="section" id="contact" style="background: var(--bg-secondary);">
     <div class="container">
-      <h2 class="section-title fade-in">Get In Touch</h2>
-      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);" class="fade-in">I would love to connect with you and discuss opportunities.</p>
-      
+      <h2 class="section-title fade-in"><i class="fas fa-envelope"></i> Get In Touch</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);"
+        class="fade-in">I would love to connect with you and discuss opportunities.</p>
+
       <div class="contact-grid">
         <div class="contact-form fade-in">
           <div class="contact-form-header">
@@ -3650,7 +3932,8 @@
             </div>
             <div class="form-group">
               <label for="email" class="form-label">Email Address</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com"
+                required>
             </div>
             <div class="form-group">
               <label for="subject" class="form-label">Subject</label>
@@ -3658,7 +3941,8 @@
             </div>
             <div class="form-group">
               <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+              <textarea id="message" name="message" class="form-textarea"
+                placeholder="Tell me about your project or opportunity..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: var(--space-lg);">
               <i class="fas fa-paper-plane"></i>
@@ -3666,13 +3950,13 @@
             </button>
           </form>
         </div>
-        
+
         <div class="contact-info fade-in">
           <div class="contact-info-header">
             <h3>Let's Connect</h3>
             <p>Available for opportunities and collaborations</p>
           </div>
-          
+
           <div class="contact-items">
             <div class="contact-item">
               <div class="contact-icon">
@@ -3683,7 +3967,7 @@
                 <p>KNIT Sultanpur<br>Uttar Pradesh, India<br>228118</p>
               </div>
             </div>
-            
+
             <div class="contact-item">
               <div class="contact-icon">
                 <i class="fas fa-envelope"></i>
@@ -3693,7 +3977,7 @@
                 <p>vijayrauniyar1818@gmail.com</p>
               </div>
             </div>
-            
+
             <div class="contact-item">
               <div class="contact-icon">
                 <i class="fas fa-phone"></i>
@@ -3756,7 +4040,8 @@
           Back to Top
         </a>
       </div>
-      <div style="text-align: center; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
+      <div
+        style="text-align: center; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
         <p>&copy; 2024 Vijay Gupta. All rights reserved.</p>
       </div>
     </div>
@@ -3764,7 +4049,7 @@
 
   <script>
     // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Hide loader
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
@@ -3784,7 +4069,7 @@
       themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeToggle(newTheme);
@@ -3840,8 +4125,8 @@
       });
 
       // Active navigation link
-      const navLinks = document.querySelectorAll('.nav-link');
-      const sections = document.querySelectorAll('section[id]');
+      // const navLinks = document.querySelectorAll('.nav-link');
+      // const sections = document.querySelectorAll('section[id]');
 
       window.addEventListener('scroll', () => {
         let current = '';
@@ -3932,14 +4217,14 @@
         const cleanEmail = email.replace(/<[^>]*>/g, '').substring(0, 100);
         const cleanSubject = subject.replace(/<[^>]*>/g, '').substring(0, 200) || 'Contact Form Message';
         const cleanMessage = message.replace(/<[^>]*>/g, '').substring(0, 2000);
-        
+
         // Format timestamp for the template
-        const currentTime = new Date().toLocaleDateString('en-US', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
+        const currentTime = new Date().toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
           day: 'numeric',
-          hour: '2-digit', 
+          hour: '2-digit',
           minute: '2-digit',
           timeZoneName: 'short'
         });
@@ -3958,7 +4243,7 @@ ${cleanMessage}
 
         return {
           name: cleanName,
-          email: cleanEmail, 
+          email: cleanEmail,
           time: currentTime,
           message: enhancedMessage,
           title: cleanSubject,
@@ -3975,55 +4260,47 @@ ${cleanMessage}
 
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Rate limiting on client side (additional to EmailJS limits)
         const now = Date.now();
         if (now - lastSubmissionTime < 10000) { // 10 seconds
           showNotification('⏰ Please wait 10 seconds between submissions.', 'error');
           return;
         }
-        
+
         // Update button to show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
-        
+
         try {
           // Check if template ID is set
           if (EMAILJS_CONFIG.templateId === "YOUR_TEMPLATE_ID") {
             throw new Error('Template ID not configured. Please create an email template in EmailJS dashboard.');
           }
-          
+
           // Validate and sanitize form data
           const formData = new FormData(contactForm);
           const sanitizedData = validateAndSanitizeForm(formData);
-          
-          // Debug log (remove after testing)
-          console.log('Sending email with config:', {
-            serviceId: EMAILJS_CONFIG.serviceId,
-            templateId: EMAILJS_CONFIG.templateId,
-            data: sanitizedData
-          });
-          
+
+
           // Send email using EmailJS with sanitized data
           const result = await emailjs.send(
             EMAILJS_CONFIG.serviceId,
             EMAILJS_CONFIG.templateId,
             sanitizedData
           );
-          
-          console.log('Email sent successfully!', result.text);
           lastSubmissionTime = now;
-          
+
           // Show success message
           showNotification('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
           contactForm.reset();
-          
+
         } catch (error) {
           console.error('Failed to send email:', error);
-          
+
           // Show appropriate error message with detailed debugging
           console.error('Full error details:', error);
-          
+
           if (error.message && error.message.includes('Template ID not configured')) {
             showNotification('❌ Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
           } else if (error.message && error.message.includes('valid')) {
@@ -4085,18 +4362,87 @@ ${cleanMessage}
         }, 100);
       }
 
-      // Smooth scrolling for anchor links
+      // Enhanced smooth scrolling with proper offset calculation
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+            const headerHeight = document.getElementById('header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: Math.max(0, targetPosition),
+              behavior: 'smooth'
             });
           }
         });
+      });
+
+      // Enhanced active navigation with better section detection
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      function updateActiveNavigation() {
+        const headerHeight = document.getElementById('header').offsetHeight;
+        const scrollPosition = window.scrollY + headerHeight + 50; // Buffer for better detection
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      // Unified scroll event handler
+      window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        const headerHeight = header.offsetHeight;
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        // Update scroll progress
+        scrollProgress.style.width = scrolled + '%';
+        
+        // Update header scroll state
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        
+        // Update active navigation
+        updateActiveNavigation();
+        
+        // Enhanced section-based progress indication
+        const currentScrollWithOffset = window.scrollY + headerHeight + 100;
+        let currentSectionIndex = 0;
+        
+        sections.forEach((section, index) => {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          
+          if (currentScrollWithOffset >= sectionTop && currentScrollWithOffset < sectionBottom) {
+            currentSectionIndex = index;
+          }
+        });
+        
+        // Update progress bar color based on section
+        const hue = (currentSectionIndex / sections.length) * 360;
+        scrollProgress.style.background = `linear-gradient(90deg, hsl(${hue}, 70%, 50%) 0%, hsl(${hue + 60}, 70%, 60%) 100%)`;
       });
 
       // Performance optimization: Lazy load images
@@ -4119,7 +4465,7 @@ ${cleanMessage}
         card.addEventListener('mouseenter', () => {
           card.style.transform = 'translateY(-5px)';
         });
-        
+
         card.addEventListener('mouseleave', () => {
           card.style.transform = 'translateY(0)';
         });
@@ -4162,7 +4508,7 @@ ${cleanMessage}
         draw() {
           const currentTheme = document.documentElement.getAttribute('data-theme');
           const color = currentTheme === 'dark' ? '255, 255, 255' : '59, 130, 246';
-          
+
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(${color}, ${this.opacity})`;
@@ -4182,7 +4528,7 @@ ${cleanMessage}
       // Animation loop
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         particles.forEach(particle => {
           particle.update();
           particle.draw();
@@ -4199,7 +4545,7 @@ ${cleanMessage}
               const currentTheme = document.documentElement.getAttribute('data-theme');
               const color = currentTheme === 'dark' ? '255, 255, 255' : '59, 130, 246';
               const opacity = (100 - distance) / 100 * 0.1;
-              
+
               ctx.beginPath();
               ctx.moveTo(particle.x, particle.y);
               ctx.lineTo(otherParticle.x, otherParticle.y);
@@ -4218,17 +4564,17 @@ ${cleanMessage}
       canvas.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
-        
+
         particles.forEach(particle => {
           const dx = mouse.x - particle.x;
           const dy = mouse.y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 100) {
             const force = (100 - distance) / 100;
             particle.vx += (dx / distance) * force * 0.01;
             particle.vy += (dy / distance) * force * 0.01;
-            
+
             // Limit velocity
             particle.vx = Math.max(-2, Math.min(2, particle.vx));
             particle.vy = Math.max(-2, Math.min(2, particle.vy));
@@ -4260,13 +4606,13 @@ ${cleanMessage}
       const dynamicText = document.getElementById('dynamicText');
       const roles = [
         'Software Engineer',
-        'Backend Developer', 
+        'Backend Developer',
         'System Architect',
         'Performance Engineer',
         'Cloud Expert',
         'Problem Solver'
       ];
-      
+
       let roleIndex = 0;
       let charIndex = 0;
       let isDeleting = false;
@@ -4274,7 +4620,7 @@ ${cleanMessage}
 
       function typeText() {
         const currentRole = roles[roleIndex];
-        
+
         if (isDeleting) {
           dynamicText.textContent = currentRole.substring(0, charIndex - 1);
           charIndex--;
@@ -4302,24 +4648,24 @@ ${cleanMessage}
       function animateCounter(element, target, duration = 2000) {
         const start = 0;
         const startTime = performance.now();
-        
+
         function updateCounter(currentTime) {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          
+
           // Easing function for smooth animation
           const easeOutQuart = 1 - Math.pow(1 - progress, 4);
           const current = Math.floor(start + (target - start) * easeOutQuart);
-          
+
           element.textContent = current;
-          
+
           if (progress < 1) {
             requestAnimationFrame(updateCounter);
           } else {
             element.textContent = target;
           }
         }
-        
+
         requestAnimationFrame(updateCounter);
       }
 
@@ -4367,39 +4713,21 @@ ${cleanMessage}
         card.addEventListener('mouseenter', () => {
           card.style.transform = `translateY(-8px) rotateY(${Math.random() * 10 - 5}deg)`;
         });
-        
+
         card.addEventListener('mouseleave', () => {
           card.style.transform = 'translateY(0) rotateY(0deg)';
         });
       });
 
-      // Smooth scrolling enhancement
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.offsetTop;
-            const offsetPosition = elementPosition - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
       // Enhanced scroll progress with sections
       const totalSections = sections.length;
-      
+
       window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         scrollProgress.style.width = scrolled + '%';
-        
+
         // Add section-based progress indication
         let currentSection = 0;
         sections.forEach((section, index) => {
@@ -4408,7 +4736,7 @@ ${cleanMessage}
             currentSection = index;
           }
         });
-        
+
         // Update progress bar color based on section
         const hue = (currentSection / totalSections) * 360;
         scrollProgress.style.background = `linear-gradient(90deg, hsl(${hue}, 70%, 50%) 0%, hsl(${hue + 60}, 70%, 60%) 100%)`;
@@ -4430,7 +4758,7 @@ ${cleanMessage}
           img.style.opacity = '1';
           img.style.transform = 'scale(1)';
         });
-        
+
         // Set initial state
         img.style.opacity = '0';
         img.style.transform = 'scale(0.95)';
@@ -4443,7 +4771,7 @@ ${cleanMessage}
         card.addEventListener('mouseenter', () => {
           card.style.transform = 'translateY(-10px) scale(1.02)';
         });
-        
+
         card.addEventListener('mouseleave', () => {
           card.style.transform = 'translateY(0) scale(1)';
         });
@@ -4454,7 +4782,7 @@ ${cleanMessage}
         const carousel = document.getElementById(carouselId);
         const prevBtn = document.getElementById(prevBtnId);
         const nextBtn = document.getElementById(nextBtnId);
-        
+
         if (!carousel || !prevBtn || !nextBtn) return;
 
         const originalGrid = carousel.querySelector('.projects-grid, .recommendations-grid');
@@ -4463,57 +4791,72 @@ ${cleanMessage}
         const cards = Array.from(originalGrid.querySelectorAll('.project-card, .recommendation-card'));
         const totalCards = cards.length;
         const cardWidthWithGap = cardWidth + gap;
-        
+
         // Clear existing clones
         const existingClones = originalGrid.querySelectorAll('.card-clone');
         existingClones.forEach(clone => clone.remove());
-        
-        // Create seamless infinite scroll by tripling the cards for smooth looping
-        // Add clones at the end
-        cards.forEach(card => {
-          const clone1 = card.cloneNode(true);
-          const clone2 = card.cloneNode(true);
-          clone1.classList.add('card-clone');
-          clone2.classList.add('card-clone');
-          originalGrid.appendChild(clone1);
-          originalGrid.appendChild(clone2);
-        });
-        
+
+        // Create seamless infinite scroll - clone only what we need for smooth transitions
+        // Add clones at the beginning and end for seamless looping
+        const firstClones = [];
+        const lastClones = [];
+
+        // Clone first few cards and append to end
+        for (let i = 0; i < Math.min(3, totalCards); i++) {
+          const clone = cards[i].cloneNode(true);
+          clone.classList.add('card-clone');
+          lastClones.push(clone);
+          originalGrid.appendChild(clone);
+        }
+
+        // Clone last few cards and prepend to beginning
+        for (let i = Math.max(0, totalCards - 3); i < totalCards; i++) {
+          const clone = cards[i].cloneNode(true);
+          clone.classList.add('card-clone');
+          firstClones.unshift(clone);
+          originalGrid.insertBefore(clone, originalGrid.firstChild);
+        }
+
         // Set up continuous animation
         let animationId;
-        let currentTranslate = 0;
         const singleSetWidth = totalCards * cardWidthWithGap;
-        const animationSpeed = 0.5; // pixels per frame - smooth infinite scroll
+        const startPosition = -firstClones.length * cardWidthWithGap;
+        let currentTranslate = startPosition;
+        const animationSpeed = 0.5; // pixels per frame
         let isPaused = false;
         let isManualControl = false;
-        
+
+        // Set initial position to account for prepended clones
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
+
         function animateCarousel() {
           if (!isPaused && !isManualControl) {
             currentTranslate -= animationSpeed;
-            
-            // Seamless reset when we've moved one complete set
-            if (Math.abs(currentTranslate) >= singleSetWidth) {
-              currentTranslate = 0;
+
+            // Reset position when we've moved too far right (showing end clones)
+            const maxTranslate = startPosition - singleSetWidth;
+            if (currentTranslate <= maxTranslate) {
+              currentTranslate = startPosition;
             }
-            
+
             carousel.style.transform = `translateX(${currentTranslate}px)`;
           }
           animationId = requestAnimationFrame(animateCarousel);
         }
-        
+
         // Manual controls for user interaction
         let currentIndex = 0;
-        
+
         function slideNext() {
           isManualControl = true;
           currentIndex = (currentIndex + 1) % totalCards;
-          const targetTranslate = -currentIndex * cardWidthWithGap;
-          
+          const targetTranslate = startPosition - (currentIndex * cardWidthWithGap);
+
           // Smooth transition to next card
-          carousel.style.transition = 'transform 0.4s ease-out';
+          carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
           carousel.style.transform = `translateX(${targetTranslate}px)`;
           currentTranslate = targetTranslate;
-          
+
           setTimeout(() => {
             carousel.style.transition = 'none';
             isManualControl = false;
@@ -4523,13 +4866,13 @@ ${cleanMessage}
         function slidePrev() {
           isManualControl = true;
           currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-          const targetTranslate = -currentIndex * cardWidthWithGap;
-          
+          const targetTranslate = startPosition - (currentIndex * cardWidthWithGap);
+
           // Smooth transition to previous card
-          carousel.style.transition = 'transform 0.4s ease-out';
+          carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
           carousel.style.transform = `translateX(${targetTranslate}px)`;
           currentTranslate = targetTranslate;
-          
+
           setTimeout(() => {
             carousel.style.transition = 'none';
             isManualControl = false;
@@ -4544,7 +4887,7 @@ ${cleanMessage}
             isPaused = false;
           }, 800);
         });
-        
+
         prevBtn.addEventListener('click', () => {
           isPaused = true;
           slidePrev();
@@ -4557,31 +4900,72 @@ ${cleanMessage}
         carousel.addEventListener('mouseenter', () => {
           isPaused = true;
         });
-        
+
         carousel.addEventListener('mouseleave', () => {
           isPaused = false;
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let isDragging = false;
+
+        carousel.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+          isPaused = true;
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          e.preventDefault();
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+          if (!isDragging) return;
+
+          const endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+
+          if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (diff > 0) {
+              slideNext();
+            } else {
+              slidePrev();
+            }
+          }
+
+          isDragging = false;
+          setTimeout(() => {
+            isPaused = false;
+          }, 800);
         });
 
         // Start the animation
         carousel.style.transition = 'none';
         animateCarousel();
-        
+
         // Handle window resize
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
           if (animationId) {
             cancelAnimationFrame(animationId);
           }
-          // Recalculate and restart
+          // Recalculate and restart after a brief delay
           setTimeout(() => {
+            const newStartPosition = -firstClones.length * cardWidthWithGap;
+            currentTranslate = newStartPosition;
+            carousel.style.transform = `translateX(${currentTranslate}px)`;
             animateCarousel();
           }, 100);
-        });
+        };
+
+        window.addEventListener('resize', handleResize);
 
         // Cleanup function
         return () => {
           if (animationId) {
             cancelAnimationFrame(animationId);
           }
+          window.removeEventListener('resize', handleResize);
         };
       }
 
@@ -4590,8 +4974,8 @@ ${cleanMessage}
         const isMobile = window.innerWidth <= 768;
         const projectCardWidth = isMobile ? 350 : 400;
         const recommendationCardWidth = isMobile ? 380 : 480;
-        const gap = 24; // Gap between cards
-        
+        const gap = 24;
+
         setupInfiniteCarousel('projectsCarousel', 'projectsPrev', 'projectsNext', projectCardWidth, gap);
         setupInfiniteCarousel('recommendationsCarousel', 'recommendationsPrev', 'recommendationsNext', recommendationCardWidth, gap);
       }
@@ -4604,28 +4988,27 @@ ${cleanMessage}
 
       // Add ripple effect to buttons
       document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
           const ripple = document.createElement('span');
           const rect = this.getBoundingClientRect();
           const size = Math.max(rect.width, rect.height);
           const x = e.clientX - rect.left - size / 2;
           const y = e.clientY - rect.top - size / 2;
-          
+
           ripple.style.width = ripple.style.height = size + 'px';
           ripple.style.left = x + 'px';
           ripple.style.top = y + 'px';
           ripple.classList.add('ripple');
-          
+
           this.appendChild(ripple);
-          
+
           setTimeout(() => {
             ripple.remove();
           }, 600);
         });
       });
-
-      console.log('🚀 Enhanced Portfolio V5 Ultimate loaded successfully!');
     });
   </script>
 </body>
-</html> 
+
+</html>
