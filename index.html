@@ -5345,18 +5345,45 @@ ${cleanMessage}
            <div class="bot-container">
              <div class="bot-header">
                <div class="bot-avatar">
-                 <div class="bot-face">
-                   <div class="bot-eyes">
-                     <div class="bot-eye left"></div>
-                     <div class="bot-eye right"></div>
+                 <div class="human-avatar">
+                   <div class="avatar-head">
+                     <div class="hair"></div>
+                     <div class="face">
+                       <div class="eyebrows">
+                         <div class="eyebrow left"></div>
+                         <div class="eyebrow right"></div>
+                       </div>
+                       <div class="eyes">
+                         <div class="eye left">
+                           <div class="eyeball">
+                             <div class="pupil"></div>
+                             <div class="iris"></div>
+                           </div>
+                           <div class="eyelid"></div>
+                         </div>
+                         <div class="eye right">
+                           <div class="eyeball">
+                             <div class="pupil"></div>
+                             <div class="iris"></div>
+                           </div>
+                           <div class="eyelid"></div>
+                         </div>
+                       </div>
+                       <div class="nose"></div>
+                       <div class="mouth">
+                         <div class="lips"></div>
+                         <div class="teeth"></div>
+                       </div>
+                       <div class="chin"></div>
+                     </div>
                    </div>
-                   <div class="bot-mouth"></div>
-                   <div class="bot-cheeks">
-                     <div class="bot-cheek left"></div>
-                     <div class="bot-cheek right"></div>
+                   <div class="avatar-neck"></div>
+                   <div class="avatar-shoulders">
+                     <div class="shoulder left"></div>
+                     <div class="shoulder right"></div>
                    </div>
                  </div>
-                 <div class="bot-glow"></div>
+                 <div class="avatar-glow"></div>
                </div>
                <div class="bot-info">
                  <h3>Vijay's AI Assistant</h3>
@@ -5500,24 +5527,206 @@ ${cleanMessage}
              position: relative;
            }
 
-           .bot-face {
+           /* Human Avatar Styles */
+           .human-avatar {
              width: 100%;
              height: 100%;
-             background: rgba(255, 255, 255, 0.25);
-             border-radius: 50%;
+             position: relative;
+             animation: bobbing 3s ease-in-out infinite;
+           }
+
+           .avatar-head {
+             width: 100%;
+             height: 70%;
+             position: relative;
+             background: linear-gradient(145deg, #ffeaa7 0%, #fab1a0 100%);
+             border-radius: 50% 50% 45% 45%;
+             box-shadow: 
+               inset 0 2px 8px rgba(255, 255, 255, 0.3),
+               0 4px 12px rgba(0, 0, 0, 0.15);
+             border: 1px solid rgba(255, 255, 255, 0.2);
+           }
+
+           .hair {
+             position: absolute;
+             top: -2px;
+             left: 10%;
+             right: 10%;
+             height: 35%;
+             background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+             border-radius: 50% 50% 20% 20%;
+             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+           }
+
+           .face {
+             position: relative;
+             width: 100%;
+             height: 100%;
              display: flex;
              flex-direction: column;
              align-items: center;
              justify-content: center;
-             position: relative;
-             animation: bobbing 3s ease-in-out infinite;
-             box-shadow: 
-               inset 0 2px 8px rgba(255, 255, 255, 0.3),
-               0 4px 12px rgba(0, 0, 0, 0.1);
-             border: 2px solid rgba(255, 255, 255, 0.3);
+             padding-top: 15%;
            }
 
-           .bot-glow {
+           .eyebrows {
+             display: flex;
+             gap: 8px;
+             margin-bottom: 3px;
+           }
+
+           .eyebrow {
+             width: 8px;
+             height: 2px;
+             background: #2d3436;
+             border-radius: 2px;
+             animation: eyebrowMove 3s ease-in-out infinite;
+           }
+
+           .eyes {
+             display: flex;
+             gap: 6px;
+             margin-bottom: 4px;
+           }
+
+           .eye {
+             width: 12px;
+             height: 8px;
+             background: white;
+             border-radius: 50%;
+             position: relative;
+             overflow: hidden;
+             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+           }
+
+           .eyeball {
+             width: 100%;
+             height: 100%;
+             position: relative;
+           }
+
+           .iris {
+             position: absolute;
+             width: 8px;
+             height: 8px;
+             background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+             border-radius: 50%;
+             top: 0;
+             left: 2px;
+             animation: eyeMove 4s ease-in-out infinite;
+           }
+
+           .pupil {
+             position: absolute;
+             width: 4px;
+             height: 4px;
+             background: #2d3436;
+             border-radius: 50%;
+             top: 2px;
+             left: 4px;
+             z-index: 2;
+             animation: eyeMove 4s ease-in-out infinite;
+           }
+
+           .eyelid {
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             height: 0;
+             background: #ffeaa7;
+             border-radius: 50%;
+             animation: blink 4s ease-in-out infinite;
+             z-index: 3;
+           }
+
+           .nose {
+             width: 3px;
+             height: 4px;
+             background: linear-gradient(145deg, #e17055 0%, #fdcb6e 100%);
+             border-radius: 50%;
+             margin-bottom: 3px;
+             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+           }
+
+           .mouth {
+             position: relative;
+             width: 10px;
+             height: 6px;
+             margin-bottom: 2px;
+           }
+
+           .lips {
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(145deg, #e84393 0%, #fd79a8 100%);
+             border-radius: 0 0 10px 10px;
+             animation: talk 2s ease-in-out infinite alternate;
+             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+           }
+
+           .lips.speaking {
+             animation: speaking 0.3s ease-in-out infinite alternate;
+           }
+
+           .teeth {
+             position: absolute;
+             top: 2px;
+             left: 2px;
+             right: 2px;
+             height: 2px;
+             background: white;
+             border-radius: 1px;
+             opacity: 0;
+             animation: showTeeth 2s ease-in-out infinite;
+           }
+
+           .chin {
+             width: 6px;
+             height: 3px;
+             background: linear-gradient(145deg, #ffeaa7 0%, #fab1a0 100%);
+             border-radius: 50%;
+             margin-top: 1px;
+           }
+
+           .avatar-neck {
+             position: absolute;
+             bottom: 25%;
+             left: 35%;
+             right: 35%;
+             height: 15%;
+             background: linear-gradient(145deg, #ffeaa7 0%, #fab1a0 100%);
+             border-radius: 0 0 20% 20%;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+           }
+
+           .avatar-shoulders {
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             height: 25%;
+             display: flex;
+           }
+
+           .shoulder {
+             flex: 1;
+             background: linear-gradient(145deg, #6c5ce7 0%, #a29bfe 100%);
+             border-radius: 20px 20px 0 0;
+             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+           }
+
+           .shoulder.left {
+             margin-right: 2px;
+             transform: rotate(-5deg);
+           }
+
+           .shoulder.right {
+             margin-left: 2px;
+             transform: rotate(5deg);
+           }
+
+           .avatar-glow {
              position: absolute;
              top: -5px;
              left: -5px;
@@ -5525,64 +5734,10 @@ ${cleanMessage}
              bottom: -5px;
              border-radius: 50%;
              background: linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899);
-             opacity: 0.3;
-             filter: blur(8px);
-             animation: glow 2s ease-in-out infinite alternate;
+             opacity: 0.2;
+             filter: blur(10px);
+             animation: glow 3s ease-in-out infinite alternate;
              z-index: -1;
-           }
-
-           .bot-eyes {
-             display: flex;
-             gap: 10px;
-             margin-bottom: 6px;
-           }
-
-           .bot-eye {
-             width: 10px;
-             height: 10px;
-             background: white;
-             border-radius: 50%;
-             animation: blink 4s ease-in-out infinite;
-             box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-           }
-
-           .bot-mouth {
-             width: 14px;
-             height: 7px;
-             background: white;
-             border-radius: 0 0 14px 14px;
-             animation: talk 1.5s ease-in-out infinite alternate;
-             box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
-           }
-
-           .bot-mouth.speaking {
-             animation: speaking 0.4s ease-in-out infinite alternate;
-           }
-
-           .bot-cheeks {
-             position: absolute;
-             width: 100%;
-             height: 100%;
-             top: 0;
-             left: 0;
-           }
-
-           .bot-cheek {
-             position: absolute;
-             width: 8px;
-             height: 8px;
-             background: rgba(255, 255, 255, 0.4);
-             border-radius: 50%;
-             top: 50%;
-             animation: cheekGlow 2s ease-in-out infinite alternate;
-           }
-
-           .bot-cheek.left {
-             left: 15%;
-           }
-
-           .bot-cheek.right {
-             right: 15%;
            }
 
            .bot-info h3 {
@@ -5833,29 +5988,41 @@ ${cleanMessage}
            }
 
            @keyframes blink {
-             0%, 92%, 100% { transform: scaleY(1); }
-             94%, 96% { transform: scaleY(0.1); }
+             0%, 90%, 100% { height: 0; }
+             95% { height: 8px; }
            }
 
            @keyframes talk {
-             0% { transform: scaleY(1) scaleX(1); }
-             100% { transform: scaleY(0.8) scaleX(1.1); }
+             0% { transform: scaleY(1); }
+             50% { transform: scaleY(0.7); }
+             100% { transform: scaleY(1); }
            }
 
            @keyframes speaking {
-             0% { transform: scaleY(0.6) scaleX(1.3); }
-             50% { transform: scaleY(1.4) scaleX(0.7); }
-             100% { transform: scaleY(0.6) scaleX(1.3); }
+             0% { transform: scaleY(1) scaleX(1); border-radius: 0 0 10px 10px; }
+             50% { transform: scaleY(1.3) scaleX(1.2); border-radius: 50%; }
+             100% { transform: scaleY(1) scaleX(1); border-radius: 0 0 10px 10px; }
            }
 
            @keyframes glow {
-             0% { opacity: 0.2; filter: blur(8px); }
-             100% { opacity: 0.4; filter: blur(12px); }
+             0% { opacity: 0.15; filter: blur(10px); }
+             100% { opacity: 0.25; filter: blur(15px); }
            }
 
-           @keyframes cheekGlow {
-             0% { opacity: 0.3; transform: scale(1); }
-             100% { opacity: 0.6; transform: scale(1.2); }
+           @keyframes eyeMove {
+             0%, 40%, 100% { transform: translateX(0); }
+             20% { transform: translateX(-1px); }
+             60% { transform: translateX(1px); }
+           }
+
+           @keyframes eyebrowMove {
+             0%, 80%, 100% { transform: translateY(0); }
+             40% { transform: translateY(-1px); }
+           }
+
+           @keyframes showTeeth {
+             0%, 70%, 100% { opacity: 0; }
+             85% { opacity: 0.8; }
            }
 
            @keyframes pulse-indicator {
@@ -6072,7 +6239,7 @@ ${cleanMessage}
         this.stopAudio();
         
         const audioPath = `./images/audio/${this.currentSection}.wav`;
-        const mouth = document.querySelector('.bot-mouth');
+        const mouth = document.querySelector('.lips');
         
         try {
           this.isReading = true;
@@ -6128,7 +6295,7 @@ ${cleanMessage}
       }
 
       stopAudio() {
-        const mouth = document.querySelector('.bot-mouth');
+        const mouth = document.querySelector('.lips');
         const progressBar = document.getElementById('bot-progress');
         
         if (this.currentAudio) {
