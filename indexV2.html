@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="icon" href="/favicon.ico">
   <style>
     body {
@@ -957,21 +959,185 @@
       });
     });
 
-    // Form submission (placeholder)
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const loader = document.getElementById('submit-loader');
-      const success = document.getElementById('message-success');
-      const warning = document.getElementById('message-warning');
+    // EmailJS Configuration - Safe for public repos
+    const EMAILJS_CONFIG = {
+      publicKey: "JJYrlbmwaCoxBgcHG", // Your EmailJS public key
+      serviceId: "service_4wre7f9", // Your EmailJS service ID  
+      templateId: "template_4alqdiv" // Your EmailJS template ID
+    };
 
-      loader.classList.remove('hidden');
-      setTimeout(() => {
-        loader.classList.add('hidden');
-        success.classList.remove('hidden');
-        setTimeout(() => success.classList.add('hidden'), 3000);
-        document.getElementById('contactForm').reset();
-      }, 1000);
+    // Initialize EmailJS
+    emailjs.init({
+      publicKey: EMAILJS_CONFIG.publicKey,
+      // Additional security options
+      blockHeadless: true, // Block headless browsers
+      limitRate: {
+        id: 'app',
+        throttle: 10000, // 10 seconds between requests
+      }
     });
+
+    // Input validation and sanitization
+    function validateAndSanitizeForm(formData) {
+      const name = formData.get('contactName').trim();
+      const email = formData.get('contactEmail').trim();
+      const subject = formData.get('contactSubject').trim();
+      const message = formData.get('contactMessage').trim();
+
+      // Basic validation
+      if (!name || name.length < 2) {
+        throw new Error('Name must be at least 2 characters long');
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        throw new Error('Please enter a valid email address');
+      }
+      if (!message || message.length < 10) {
+        throw new Error('Message must be at least 10 characters long');
+      }
+
+      // Sanitize inputs (remove potential HTML/script tags)
+      const cleanName = name.replace(/<[^>]*>/g, '').substring(0, 100);
+      const cleanEmail = email.replace(/<[^>]*>/g, '').substring(0, 100);
+      const cleanSubject = subject.replace(/<[^>]*>/g, '').substring(0, 200) || 'Contact Form Message';
+      const cleanMessage = message.replace(/<[^>]*>/g, '').substring(0, 2000);
+
+      // Format timestamp for the template
+      const currentTime = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      });
+
+      // Create well-formatted message for the beautiful template
+      const enhancedMessage = `📋 SUBJECT: ${cleanSubject}
+
+📧 SENDER EMAIL: ${cleanEmail}
+
+💬 MESSAGE:
+${cleanMessage}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 This message was submitted through your portfolio contact form
+🌐 Source: https://vijaygupta18.github.io`;
+
+      return {
+        name: cleanName,
+        email: cleanEmail,
+        time: currentTime,
+        message: enhancedMessage,
+        title: cleanSubject,
+        subject: `Contact Us: ${cleanSubject}`,
+        reply_to: cleanEmail
+      };
+    }
+
+    // Contact form with enhanced security
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const submitLoader = document.getElementById('submit-loader');
+    const messageWarning = document.getElementById('message-warning');
+    const messageSuccess = document.getElementById('message-success');
+    const originalBtnText = submitBtn.innerHTML;
+    let lastSubmissionTime = 0;
+    let isSubmitting = false;
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Prevent multiple rapid submissions
+      if (isSubmitting) {
+        return;
+      }
+
+      // Rate limiting on client side
+      const now = Date.now();
+      if (now - lastSubmissionTime < 10000) { // 10 seconds
+        showMessage('⏰ Please wait 10 seconds between submissions.', 'warning');
+        return;
+      }
+
+      // Set submission guard
+      isSubmitting = true;
+
+      // Show loading state
+      submitBtn.style.display = 'none';
+      submitLoader.classList.remove('hidden');
+
+      try {
+        // Check if template ID is set
+        if (EMAILJS_CONFIG.templateId === "YOUR_TEMPLATE_ID") {
+          throw new Error('Template ID not configured. Please create an email template in EmailJS dashboard.');
+        }
+
+        // Validate and sanitize form data
+        const formData = new FormData(contactForm);
+        const sanitizedData = validateAndSanitizeForm(formData);
+
+        // Send email using EmailJS with sanitized data
+        const result = await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateId,
+          sanitizedData
+        );
+        lastSubmissionTime = now;
+
+        // Show success message
+        showMessage('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
+        contactForm.reset();
+
+      } catch (error) {
+        console.error('Failed to send email:', error);
+
+        if (error.message && error.message.includes('Template ID not configured')) {
+          showMessage('❌ Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+        } else if (error.message && error.message.includes('valid')) {
+          showMessage(`❌ ${error.message}`, 'warning');
+        } else if (error.text) {
+          // EmailJS specific errors
+          if (error.text.includes('rate')) {
+            showMessage('⏰ Too many requests. Please try again later.', 'warning');
+          } else if (error.text.includes('template')) {
+            showMessage('❌ Email template error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+          } else if (error.text.includes('service')) {
+            showMessage('❌ Email service error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+          } else {
+            showMessage(`❌ Email error: ${error.text}. Please contact me directly at vijayrauniyar1818@gmail.com`, 'warning');
+          }
+        } else {
+          showMessage('❌ Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'warning');
+        }
+      } finally {
+        // Reset submission guard and button
+        isSubmitting = false;
+        submitBtn.style.display = 'block';
+        submitLoader.classList.add('hidden');
+      }
+    });
+
+    // Show message function
+    function showMessage(message, type) {
+      // Hide all messages first
+      messageWarning.classList.add('hidden');
+      messageSuccess.classList.add('hidden');
+
+      if (type === 'success') {
+        messageSuccess.innerHTML = `<i class="fas fa-check mr-2"></i>${message}`;
+        messageSuccess.classList.remove('hidden');
+        setTimeout(() => {
+          messageSuccess.classList.add('hidden');
+        }, 5000);
+      } else {
+        messageWarning.innerHTML = message;
+        messageWarning.classList.remove('hidden');
+        setTimeout(() => {
+          messageWarning.classList.add('hidden');
+        }, 5000);
+      }
+    }
   </script>
 </body>
 
