@@ -5450,10 +5450,10 @@ ${cleanMessage}
              position: fixed;
              bottom: 120px;
              right: 30px;
-             width: 380px;
+             width: 320px;
              background: rgba(255, 255, 255, 0.98);
              backdrop-filter: blur(25px);
-             border-radius: 24px;
+             border-radius: 20px;
              box-shadow: 
                0 25px 80px rgba(0, 0, 0, 0.12),
                0 0 0 1px rgba(255, 255, 255, 0.3);
@@ -5473,7 +5473,7 @@ ${cleanMessage}
            .bot-container {
              position: relative;
              overflow: hidden;
-             border-radius: 22px;
+             border-radius: 18px;
              background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
            }
 
@@ -5481,17 +5481,17 @@ ${cleanMessage}
            .bot-header {
              display: flex;
              align-items: center;
-             padding: 24px;
+             padding: 18px;
              background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
              color: white;
              position: relative;
-             border-radius: 22px 22px 0 0;
+             border-radius: 18px 18px 0 0;
            }
 
            .bot-avatar {
-             width: 60px;
-             height: 60px;
-             margin-right: 18px;
+             width: 50px;
+             height: 50px;
+             margin-right: 14px;
              position: relative;
            }
 
@@ -5582,7 +5582,7 @@ ${cleanMessage}
 
            .bot-info h3 {
              margin: 0;
-             font-size: 20px;
+             font-size: 17px;
              font-weight: 700;
              background: linear-gradient(45deg, #ffffff, #f1f5f9);
              -webkit-background-clip: text;
@@ -5592,12 +5592,12 @@ ${cleanMessage}
            }
 
            .bot-status {
-             margin: 8px 0 0 0;
-             font-size: 14px;
+             margin: 6px 0 0 0;
+             font-size: 13px;
              opacity: 0.95;
              display: flex;
              align-items: center;
-             gap: 8px;
+             gap: 6px;
              font-weight: 500;
            }
 
@@ -5634,18 +5634,18 @@ ${cleanMessage}
 
                      /* Bot Content */
            .bot-content {
-             padding: 24px;
+             padding: 18px;
              background: rgba(255, 255, 255, 0.02);
            }
 
            .bot-message-container {
-             margin-bottom: 20px;
+             margin-bottom: 16px;
            }
 
            .bot-message {
              background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-             padding: 18px;
-             border-radius: 16px;
+             padding: 14px;
+             border-radius: 12px;
              border: 1px solid rgba(99, 102, 241, 0.1);
              position: relative;
              box-shadow: 
@@ -5653,19 +5653,19 @@ ${cleanMessage}
                inset 0 1px 0 rgba(255, 255, 255, 0.6);
              display: flex;
              align-items: flex-start;
-             gap: 12px;
+             gap: 10px;
            }
 
            .message-icon {
-             width: 32px;
-             height: 32px;
+             width: 28px;
+             height: 28px;
              background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
              border-radius: 50%;
              display: flex;
              align-items: center;
              justify-content: center;
              color: white;
-             font-size: 14px;
+             font-size: 12px;
              flex-shrink: 0;
              box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
            }
@@ -5683,27 +5683,27 @@ ${cleanMessage}
            .bot-controls {
              display: flex;
              justify-content: center;
-             margin-bottom: 16px;
+             margin-bottom: 12px;
            }
 
            .bot-btn {
-             padding: 14px 24px;
+             padding: 12px 20px;
              border: none;
-             border-radius: 14px;
+             border-radius: 10px;
              color: white;
              cursor: pointer;
              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
              display: flex;
              align-items: center;
              justify-content: center;
-             gap: 10px;
-             font-size: 13px;
+             gap: 8px;
+             font-size: 12px;
              font-weight: 600;
              text-transform: uppercase;
              letter-spacing: 0.5px;
              position: relative;
              overflow: hidden;
-             min-width: 120px;
+             min-width: 100px;
            }
 
                       .bot-btn.tertiary {
@@ -5848,7 +5848,7 @@ ${cleanMessage}
                      /* Responsive Design */
            @media (max-width: 768px) {
              #virtual-assistant {
-               width: 340px;
+               width: 300px;
                right: 20px;
                bottom: 100px;
              }
@@ -5865,17 +5865,17 @@ ${cleanMessage}
              }
 
              .bot-header {
-               padding: 20px;
+               padding: 16px;
              }
 
              .bot-content {
-               padding: 20px;
+               padding: 16px;
              }
 
              .bot-btn {
-               padding: 12px 20px;
-               font-size: 12px;
-               min-width: 100px;
+               padding: 10px 16px;
+               font-size: 11px;
+               min-width: 90px;
              }
            }
 
@@ -5887,9 +5887,9 @@ ${cleanMessage}
              }
 
              .bot-btn {
-               padding: 12px 18px;
-               font-size: 11px;
-               min-width: 90px;
+               padding: 10px 16px;
+               font-size: 10px;
+               min-width: 80px;
              }
            }
 
@@ -5996,11 +5996,14 @@ ${cleanMessage}
       updateBotMessage(sectionId) {
         const message = sectionContext[sectionId];
         const messageElement = document.getElementById('bot-message');
-        const statusElement = document.querySelector('.bot-status');
         
         if (messageElement && message) {
-          messageElement.innerHTML = `<p>${message}</p>`;
-          statusElement.textContent = `Currently in: ${this.formatSectionName(sectionId)}`;
+          messageElement.innerHTML = `
+            <div class="message-icon">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <p>${message}</p>
+          `;
           
           // Add typing animation
           messageElement.style.opacity = '0';
@@ -6192,12 +6195,12 @@ ${cleanMessage}
           
           // Update bot status
           const statusElement = document.querySelector('.bot-status');
-          if (statusElement && this.currentSection) {
+          if (statusElement) {
             const indicator = statusElement.querySelector('.status-indicator');
             if (indicator) {
               indicator.style.background = '#10b981';
             }
-            statusElement.innerHTML = `<span class="status-indicator"></span>Currently in: ${this.formatSectionName(this.currentSection)}`;
+            statusElement.innerHTML = '<span class="status-indicator"></span>Ready to help!';
           }
           
           // Auto-play current section if available and bot is visible (with delay)
