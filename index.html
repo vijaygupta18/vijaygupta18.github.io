@@ -5293,6 +5293,950 @@ ${cleanMessage}
       document.head.appendChild(style);
 
     });
+    const sectionContext = {
+      hero: "Namaste! My name is Vijay Gupta and I'm a Software Engineer. Welcome to my professional space, where I share my journey, passion, and work in the world of technology.",
+      about: "Here's a quick introduction to my background, values, and what drives me professionally.",
+      achievements: "Here are some milestones and achievements that reflect the hard work and dedication I bring to every opportunity.",
+      skills: "These are the technical skills and tools I've picked up along the way, helping me build efficient and scalable solutions.",
+      experience: "Here's a glimpse of my career journey so far, and the roles that have helped me grow as an engineer.",
+      projects: "Here are a few projects I've worked on—each one taught me something new and helped sharpen my problem-solving abilities.",
+      education: "Here's a glimpse into my academic journey and how it has shaped my approach to learning and innovation.",
+      recommendations: "Here's what mentors, colleagues, and peers have kindly shared about their experience working with me.",
+      contact: "If you'd like to connect, collaborate, or just say hello—here's how you can reach me. Looking forward to it!"
+    };
+
+    // 3D Bot Assistant System
+    class VirtualAssistant {
+      constructor() {
+        this.isVisible = false;
+        this.currentSection = null;
+        this.readSections = new Set();
+        this.isReading = false;
+        this.currentAudio = null;
+        this.speechSynthesis = window.speechSynthesis;
+        this.isMuted = false;
+        this.sectionTimer = null;
+        
+        this.init();
+      }
+
+      init() {
+        this.createBotStructure();
+        this.setupEventListeners();
+        this.observeSections();
+      }
+
+      createBotStructure() {
+        // Create toggle button
+        const toggleButton = document.createElement('div');
+        toggleButton.id = 'bot-toggle';
+        toggleButton.innerHTML = `
+          <div class="bot-toggle-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+        `;
+        document.body.appendChild(toggleButton);
+
+        // Create bot container
+        const botContainer = document.createElement('div');
+        botContainer.id = 'virtual-assistant';
+                 botContainer.innerHTML = `
+           <div class="bot-container">
+             <div class="bot-header">
+               <div class="bot-avatar">
+                 <div class="bot-face">
+                   <div class="bot-eyes">
+                     <div class="bot-eye left"></div>
+                     <div class="bot-eye right"></div>
+                   </div>
+                   <div class="bot-mouth"></div>
+                   <div class="bot-cheeks">
+                     <div class="bot-cheek left"></div>
+                     <div class="bot-cheek right"></div>
+                   </div>
+                 </div>
+                 <div class="bot-glow"></div>
+               </div>
+               <div class="bot-info">
+                 <h3>Vijay's AI Assistant</h3>
+                 <p class="bot-status">
+                   <span class="status-indicator"></span>
+                   Ready to help!
+                 </p>
+               </div>
+               <button class="bot-close" id="bot-close">
+                 <i class="fas fa-times"></i>
+               </button>
+             </div>
+             <div class="bot-content">
+               <div class="bot-message-container">
+                 <div class="bot-message" id="bot-message">
+                   <div class="message-icon">
+                     <i class="fas fa-comment-dots"></i>
+                   </div>
+                   <p>Hi! I'm here to guide you through Vijay's portfolio. I'll introduce each section as you navigate.</p>
+                 </div>
+               </div>
+               <div class="bot-controls">
+                 <button class="bot-btn tertiary" id="bot-mute">
+                   <i class="fas fa-volume-up"></i>
+                   <span>Mute</span>
+                 </button>
+               </div>
+               <div class="bot-progress" id="bot-progress">
+                 <div class="progress-bar"></div>
+               </div>
+             </div>
+             <div class="bot-decoration">
+               <div class="decoration-dots">
+                 <div class="dot"></div>
+                 <div class="dot"></div>
+                 <div class="dot"></div>
+               </div>
+             </div>
+           </div>
+         `;
+        document.body.appendChild(botContainer);
+
+        this.addBotStyles();
+      }
+
+      addBotStyles() {
+        const style = document.createElement('style');
+                 style.textContent = `
+           /* Bot Toggle Button */
+           #bot-toggle {
+             position: fixed;
+             bottom: 30px;
+             right: 30px;
+             width: 70px;
+             height: 70px;
+             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             cursor: pointer;
+             box-shadow: 
+               0 10px 30px rgba(99, 102, 241, 0.3),
+               0 0 0 0 rgba(99, 102, 241, 0.4);
+             z-index: 1000;
+             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+             animation: float 4s ease-in-out infinite;
+             border: 3px solid rgba(255, 255, 255, 0.2);
+           }
+
+           #bot-toggle:hover {
+             transform: scale(1.15);
+             box-shadow: 
+               0 15px 40px rgba(99, 102, 241, 0.4),
+               0 0 0 10px rgba(99, 102, 241, 0.1);
+             animation-play-state: paused;
+           }
+
+           .bot-toggle-icon {
+             color: white;
+             font-size: 28px;
+             transition: all 0.3s ease;
+             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+           }
+
+           #bot-toggle:hover .bot-toggle-icon {
+             transform: rotate(15deg) scale(1.1);
+           }
+
+                     /* Bot Container */
+           #virtual-assistant {
+             position: fixed;
+             bottom: 120px;
+             right: 30px;
+             width: 380px;
+             background: rgba(255, 255, 255, 0.98);
+             backdrop-filter: blur(25px);
+             border-radius: 24px;
+             box-shadow: 
+               0 25px 80px rgba(0, 0, 0, 0.12),
+               0 0 0 1px rgba(255, 255, 255, 0.3);
+             z-index: 1001;
+             transform: translateY(100%) scale(0.8);
+             opacity: 0;
+             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+             border: 2px solid rgba(255, 255, 255, 0.3);
+             overflow: hidden;
+           }
+
+           #virtual-assistant.visible {
+             transform: translateY(0) scale(1);
+             opacity: 1;
+           }
+
+           .bot-container {
+             position: relative;
+             overflow: hidden;
+             border-radius: 22px;
+             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+           }
+
+                     /* Bot Header */
+           .bot-header {
+             display: flex;
+             align-items: center;
+             padding: 24px;
+             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+             color: white;
+             position: relative;
+             border-radius: 22px 22px 0 0;
+           }
+
+           .bot-avatar {
+             width: 60px;
+             height: 60px;
+             margin-right: 18px;
+             position: relative;
+           }
+
+           .bot-face {
+             width: 100%;
+             height: 100%;
+             background: rgba(255, 255, 255, 0.25);
+             border-radius: 50%;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             position: relative;
+             animation: bobbing 3s ease-in-out infinite;
+             box-shadow: 
+               inset 0 2px 8px rgba(255, 255, 255, 0.3),
+               0 4px 12px rgba(0, 0, 0, 0.1);
+             border: 2px solid rgba(255, 255, 255, 0.3);
+           }
+
+           .bot-glow {
+             position: absolute;
+             top: -5px;
+             left: -5px;
+             right: -5px;
+             bottom: -5px;
+             border-radius: 50%;
+             background: linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899);
+             opacity: 0.3;
+             filter: blur(8px);
+             animation: glow 2s ease-in-out infinite alternate;
+             z-index: -1;
+           }
+
+           .bot-eyes {
+             display: flex;
+             gap: 10px;
+             margin-bottom: 6px;
+           }
+
+           .bot-eye {
+             width: 10px;
+             height: 10px;
+             background: white;
+             border-radius: 50%;
+             animation: blink 4s ease-in-out infinite;
+             box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+           }
+
+           .bot-mouth {
+             width: 14px;
+             height: 7px;
+             background: white;
+             border-radius: 0 0 14px 14px;
+             animation: talk 1.5s ease-in-out infinite alternate;
+             box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+           }
+
+           .bot-mouth.speaking {
+             animation: speaking 0.4s ease-in-out infinite alternate;
+           }
+
+           .bot-cheeks {
+             position: absolute;
+             width: 100%;
+             height: 100%;
+             top: 0;
+             left: 0;
+           }
+
+           .bot-cheek {
+             position: absolute;
+             width: 8px;
+             height: 8px;
+             background: rgba(255, 255, 255, 0.4);
+             border-radius: 50%;
+             top: 50%;
+             animation: cheekGlow 2s ease-in-out infinite alternate;
+           }
+
+           .bot-cheek.left {
+             left: 15%;
+           }
+
+           .bot-cheek.right {
+             right: 15%;
+           }
+
+           .bot-info h3 {
+             margin: 0;
+             font-size: 20px;
+             font-weight: 700;
+             background: linear-gradient(45deg, #ffffff, #f1f5f9);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
+             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+           }
+
+           .bot-status {
+             margin: 8px 0 0 0;
+             font-size: 14px;
+             opacity: 0.95;
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             font-weight: 500;
+           }
+
+           .status-indicator {
+             width: 8px;
+             height: 8px;
+             background: #10b981;
+             border-radius: 50%;
+             animation: pulse-indicator 2s ease-in-out infinite;
+             box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+           }
+
+          .bot-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+          }
+
+          .bot-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+          }
+
+                     /* Bot Content */
+           .bot-content {
+             padding: 24px;
+             background: rgba(255, 255, 255, 0.02);
+           }
+
+           .bot-message-container {
+             margin-bottom: 20px;
+           }
+
+           .bot-message {
+             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+             padding: 18px;
+             border-radius: 16px;
+             border: 1px solid rgba(99, 102, 241, 0.1);
+             position: relative;
+             box-shadow: 
+               0 4px 12px rgba(0, 0, 0, 0.05),
+               inset 0 1px 0 rgba(255, 255, 255, 0.6);
+             display: flex;
+             align-items: flex-start;
+             gap: 12px;
+           }
+
+           .message-icon {
+             width: 32px;
+             height: 32px;
+             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+             border-radius: 50%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: white;
+             font-size: 14px;
+             flex-shrink: 0;
+             box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+           }
+
+           .bot-message p {
+             margin: 0;
+             color: #334155;
+             line-height: 1.6;
+             font-size: 14px;
+             font-weight: 500;
+             flex: 1;
+             padding-top: 4px;
+           }
+
+           .bot-controls {
+             display: flex;
+             justify-content: center;
+             margin-bottom: 16px;
+           }
+
+           .bot-btn {
+             padding: 14px 24px;
+             border: none;
+             border-radius: 14px;
+             color: white;
+             cursor: pointer;
+             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             gap: 10px;
+             font-size: 13px;
+             font-weight: 600;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+             position: relative;
+             overflow: hidden;
+             min-width: 120px;
+           }
+
+                      .bot-btn.tertiary {
+             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+             box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+           }
+
+           .bot-btn.muted {
+             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+             box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+           }
+
+           .bot-btn:hover {
+             transform: translateY(-4px);
+             filter: brightness(1.1);
+           }
+
+           .bot-btn.tertiary:hover {
+             box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+           }
+
+           .bot-btn.muted:hover {
+             box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+           }
+
+           .bot-btn:disabled {
+             opacity: 0.6;
+             cursor: not-allowed;
+             transform: none;
+             filter: none;
+           }
+
+           .bot-btn i {
+             font-size: 14px;
+           }
+
+           /* Progress Bar */
+           .bot-progress {
+             height: 4px;
+             background: rgba(99, 102, 241, 0.1);
+             border-radius: 2px;
+             overflow: hidden;
+             opacity: 0;
+             transition: opacity 0.3s ease;
+           }
+
+           .bot-progress.active {
+             opacity: 1;
+           }
+
+           .progress-bar {
+             height: 100%;
+             background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+             border-radius: 2px;
+             transform: translateX(-100%);
+             animation: progress 3s ease-in-out;
+           }
+
+           /* Decoration */
+           .bot-decoration {
+             position: absolute;
+             bottom: 16px;
+             right: 20px;
+             opacity: 0.3;
+           }
+
+           .decoration-dots {
+             display: flex;
+             gap: 6px;
+           }
+
+           .decoration-dots .dot {
+             width: 6px;
+             height: 6px;
+             background: linear-gradient(45deg, #6366f1, #8b5cf6);
+             border-radius: 50%;
+             animation: dotPulse 2s ease-in-out infinite;
+           }
+
+           .decoration-dots .dot:nth-child(2) {
+             animation-delay: 0.3s;
+           }
+
+           .decoration-dots .dot:nth-child(3) {
+             animation-delay: 0.6s;
+           }
+
+                     /* Enhanced Animations */
+           @keyframes float {
+             0%, 100% { transform: translateY(0px) rotate(0deg); }
+             25% { transform: translateY(-8px) rotate(1deg); }
+             50% { transform: translateY(-12px) rotate(0deg); }
+             75% { transform: translateY(-8px) rotate(-1deg); }
+           }
+
+           @keyframes bobbing {
+             0%, 100% { transform: translateY(0px) scale(1); }
+             50% { transform: translateY(-4px) scale(1.02); }
+           }
+
+           @keyframes blink {
+             0%, 92%, 100% { transform: scaleY(1); }
+             94%, 96% { transform: scaleY(0.1); }
+           }
+
+           @keyframes talk {
+             0% { transform: scaleY(1) scaleX(1); }
+             100% { transform: scaleY(0.8) scaleX(1.1); }
+           }
+
+           @keyframes speaking {
+             0% { transform: scaleY(0.6) scaleX(1.3); }
+             50% { transform: scaleY(1.4) scaleX(0.7); }
+             100% { transform: scaleY(0.6) scaleX(1.3); }
+           }
+
+           @keyframes glow {
+             0% { opacity: 0.2; filter: blur(8px); }
+             100% { opacity: 0.4; filter: blur(12px); }
+           }
+
+           @keyframes cheekGlow {
+             0% { opacity: 0.3; transform: scale(1); }
+             100% { opacity: 0.6; transform: scale(1.2); }
+           }
+
+           @keyframes pulse-indicator {
+             0%, 100% { opacity: 1; transform: scale(1); }
+             50% { opacity: 0.5; transform: scale(1.2); }
+           }
+
+           @keyframes progress {
+             0% { transform: translateX(-100%); }
+             100% { transform: translateX(0%); }
+           }
+
+           @keyframes dotPulse {
+             0%, 100% { opacity: 0.3; transform: scale(1); }
+             50% { opacity: 1; transform: scale(1.3); }
+           }
+
+                     /* Responsive Design */
+           @media (max-width: 768px) {
+             #virtual-assistant {
+               width: 340px;
+               right: 20px;
+               bottom: 100px;
+             }
+
+             #bot-toggle {
+               bottom: 20px;
+               right: 20px;
+               width: 60px;
+               height: 60px;
+             }
+
+             .bot-toggle-icon {
+               font-size: 24px;
+             }
+
+             .bot-header {
+               padding: 20px;
+             }
+
+             .bot-content {
+               padding: 20px;
+             }
+
+             .bot-btn {
+               padding: 12px 20px;
+               font-size: 12px;
+               min-width: 100px;
+             }
+           }
+
+           @media (max-width: 480px) {
+             #virtual-assistant {
+               width: calc(100vw - 40px);
+               right: 20px;
+               left: 20px;
+             }
+
+             .bot-btn {
+               padding: 12px 18px;
+               font-size: 11px;
+               min-width: 90px;
+             }
+           }
+
+          /* Dark mode support */
+          @media (prefers-color-scheme: dark) {
+            #virtual-assistant {
+              background: rgba(30, 41, 59, 0.95);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .bot-message {
+              background: rgba(51, 65, 85, 0.8);
+            }
+
+            .bot-message p {
+              color: #e2e8f0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      setupEventListeners() {
+        const toggleBtn = document.getElementById('bot-toggle');
+        const closeBtn = document.getElementById('bot-close');
+        const muteBtn = document.getElementById('bot-mute');
+
+        toggleBtn.addEventListener('click', () => this.toggleBot());
+        closeBtn.addEventListener('click', () => this.hideBot());
+        muteBtn.addEventListener('click', () => this.toggleMute());
+
+        // Handle page refresh/navigation
+        window.addEventListener('beforeunload', () => {
+          this.readSections.clear();
+          this.stopAudio();
+        });
+
+        // Handle hash changes
+        window.addEventListener('hashchange', () => {
+          setTimeout(() => this.checkCurrentSection(), 100);
+        });
+      }
+
+      observeSections() {
+        const options = {
+          root: null,
+          rootMargin: '-20% 0px -20% 0px',
+          threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const sectionId = entry.target.id;
+              if (sectionId && sectionContext[sectionId]) {
+                this.handleSectionChange(sectionId);
+              }
+            }
+          });
+        }, options);
+
+        // Observe all sections
+        Object.keys(sectionContext).forEach(sectionId => {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            observer.observe(section);
+          }
+        });
+      }
+
+      handleSectionChange(sectionId) {
+        if (this.currentSection === sectionId) return;
+        
+        // Clear any existing timer
+        if (this.sectionTimer) {
+          clearTimeout(this.sectionTimer);
+          this.sectionTimer = null;
+        }
+        
+        // Stop any current audio when changing sections
+        this.stopAudio();
+        
+        this.currentSection = sectionId;
+        
+        // Always update message when section changes (only if bot is visible)
+        if (this.isVisible) {
+          this.updateBotMessage(sectionId);
+        }
+        
+        // Auto-play audio after 0.5 seconds if bot is visible, not muted, and user stays in section
+        if (this.isVisible && !this.isMuted) {
+          this.sectionTimer = setTimeout(() => {
+            // Double check if we're still in the same section and bot is still visible
+            if (this.currentSection === sectionId && this.isVisible) {
+              this.readSections.add(sectionId);
+              this.playCurrentSectionAudio();
+              this.showProgress();
+            }
+            this.sectionTimer = null;
+          }, 500); // 0.5 second delay
+        }
+      }
+
+      updateBotMessage(sectionId) {
+        const message = sectionContext[sectionId];
+        const messageElement = document.getElementById('bot-message');
+        const statusElement = document.querySelector('.bot-status');
+        
+        if (messageElement && message) {
+          messageElement.innerHTML = `<p>${message}</p>`;
+          statusElement.textContent = `Currently in: ${this.formatSectionName(sectionId)}`;
+          
+          // Add typing animation
+          messageElement.style.opacity = '0';
+          setTimeout(() => {
+            messageElement.style.opacity = '1';
+          }, 200);
+        }
+      }
+
+      formatSectionName(sectionId) {
+        return sectionId.charAt(0).toUpperCase() + sectionId.slice(1).replace(/([A-Z])/g, ' $1');
+      }
+
+      async playCurrentSectionAudio() {
+        if (!this.currentSection || this.isReading || this.isMuted || !this.isVisible) return;
+
+        this.stopAudio();
+        
+        const audioPath = `./images/audio/${this.currentSection}.wav`;
+        const mouth = document.querySelector('.bot-mouth');
+        
+        try {
+          this.isReading = true;
+          mouth.classList.add('speaking');
+          
+          this.currentAudio = new Audio(audioPath);
+          
+          this.currentAudio.addEventListener('ended', () => {
+            this.stopAudio();
+          });
+          
+          this.currentAudio.addEventListener('error', () => {
+            console.warn(`Audio file not found: ${audioPath}, falling back to text-to-speech`);
+            this.fallbackToTTS();
+          });
+          
+          await this.currentAudio.play();
+          this.showProgress();
+          
+        } catch (error) {
+          console.warn('Audio playback failed, falling back to text-to-speech:', error);
+          this.fallbackToTTS();
+        }
+      }
+
+      fallbackToTTS() {
+        if (!this.currentSection || this.isMuted || !this.isVisible) return;
+        
+        const message = sectionContext[this.currentSection];
+        const utterance = new SpeechSynthesisUtterance(message);
+        
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        utterance.volume = 0.8;
+        
+        utterance.onend = () => {
+          this.stopAudio();
+        };
+        
+        this.speechSynthesis.speak(utterance);
+      }
+
+      stopAudio() {
+        const mouth = document.querySelector('.bot-mouth');
+        const progressBar = document.getElementById('bot-progress');
+        
+        if (this.currentAudio) {
+          this.currentAudio.pause();
+          this.currentAudio.currentTime = 0;
+          this.currentAudio = null;
+        }
+        
+        if (this.speechSynthesis.speaking) {
+          this.speechSynthesis.cancel();
+        }
+        
+        this.isReading = false;
+        
+        if (mouth) mouth.classList.remove('speaking');
+        
+        // Hide progress bar
+        if (progressBar) {
+          progressBar.classList.remove('active');
+        }
+      }
+
+      toggleBot() {
+        if (this.isVisible) {
+          this.hideBot();
+        } else {
+          this.showBot();
+        }
+      }
+
+      showBot() {
+        const bot = document.getElementById('virtual-assistant');
+        const toggleBtn = document.getElementById('bot-toggle');
+        
+        this.isVisible = true;
+        bot.classList.add('visible');
+        toggleBtn.style.transform = 'scale(0.8)';
+        
+        // Check current section and update message
+        this.checkCurrentSection();
+        
+        // Auto-play current section if not muted (with 0.5s delay)
+        if (this.currentSection && !this.isMuted) {
+          this.sectionTimer = setTimeout(() => {
+            this.playCurrentSectionAudio();
+            this.sectionTimer = null;
+          }, 500);
+        }
+        
+        setTimeout(() => {
+          toggleBtn.style.transform = 'scale(1)';
+        }, 200);
+      }
+
+      hideBot() {
+        const bot = document.getElementById('virtual-assistant');
+        const toggleBtn = document.getElementById('bot-toggle');
+        
+        this.isVisible = false;
+        bot.classList.remove('visible');
+        
+        // Clear any pending timers when hiding bot
+        if (this.sectionTimer) {
+          clearTimeout(this.sectionTimer);
+          this.sectionTimer = null;
+        }
+        
+        this.stopAudio();
+        
+        toggleBtn.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          toggleBtn.style.transform = 'scale(1)';
+        }, 200);
+      }
+
+      showProgress() {
+        const progressBar = document.getElementById('bot-progress');
+        if (progressBar) {
+          progressBar.classList.add('active');
+          
+          // Reset and restart animation
+          const bar = progressBar.querySelector('.progress-bar');
+          bar.style.animation = 'none';
+          setTimeout(() => {
+            bar.style.animation = 'progress 3s ease-in-out';
+          }, 10);
+        }
+      }
+
+      toggleMute() {
+        this.isMuted = !this.isMuted;
+        const muteBtn = document.getElementById('bot-mute');
+        const muteIcon = muteBtn.querySelector('i');
+        const muteText = muteBtn.querySelector('span');
+        
+        if (this.isMuted) {
+          // Clear any pending timers
+          if (this.sectionTimer) {
+            clearTimeout(this.sectionTimer);
+            this.sectionTimer = null;
+          }
+          
+          // Stop any current audio
+          this.stopAudio();
+          
+          // Update button appearance
+          muteBtn.classList.add('muted');
+          muteIcon.className = 'fas fa-volume-mute';
+          muteText.textContent = 'Unmute';
+          
+          // Update bot status
+          const statusElement = document.querySelector('.bot-status');
+          if (statusElement) {
+            const indicator = statusElement.querySelector('.status-indicator');
+            if (indicator) {
+              indicator.style.background = '#ef4444';
+            }
+            statusElement.innerHTML = '<span class="status-indicator"></span>Audio muted';
+          }
+        } else {
+          // Update button appearance
+          muteBtn.classList.remove('muted');
+          muteIcon.className = 'fas fa-volume-up';
+          muteText.textContent = 'Mute';
+          
+          // Update bot status
+          const statusElement = document.querySelector('.bot-status');
+          if (statusElement && this.currentSection) {
+            const indicator = statusElement.querySelector('.status-indicator');
+            if (indicator) {
+              indicator.style.background = '#10b981';
+            }
+            statusElement.innerHTML = `<span class="status-indicator"></span>Currently in: ${this.formatSectionName(this.currentSection)}`;
+          }
+          
+          // Auto-play current section if available and bot is visible (with delay)
+          if (this.currentSection && this.isVisible) {
+            this.sectionTimer = setTimeout(() => {
+              this.playCurrentSectionAudio();
+              this.sectionTimer = null;
+            }, 500);
+          }
+        }
+      }
+
+      checkCurrentSection() {
+        // Get current section based on scroll position
+        const sections = Object.keys(sectionContext);
+        let currentSection = null;
+        
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+              currentSection = sectionId;
+              break;
+            }
+          }
+        }
+        
+        if (currentSection && currentSection !== this.currentSection) {
+          this.handleSectionChange(currentSection);
+        } else if (currentSection) {
+          this.updateBotMessage(currentSection);
+        }
+      }
+    }
+
+    // Initialize the Virtual Assistant
+    const virtualAssistant = new VirtualAssistant();
+    
   </script>
 </body>
 
