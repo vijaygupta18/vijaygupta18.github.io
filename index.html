@@ -5311,6 +5311,7 @@ ${cleanMessage}
         this.isVisible = false;
         this.currentSection = null;
         this.readSections = new Set();
+        this.completedSections = new Set();
         this.isReading = false;
         this.currentAudio = null;
         this.speechSynthesis = window.speechSynthesis;
@@ -5680,6 +5681,19 @@ ${cleanMessage}
              padding-top: 4px;
            }
 
+           .completion-badge {
+             display: inline-block;
+             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+             color: white;
+             padding: 2px 8px;
+             border-radius: 12px;
+             font-size: 11px;
+             font-weight: 600;
+             margin-left: 8px;
+             vertical-align: middle;
+             box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+           }
+
            .bot-controls {
              display: flex;
              justify-content: center;
@@ -5924,6 +5938,7 @@ ${cleanMessage}
         // Handle page refresh/navigation
         window.addEventListener('beforeunload', () => {
           this.readSections.clear();
+          this.completedSections.clear();
           this.stopAudio();
         });
 
@@ -5979,11 +5994,11 @@ ${cleanMessage}
           this.updateBotMessage(sectionId);
         }
         
-        // Auto-play audio after 0.5 seconds if bot is visible, not muted, and user stays in section
-        if (this.isVisible && !this.isMuted) {
+        // Auto-play audio after 0.5 seconds if bot is visible, not muted, user stays in section, and section hasn't been completed
+        if (this.isVisible && !this.isMuted && !this.completedSections.has(sectionId)) {
           this.sectionTimer = setTimeout(() => {
-            // Double check if we're still in the same section and bot is still visible
-            if (this.currentSection === sectionId && this.isVisible) {
+            // Double check if we're still in the same section, bot is still visible, and section hasn't been completed
+            if (this.currentSection === sectionId && this.isVisible && !this.completedSections.has(sectionId)) {
               this.readSections.add(sectionId);
               this.playCurrentSectionAudio();
               this.showProgress();
@@ -5998,11 +6013,15 @@ ${cleanMessage}
         const messageElement = document.getElementById('bot-message');
         
         if (messageElement && message) {
+          const isCompleted = this.completedSections.has(sectionId);
+          const iconClass = isCompleted ? 'fas fa-check-circle' : 'fas fa-comment-dots';
+          const iconColor = isCompleted ? '#10b981' : '';
+          
           messageElement.innerHTML = `
-            <div class="message-icon">
-              <i class="fas fa-comment-dots"></i>
+            <div class="message-icon" ${iconColor ? `style="background: ${iconColor};"` : ''}>
+              <i class="${iconClass}"></i>
             </div>
-            <p>${message}</p>
+            <p>${message} ${isCompleted ? '<span class="completion-badge">✓ Completed</span>' : ''}</p>
           `;
           
           // Add typing animation
@@ -6032,6 +6051,10 @@ ${cleanMessage}
           this.currentAudio = new Audio(audioPath);
           
           this.currentAudio.addEventListener('ended', () => {
+            // Mark section as completed when audio finishes
+            if (this.currentSection) {
+              this.completedSections.add(this.currentSection);
+            }
             this.stopAudio();
           });
           
@@ -6060,6 +6083,10 @@ ${cleanMessage}
         utterance.volume = 0.8;
         
         utterance.onend = () => {
+          // Mark section as completed when TTS finishes
+          if (this.currentSection) {
+            this.completedSections.add(this.currentSection);
+          }
           this.stopAudio();
         };
         
@@ -6109,8 +6136,8 @@ ${cleanMessage}
         // Check current section and update message
         this.checkCurrentSection();
         
-        // Auto-play current section if not muted (with 0.5s delay)
-        if (this.currentSection && !this.isMuted) {
+        // Auto-play current section if not muted and not completed (with 0.5s delay)
+        if (this.currentSection && !this.isMuted && !this.completedSections.has(this.currentSection)) {
           this.sectionTimer = setTimeout(() => {
             this.playCurrentSectionAudio();
             this.sectionTimer = null;
@@ -6203,8 +6230,8 @@ ${cleanMessage}
             statusElement.innerHTML = '<span class="status-indicator"></span>Ready to help!';
           }
           
-          // Auto-play current section if available and bot is visible (with delay)
-          if (this.currentSection && this.isVisible) {
+          // Auto-play current section if available, bot is visible, and section hasn't been completed (with delay)
+          if (this.currentSection && this.isVisible && !this.completedSections.has(this.currentSection)) {
             this.sectionTimer = setTimeout(() => {
               this.playCurrentSectionAudio();
               this.sectionTimer = null;
