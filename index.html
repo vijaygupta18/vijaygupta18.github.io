@@ -5383,6 +5383,10 @@ ${cleanMessage}
                    <i class="fas fa-volume-up"></i>
                    <span>Mute</span>
                  </button>
+                 <button class="bot-btn secondary" id="bot-replay" style="display: none;">
+                   <i class="fas fa-redo"></i>
+                   <span>Play Again</span>
+                 </button>
                </div>
                <div class="bot-progress" id="bot-progress">
                  <div class="progress-bar"></div>
@@ -5697,11 +5701,12 @@ ${cleanMessage}
            .bot-controls {
              display: flex;
              justify-content: center;
+             gap: 10px;
              margin-bottom: 12px;
            }
 
            .bot-btn {
-             padding: 12px 20px;
+             padding: 12px 16px;
              border: none;
              border-radius: 10px;
              color: white;
@@ -5710,17 +5715,22 @@ ${cleanMessage}
              display: flex;
              align-items: center;
              justify-content: center;
-             gap: 8px;
-             font-size: 12px;
+             gap: 6px;
+             font-size: 11px;
              font-weight: 600;
              text-transform: uppercase;
              letter-spacing: 0.5px;
              position: relative;
              overflow: hidden;
-             min-width: 100px;
+             min-width: 85px;
            }
 
-                      .bot-btn.tertiary {
+                      .bot-btn.secondary {
+             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+             box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+           }
+
+           .bot-btn.tertiary {
              background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
              box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
            }
@@ -5733,6 +5743,10 @@ ${cleanMessage}
            .bot-btn:hover {
              transform: translateY(-4px);
              filter: brightness(1.1);
+           }
+
+           .bot-btn.secondary:hover {
+             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
            }
 
            .bot-btn.tertiary:hover {
@@ -5887,9 +5901,10 @@ ${cleanMessage}
              }
 
              .bot-btn {
-               padding: 10px 16px;
-               font-size: 11px;
-               min-width: 90px;
+               padding: 10px 14px;
+               font-size: 10px;
+               min-width: 75px;
+               gap: 4px;
              }
            }
 
@@ -5901,9 +5916,15 @@ ${cleanMessage}
              }
 
              .bot-btn {
-               padding: 10px 16px;
-               font-size: 10px;
-               min-width: 80px;
+               padding: 8px 12px;
+               font-size: 9px;
+               min-width: 65px;
+               gap: 3px;
+             }
+
+             .bot-controls {
+               flex-wrap: wrap;
+               gap: 6px;
              }
            }
 
@@ -5930,10 +5951,12 @@ ${cleanMessage}
         const toggleBtn = document.getElementById('bot-toggle');
         const closeBtn = document.getElementById('bot-close');
         const muteBtn = document.getElementById('bot-mute');
+        const replayBtn = document.getElementById('bot-replay');
 
         toggleBtn.addEventListener('click', () => this.toggleBot());
         closeBtn.addEventListener('click', () => this.hideBot());
         muteBtn.addEventListener('click', () => this.toggleMute());
+        replayBtn.addEventListener('click', () => this.replayCurrentSection());
 
         // Handle page refresh/navigation
         window.addEventListener('beforeunload', () => {
@@ -5992,6 +6015,13 @@ ${cleanMessage}
         // Always update message when section changes (only if bot is visible)
         if (this.isVisible) {
           this.updateBotMessage(sectionId);
+          
+          // Show replay button if section is completed, hide if not
+          if (this.completedSections.has(sectionId)) {
+            this.showReplayButton();
+          } else {
+            this.hideReplayButton();
+          }
         }
         
         // Auto-play audio after 0.5 seconds if bot is visible, not muted, user stays in section, and section hasn't been completed
@@ -6054,6 +6084,8 @@ ${cleanMessage}
             // Mark section as completed when audio finishes
             if (this.currentSection) {
               this.completedSections.add(this.currentSection);
+              this.showReplayButton();
+              this.updateBotMessage(this.currentSection);
             }
             this.stopAudio();
           });
@@ -6086,6 +6118,8 @@ ${cleanMessage}
           // Mark section as completed when TTS finishes
           if (this.currentSection) {
             this.completedSections.add(this.currentSection);
+            this.showReplayButton();
+            this.updateBotMessage(this.currentSection);
           }
           this.stopAudio();
         };
@@ -6163,6 +6197,7 @@ ${cleanMessage}
         }
         
         this.stopAudio();
+        this.hideReplayButton();
         
         toggleBtn.style.transform = 'scale(1.1)';
         setTimeout(() => {
@@ -6182,6 +6217,40 @@ ${cleanMessage}
             bar.style.animation = 'progress 3s ease-in-out';
           }, 10);
         }
+      }
+
+      showReplayButton() {
+        const replayBtn = document.getElementById('bot-replay');
+        if (replayBtn && this.isVisible) {
+          replayBtn.style.display = 'flex';
+          // Add entrance animation
+          replayBtn.style.transform = 'scale(0.8)';
+          replayBtn.style.opacity = '0';
+          setTimeout(() => {
+            replayBtn.style.transform = 'scale(1)';
+            replayBtn.style.opacity = '1';
+          }, 100);
+        }
+      }
+
+      hideReplayButton() {
+        const replayBtn = document.getElementById('bot-replay');
+        if (replayBtn) {
+          replayBtn.style.display = 'none';
+        }
+      }
+
+      replayCurrentSection() {
+        if (!this.currentSection || this.isReading) return;
+        
+        // Hide replay button during playback
+        this.hideReplayButton();
+        
+        // Remove from completed sections temporarily to allow replay
+        this.completedSections.delete(this.currentSection);
+        
+        // Play the audio
+        this.playCurrentSectionAudio();
       }
 
       toggleMute() {
