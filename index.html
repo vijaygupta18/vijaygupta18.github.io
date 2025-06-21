@@ -4177,27 +4177,7 @@
         observer.observe(el);
       });
 
-      // Active navigation link
-      // const navLinks = document.querySelectorAll('.nav-link');
-      // const sections = document.querySelectorAll('section[id]');
-
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (window.scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-          }
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      });
+      // Active navigation link - This functionality is handled later in the unified scroll handler
 
       // Resume modal
       const resumeBtn = document.getElementById('resumeBtn');
@@ -5325,6 +5305,13 @@ ${cleanMessage}
         this.createBotStructure();
         this.setupEventListeners();
         this.observeSections();
+        
+        // Initial section detection after page load
+        setTimeout(() => {
+          this.debugSections(); // Debug helper
+          this.checkCurrentSection();
+          console.log('Initial section check completed');
+        }, 500);
       }
 
       createBotStructure() {
@@ -6137,18 +6124,27 @@ ${cleanMessage}
         window.addEventListener('hashchange', () => {
           setTimeout(() => this.checkCurrentSection(), 100);
         });
+        
+        // Handle scroll events for better section detection
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            this.checkCurrentSection();
+          }, 100);
+        });
       }
 
       observeSections() {
         const options = {
           root: null,
-          rootMargin: '-20% 0px -20% 0px',
-          threshold: 0.5
+          rootMargin: '-10% 0px -10% 0px',
+          threshold: [0.1, 0.3, 0.5, 0.7]
         };
 
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
               const sectionId = entry.target.id;
               if (sectionId && sectionContext[sectionId]) {
                 this.handleSectionChange(sectionId);
@@ -6162,6 +6158,9 @@ ${cleanMessage}
           const section = document.getElementById(sectionId);
           if (section) {
             observer.observe(section);
+            console.log(`Observing section: ${sectionId}`); // Debug log
+          } else {
+            console.warn(`Section not found: ${sectionId}`); // Debug log
           }
         });
       }
@@ -6338,10 +6337,17 @@ ${cleanMessage}
         // Check current section and update message
         this.checkCurrentSection();
         
+        // Force check again after a short delay to ensure proper detection
+        setTimeout(() => {
+          this.checkCurrentSection();
+        }, 100);
+        
         // Auto-play current section if not muted and not completed (with 0.5s delay)
         if (this.currentSection && !this.isMuted && !this.completedSections.has(this.currentSection)) {
           this.sectionTimer = setTimeout(() => {
-            this.playCurrentSectionAudio();
+            if (this.currentSection && this.isVisible) {
+              this.playCurrentSectionAudio();
+            }
             this.sectionTimer = null;
           }, 500);
         }
@@ -6467,6 +6473,9 @@ ${cleanMessage}
             statusElement.innerHTML = '<span class="status-indicator"></span>Ready to help!';
           }
           
+          // Check current section when unmuting
+          this.checkCurrentSection();
+          
           // Auto-play current section if available, bot is visible, and section hasn't been completed (with delay)
           if (this.currentSection && this.isVisible && !this.completedSections.has(this.currentSection)) {
             this.sectionTimer = setTimeout(() => {
@@ -6477,25 +6486,71 @@ ${cleanMessage}
         }
       }
 
-      checkCurrentSection() {
-        // Get current section based on scroll position
-        const sections = Object.keys(sectionContext);
-        let currentSection = null;
-        
-        for (const sectionId of sections) {
+      debugSections() {
+        console.log('=== SECTION DEBUG INFO ===');
+        Object.keys(sectionContext).forEach(sectionId => {
           const element = document.getElementById(sectionId);
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            console.log(`Section ${sectionId}:`, {
+              exists: true,
+              offsetTop: element.offsetTop,
+              offsetHeight: element.offsetHeight,
+              rectTop: rect.top,
+              rectBottom: rect.bottom,
+              inViewport: rect.top < window.innerHeight && rect.bottom > 0
+            });
+          } else {
+            console.warn(`Section ${sectionId}: NOT FOUND`);
+          }
+        });
+        console.log('Current scroll position:', window.scrollY);
+        console.log('Window height:', window.innerHeight);
+        console.log('=== END DEBUG INFO ===');
+      }
+
+      checkCurrentSection() {
+        // Get current section based on scroll position with header offset
+        const sections = Object.keys(sectionContext);
+        let currentSection = null;
+        const headerHeight = document.getElementById('header')?.offsetHeight || 80;
+        const scrollPosition = window.scrollY + headerHeight + 100;
+        
+        // Find the section that contains the current scroll position
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const sectionTop = element.offsetTop;
+            const sectionBottom = sectionTop + element.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
               currentSection = sectionId;
               break;
             }
           }
         }
         
+        // If no section found by scroll position, try viewport method as fallback
+        if (!currentSection) {
+          for (const sectionId of sections) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              // Check if section is in viewport with reasonable threshold
+              if (rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4) {
+                currentSection = sectionId;
+                break;
+              }
+            }
+          }
+        }
+        
+        console.log(`Current section detected: ${currentSection}`); // Debug log
+        
         if (currentSection && currentSection !== this.currentSection) {
           this.handleSectionChange(currentSection);
         } else if (currentSection) {
+          this.currentSection = currentSection;
           this.updateBotMessage(currentSection);
         }
       }
