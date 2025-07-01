@@ -289,7 +289,7 @@ vijaygupta18.github.io/
 
 [![GitHub Stats](https://github-readme-stats.vercel.app/api?username=vijaygupta18&show_icons=true&theme=radical)](https://github.com/vijaygupta18)
 
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=vijaygupta18&layout=compact&theme=radical)](https://github.com/vijaygupta18)
+<!--[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=vijaygupta18&layout=compact&theme=radical)](https://github.com/vijaygupta18) !-->
 
 </div>
 
