@@ -313,4 +313,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**© 2024 Vijay Gupta. All rights reserved.** 
+**© 2025 Vijay Gupta. All rights reserved.** 
