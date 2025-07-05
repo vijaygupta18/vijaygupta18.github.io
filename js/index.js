@@ -78,10 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Resume modal
     const resumeBtn = document.getElementById('resumeBtn');
+    const resumeNavBtn = document.getElementById('resumeNavBtn');
     const resumeModal = document.getElementById('resumeModal');
     const resumeClose = document.getElementById('resumeClose');
 
     resumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    resumeNavBtn.addEventListener('click', (e) => {
         e.preventDefault();
         resumeModal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -304,8 +311,10 @@ ${cleanMessage}
     // Enhanced smooth scrolling with proper offset calculation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return; // Skip if just '#', e.g. Resume link
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 const headerHeight = document.getElementById('header').offsetHeight;
                 const targetPosition = target.offsetTop - headerHeight;
