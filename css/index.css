@@ -2407,6 +2407,18 @@ a:hover {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-md);
     }
+
+    .nav-menu.open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        z-index: 999;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
 }
 
 /* Loading Animation */

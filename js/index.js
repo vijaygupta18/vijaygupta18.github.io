@@ -1,4 +1,3 @@
-
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
     // Hide loader
@@ -1169,6 +1168,22 @@ ${cleanMessage}
     }
   `;
     document.head.appendChild(style);
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+    mobileMenuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu when a nav link is clicked (on mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('open');
+            }
+        });
+    });
 
 });
 const sectionContext = {
