@@ -1,21 +1,21 @@
-// Initialize everything when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Hide loader
+
     setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
     }, 1000);
 
-    // Theme management
+
     const themeToggle = document.getElementById('themeToggle');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
     const defaultTheme = storedTheme || (prefersDark ? 'dark' : 'light');
 
-    // Set initial theme
+
     document.documentElement.setAttribute('data-theme', defaultTheme);
     updateThemeToggle(defaultTheme);
 
-    // Theme toggle handler
+
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -30,13 +30,13 @@ document.addEventListener('DOMContentLoaded', function () {
         icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
 
-    // Portfolio switcher
+
     const portfolioSwitcher = document.getElementById('portfolioSwitcher');
     portfolioSwitcher.addEventListener('change', (e) => {
         window.location.href = e.target.value;
     });
 
-    // Scroll progress bar
+
     const scrollProgress = document.getElementById('scrollProgress');
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollProgress.style.width = scrolled + '%';
     });
 
-    // Header scroll effect
+
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Intersection Observer for fade-in animations
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -69,14 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
-    // Observe all fade-in elements
+
     document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
     });
 
-    // Active navigation link - This functionality is handled later in the unified scroll handler
 
-    // Resume modal
+
+
     const resumeBtn = document.getElementById('resumeBtn');
     const resumeNavBtn = document.getElementById('resumeNavBtn');
     const resumeModal = document.getElementById('resumeModal');
@@ -99,46 +99,46 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = '';
     });
 
-    // Close modal on escape key
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
             resumeClose.click();
         }
     });
 
-    // Close modal on backdrop click
+
     resumeModal.addEventListener('click', (e) => {
         if (e.target === resumeModal) {
             resumeClose.click();
         }
     });
 
-    // EmailJS Configuration - Safe for public repos
+
     const EMAILJS_CONFIG = {
-        publicKey: "JJYrlbmwaCoxBgcHG", // Your EmailJS public key
-        serviceId: "service_4wre7f9", // Your EmailJS service ID  
-        templateId: "template_4alqdiv" // Your EmailJS template ID
+        publicKey: "JJYrlbmwaCoxBgcHG",
+        serviceId: "service_4wre7f9",
+        templateId: "template_4alqdiv"
     };
 
-    // Initialize EmailJS
+
     emailjs.init({
         publicKey: EMAILJS_CONFIG.publicKey,
-        // Additional security options
-        blockHeadless: true, // Block headless browsers
+
+        blockHeadless: true,
         limitRate: {
             id: 'app',
-            throttle: 10000, // 10 seconds between requests
+            throttle: 10000,
         }
     });
 
-    // Input validation and sanitization
+
     function validateAndSanitizeForm(formData) {
         const name = formData.get('name').trim();
         const email = formData.get('email').trim();
         const subject = formData.get('subject').trim();
         const message = formData.get('message').trim();
 
-        // Basic validation
+
         if (!name || name.length < 2) {
             throw new Error('Name must be at least 2 characters long');
         }
@@ -149,13 +149,13 @@ document.addEventListener('DOMContentLoaded', function () {
             throw new Error('Message must be at least 10 characters long');
         }
 
-        // Sanitize inputs (remove potential HTML/script tags)
+
         const cleanName = name.replace(/<[^>]*>/g, '').substring(0, 100);
         const cleanEmail = email.replace(/<[^>]*>/g, '').substring(0, 100);
         const cleanSubject = subject.replace(/<[^>]*>/g, '').substring(0, 200) || 'Contact Form Message';
         const cleanMessage = message.replace(/<[^>]*>/g, '').substring(0, 2000);
 
-        // Format timestamp for the template
+
         const currentTime = new Date().toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
             timeZoneName: 'short'
         });
 
-        // Create well-formatted message for the beautiful template
+
         const enhancedMessage = `📋 SUBJECT: ${cleanSubject}
 
 📧 SENDER EMAIL: ${cleanEmail}
@@ -189,46 +189,46 @@ ${cleanMessage}
         };
     }
 
-    // Contact form with enhanced security
+
     const contactForm = document.getElementById('contactForm');
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalBtnText = submitBtn.innerHTML;
     let lastSubmissionTime = 0;
-    let isSubmitting = false; // Add submission guard
+    let isSubmitting = false;
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Prevent multiple rapid submissions
+
         if (isSubmitting) {
             return;
         }
 
-        // Rate limiting on client side (additional to EmailJS limits)
+
         const now = Date.now();
-        if (now - lastSubmissionTime < 10000) { // 10 seconds
+        if (now - lastSubmissionTime < 10000) {
             showNotification('⏰ Please wait 10 seconds between submissions.', 'error');
             return;
         }
 
-        // Set submission guard
+
         isSubmitting = true;
 
-        // Update button to show loading state
+
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
         try {
-            // Check if template ID is set
+
             if (EMAILJS_CONFIG.templateId === "YOUR_TEMPLATE_ID") {
                 throw new Error('Template ID not configured. Please create an email template in EmailJS dashboard.');
             }
 
-            // Validate and sanitize form data
+
             const formData = new FormData(contactForm);
             const sanitizedData = validateAndSanitizeForm(formData);
 
-            // Send email using EmailJS with sanitized data
+
             const result = await emailjs.send(
                 EMAILJS_CONFIG.serviceId,
                 EMAILJS_CONFIG.templateId,
@@ -236,11 +236,11 @@ ${cleanMessage}
             );
             lastSubmissionTime = now;
 
-            // Show success message
+
             showNotification('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
             contactForm.reset();
 
-            // Clear any field errors
+
             contactForm.querySelectorAll('.field-error').forEach(error => error.remove());
 
         } catch (error) {
@@ -251,7 +251,7 @@ ${cleanMessage}
             } else if (error.message && error.message.includes('valid')) {
                 showNotification(`❌ ${error.message}`, 'error');
             } else if (error.text) {
-                // EmailJS specific errors
+
                 if (error.text.includes('rate')) {
                     showNotification('⏰ Too many requests. Please try again later.', 'error');
                 } else if (error.text.includes('template')) {
@@ -265,22 +265,22 @@ ${cleanMessage}
                 showNotification('❌ Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'error');
             }
         } finally {
-            // Reset submission guard and button
+
             isSubmitting = false;
             submitBtn.innerHTML = originalBtnText;
             submitBtn.disabled = false;
         }
     });
 
-    // Notification system
+
     function showNotification(message, type) {
-        // Remove any existing notifications
+
         const existingNotification = document.querySelector('.notification');
         if (existingNotification) {
             existingNotification.remove();
         }
 
-        // Create notification element
+
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
@@ -292,27 +292,27 @@ ${cleanMessage}
       </div>
     `;
 
-        // Add to page
+
         document.body.appendChild(notification);
 
-        // Auto remove after 5 seconds
+
         setTimeout(() => {
             if (notification.parentElement) {
                 notification.remove();
             }
         }, 5000);
 
-        // Animate in
+
         setTimeout(() => {
             notification.classList.add('show');
         }, 100);
     }
 
-    // Enhanced smooth scrolling with proper offset calculation
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (href === '#') return; // Skip if just '#', e.g. Resume link
+            if (href === '#') return;
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
@@ -327,13 +327,13 @@ ${cleanMessage}
         });
     });
 
-    // Enhanced active navigation with better section detection
+
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
 
     function updateActiveNavigation() {
         const headerHeight = document.getElementById('header').offsetHeight;
-        const scrollPosition = window.scrollY + headerHeight + 50; // Buffer for better detection
+        const scrollPosition = window.scrollY + headerHeight + 50;
 
         let currentSection = '';
 
@@ -354,7 +354,7 @@ ${cleanMessage}
         });
     }
 
-    // Unified scroll event handler
+
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
         const headerHeight = header.offsetHeight;
@@ -362,20 +362,20 @@ ${cleanMessage}
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
 
-        // Update scroll progress
+
         scrollProgress.style.width = scrolled + '%';
 
-        // Update header scroll state
+
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
 
-        // Update active navigation
+
         updateActiveNavigation();
 
-        // Enhanced section-based progress indication
+
         const currentScrollWithOffset = window.scrollY + headerHeight + 100;
         let currentSectionIndex = 0;
 
@@ -388,12 +388,12 @@ ${cleanMessage}
             }
         });
 
-        // Update progress bar color based on section
+
         const hue = (currentSectionIndex / sections.length) * 360;
         scrollProgress.style.background = `linear-gradient(90deg, hsl(${hue}, 70%, 50%) 0%, hsl(${hue + 60}, 70%, 60%) 100%)`;
     });
 
-    // Performance optimization: Lazy load images
+
     const images = document.querySelectorAll('img[src]');
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -407,7 +407,7 @@ ${cleanMessage}
 
     images.forEach(img => imageObserver.observe(img));
 
-    // Add hover effects for cards
+
     const cards = document.querySelectorAll('.skill-category, .experience-item, .project-card, .education-card, .cert-card');
     cards.forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -419,19 +419,19 @@ ${cleanMessage}
         });
     });
 
-    // Particle Animation System
+
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
     let animationId;
 
-    // Resize canvas
+
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
 
-    // Particle class
+
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -446,7 +446,7 @@ ${cleanMessage}
             this.x += this.vx;
             this.y += this.vy;
 
-            // Wrap around edges
+
             if (this.x < 0) this.x = canvas.width;
             if (this.x > canvas.width) this.x = 0;
             if (this.y < 0) this.y = canvas.height;
@@ -464,7 +464,7 @@ ${cleanMessage}
         }
     }
 
-    // Initialize particles
+
     function initParticles() {
         particles = [];
         const particleCount = Math.min(50, Math.floor(canvas.width * canvas.height / 10000));
@@ -473,7 +473,7 @@ ${cleanMessage}
         }
     }
 
-    // Animation loop
+
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -482,7 +482,7 @@ ${cleanMessage}
             particle.draw();
         });
 
-        // Draw connections
+
         particles.forEach((particle, i) => {
             particles.slice(i + 1).forEach(otherParticle => {
                 const dx = particle.x - otherParticle.x;
@@ -507,7 +507,7 @@ ${cleanMessage}
         animationId = requestAnimationFrame(animate);
     }
 
-    // Mouse interaction
+
     let mouse = { x: 0, y: 0 };
     canvas.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
@@ -523,25 +523,25 @@ ${cleanMessage}
                 particle.vx += (dx / distance) * force * 0.01;
                 particle.vy += (dy / distance) * force * 0.01;
 
-                // Limit velocity
+
                 particle.vx = Math.max(-2, Math.min(2, particle.vx));
                 particle.vy = Math.max(-2, Math.min(2, particle.vy));
             }
         });
     });
 
-    // Initialize and start animation
+
     resizeCanvas();
     initParticles();
     animate();
 
-    // Handle window resize
+
     window.addEventListener('resize', () => {
         resizeCanvas();
         initParticles();
     });
 
-    // Pause animation when tab is not visible
+
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             cancelAnimationFrame(animationId);
@@ -550,7 +550,7 @@ ${cleanMessage}
         }
     });
 
-    // Typing Animation for Hero
+
     const dynamicText = document.getElementById('dynamicText');
     const roles = [
         'Software Engineer',
@@ -589,10 +589,10 @@ ${cleanMessage}
         setTimeout(typeText, typingSpeed);
     }
 
-    // Start typing animation
+
     setTimeout(typeText, 1000);
 
-    // Animated Counters
+
     function animateCounter(element, target, duration = 2000) {
         const start = 0;
         const startTime = performance.now();
@@ -601,7 +601,7 @@ ${cleanMessage}
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
 
-            // Easing function for smooth animation
+
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             const current = Math.floor(start + (target - start) * easeOutQuart);
 
@@ -617,7 +617,7 @@ ${cleanMessage}
         requestAnimationFrame(updateCounter);
     }
 
-    // Counter Animation Observer
+
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -629,12 +629,12 @@ ${cleanMessage}
         });
     }, { threshold: 0.5 });
 
-    // Observe all counter elements
+
     document.querySelectorAll('[data-count]').forEach(counter => {
         counterObserver.observe(counter);
     });
 
-    // Tech Item Animations
+
     const techObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -650,12 +650,12 @@ ${cleanMessage}
         });
     }, { threshold: 0.3 });
 
-    // Observe all tech items
+
     document.querySelectorAll('.tech-item, .specialization-item').forEach(item => {
         techObserver.observe(item);
     });
 
-    // Enhanced Achievement Card Animations
+
     const achievementCards = document.querySelectorAll('.achievement-card');
     achievementCards.forEach((card, index) => {
         card.addEventListener('mouseenter', () => {
@@ -667,7 +667,7 @@ ${cleanMessage}
         });
     });
 
-    // Enhanced scroll progress with sections
+
     const totalSections = sections.length;
 
     window.addEventListener('scroll', () => {
@@ -676,7 +676,7 @@ ${cleanMessage}
         const scrolled = (winScroll / height) * 100;
         scrollProgress.style.width = scrolled + '%';
 
-        // Add section-based progress indication
+
         let currentSection = 0;
         sections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
@@ -685,12 +685,12 @@ ${cleanMessage}
             }
         });
 
-        // Update progress bar color based on section
+
         const hue = (currentSection / totalSections) * 360;
         scrollProgress.style.background = `linear-gradient(90deg, hsl(${hue}, 70%, 50%) 0%, hsl(${hue + 60}, 70%, 60%) 100%)`;
     });
 
-    // Parallax effect for hero background
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const parallax = document.querySelector('.hero::before');
@@ -700,20 +700,20 @@ ${cleanMessage}
         }
     });
 
-    // Enhanced image loading
+
     document.querySelectorAll('img').forEach(img => {
         img.addEventListener('load', () => {
             img.style.opacity = '1';
             img.style.transform = 'scale(1)';
         });
 
-        // Set initial state
+
         img.style.opacity = '0';
         img.style.transform = 'scale(0.95)';
         img.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     });
 
-    // Enhanced project card interactions
+
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -725,7 +725,7 @@ ${cleanMessage}
         });
     });
 
-    // True Infinite Carousel with Seamless Looping
+
     function setupInfiniteCarousel(carouselId, prevBtnId, nextBtnId, cardWidth, gap) {
         const carousel = document.getElementById(carouselId);
         const prevBtn = document.getElementById(prevBtnId);
@@ -740,16 +740,16 @@ ${cleanMessage}
         const totalCards = cards.length;
         const cardWidthWithGap = cardWidth + gap;
 
-        // Clear existing clones
+
         const existingClones = originalGrid.querySelectorAll('.card-clone');
         existingClones.forEach(clone => clone.remove());
 
-        // Create seamless infinite scroll - clone only what we need for smooth transitions
-        // Add clones at the beginning and end for seamless looping
+
+
         const firstClones = [];
         const lastClones = [];
 
-        // Clone first few cards and append to end
+
         for (let i = 0; i < Math.min(3, totalCards); i++) {
             const clone = cards[i].cloneNode(true);
             clone.classList.add('card-clone');
@@ -757,7 +757,7 @@ ${cleanMessage}
             originalGrid.appendChild(clone);
         }
 
-        // Clone last few cards and prepend to beginning
+
         for (let i = Math.max(0, totalCards - 3); i < totalCards; i++) {
             const clone = cards[i].cloneNode(true);
             clone.classList.add('card-clone');
@@ -765,23 +765,23 @@ ${cleanMessage}
             originalGrid.insertBefore(clone, originalGrid.firstChild);
         }
 
-        // Set up continuous animation
+
         let animationId;
         const singleSetWidth = totalCards * cardWidthWithGap;
         const startPosition = -firstClones.length * cardWidthWithGap;
         let currentTranslate = startPosition;
-        const animationSpeed = 0.5; // pixels per frame
+        const animationSpeed = 0.5;
         let isPaused = false;
         let isManualControl = false;
 
-        // Set initial position to account for prepended clones
+
         carousel.style.transform = `translateX(${currentTranslate}px)`;
 
         function animateCarousel() {
             if (!isPaused && !isManualControl) {
                 currentTranslate -= animationSpeed;
 
-                // Reset position when we've moved too far right (showing end clones)
+
                 const maxTranslate = startPosition - singleSetWidth;
                 if (currentTranslate <= maxTranslate) {
                     currentTranslate = startPosition;
@@ -792,7 +792,7 @@ ${cleanMessage}
             animationId = requestAnimationFrame(animateCarousel);
         }
 
-        // Manual controls for user interaction
+
         let currentIndex = 0;
 
         function slideNext() {
@@ -800,7 +800,7 @@ ${cleanMessage}
             currentIndex = (currentIndex + 1) % totalCards;
             const targetTranslate = startPosition - (currentIndex * cardWidthWithGap);
 
-            // Smooth transition to next card
+
             carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             carousel.style.transform = `translateX(${targetTranslate}px)`;
             currentTranslate = targetTranslate;
@@ -816,7 +816,7 @@ ${cleanMessage}
             currentIndex = (currentIndex - 1 + totalCards) % totalCards;
             const targetTranslate = startPosition - (currentIndex * cardWidthWithGap);
 
-            // Smooth transition to previous card
+
             carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             carousel.style.transform = `translateX(${targetTranslate}px)`;
             currentTranslate = targetTranslate;
@@ -827,7 +827,7 @@ ${cleanMessage}
             }, 400);
         }
 
-        // Event listeners for manual controls
+
         nextBtn.addEventListener('click', () => {
             isPaused = true;
             slideNext();
@@ -844,7 +844,7 @@ ${cleanMessage}
             }, 800);
         });
 
-        // Pause on hover for better user experience
+
         carousel.addEventListener('mouseenter', () => {
             isPaused = true;
         });
@@ -853,7 +853,7 @@ ${cleanMessage}
             isPaused = false;
         });
 
-        // Touch/swipe support for mobile
+
         let startX = 0;
         let isDragging = false;
 
@@ -874,7 +874,7 @@ ${cleanMessage}
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
 
-            if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (Math.abs(diff) > 50) {
                 if (diff > 0) {
                     slideNext();
                 } else {
@@ -888,16 +888,16 @@ ${cleanMessage}
             }, 800);
         });
 
-        // Start the animation
+
         carousel.style.transition = 'none';
         animateCarousel();
 
-        // Handle window resize
+
         const handleResize = () => {
             if (animationId) {
                 cancelAnimationFrame(animationId);
             }
-            // Recalculate and restart after a brief delay
+
             setTimeout(() => {
                 const newStartPosition = -firstClones.length * cardWidthWithGap;
                 currentTranslate = newStartPosition;
@@ -908,7 +908,7 @@ ${cleanMessage}
 
         window.addEventListener('resize', handleResize);
 
-        // Cleanup function
+
         return () => {
             if (animationId) {
                 cancelAnimationFrame(animationId);
@@ -917,7 +917,7 @@ ${cleanMessage}
         };
     }
 
-    // Setup carousels with responsive card sizes for infinite scrolling
+
     function setupResponsiveCarousels() {
         const isMobile = window.innerWidth <= 768;
         const projectCardWidth = isMobile ? 350 : 400;
@@ -928,13 +928,13 @@ ${cleanMessage}
         setupInfiniteCarousel('recommendationsCarousel', 'recommendationsPrev', 'recommendationsNext', recommendationCardWidth, gap);
     }
 
-    // Initial setup
+
     setupResponsiveCarousels();
 
-    // Re-setup on window resize
+
     window.addEventListener('resize', setupResponsiveCarousels);
 
-    // Add ripple effect to buttons
+
     document.querySelectorAll('.btn').forEach(button => {
         button.addEventListener('click', function (e) {
             const ripple = document.createElement('span');
@@ -957,7 +957,7 @@ ${cleanMessage}
     });
 
 
-    // Advanced Intersection Observer for animations
+
     const animationObserverOptions = {
         threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
         rootMargin: '-50px 0px -100px 0px'
@@ -968,7 +968,7 @@ ${cleanMessage}
             if (entry.isIntersecting) {
                 const element = entry.target;
 
-                // Add entrance animations based on element type
+
                 if (element.classList.contains('experience-item')) {
                     element.style.animation = 'slideInFromLeft 0.6s ease-out forwards';
                 } else if (element.classList.contains('project-card')) {
@@ -979,7 +979,7 @@ ${cleanMessage}
                     element.classList.add('visible');
                 }
 
-                // Trigger any custom animations
+
                 if (element.dataset.animation) {
                     element.style.animation = element.dataset.animation;
                 }
@@ -989,17 +989,17 @@ ${cleanMessage}
         });
     }, animationObserverOptions);
 
-    // Observe all animatable elements
+
     document.querySelectorAll('.fade-in, .experience-item, .project-card, .skill-category, .contact-item').forEach(el => {
         animationObserver.observe(el);
     });
 
-    // Enhanced keyboard navigation
+
     function initializeKeyboardNavigation() {
         const focusableElements = 'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
         const modal = document.querySelector('.resume-modal');
 
-        // Trap focus in modal when open
+
         modal?.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeResumeModal();
@@ -1021,7 +1021,7 @@ ${cleanMessage}
             }
         });
 
-        // Skip link for screen readers
+
         const skipLink = document.createElement('a');
         skipLink.href = '#main-content';
         skipLink.textContent = 'Skip to main content';
@@ -1049,7 +1049,7 @@ ${cleanMessage}
 
     initializeKeyboardNavigation();
 
-    // Enhanced form validation and submission
+
     function enhanceContactForm() {
         const form = document.querySelector('#contactForm');
         if (!form) return;
@@ -1057,23 +1057,23 @@ ${cleanMessage}
         const inputs = form.querySelectorAll('input, textarea');
         let validationTimeouts = new Map();
 
-        // Real-time validation with debounce
+
         inputs.forEach(input => {
             input.addEventListener('blur', validateField);
             input.addEventListener('input', (e) => {
                 clearErrors(e);
 
-                // Debounce validation for input events
+
                 if (validationTimeouts.has(input)) {
                     clearTimeout(validationTimeouts.get(input));
                 }
 
                 const timeoutId = setTimeout(() => {
-                    if (input.value.trim()) { // Only validate if there's content
+                    if (input.value.trim()) {
                         validateField(e);
                     }
                     validationTimeouts.delete(input);
-                }, 500); // 500ms debounce
+                }, 500);
 
                 validationTimeouts.set(input, timeoutId);
             });
@@ -1096,7 +1096,7 @@ ${cleanMessage}
                 return false;
             }
 
-            // Add message length validation for real-time feedback
+
             if (field.name === 'message' && value && value.length < 10) {
                 showFieldError(field, `Message must be at least 10 characters long (${value.length}/10)`);
                 return false;
@@ -1110,7 +1110,7 @@ ${cleanMessage}
         }
 
         function showFieldError(field, message) {
-            // Remove existing error first to prevent duplicates
+
             clearFieldError(field);
 
             const errorElement = document.createElement('div');
@@ -1122,7 +1122,7 @@ ${cleanMessage}
             field.setAttribute('aria-invalid', 'true');
             field.setAttribute('aria-describedby', errorElement.id = `error-${field.name}`);
 
-            // Animate in
+
             setTimeout(() => {
                 errorElement.style.opacity = '1';
             }, 10);
@@ -1146,13 +1146,13 @@ ${cleanMessage}
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        // Note: Form submission is handled by the main contactForm event listener above
-        // This function only handles real-time validation to avoid duplicate submissions
+
+
     }
 
     enhanceContactForm();
 
-    // Add custom CSS animations
+
     const style = document.createElement('style');
     style.textContent = `
     @keyframes slideInFromLeft {
@@ -1178,14 +1178,14 @@ ${cleanMessage}
   `;
     document.head.appendChild(style);
 
-    // Mobile menu toggle
+
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.getElementById('navMenu');
     mobileMenuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('open');
     });
 
-    // Close mobile menu when a nav link is clicked (on mobile)
+
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 768) {
@@ -1207,7 +1207,7 @@ const sectionContext = {
     contact: "If you'd like to connect, collaborate, or just say hello—here's how you can reach me. Looking forward to it!"
 };
 
-// 3D Bot Assistant System
+
 class VirtualAssistant {
     constructor() {
         this.isVisible = false;
@@ -1228,16 +1228,15 @@ class VirtualAssistant {
         this.setupEventListeners();
         this.observeSections();
 
-        // Initial section detection after page load
+
         setTimeout(() => {
-            this.debugSections(); // Debug helper
             this.checkCurrentSection();
-            console.log('Initial section check completed');
+            // console.log('Initial section check completed');
         }, 500);
     }
 
     createBotStructure() {
-        // Create toggle button
+
         const toggleButton = document.createElement('div');
         toggleButton.id = 'bot-toggle';
         toggleButton.innerHTML = `
@@ -1247,7 +1246,7 @@ class VirtualAssistant {
     `;
         document.body.appendChild(toggleButton);
 
-        // Create bot container
+
         const botContainer = document.createElement('div');
         botContainer.id = 'virtual-assistant';
         botContainer.innerHTML = `
@@ -2035,19 +2034,19 @@ class VirtualAssistant {
         muteBtn.addEventListener('click', () => this.toggleMute());
         replayBtn.addEventListener('click', () => this.replayCurrentSection());
 
-        // Handle page refresh/navigation
+
         window.addEventListener('beforeunload', () => {
             this.readSections.clear();
             this.completedSections.clear();
             this.stopAudio();
         });
 
-        // Handle hash changes
+
         window.addEventListener('hashchange', () => {
             setTimeout(() => this.checkCurrentSection(), 100);
         });
 
-        // Handle scroll events for better section detection
+
         let scrollTimeout;
         window.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -2075,14 +2074,14 @@ class VirtualAssistant {
             });
         }, options);
 
-        // Observe all sections
+
         Object.keys(sectionContext).forEach(sectionId => {
             const section = document.getElementById(sectionId);
             if (section) {
                 observer.observe(section);
-                console.log(`Observing section: ${sectionId}`); // Debug log
+                // console.log(`Observing section: ${sectionId}`);
             } else {
-                console.warn(`Section not found: ${sectionId}`); // Debug log
+                console.warn(`Section not found: ${sectionId}`);
             }
         });
     }
@@ -2090,22 +2089,22 @@ class VirtualAssistant {
     handleSectionChange(sectionId) {
         if (this.currentSection === sectionId) return;
 
-        // Clear any existing timer
+
         if (this.sectionTimer) {
             clearTimeout(this.sectionTimer);
             this.sectionTimer = null;
         }
 
-        // Stop any current audio when changing sections
+
         this.stopAudio();
 
         this.currentSection = sectionId;
 
-        // Always update message when section changes (only if bot is visible)
+
         if (this.isVisible) {
             this.updateBotMessage(sectionId);
 
-            // Show replay button if section is completed, hide if not
+
             if (this.completedSections.has(sectionId)) {
                 this.showReplayButton();
             } else {
@@ -2113,17 +2112,17 @@ class VirtualAssistant {
             }
         }
 
-        // Auto-play audio after 0.5 seconds if bot is visible, not muted, user stays in section, and section hasn't been completed
+
         if (this.isVisible && !this.isMuted && !this.completedSections.has(sectionId)) {
             this.sectionTimer = setTimeout(() => {
-                // Double check if we're still in the same section, bot is still visible, and section hasn't been completed
+
                 if (this.currentSection === sectionId && this.isVisible && !this.completedSections.has(sectionId)) {
                     this.readSections.add(sectionId);
                     this.playCurrentSectionAudio();
                     this.showProgress();
                 }
                 this.sectionTimer = null;
-            }, 500); // 0.5 second delay
+            }, 500);
         }
     }
 
@@ -2143,7 +2142,7 @@ class VirtualAssistant {
         <p>${message} ${isCompleted ? '<span class="completion-badge">✓ Completed</span>' : ''}</p>
       `;
 
-            // Add typing animation
+
             messageElement.style.opacity = '0';
             setTimeout(() => {
                 messageElement.style.opacity = '1';
@@ -2170,7 +2169,7 @@ class VirtualAssistant {
             this.currentAudio = new Audio(audioPath);
 
             this.currentAudio.addEventListener('ended', () => {
-                // Mark section as completed when audio finishes
+
                 if (this.currentSection) {
                     this.completedSections.add(this.currentSection);
                     this.showReplayButton();
@@ -2204,7 +2203,7 @@ class VirtualAssistant {
         utterance.volume = 0.8;
 
         utterance.onend = () => {
-            // Mark section as completed when TTS finishes
+
             if (this.currentSection) {
                 this.completedSections.add(this.currentSection);
                 this.showReplayButton();
@@ -2234,7 +2233,7 @@ class VirtualAssistant {
 
         if (mouth) mouth.classList.remove('speaking');
 
-        // Hide progress bar
+
         if (progressBar) {
             progressBar.classList.remove('active');
         }
@@ -2256,15 +2255,15 @@ class VirtualAssistant {
         bot.classList.add('visible');
         toggleBtn.style.transform = 'scale(0.8)';
 
-        // Check current section and update message
+
         this.checkCurrentSection();
 
-        // Force check again after a short delay to ensure proper detection
+
         setTimeout(() => {
             this.checkCurrentSection();
         }, 100);
 
-        // Auto-play current section if not muted and not completed (with 0.5s delay)
+
         if (this.currentSection && !this.isMuted && !this.completedSections.has(this.currentSection)) {
             this.sectionTimer = setTimeout(() => {
                 if (this.currentSection && this.isVisible) {
@@ -2286,7 +2285,7 @@ class VirtualAssistant {
         this.isVisible = false;
         bot.classList.remove('visible');
 
-        // Clear any pending timers when hiding bot
+
         if (this.sectionTimer) {
             clearTimeout(this.sectionTimer);
             this.sectionTimer = null;
@@ -2306,7 +2305,7 @@ class VirtualAssistant {
         if (progressBar) {
             progressBar.classList.add('active');
 
-            // Reset and restart animation
+
             const bar = progressBar.querySelector('.progress-bar');
             bar.style.animation = 'none';
             setTimeout(() => {
@@ -2319,7 +2318,7 @@ class VirtualAssistant {
         const replayBtn = document.getElementById('bot-replay');
         if (replayBtn && this.isVisible) {
             replayBtn.style.display = 'flex';
-            // Add entrance animation
+
             replayBtn.style.transform = 'scale(0.8)';
             replayBtn.style.opacity = '0';
             setTimeout(() => {
@@ -2339,13 +2338,13 @@ class VirtualAssistant {
     replayCurrentSection() {
         if (!this.currentSection || this.isReading) return;
 
-        // Hide replay button during playback
+
         this.hideReplayButton();
 
-        // Remove from completed sections temporarily to allow replay
+
         this.completedSections.delete(this.currentSection);
 
-        // Play the audio
+
         this.playCurrentSectionAudio();
     }
 
@@ -2356,21 +2355,21 @@ class VirtualAssistant {
         const muteText = muteBtn.querySelector('span');
 
         if (this.isMuted) {
-            // Clear any pending timers
+
             if (this.sectionTimer) {
                 clearTimeout(this.sectionTimer);
                 this.sectionTimer = null;
             }
 
-            // Stop any current audio
+
             this.stopAudio();
 
-            // Update button appearance
+
             muteBtn.classList.add('muted');
             muteIcon.className = 'fas fa-volume-mute';
             muteText.textContent = 'Unmute';
 
-            // Update bot status
+
             const statusElement = document.querySelector('.bot-status');
             if (statusElement) {
                 const indicator = statusElement.querySelector('.status-indicator');
@@ -2380,12 +2379,12 @@ class VirtualAssistant {
                 statusElement.innerHTML = '<span class="status-indicator"></span>Audio muted';
             }
         } else {
-            // Update button appearance
+
             muteBtn.classList.remove('muted');
             muteIcon.className = 'fas fa-volume-up';
             muteText.textContent = 'Mute';
 
-            // Update bot status
+
             const statusElement = document.querySelector('.bot-status');
             if (statusElement) {
                 const indicator = statusElement.querySelector('.status-indicator');
@@ -2395,10 +2394,10 @@ class VirtualAssistant {
                 statusElement.innerHTML = '<span class="status-indicator"></span>Ready to help!';
             }
 
-            // Check current section when unmuting
+
             this.checkCurrentSection();
 
-            // Auto-play current section if available, bot is visible, and section hasn't been completed (with delay)
+
             if (this.currentSection && this.isVisible && !this.completedSections.has(this.currentSection)) {
                 this.sectionTimer = setTimeout(() => {
                     this.playCurrentSectionAudio();
@@ -2408,37 +2407,14 @@ class VirtualAssistant {
         }
     }
 
-    debugSections() {
-        console.log('=== SECTION DEBUG INFO ===');
-        Object.keys(sectionContext).forEach(sectionId => {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                const rect = element.getBoundingClientRect();
-                console.log(`Section ${sectionId}:`, {
-                    exists: true,
-                    offsetTop: element.offsetTop,
-                    offsetHeight: element.offsetHeight,
-                    rectTop: rect.top,
-                    rectBottom: rect.bottom,
-                    inViewport: rect.top < window.innerHeight && rect.bottom > 0
-                });
-            } else {
-                console.warn(`Section ${sectionId}: NOT FOUND`);
-            }
-        });
-        console.log('Current scroll position:', window.scrollY);
-        console.log('Window height:', window.innerHeight);
-        console.log('=== END DEBUG INFO ===');
-    }
-
     checkCurrentSection() {
-        // Get current section based on scroll position with header offset
+
         const sections = Object.keys(sectionContext);
         let currentSection = null;
         const headerHeight = document.getElementById('header')?.offsetHeight || 80;
         const scrollPosition = window.scrollY + headerHeight + 100;
 
-        // Find the section that contains the current scroll position
+
         for (const sectionId of sections) {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -2452,13 +2428,13 @@ class VirtualAssistant {
             }
         }
 
-        // If no section found by scroll position, try viewport method as fallback
+
         if (!currentSection) {
             for (const sectionId of sections) {
                 const element = document.getElementById(sectionId);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    // Check if section is in viewport with reasonable threshold
+
                     if (rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4) {
                         currentSection = sectionId;
                         break;
@@ -2467,7 +2443,7 @@ class VirtualAssistant {
             }
         }
 
-        console.log(`Current section detected: ${currentSection}`); // Debug log
+        // console.log(`Current section detected: ${currentSection}`);
 
         if (currentSection && currentSection !== this.currentSection) {
             this.handleSectionChange(currentSection);
@@ -2478,6 +2454,6 @@ class VirtualAssistant {
     }
 }
 
-// Initialize the Virtual Assistant
+
 const virtualAssistant = new VirtualAssistant();
 
