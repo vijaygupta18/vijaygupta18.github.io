@@ -2236,6 +2236,15 @@ a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    html, body {
+        max-width: 100vw;
+        overflow-x: hidden !important;
+        outline: 2px solid red;
+    }
+    .container {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
     .container {
         padding: 0 var(--space-sm);
     }
