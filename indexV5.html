@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijay Gupta - Software Development Engineer | Portfolio</title>
+  <meta name="description"
+    content="Vijay Gupta - Experienced Software Development Engineer specializing in backend systems, distributed architecture, and cloud infrastructure at NammaYatri.">
+  <meta name="keywords"
+    content="software engineer, backend developer, distributed systems, Haskell, Node.js, AWS, Kubernetes">
+  <meta name="author" content="Vijay Gupta">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vijaygupta18.github.io/">
+  <meta property="og:title" content="Vijay Gupta - Software Development Engineer">
+  <meta property="og:description"
+    content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="og:image" content="https://vijaygupta18.github.io/images/profile.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://vijaygupta18.github.io/">
+  <meta property="twitter:title" content="Vijay Gupta - Software Development Engineer">
+  <meta property="twitter:description"
+    content="Experienced Software Development Engineer specializing in backend systems and distributed architecture.">
+  <meta property="twitter:image" content="https://vijaygupta18.github.io/images/profile.jpg">
+
+  <!-- Performance & SEO Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <!-- Critical Resource Preloads -->
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/images/profile.jpg" as="image">
+
+  <!-- Fallback for JavaScript disabled -->
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vijay Gupta",
+    "jobTitle": "Software Development Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "NammaYatri"
+    },
+    "url": "https://vijaygupta18.github.io",
+    "image": "https://vijaygupta18.github.io/images/profile.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/vijaygupta18/",
+      "https://github.com/vijaygupta18",
+      "https://twitter.com/vijaygupta1818"
+    ],
+    "knowsAbout": ["Backend Development", "Distributed Systems", "Cloud Architecture", "Haskell", "Node.js", "AWS", "Kubernetes"],
+    "description": "Experienced Software Development Engineer specializing in backend systems and distributed architecture",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560095",
+      "addressCountry": "India"
+    }
+  }
+  </script>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <link rel="stylesheet" href="css/indexV5.css">
+</head>
+
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Particle Background -->
+  <div class="particles-background">
+    <canvas id="particlesCanvas"></canvas>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#hero" class="nav-brand">Vijay Gupta</a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#" class="nav-link" id="resumeNavBtn">Resume</a></li>
+          <li>
+            <select class="portfolio-switcher" id="portfolioSwitcher" aria-label="Select Portfolio Version">
+              <option value="indexV1.html">V1</option>
+              <option value="indexV2.html">V2</option>
+              <option value="indexV3.html">V3</option>
+              <option value="indexV4.html">V4</option>
+              <option value="index.html" selected>V5</option>
+            </select>
+          </li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-image-container">
+          <img src="images/profile.jpg" alt="Vijay Gupta - Software Engineer" class="hero-image">
+          <!-- <div class="hero-status-badge">
+            <div class="status-dot"></div>
+            Available for opportunities
+          </div> -->
+        </div>
+        <h1 class="hero-title">Hi, I'm <span class="gradient-text">Vijay Gupta</span></h1>
+        <div class="hero-subtitle-container">
+          <span class="hero-subtitle-static">I'm a </span>
+          <span class="hero-subtitle-dynamic" id="dynamicText"></span>
+          <span class="typing-cursor">|</span>
+        </div>
+        <p class="hero-description">
+          Passionate about building scalable, high-performance systems that make a difference.
+          With 3+ years of experience at high-growth startups, I architect solutions that drive business impact.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-envelope"></i>
+            Let's Connect
+          </a>
+          <a href="#" class="btn btn-secondary" id="resumeBtn">
+            <i class="fas fa-file-pdf"></i>
+            View Resume
+          </a>
+          <a href="#achievements" class="btn btn-outline">
+            <i class="fas fa-chart-line"></i>
+            See My Impact
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" data-count="3">0</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="50">0</span>
+            <span class="stat-label">% Latency Reduction</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="40">0</span>
+            <span class="stat-label">% Cloud Cost Reduction</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="15">0</span>
+            <span class="stat-label">+ Major Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      <div class="about-container">
+        <div class="about-main fade-in">
+          <div class="about-intro">
+            <h3 class="about-title">
+              <span class="gradient-text">Software Engineer</span>
+              <span class="title-accent"> & System Architect</span>
+            </h3>
+            <p class="about-tagline">Building scalable, high-performance systems that drive business impact</p>
+          </div>
+
+          <div class="about-description">
+            <p>I am a results-driven software engineer specializing in <strong>backend and distributed systems</strong>.
+              With a proven track record at high-growth startups like NammaYatri, Juspay, and Vahan, I architect and
+              deliver robust, scalable solutions that optimize performance and reduce costs.</p>
+
+            <p>My expertise spans <strong>system design, cloud infrastructure, and performance optimization</strong>
+              using cutting-edge technologies. I thrive in fast-paced environments, blending deep technical skills with
+              a collaborative, product-focused mindset to solve complex challenges.</p>
+          </div>
+
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-rocket"></i>
+              <div>
+                <h4>Performance Expert</h4>
+                <p>50% API latency reduction through optimization</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-cloud"></i>
+              <div>
+                <h4>Cloud Cost Optimizer</h4>
+                <p>40% infrastructure cost reduction through auto-scaling and cost-effective solutions</p>
+              </div>
+            </div>
+            <!-- <div class="highlight-item">
+              <i class="fas fa-users"></i>
+              <div>
+                <h4>Technical Mentor</h4>
+                <p>300+ students mentored with 90% satisfaction</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="about-sidebar fade-in">
+          <div class="about-profile">
+            <div class="profile-image-container">
+              <img src="images/profile2.jpg" alt="Vijay Gupta - Software Development Engineer" class="profile-image">
+              <!-- <div class="profile-status">
+                <i class="fas fa-circle"></i>
+                Available for opportunities
+              </div> -->
+            </div>
+          </div>
+
+          <div class="about-details">
+            <div class="detail-item">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <span class="detail-label">Current Role</span>
+                <span class="detail-value">SDE @ NammaYatri</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Bengaluru, India</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar"></i>
+              <div>
+                <span class="detail-label">Experience</span>
+                <span class="detail-value">3+ Years</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <span class="detail-label">Education</span>
+                <span class="detail-value">B.Tech, KNIT Sultanpur</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-connect">
+            <h4>Connect With Me</h4>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link linkedin"
+                aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/vijaygupta18" target="_blank" class="social-link github" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link twitter"
+                aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link email" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="section" id="achievements" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-trophy"></i> Impact & Achievements</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card fade-in" style="animation-delay: 0.1s;">
+          <div class="achievement-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="50">0</h3>
+            <p class="achievement-label">% API Latency Reduction</p>
+            <span class="achievement-description">Optimized backend performance through profiling and key
+              optimizations</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.2s;">
+          <div class="achievement-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="40">0</h3>
+            <p class="achievement-label">% Cost Reduction</p>
+            <span class="achievement-description">Reduced infrastructure costs through Redis optimization and
+              auto-scaling</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.3s;">
+          <div class="achievement-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="80">0</h3>
+            <p class="achievement-label">% Data Transfer Savings</p>
+            <span class="achievement-description">Achieved zero cross-zone data transfer costs with zone-aware
+              optimization</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.4s;">
+          <div class="achievement-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="15">0</h3>
+            <p class="achievement-label">+ Major Projects</p>
+            <span class="achievement-description">Delivered scalable solutions across multiple high-growth
+              startups</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.5s;">
+          <div class="achievement-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="300">0</h3>
+            <p class="achievement-label">+ Students Mentored</p>
+            <span class="achievement-description">Achieved 90% satisfaction rate in algorithmic problem-solving
+              mentorship</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.6s;">
+          <div class="achievement-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="98">0</h3>
+            <p class="achievement-label">% Data Accuracy</p>
+            <span class="achievement-description">Improved system reliability through fallback mechanisms and
+              automation</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.7s;">
+          <div class="achievement-icon">
+            <i class="fas fa-puzzle-piece"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="100">0</h3>
+            <p class="achievement-label">% Service Decoupling</p>
+            <span class="achievement-description">Separated data drainer from application enabling smooth, independent
+              deployments</span>
+          </div>
+        </div>
+        <div class="achievement-card fade-in" style="animation-delay: 0.8s;">
+          <div class="achievement-icon">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </div>
+          <div class="achievement-content">
+            <h3 class="achievement-number" data-count="100">0</h3>
+            <p class="achievement-label">% Auto-scaling Efficiency</p>
+            <span class="achievement-description">Implemented auto-scaling for Redis & RDS replicas optimizing
+              performance and costs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-code"></i> Skills & Technologies</h2>
+      <div class="skills-container">
+        <div class="skills-grid">
+          <div class="skill-category fade-in">
+            <div class="skill-header">
+              <i class="fas fa-code skill-icon"></i>
+              <h4>Programming Languages</h4>
+            </div>
+            <div class="tech-stack">
+              <div class="tech-item">
+                <span class="tech-name">Haskell</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Python</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">JavaScript</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">PureScript</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">C++</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">TypeScript</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category fade-in">
+            <div class="skill-header">
+              <i class="fas fa-server skill-icon"></i>
+              <h4>Backend & Databases</h4>
+            </div>
+            <div class="tech-stack">
+              <div class="tech-item">
+                <span class="tech-name">Redis</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Kafka</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">PostgreSQL</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Node.js</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">MongoDB</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">ClickHouse</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category fade-in">
+            <div class="skill-header">
+              <i class="fas fa-cloud skill-icon"></i>
+              <h4>Cloud & DevOps</h4>
+            </div>
+            <div class="tech-stack">
+              <div class="tech-item">
+                <span class="tech-name">AWS</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Kubernetes</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Docker</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">CI/CD</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">AWS Lambda</span>
+              </div>
+              <div class="tech-item">
+                <span class="tech-name">Jenkins</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-specializations fade-in">
+          <h4><i class="fas fa-brain"></i> Core Specializations</h4>
+          <div class="specialization-grid">
+            <div class="specialization-item">
+              <i class="fas fa-cogs"></i>
+              <span>System Design</span>
+            </div>
+            <div class="specialization-item">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Performance Optimization</span>
+            </div>
+            <div class="specialization-item">
+              <i class="fas fa-network-wired"></i>
+              <span>Distributed Systems</span>
+            </div>
+            <div class="specialization-item">
+              <i class="fas fa-cubes"></i>
+              <span>Microservices</span>
+            </div>
+            <div class="specialization-item">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Event-Driven Architecture</span>
+            </div>
+            <!-- <div class="specialization-item">
+              <i class="fas fa-api"></i>
+              <span>REST & GraphQL APIs</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+      <div class="experience-timeline">
+
+        <!-- NammaYatri -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <div class="experience-company">
+              <i class="fas fa-building"></i>
+              <span>NammaYatri</span>
+            </div>
+            <h3 class="experience-title">Software Development Engineer</h3>
+            <div class="experience-meta">
+              <span class="experience-duration">Mar 2024 - Present</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">On-site</span>
+            </div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Optimized <strong>Redis performance</strong> and reduced cloud costs by implementing zone-aware
+                replica selection, achieving <strong>zero cross-zone data transfer costs</strong></li>
+              <li>Enhanced API efficiency with <strong>OkHttp connection pooling</strong>, reducing latency and
+                improving resource utilization across high-traffic endpoints</li>
+              <li>Implemented <strong>data compression for Redis</strong> storage, reducing memory usage and enabling
+                infrastructure cost savings through node optimization</li>
+              <li>Improved Redis performance by <strong>50% through pipeline optimization</strong> and table-level
+                sharding with asynchronous calls</li>
+              <li>Developed automated pricing analysis system for real-time dynamic pricing using <strong>data scraping
+                  and analytics</strong></li>
+              <li>Enabled <strong>auto-scaling for Redis and RDS replicas</strong>, optimizing performance during peak
+                traffic while reducing idle costs</li>
+              <li>Built <strong>ART framework</strong> for automated regression testing using production data replay,
+                improving deployment reliability</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Redis</span>
+          </div>
+        </div>
+
+        <!-- Juspay SDE -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <div class="experience-company">
+              <i class="fas fa-credit-card"></i>
+              <span>Juspay</span>
+            </div>
+            <h3 class="experience-title">Software Development Engineer</h3>
+            <div class="experience-meta">
+              <span class="experience-duration">Jan 2024 - Mar 2024</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
+            </div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Decoupled <strong>data drainer service</strong> from main application, enabling independent
+                deployments and improved system reliability</li>
+              <li>Reduced testing infrastructure costs by implementing <strong>automated HPA</strong> and optimizing pod
+                resource allocation</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">ClickHouse</span>
+            <span class="tech-tag">Kubernetes</span>
+          </div>
+        </div>
+
+        <!-- Juspay Product Engineer -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <div class="experience-company">
+              <i class="fas fa-credit-card"></i>
+              <span>Juspay</span>
+            </div>
+            <h3 class="experience-title">Product Engineer</h3>
+            <div class="experience-meta">
+              <span class="experience-duration">May 2023 - Dec 2023</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
+            </div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Developed <strong>KV framework</strong> using Redis for real-time data storage, effectively downsizing
+                primary database and optimizing costs</li>
+              <li>Created seamless <strong>data pipeline</strong> from Redis streams to database, streamlining analytics
+                processing</li>
+              <li>Enhanced scheduler services with <strong>multithreading</strong> and thread-safe execution, improving
+                CPU utilization and reducing infrastructure needs</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">PureScript</span>
+            <span class="tech-tag">Haskell</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Kafka</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">ClickHouse</span>
+          </div>
+        </div>
+
+        <!-- Vahan -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <div class="experience-company">
+              <i class="fas fa-car"></i>
+              <span>Vahan</span>
+            </div>
+            <h3 class="experience-title">Software Engineer I</h3>
+            <div class="experience-meta">
+              <span class="experience-duration">Jun 2022 - Mar 2023</span>
+              <span class="experience-location">Bengaluru, India</span>
+              <span class="experience-type">Full-time</span>
+            </div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Architected backend for <strong>AI-driven WhatsApp Bot</strong> serving blue-collar job matching,
+                reducing telecalling expenses</li>
+              <li>Implemented <strong>concurrent chat capability</strong> for WhatsApp Bot, improving user experience
+                and operational efficiency</li>
+              <li>Developed fallback data collection system for <strong>Uber integration</strong>, achieving <strong>98%
+                  data accuracy</strong> during outages</li>
+              <li>Automated application tracking by integrating offline data uploads into data warehouse, enhancing
+                operational visibility</li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">RabbitMQ</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">React.js</span>
+          </div>
+        </div>
+
+        <!-- Chegg -->
+        <div class="experience-item fade-in">
+          <div class="experience-header">
+            <div class="experience-company">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Chegg India</span>
+            </div>
+            <h3 class="experience-title">Subject Matter Expert</h3>
+            <div class="experience-meta">
+              <span class="experience-duration">May 2021 - Apr 2022</span>
+              <span class="experience-location">Remote</span>
+              <span class="experience-type">Freelance</span>
+            </div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Mentored <strong>300+ students globally</strong> in data structures and algorithms, achieving
+                <strong>90% satisfaction rate</strong>
+              </li>
+              <li>Resolved <strong>500+ technical queries</strong> with hands-on debugging and personalized guidance
+              </li>
+            </ul>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Data Structures</span>
+            <span class="tech-tag">Algorithms</span>
+            <span class="tech-tag">Mentoring</span>
+            <span class="tech-tag">Problem Solving</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+      <div class="projects-container">
+        <div class="carousel-controls prev">
+          <button class="carousel-btn prev" id="projectsPrev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+        <div class="carousel-controls next">
+          <button class="carousel-btn next" id="projectsNext">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="projects-carousel" id="projectsCarousel">
+          <div class="projects-grid">
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🐢 Master Oogway</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Python</span>
+                  <!-- <span class="project-badge">FastAPI</span> -->
+                  <span class="project-badge">Slack</span>
+                  <span class="project-badge">AWS</span>
+                  <span class="project-badge">Kubernetes</span>
+                  <span class="project-badge">Prometheus</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Advanced post-release monitoring for NammaYatri: detects anomalies, automates root cause analysis, and
+                  delivers insights via Slack. Integrates with AWS, Prometheus, Kubernetes, and supports real-time
+                  alerts, PDF reports, and AI-powered RCA.
+                </p>
+                <ul class="project-features">
+                  <li> Real-time anomaly detection & alerting on Slack</li>
+                  <li>Automated root cause analysis (AI-powered)</li>
+                  <li>PDF reporting & dashboard</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🚌 Bus Route Tracker</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Python</span>
+                  <span class="project-badge">Docker</span>
+                  <span class="project-badge">API</span>
+                  <span class="project-badge">Mobile-first UI</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Open-source tool for collecting, confirming, and managing bus stop and route data. Features secure
+                  login, live GPS, offline fallback, modern UI, and admin APIs. Designed for field teams and open
+                  mobility enthusiasts.
+                </p>
+                <ul class="project-features">
+                  <li>Live GPS tracking & offline fallback</li>
+                  <li>Admin APIs for data management</li>
+                  <li>Mobile-first responsive UI</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">💬 GossipDotCom</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Node.js</span>
+                  <span class="project-badge">Socket.IO</span>
+                  <span class="project-badge">Heroku</span>
+                  <span class="project-badge">JioSaavn API</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  Real-time chat web app built with Node.js and Socket.IO. Enables users to chat with friends and listen
+                  to music together using JioSaavn API commands directly in chat.
+                </p>
+                <ul class="project-features">
+                  <li>Real-time group chat</li>
+                  <li>Music streaming via JioSaavn API</li>
+                  <li>Deployed on Heroku</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/gossipsdotcom" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">🎵 SaavanDL</h3>
+                <div class="project-badges">
+                  <span class="project-badge">Node.js</span>
+                  <span class="project-badge">Express.js</span>
+                  <span class="project-badge">EJS</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  A web application to download music from JioSaavn. Built with Node.js, Express.js, and EJS with a
+                  clean, intuitive user interface.
+                </p>
+                <ul class="project-features">
+                  <li>Music download from JioSaavn</li>
+                  <li>Simple, clean UI</li>
+                  <li>Deployed on Heroku</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/saavandl" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card fade-in">
+              <div class="project-header">
+                <h3 class="project-title">✍️ Write My Text</h3>
+                <div class="project-badges">
+                  <span class="project-badge">JavaScript</span>
+                  <span class="project-badge">Canvas API</span>
+                  <span class="project-badge">Web App</span>
+                </div>
+              </div>
+              <div class="project-content">
+                <p class="project-description">
+                  A web application to convert typed text into handwritten style. Built with vanilla JavaScript and
+                  Canvas API, deployed on Heroku.
+                </p>
+                <ul class="project-features">
+                  <li>Text-to-handwriting conversion</li>
+                  <li>Download as image</li>
+                  <li>Multiple handwriting styles</li>
+                </ul>
+                <div class="project-links">
+                  <span class="project-status active">
+                    <i class="fas fa-circle"></i>
+                    Active
+                  </span>
+                  <a href="https://github.com/vijaygupta18/writemytext" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-graduation-cap"></i> Education & Certifications</h2>
+
+      <div class="education-container">
+        <h3 style="margin-bottom: var(--space-xl); color: var(--text-primary);" class="fade-in">🎓 Education</h3>
+        <div class="education-grid">
+          <div class="education-card fade-in">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <i class="fas fa-graduation-cap"
+                style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+              <div>
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Kamla Nehru Institute of
+                  Technology, Sultanpur</h4>
+                <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">Aug 2018 - Jun 2022 • India</p>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-xs);">Bachelor of Technology - BTech,
+                  Information Technology</p>
+                <p style="color: var(--color-primary); font-weight: 600;">8.5 CGPA (Top 5% of class)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="education-card fade-in">
+            <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
+              <i class="fas fa-university"
+                style="color: var(--color-primary); font-size: var(--text-2xl); margin-top: var(--space-xs);"></i>
+              <div>
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Swami Harsewanand Public School
+                </h4>
+                <p style="color: var(--text-tertiary); margin-bottom: var(--space-xs);">2015 - 2017 • India</p>
+                <p style="color: var(--text-secondary);">Intermediate, Science</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin: var(--space-2xl) 0 var(--space-xl) 0; color: var(--text-primary);" class="fade-in">📜
+          Licenses & Certifications</h3>
+        <div class="cert-grid">
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Applied Machine Learning in Python
+            </h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Crash Course on Python</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/google.png" alt="Google" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Google HashCode</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Google</p>
+            <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">HTML, CSS, and Javascript for Web
+              Developers</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/coursera-logo.png" alt="Coursera" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Python Data Structures</h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Coursera</p>
+            <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+
+          <div class="cert-card fade-in">
+            <img src="images/haskell-logo.png" alt="Haskell" class="cert-logo">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-sm);">Haskell Programming Certification
+            </h4>
+            <p style="color: var(--text-tertiary); margin-bottom: var(--space-sm);">Professional Development</p>
+            <a href="https://drive.google.com/file/d/11-MYtt-jtSsx-wepPboQ-_7aQWfwjf1E/view?usp=sharing" target="_blank"
+              class="cert-link">Show credential</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommendations Section -->
+  <section class="section" id="recommendations" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-comments"></i> What People Say</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);"
+        class="fade-in">Testimonials from colleagues and managers I've worked with</p>
+
+      <div class="recommendations-container">
+        <div class="carousel-controls prev">
+          <button class="carousel-btn prev" id="recommendationsPrev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+        <div class="carousel-controls next">
+          <button class="carousel-btn next" id="recommendationsNext">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="recommendations-carousel" id="recommendationsCarousel">
+          <div class="recommendations-grid">
+            <div class="recommendation-card fade-in">
+              <div class="recommendation-header">
+                <div class="recommendation-avatar">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="recommendation-info">
+                  <h4>Naman Samaiya</h4>
+                  <p>SDE3 @Vahan Inc (YC S19) | IIIT Bhagalpur</p>
+                  <span class="recommendation-relation">Worked together on same team</span>
+                </div>
+              </div>
+              <blockquote class="recommendation-text">
+                "Vijay was a fantastic person to work with and is not only a multi-skilled and insightful colleague but
+                also a person with very strong problem-solving skills. His focus keeps everything moving smoothly, he
+                makes sure all the deadlines are met and makes sure that whatever project he is working on meets the
+                highest standards. Vijay is an asset to any company."
+              </blockquote>
+            </div>
+
+            <div class="recommendation-card fade-in">
+              <div class="recommendation-header">
+                <div class="recommendation-avatar">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="recommendation-info">
+                  <h4>Ketan Patil</h4>
+                  <p>Manager at Vahan</p>
+                  <span class="recommendation-relation">Managed Vijay directly</span>
+                </div>
+              </div>
+              <blockquote class="recommendation-text">
+                "I had the pleasure of working with Vijay during his time at Vahan, where he joined as a fresher in the
+                engineering team. Vijay impressed me with his positive attitude and strong work ethic. He is always
+                eager to learn, and shows great initiative in tackling challenging projects. Vijay's technical skills
+                are equally impressive, and it was clear from the beginning that he has a great deal of potential.
+                Overall, I highly recommend Vijay for any future opportunities."
+              </blockquote>
+            </div>
+
+            <div class="recommendation-card fade-in">
+              <div class="recommendation-header">
+                <div class="recommendation-avatar">
+                  <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="recommendation-info">
+                  <h4>Aditya Kale</h4>
+                  <p>SSE @Vahan | IIIT Pune</p>
+                  <span class="recommendation-relation">Worked together on same team</span>
+                </div>
+              </div>
+              <blockquote class="recommendation-text">
+                "Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched, and he was
+                always a key contributor to our team's projects. I highly recommend Vijay for any job opportunity he
+                pursue."
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title fade-in"><i class="fas fa-envelope"></i> Get In Touch</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-2xl); font-size: var(--text-lg);"
+        class="fade-in">I would love to connect with you and discuss opportunities.</p>
+
+      <div class="contact-grid">
+        <div class="contact-form fade-in">
+          <div class="contact-form-header">
+            <h3>Send me a message</h3>
+            <p>I'd love to hear from you. Send me a message and I'll respond as soon as possible.</p>
+          </div>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?">
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" class="form-textarea"
+                placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: var(--space-lg);">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <div class="contact-info fade-in">
+          <div class="contact-info-header">
+            <h3>Let's Connect</h3>
+            <p>Available for opportunities and collaborations</p>
+          </div>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Location</h4>
+                <p>Bengaluru, Karnataka<br>India</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Email</h4>
+                <p>vijayrauniyar1818@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Phone & WhatsApp</h4>
+                <p>Mobile: (+91) 8565017450<br>WhatsApp: (+91) 8565017450</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <h4>Follow Me</h4>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link linkedin">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/vijaygupta18" target="_blank" class="social-link github">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Modal -->
+  <div class="resume-modal" id="resumeModal">
+    <button class="resume-close" id="resumeClose">&times;</button>
+    <iframe src="images/Vijay2025.pdf" title="Vijay Gupta Resume"></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="social-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/vijaygupta18" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="mailto:vijayrauniyar1818@gmail.com" class="social-link">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <a href="#hero" class="back-to-top">
+          <i class="fas fa-arrow-up"></i>
+          Back to Top
+        </a>
+      </div>
+      <div
+        style="text-align: center; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
+        <p>&copy; 2024 Vijay Gupta. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/indexV5.js"></script>
+</body>
+
+</html>
