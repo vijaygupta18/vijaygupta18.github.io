@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vijay@bangalore ~ terminal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0e17;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 20px;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 780px;
+    background: #0d1117;
+    border-radius: 12px;
+    border: 1px solid #21262d;
+    box-shadow: 0 0 40px rgba(0,212,255,0.08), 0 0 80px rgba(124,58,237,0.05);
+    overflow: hidden;
+  }
+
+  .titlebar {
+    background: #161b22;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #21262d;
+    user-select: none;
+  }
+
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.red { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green { background: #28c840; }
+
+  .titlebar span {
+    flex: 1;
+    text-align: center;
+    color: #484f58;
+    font-size: 13px;
+  }
+
+  .terminal {
+    padding: 20px;
+    height: 520px;
+    overflow-y: auto;
+    color: #c9d1d9;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .terminal::-webkit-scrollbar { width: 6px; }
+  .terminal::-webkit-scrollbar-track { background: transparent; }
+  .terminal::-webkit-scrollbar-thumb { background: #21262d; border-radius: 3px; }
+
+  .output-line { white-space: pre-wrap; word-wrap: break-word; }
+
+  .prompt-color { color: #7c3aed; font-weight: 700; }
+  .path-color { color: #00d4ff; }
+  .cmd-color { color: #c9d1d9; }
+  .key { color: #00d4ff; }
+  .val { color: #c9d1d9; }
+  .accent { color: #7c3aed; }
+  .green { color: #3fb950; }
+  .yellow { color: #d29922; }
+  .dim { color: #484f58; }
+  .bold { font-weight: 700; }
+  .link { color: #58a6ff; text-decoration: none; }
+  .link:hover { text-decoration: underline; }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+  }
+
+  .input-row input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #c9d1d9;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    flex: 1;
+    caret-color: #00d4ff;
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #00d4ff;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .terminal { font-size: 12px; height: 450px; padding: 14px; }
+    .window { border-radius: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+    <span>vijay@bangalore:~</span>
+    <div style="width: 52px;"></div>
+  </div>
+  <div class="terminal" id="terminal">
+    <div id="output"></div>
+    <div class="input-row" id="inputRow">
+      <span class="prompt-color">vijay</span><span class="dim">@</span><span class="path-color">bangalore</span><span class="dim">:~$ </span>
+      <input type="text" id="cmdInput" autofocus autocomplete="off" spellcheck="false" />
+    </div>
+  </div>
+</div>
+
+<script>
+const COMMANDS = {
+  help: () => [
+    '<span class="accent bold">Available commands:</span>',
+    '',
+    '  <span class="key">whoami</span>      <span class="dim">-</span> who is Vijay?',
+    '  <span class="key">skills</span>      <span class="dim">-</span> tech stack & specializations',
+    '  <span class="key">projects</span>    <span class="dim">-</span> featured projects',
+    '  <span class="key">experience</span>  <span class="dim">-</span> work experience',
+    '  <span class="key">education</span>   <span class="dim">-</span> education background',
+    '  <span class="key">contact</span>     <span class="dim">-</span> how to reach me',
+    '  <span class="key">funfact</span>     <span class="dim">-</span> a random fun fact',
+    '  <span class="key">clear</span>       <span class="dim">-</span> clear the terminal',
+    '  <span class="key">help</span>        <span class="dim">-</span> show this menu',
+    '',
+    '<span class="dim">Tip: try typing any command to explore!</span>',
+  ],
+
+  whoami: () => [
+    '',
+    '  <span class="accent bold">VIJAY GUPTA</span>',
+    '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '  <span class="key">Role</span>       <span class="val">Software Engineer</span>',
+    '  <span class="key">Company</span>    <span class="val">Nammayatri (Juspay)</span>',
+    '  <span class="key">Location</span>   <span class="val">Bangalore, India</span>',
+    '  <span class="key">Motto</span>      <span class="val">"Jack of All, Master of Some"</span>',
+    '  <span class="key">Passion</span>    <span class="val">Building systems that scale to millions</span>',
+    '',
+    '  <span class="dim">I design distributed systems & cloud-native</span>',
+    '  <span class="dim">applications, fueled by an endless supply of chai.</span>',
+    '',
+  ],
+
+  skills: () => [
+    '',
+    '  <span class="accent bold">LANGUAGES</span>',
+    '  <span class="val">Haskell  Python  TypeScript  JavaScript  PureScript  C++</span>',
+    '',
+    '  <span class="accent bold">BACKEND & DATA</span>',
+    '  <span class="val">Node.js  Express  PostgreSQL  Redis  MongoDB  ClickHouse</span>',
+    '',
+    '  <span class="accent bold">CLOUD & DEVOPS</span>',
+    '  <span class="val">AWS  Docker  Kubernetes  Lambda  Jenkins  GitHub Actions</span>',
+    '',
+    '  <span class="accent bold">FRONTEND</span>',
+    '  <span class="val">React  HTML5  CSS3  Bootstrap</span>',
+    '',
+    '  <span class="accent bold">SPECIALIZATIONS</span>',
+    '  <span class="green">&#9656;</span> System Design & Architecture',
+    '  <span class="green">&#9656;</span> Distributed Systems',
+    '  <span class="green">&#9656;</span> Performance Optimization',
+    '  <span class="green">&#9656;</span> Microservices & Event-Driven Architecture',
+    '',
+  ],
+
+  projects: () => [
+    '',
+    '  <span class="accent bold">FEATURED PROJECTS</span>',
+    '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '',
+    '  <span class="yellow bold">nammayatri</span>  <span class="dim">★ 2.5k+</span>',
+    '  Direct-to-driver open mobility platform',
+    '  <a class="link" href="https://github.com/nammayatri/nammayatri" target="_blank">github.com/nammayatri/nammayatri</a>',
+    '',
+    '  <span class="yellow bold">NodeSage</span>',
+    '  RAG-powered code Q&A and fixer CLI',
+    '  <a class="link" href="https://github.com/vijaygupta18/NodeSage" target="_blank">github.com/vijaygupta18/NodeSage</a>',
+    '',
+    '  <span class="yellow bold">Multi-Cloud-DB-Manager</span>',
+    '  PostgreSQL management across AWS/GCP/Azure',
+    '  <a class="link" href="https://github.com/vijaygupta18/Multi-Cloud-DB-Manager" target="_blank">github.com/vijaygupta18/Multi-Cloud-DB-Manager</a>',
+    '',
+    '  <span class="yellow bold">Vishwakarma</span>',
+    '  Autonomous SRE agent using LLMs',
+    '  <a class="link" href="https://github.com/vijaygupta18/Vishwakarma" target="_blank">github.com/vijaygupta18/Vishwakarma</a>',
+    '',
+    '  <span class="yellow bold">Argus</span>',
+    '  AI-powered production issue dashboard',
+    '  <a class="link" href="https://github.com/vijaygupta18/Argus" target="_blank">github.com/vijaygupta18/Argus</a>',
+    '',
+  ],
+
+  experience: () => [
+    '',
+    '  <span class="accent bold">WORK EXPERIENCE</span>',
+    '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '',
+    '  <span class="yellow bold">Software Engineer</span> <span class="dim">@</span> <span class="val">Juspay (Nammayatri)</span>',
+    '  <span class="dim">2022 - Present  |  Bangalore, India</span>',
+    '',
+    '  <span class="green">&#9656;</span> Building India\'s largest open-source mobility platform',
+    '  <span class="green">&#9656;</span> Designing distributed systems serving millions of users',
+    '  <span class="green">&#9656;</span> Multi-cloud architecture across AWS & GCP',
+    '  <span class="green">&#9656;</span> Performance optimization & system reliability',
+    '',
+  ],
+
+  education: () => [
+    '',
+    '  <span class="accent bold">EDUCATION</span>',
+    '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '',
+    '  <span class="yellow bold">B.Tech in Information Technology</span>',
+    '  <span class="val">KNIT Sultanpur</span>',
+    '  <span class="dim">2018 - 2022</span>',
+    '',
+  ],
+
+  contact: () => [
+    '',
+    '  <span class="accent bold">GET IN TOUCH</span>',
+    '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '',
+    '  <span class="key">LinkedIn</span>   <a class="link" href="https://linkedin.com/in/vijaygupta18" target="_blank">linkedin.com/in/vijaygupta18</a>',
+    '  <span class="key">GitHub</span>     <a class="link" href="https://github.com/vijaygupta18" target="_blank">github.com/vijaygupta18</a>',
+    '  <span class="key">Portfolio</span>  <a class="link" href="https://vijaygupta18.github.io" target="_blank">vijaygupta18.github.io</a>',
+    '',
+  ],
+
+  funfact: () => {
+    const facts = [
+      "I debug production issues faster after my second cup of chai.",
+      "I once optimized a query from 12s to 40ms. The secret? Reading the docs.",
+      "My .vimrc is longer than some of my microservices.",
+      "I think in Haskell but dream in distributed systems.",
+      "I've mass-deployed more containers than I've had hot meals.",
+      "My Redis cache hit ratio is higher than my coffee-to-code ratio.",
+    ];
+    const fact = facts[Math.floor(Math.random() * facts.length)];
+    return ['', `  <span class="green">&#9656;</span> ${fact}`, ''];
+  },
+
+  clear: () => 'CLEAR',
+};
+
+const ALIASES = {
+  about: 'whoami',
+  me: 'whoami',
+  tech: 'skills',
+  stack: 'skills',
+  repos: 'projects',
+  work: 'experience',
+  job: 'experience',
+  social: 'contact',
+  links: 'contact',
+  fact: 'funfact',
+  ls: 'help',
+};
+
+const output = document.getElementById('output');
+const cmdInput = document.getElementById('cmdInput');
+const terminal = document.getElementById('terminal');
+const inputRow = document.getElementById('inputRow');
+const history = [];
+let historyIndex = -1;
+
+function prompt() {
+  return '<span class="prompt-color">vijay</span><span class="dim">@</span><span class="path-color">bangalore</span><span class="dim">:~$ </span>';
+}
+
+function addLine(html) {
+  const div = document.createElement('div');
+  div.className = 'output-line';
+  div.innerHTML = html;
+  output.appendChild(div);
+}
+
+function scrollBottom() {
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+function printWelcome() {
+  const lines = [
+    '',
+    '<span class="accent bold">  Welcome to Vijay Gupta\'s Terminal Portfolio</span>',
+    '<span class="dim">  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '',
+    '  Type <span class="key">help</span> to see available commands.',
+    '  Navigate my profile like a real terminal.',
+    '',
+  ];
+  lines.forEach(l => addLine(l));
+}
+
+function runCommand(cmd) {
+  const trimmed = cmd.trim().toLowerCase();
+
+  addLine(prompt() + '<span class="cmd-color">' + escapeHtml(cmd) + '</span>');
+
+  if (!trimmed) { scrollBottom(); return; }
+
+  const resolved = ALIASES[trimmed] || trimmed;
+  const handler = COMMANDS[resolved];
+
+  if (!handler) {
+    addLine(`<span class="dim">  command not found: ${escapeHtml(trimmed)}. Type </span><span class="key">help</span><span class="dim"> to see available commands.</span>`);
+    addLine('');
+  } else {
+    const result = handler();
+    if (result === 'CLEAR') {
+      output.innerHTML = '';
+    } else {
+      result.forEach(line => addLine(line));
+    }
+  }
+
+  scrollBottom();
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+printWelcome();
+scrollBottom();
+cmdInput.focus();
+
+cmdInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const cmd = cmdInput.value;
+    if (cmd.trim()) { history.unshift(cmd); historyIndex = -1; }
+    runCommand(cmd);
+    cmdInput.value = '';
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (historyIndex < history.length - 1) {
+      historyIndex++;
+      cmdInput.value = history[historyIndex];
+    }
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIndex > 0) {
+      historyIndex--;
+      cmdInput.value = history[historyIndex];
+    } else {
+      historyIndex = -1;
+      cmdInput.value = '';
+    }
+  } else if (e.key === 'l' && e.ctrlKey) {
+    e.preventDefault();
+    output.innerHTML = '';
+  }
+});
+
+terminal.addEventListener('click', () => cmdInput.focus());
+</script>
+
+</body>
+</html>
