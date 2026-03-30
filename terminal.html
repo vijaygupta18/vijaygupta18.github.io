@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>vijay@bangalore ~ terminal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
@@ -110,6 +111,50 @@
     50% { opacity: 0; }
   }
 
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 780px;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+
+  .top-bar a {
+    color: #58a6ff;
+    text-decoration: none;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .top-bar a:hover { text-decoration: underline; }
+
+  .version-switcher {
+    background: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .version-switcher:focus { border-color: #58a6ff; }
+
+  .footer-bar {
+    max-width: 780px;
+    width: 100%;
+    margin-top: 12px;
+    text-align: center;
+    color: #484f58;
+    font-size: 12px;
+  }
+
   @media (max-width: 600px) {
     .terminal { font-size: 12px; height: 450px; padding: 14px; }
     .window { border-radius: 8px; }
@@ -117,6 +162,20 @@
 </style>
 </head>
 <body>
+
+<div class="top-bar">
+  <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to portfolio</a>
+  <select class="version-switcher" id="portfolioSwitcher" aria-label="Switch portfolio version">
+    <option value="indexV1.html">V1</option>
+    <option value="indexV2.html">V2</option>
+    <option value="indexV3.html">V3</option>
+    <option value="indexV4.html">V4</option>
+    <option value="indexV5.html">V5</option>
+    <option value="index.html">V6</option>
+    <option value="indexV7.html">V7</option>
+    <option value="terminal.html" selected>Terminal</option>
+  </select>
+</div>
 
 <div class="window">
   <div class="titlebar">
@@ -134,6 +193,8 @@
     </div>
   </div>
 </div>
+
+<div class="footer-bar">&copy; 2025 Vijay Gupta</div>
 
 <script>
 const COMMANDS = {
@@ -223,12 +284,19 @@ const COMMANDS = {
     '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
     '',
     '  <span class="yellow bold">Software Engineer</span> <span class="dim">@</span> <span class="val">Juspay (Nammayatri)</span>',
-    '  <span class="dim">2022 - Present  |  Bangalore, India</span>',
+    '  <span class="dim">May 2023 - Present  |  Bangalore, India</span>',
     '',
     '  <span class="green">&#9656;</span> Building India\'s largest open-source mobility platform',
     '  <span class="green">&#9656;</span> Designing distributed systems serving millions of users',
     '  <span class="green">&#9656;</span> Multi-cloud architecture across AWS & GCP',
     '  <span class="green">&#9656;</span> Performance optimization & system reliability',
+    '',
+    '  <span class="yellow bold">Software Engineer I</span> <span class="dim">@</span> <span class="val">Vahan</span>',
+    '  <span class="dim">Jun 2022 - Apr 2023  |  Bangalore, India</span>',
+    '',
+    '  <span class="green">&#9656;</span> WhatsApp Bot redesign: API time down 40%, engagement up 35%',
+    '  <span class="green">&#9656;</span> Concurrent chat processing: telecalling costs down 32%',
+    '  <span class="green">&#9656;</span> Uber fallback mechanism: 98% data accuracy during outages',
     '',
   ],
 
@@ -237,7 +305,7 @@ const COMMANDS = {
     '  <span class="accent bold">EDUCATION</span>',
     '  <span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
     '',
-    '  <span class="yellow bold">B.Tech in Information Technology</span>',
+    '  <span class="yellow bold">B.Tech, Computer Science</span>',
     '  <span class="val">KNIT Sultanpur</span>',
     '  <span class="dim">2018 - 2022</span>',
     '',
@@ -382,6 +450,14 @@ cmdInput.addEventListener('keydown', (e) => {
 });
 
 terminal.addEventListener('click', () => cmdInput.focus());
+
+// Version switcher
+const switcher = document.getElementById('portfolioSwitcher');
+if (switcher) {
+  switcher.addEventListener('change', function(e) {
+    window.location.href = e.target.value;
+  });
+}
 </script>
 
 </body>

@@ -25,7 +25,7 @@
 
   function updateThemeIcon(t) {
     if (!themeBtn) return;
-    themeBtn.textContent = t === 'dark' ? '☀' : '◑';
+    themeBtn.innerHTML = t === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
@@ -176,7 +176,7 @@
     submitting = true;
     const btn = form.querySelector('button[type=submit]');
     const orig = btn.innerHTML;
-    btn.innerHTML = '<span class="spin">◌</span> Sending…';
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
     btn.disabled = true;
     try {
       const fd = new FormData(form);
@@ -191,7 +191,7 @@
       await emailjs.send('service_4wre7f9', 'template_4alqdiv', {
         name: clean(name), email: clean(email), title: clean(subject),
         subject: 'Contact: ' + clean(subject), reply_to: clean(email),
-        message: `📋 ${clean(subject)}\n\n${clean(message)}\n\nFrom: ${clean(email)}`,
+        message: `${clean(subject)}\n\n${clean(message)}\n\nFrom: ${clean(email)}`,
         time: new Date().toLocaleString()
       });
       lastSent = Date.now();

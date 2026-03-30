@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vijay Gupta — Backend Engineer specializing in distributed systems, cost optimization, and scalable infrastructure at Juspay/NammaYatri." />
+  <title>Vijay Gupta — Systems Architect</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/indexV7.css" />
+</head>
+<body>
+
+  <!-- Custom 3D Cursor -->
+  <div id="cursor" class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Grain Overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <nav class="nav">
+      <a href="#hero" class="nav-brand" aria-label="Home">
+        <span class="brand-dot"></span>VG
+      </a>
+
+      <ul id="navMenu" class="nav-links" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#stack" class="nav-link">Stack</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#builds" class="nav-link">Builds</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <select id="portfolioSwitcher" class="version-select" aria-label="Switch portfolio version">
+          <option value="indexV1.html">V1</option>
+          <option value="indexV2.html">V2</option>
+          <option value="indexV3.html">V3</option>
+          <option value="indexV4.html">V4</option>
+          <option value="indexV5.html">V5</option>
+          <option value="index.html">V6</option>
+          <option value="indexV7.html" selected>V7</option>
+        </select>
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+          <i data-lucide="sun" class="icon-sun"></i>
+          <i data-lucide="moon" class="icon-moon"></i>
+        </button>
+        <a href="#" id="resumeNavBtn" class="resume-btn">Resume</a>
+        <button id="mobileMenuToggle" class="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── HERO: Bento Grid ── -->
+  <section id="hero">
+    <!-- Three.js Network Background -->
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+    <!-- Floating 3D Geometric Shapes -->
+    <div class="floating-shapes" aria-hidden="true">
+      <div class="shape shape-1"><div class="cube"><div class="face front"></div><div class="face back"></div><div class="face right"></div><div class="face left"></div><div class="face top"></div><div class="face bottom"></div></div></div>
+      <div class="shape shape-2"><div class="octahedron"></div></div>
+      <div class="shape shape-3"><div class="ring-3d"></div></div>
+      <div class="shape shape-4"><div class="pyramid"><div class="face front"></div><div class="face right"></div><div class="face back"></div><div class="face left"></div><div class="face base"></div></div></div>
+      <div class="shape shape-5"><div class="cube cube-sm"><div class="face front"></div><div class="face back"></div><div class="face right"></div><div class="face left"></div><div class="face top"></div><div class="face bottom"></div></div></div>
+    </div>
+
+    <div class="hero-grid">
+
+      <!-- Main intro block -->
+      <div class="bento-card bento-main tilt-card">
+        <div class="bento-main__content">
+          <div class="status-badge">
+            <span class="status-dot-live"></span>
+            Available for opportunities
+          </div>
+          <h1 class="hero-name">Vijay<br/>Gupta</h1>
+          <p class="hero-tagline">I architect systems that <span class="text-accent">scale</span></p>
+          <p class="hero-sub">Backend Engineer building infrastructure that processes millions of daily rides across India. Every millisecond counts. Every rupee of infra cost matters.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">
+              <i data-lucide="send" class="btn-icon"></i>
+              Get in touch
+            </a>
+            <a href="#work" class="btn btn-ghost">
+              <i data-lucide="briefcase" class="btn-icon"></i>
+              View work
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo block -->
+      <div class="bento-card bento-photo tilt-card">
+        <img src="images/profile2.jpg" alt="Vijay Gupta" class="hero-photo" />
+        <div class="photo-overlay">
+          <span class="photo-role">SDE @ Juspay</span>
+          <span class="photo-product">NammaYatri</span>
+        </div>
+      </div>
+
+      <!-- Metrics block -->
+      <div class="bento-card bento-metrics tilt-card">
+        <div class="metric-item">
+          <span class="metric-value" data-target="40">0</span><span class="metric-unit">%</span>
+          <span class="metric-label">Latency Reduced</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-value" data-target="50">0</span><span class="metric-unit">%</span>
+          <span class="metric-label">Infra Cost Cut</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-value" data-target="3">0</span><span class="metric-unit">y+</span>
+          <span class="metric-label">Production Exp</span>
+        </div>
+      </div>
+
+      <!-- Location block -->
+      <div class="bento-card bento-location tilt-card">
+        <i data-lucide="map-pin" class="bento-icon"></i>
+        <span class="bento-label">Bengaluru, India</span>
+        <span class="bento-sublabel">Open to Remote / Relocation</span>
+      </div>
+
+      <!-- Tech ticker block -->
+      <div class="bento-card bento-ticker">
+        <div class="ticker-track" aria-label="Technologies">
+          <div class="ticker-content">
+            <span class="ticker-item">Haskell</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Redis</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Kafka</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">PostgreSQL</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">AWS</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Kubernetes</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Clickhouse</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Python</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Haskell</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Redis</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Kafka</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">PostgreSQL</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">AWS</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Kubernetes</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Clickhouse</span>
+            <span class="ticker-sep">/</span>
+            <span class="ticker-item">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Socials block -->
+      <div class="bento-card bento-socials">
+        <a href="https://github.com/vijaygupta18" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
+          <i data-lucide="github"></i>
+        </a>
+        <a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+          <i data-lucide="linkedin"></i>
+        </a>
+        <a href="https://twitter.com/vijaygupta18" target="_blank" rel="noopener" class="social-icon" aria-label="Twitter / X">
+          <i data-lucide="twitter"></i>
+        </a>
+        <a href="mailto:vijayrauniyar1818@gmail.com" class="social-icon" aria-label="Email">
+          <i data-lucide="mail"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-layout reveal">
+        <div class="about-text">
+          <p class="about-lead">Software Engineer with <strong>3+ years</strong> designing scalable backend systems. Currently at <strong>Juspay</strong> building <strong>NammaYatri</strong> — infrastructure that processes millions of daily rides across India.</p>
+          <p>My work spans the full backend depth: Redis slot optimization, Kafka consumer tuning, CloudWatch-based auto-scaling, and CPU profiling in Haskell. I care about systems that are <em>observable</em>, <em>cost-efficient</em>, and stay up when traffic spikes unexpectedly.</p>
+          <p>When I'm not optimizing production systems, I'm building developer tools, exploring LLM-powered observability, and contributing to open-source transit infrastructure.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-number" data-target="40">0</span><span class="stat-suffix">%</span>
+            <span class="stat-desc">Backend latency reduction via CPU profiling & I/O optimization</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="50">0</span><span class="stat-suffix">%</span>
+            <span class="stat-desc">Infrastructure cost cut with Redis-to-Valkey + zstd compression</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="60">0</span><span class="stat-suffix">%</span>
+            <span class="stat-desc">QA time reduced with Automated Regression Testing framework</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="200">0</span><span class="stat-suffix">k+</span>
+            <span class="stat-desc">Daily rides powered by systems I help architect and maintain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STACK ── -->
+  <section id="stack" class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02</span>
+        <h2 class="section-title">Stack</h2>
+      </div>
+      <div class="stack-grid reveal">
+
+        <div class="stack-group">
+          <h3 class="stack-group-title">
+            <i data-lucide="code-2" class="stack-icon"></i>
+            Languages
+          </h3>
+          <div class="stack-pills">
+            <span class="pill pill--primary">Haskell</span>
+            <span class="pill">Python</span>
+            <span class="pill">C++</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill pill--primary">PureScript</span>
+            <span class="pill">SQL</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <h3 class="stack-group-title">
+            <i data-lucide="database" class="stack-icon"></i>
+            Data & Messaging
+          </h3>
+          <div class="stack-pills">
+            <span class="pill pill--primary">Redis / Valkey</span>
+            <span class="pill pill--primary">Kafka</span>
+            <span class="pill">RabbitMQ</span>
+            <span class="pill pill--primary">PostgreSQL</span>
+            <span class="pill">Clickhouse</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <h3 class="stack-group-title">
+            <i data-lucide="server" class="stack-icon"></i>
+            Backend
+          </h3>
+          <div class="stack-pills">
+            <span class="pill">Node.js</span>
+            <span class="pill">Express</span>
+            <span class="pill pill--primary">REST APIs</span>
+            <span class="pill pill--primary">Microservices</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <h3 class="stack-group-title">
+            <i data-lucide="cloud" class="stack-icon"></i>
+            Cloud & DevOps
+          </h3>
+          <div class="stack-pills">
+            <span class="pill pill--primary">AWS</span>
+            <span class="pill pill--primary">Kubernetes</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Git</span>
+            <span class="pill">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <h3 class="stack-group-title">
+            <i data-lucide="brain" class="stack-icon"></i>
+            Engineering Focus
+          </h3>
+          <div class="stack-pills">
+            <span class="pill pill--accent">System Design</span>
+            <span class="pill pill--accent">Performance Tuning</span>
+            <span class="pill pill--accent">Distributed Systems</span>
+            <span class="pill pill--accent">Cost Optimization</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK ── -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">03</span>
+        <h2 class="section-title">Work</h2>
+      </div>
+
+      <div class="exp-timeline">
+
+        <article class="exp-card reveal">
+          <div class="exp-card__header">
+            <div class="exp-card__left">
+              <h3 class="exp-company">Juspay <span class="exp-product">NammaYatri</span></h3>
+              <span class="exp-role">Software Development Engineer</span>
+            </div>
+            <div class="exp-card__right">
+              <span class="exp-date">May 2023 — Present</span>
+              <span class="exp-location">Bengaluru</span>
+            </div>
+          </div>
+
+          <div class="exp-card__body">
+            <div class="exp-group">
+              <h4 class="exp-group-title">
+                <i data-lucide="trending-down" class="exp-group-icon"></i>
+                Cost Optimization & Efficiency
+              </h4>
+              <ul class="exp-list">
+                <li>Architected a high-throughput KV storage framework using Redis, cutting PostgreSQL database cost by <strong class="highlight">40%</strong></li>
+                <li>Introduced table-level sharding and optimized Redis slot allocation, reducing Redis node count by <strong class="highlight">30%</strong></li>
+                <li>Cut AWS ALB costs by <strong class="highlight">25%</strong> via API response compression and zone-aware routing</li>
+                <li>Upgraded Redis to Valkey + zstd compression: <strong class="highlight">50%</strong> decrease in memory usage and instance cost</li>
+              </ul>
+            </div>
+            <div class="exp-group">
+              <h4 class="exp-group-title">
+                <i data-lucide="scaling" class="exp-group-icon"></i>
+                Scalability & Architecture
+              </h4>
+              <ul class="exp-list">
+                <li>Implemented auto-scaling for Redis and RDS using custom CloudWatch metrics for seamless traffic spike handling</li>
+                <li>Decoupled the drainer service for async, resilient syncing to Clickhouse and PostgreSQL</li>
+                <li>Reduced CPU bottlenecks via multithreading in high-throughput services</li>
+              </ul>
+            </div>
+            <div class="exp-group">
+              <h4 class="exp-group-title">
+                <i data-lucide="zap" class="exp-group-icon"></i>
+                Performance & Developer Efficiency
+              </h4>
+              <ul class="exp-list">
+                <li>Reduced backend latency by <strong class="highlight">40%</strong> via CPU profiling, I/O optimization, and dependency trimming</li>
+                <li>Built Automated Regression Testing (ART) framework — QA time reduced by <strong class="highlight">60%</strong></li>
+                <li>Developed dynamic real-time pricing engine and ETA predictor</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-card__tags">
+            <span class="tag">Haskell</span><span class="tag">PureScript</span><span class="tag">Redis (Valkey)</span><span class="tag">Kafka</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">Clickhouse</span>
+          </div>
+        </article>
+
+        <article class="exp-card reveal">
+          <div class="exp-card__header">
+            <div class="exp-card__left">
+              <h3 class="exp-company">Vahan</h3>
+              <span class="exp-role">Software Development Engineer I</span>
+            </div>
+            <div class="exp-card__right">
+              <span class="exp-date">Jun 2022 — Apr 2023</span>
+              <span class="exp-location">Bengaluru</span>
+            </div>
+          </div>
+
+          <div class="exp-card__body">
+            <ul class="exp-list">
+              <li>Redesigned backend for an AI-driven WhatsApp Bot — API response time down <strong class="highlight">40%</strong>, user engagement up <strong class="highlight">35%</strong></li>
+              <li>Implemented concurrent chat processing, reducing telecalling costs by <strong class="highlight">32%</strong> through automation</li>
+              <li>Built fallback data collection for Uber, achieving <strong class="highlight">98%</strong> data accuracy during system outages</li>
+              <li>Automated application status tracking via offline data uploads to data warehouse</li>
+            </ul>
+          </div>
+
+          <div class="exp-card__tags">
+            <span class="tag">Node.js</span><span class="tag">React.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BUILDS ── -->
+  <section id="builds" class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">04</span>
+        <h2 class="section-title">Builds</h2>
+      </div>
+
+      <div class="builds-grid">
+
+        <article class="build-card build-card--featured reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <span class="build-badge">@ Juspay</span>
+            </div>
+          </div>
+          <h3 class="build-card__name">Location Tracking Healthcheck</h3>
+          <p class="build-card__desc">Real-time system to detect stalled GPS updates for active drivers — improving dispatch accuracy by <strong>20%</strong> across <strong>200k+</strong> daily rides. Optimized Redis Streams cut location latency by 15%.</p>
+          <div class="build-card__tags">
+            <span class="tag">Haskell</span><span class="tag">Redis Streams</span>
+          </div>
+        </article>
+
+        <article class="build-card build-card--featured reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" rel="noopener" class="build-link" aria-label="GitHub">
+                <i data-lucide="external-link"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="build-card__name">Master Oogway</h3>
+          <p class="build-card__desc">Post-release observability platform with LLM-powered RCA. Reduced MTTR by <strong>50%</strong> and incident detection time by <strong>70%</strong>.</p>
+          <div class="build-card__tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Prometheus</span><span class="tag">Kubernetes</span><span class="tag">AI</span>
+          </div>
+        </article>
+
+        <article class="build-card reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <a href="https://github.com/vijaygupta18/Multi-Cloud-DB-Manager" target="_blank" rel="noopener" class="build-link" aria-label="GitHub">
+                <i data-lucide="external-link"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="build-card__name">Multi-Cloud DB Manager</h3>
+          <p class="build-card__desc">Unified database manager supporting multi-cloud deployments with automatic failover and read replica routing.</p>
+          <div class="build-card__tags">
+            <span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+          </div>
+        </article>
+
+        <article class="build-card reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <a href="https://github.com/vijaygupta18/NodeSage" target="_blank" rel="noopener" class="build-link" aria-label="GitHub">
+                <i data-lucide="external-link"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="build-card__name">NodeSage</h3>
+          <p class="build-card__desc">CLI tool for codebase understanding using local LLMs with RAG architecture — ask questions about any repo.</p>
+          <div class="build-card__tags">
+            <span class="tag">Node.js</span><span class="tag">Ollama</span><span class="tag">RAG</span>
+          </div>
+        </article>
+
+        <article class="build-card reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <a href="https://github.com/vijaygupta18/k8s-dashboard" target="_blank" rel="noopener" class="build-link" aria-label="GitHub">
+                <i data-lucide="external-link"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="build-card__name">k8s-dashboard</h3>
+          <p class="build-card__desc">Kubernetes cluster monitoring dashboard with real-time metrics, pod health visualization, and resource utilization.</p>
+          <div class="build-card__tags">
+            <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Kubernetes</span>
+          </div>
+        </article>
+
+        <article class="build-card reveal">
+          <div class="build-card__top">
+            <div class="build-card__meta">
+              <i data-lucide="folder-git-2" class="build-card__icon"></i>
+              <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" rel="noopener" class="build-link" aria-label="GitHub">
+                <i data-lucide="external-link"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="build-card__name">Bus Route Tracker</h3>
+          <p class="build-card__desc">Open-source platform to collect, confirm, and manage bus stop & route data with real-time GPS tracking.</p>
+          <div class="build-card__tags">
+            <span class="tag">Python</span><span class="tag">Redis</span><span class="tag">Clickhouse</span><span class="tag">Kotlin</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">05</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+
+      <div class="edu-layout reveal">
+        <div class="edu-degrees">
+          <h3 class="edu-heading">Degrees</h3>
+          <div class="edu-card">
+            <div class="edu-card__icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="edu-card__body">
+              <h4 class="edu-card__degree">B.Tech, Computer Science</h4>
+              <p class="edu-card__school">Kamla Nehru Institute of Technology, Sultanpur</p>
+              <div class="edu-card__meta">
+                <span class="tag">2018 – 2022</span>
+                <span class="tag tag--accent">8.5 CGPA · Top 5%</span>
+              </div>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-card__icon"><i data-lucide="school"></i></div>
+            <div class="edu-card__body">
+              <h4 class="edu-card__degree">Higher Secondary (PCM)</h4>
+              <p class="edu-card__school">St. Handel Public School, Allahabad</p>
+              <div class="edu-card__meta">
+                <span class="tag">2015 – 2017</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-certs">
+          <h3 class="edu-heading">Certifications</h3>
+          <div class="cert-grid">
+            <a href="https://www.coursera.org/account/accomplishments/certificate/NSSLFNX9TL3Z" target="_blank" rel="noopener" class="cert-item">
+              <i data-lucide="award" class="cert-icon"></i>
+              <span class="cert-name">Neural Networks & Deep Learning</span>
+              <span class="cert-issuer">Coursera / DeepLearning.AI</span>
+            </a>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/WXKVWJTKYXYW" target="_blank" rel="noopener" class="cert-item">
+              <i data-lucide="award" class="cert-icon"></i>
+              <span class="cert-name">Improving Deep Neural Networks</span>
+              <span class="cert-issuer">Coursera</span>
+            </a>
+            <a href="https://www.hackerrank.com/certificates/8f9d1de8a54e" target="_blank" rel="noopener" class="cert-item">
+              <i data-lucide="badge-check" class="cert-icon"></i>
+              <span class="cert-name">Problem Solving (Intermediate)</span>
+              <span class="cert-issuer">HackerRank</span>
+            </a>
+            <a href="https://www.hackerrank.com/certificates/a3f0b476e8f4" target="_blank" rel="noopener" class="cert-item">
+              <i data-lucide="badge-check" class="cert-icon"></i>
+              <span class="cert-name">JavaScript (Intermediate)</span>
+              <span class="cert-issuer">HackerRank</span>
+            </a>
+            <a href="https://www.udemy.com/certificate/UC-6fa5b5d6-e72b-490d-84eb-fd68dfb6b9bb/" target="_blank" rel="noopener" class="cert-item">
+              <i data-lucide="badge-check" class="cert-icon"></i>
+              <span class="cert-name">Complete Node.js Developer</span>
+              <span class="cert-issuer">Udemy</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RECOMMENDATIONS ── -->
+  <section id="recommendations" class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">06</span>
+        <h2 class="section-title">What People Say</h2>
+      </div>
+
+      <div class="recs-grid reveal">
+        <blockquote class="rec-card">
+          <div class="rec-quote"><i data-lucide="quote" class="rec-quote-icon"></i></div>
+          <p>"Vijay was a fantastic person to work with — multi-skilled, insightful, and a person with very strong problem-solving skills. His focus keeps everything moving smoothly, deadlines are met, and whatever project he is working on meets the highest standards."</p>
+          <footer class="rec-footer">
+            <div class="rec-author">
+              <span class="rec-name">Naman Samaiya</span>
+              <span class="rec-role">SDE3 @ Vahan</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="rec-card">
+          <div class="rec-quote"><i data-lucide="quote" class="rec-quote-icon"></i></div>
+          <p>"Vijay impressed me with his positive attitude and strong work ethic. Always eager to learn, great initiative on challenging projects. His technical skills are equally impressive — it was clear from the beginning that he has a great deal of potential."</p>
+          <footer class="rec-footer">
+            <div class="rec-author">
+              <span class="rec-name">Ketan Patil</span>
+              <span class="rec-role">Engineering Manager @ Vahan</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="rec-card">
+          <div class="rec-quote"><i data-lucide="quote" class="rec-quote-icon"></i></div>
+          <p>"Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched. He was always a key contributor to our team's projects. I highly recommend Vijay for any opportunity he pursues."</p>
+          <footer class="rec-footer">
+            <div class="rec-author">
+              <span class="rec-name">Aditya Kale</span>
+              <span class="rec-role">SSE @ Vahan</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">07</span>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
+
+      <div class="contact-layout reveal">
+        <div class="contact-text">
+          <p class="contact-lead">Have an interesting problem to solve? Building something ambitious? Or just want to talk distributed systems?</p>
+          <div class="contact-links">
+            <a href="mailto:vijayrauniyar1818@gmail.com" class="contact-link-item">
+              <i data-lucide="mail"></i>
+              <span>vijayrauniyar1818@gmail.com</span>
+            </a>
+            <a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener" class="contact-link-item">
+              <i data-lucide="linkedin"></i>
+              <span>linkedin.com/in/vijaygupta18</span>
+            </a>
+            <a href="https://github.com/vijaygupta18" target="_blank" rel="noopener" class="contact-link-item">
+              <i data-lucide="github"></i>
+              <span>github.com/vijaygupta18</span>
+            </a>
+          </div>
+        </div>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?" />
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me what you're thinking..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn--full">
+            <i data-lucide="send" class="btn-icon"></i>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">VG</span>
+        <span class="footer-copy">&copy; 2025 Vijay Gupta</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://github.com/vijaygupta18" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+        <a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="https://twitter.com/vijaygupta18" target="_blank" rel="noopener" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+      </div>
+      <a href="#hero" class="footer-top" aria-label="Back to top">
+        <i data-lucide="arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ── RESUME MODAL ── -->
+  <div id="resumeModal" class="modal" role="dialog" aria-modal="true" aria-label="Resume">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <span class="modal-title">Resume</span>
+        <button id="resumeClose" class="modal-close" aria-label="Close resume">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe src="images/Vijay2025.pdf" title="Vijay Gupta Resume" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- JS -->
+  <script src="js/indexV7.js"></script>
+</body>
+</html>

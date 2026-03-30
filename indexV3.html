@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vijay's Portfolio</title>
+  <title>Vijay Gupta</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -73,33 +73,38 @@
     .tech-pill,
     .badge {
       display: inline-block;
-      background: #e5e7eb;
-      color: #1f2937;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      margin: 0.25rem;
-      font-size: 0.875rem;
-      transition: background-color 0.3s ease;
+      background: #f3f4f6;
+      color: #4b5563;
+      padding: 0.25rem 0.65rem;
+      border-radius: 0.25rem;
+      margin: 0.15rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.01em;
     }
 
     .dark .skill-badge,
     .dark .tech-pill,
     .dark .badge {
-      background: #4b5563;
-      color: #e5e7eb;
+      background: #1f2937;
+      color: #9ca3af;
     }
 
     .project-card,
     .experience-card,
     .cert-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.2s ease;
     }
 
     .project-card:hover,
     .experience-card:hover,
     .cert-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      border-color: #9ca3af;
+    }
+
+    .dark .project-card:hover,
+    .dark .experience-card:hover,
+    .dark .cert-card:hover {
+      border-color: #6b7280;
     }
 
     .slider {
@@ -147,11 +152,11 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .dark .nav-sticky {
-      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid #374151;
     }
 
     @media (max-width: 768px) {
@@ -169,20 +174,8 @@
       }
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     .animate-fade-in {
-      animation: fadeIn 0.5s ease-out forwards;
+      /* no animation - content loads immediately */
     }
   </style>
 </head>
@@ -190,7 +183,7 @@
 <body class="bg-gray-50 text-gray-900">
   <!-- Preloader -->
   <div id="preloader" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
-    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+    <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-gray-400"></div>
   </div>
 
   <!-- Navigation -->
@@ -198,41 +191,43 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Vijay's Portfolio</h1>
+          <h1 class="text-lg font-semibold text-gray-900 dark:text-white tracking-tight">Vijay Gupta</h1>
         </div>
         <div class="hidden md:flex items-center space-x-6">
           <a href="#about"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">About</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
           <a href="#skills"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Skills</a>
           <a href="#experience"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Experience</a>
           <a href="#portfolio"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
           <a href="#education"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Education</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Education</a>
           <a href="#resume"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium resume-link">Resume</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium resume-link">Resume</a>
           <a href="#contact"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
           <select id="portfolio-switcher"
-            class="p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm hover:border-blue-500 dark:hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-200"
+            class="p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 focus:border-gray-400 dark:focus:border-gray-500 transition-colors"
             aria-label="Select Portfolio Version">
             <option value="indexV1.html">V1</option>
             <option value="indexV2.html">V2</option>
             <option value="indexV3.html" selected>V3</option>
             <option value="indexV4.html">V4</option>
-            <option value="index.html">V5</option>
+            <option value="indexV5.html">V5</option>
+            <option value="index.html">V6</option>
+            <option value="indexV7.html">V7</option>
           </select>
           <button id="theme-toggle"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
             <i class="fas fa-moon dark:hidden"></i>
             <i class="fas fa-sun hidden dark:block"></i>
           </button>
         </div>
         <div class="md:hidden flex items-center">
           <button id="menu-toggle"
-            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none">
             <i class="fas fa-bars text-2xl"></i>
           </button>
         </div>
@@ -240,30 +235,32 @@
       <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <a href="#about"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">About</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">About</a>
           <a href="#skills"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">Skills</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">Skills</a>
           <a href="#experience"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">Experience</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">Experience</a>
           <a href="#portfolio"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">Projects</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">Projects</a>
           <a href="#education"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">Education</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">Education</a>
           <a href="#resume"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium resume-link">Resume</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium resume-link">Resume</a>
           <a href="#contact"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">Contact</a>
           <select id="mobile-portfolio-switcher"
-            class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm hover:border-blue-500 dark:hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-200 mt-2"
+            class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 focus:border-gray-400 dark:focus:border-gray-500 transition-colors mt-2"
             aria-label="Select Portfolio Version">
             <option value="indexV1.html">V1</option>
             <option value="indexV2.html">V2</option>
             <option value="indexV3.html" selected>V3</option>
             <option value="indexV4.html">V4</option>
-            <option value="index.html">V5</option>
+            <option value="indexV5.html">V5</option>
+            <option value="index.html">V6</option>
+            <option value="indexV7.html">V7</option>
           </select>
           <button id="mobile-theme-toggle"
-            class="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium">
+            class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-base font-medium">
             <i class="fas fa-moon"></i> Toggle Theme
           </button>
         </div>
@@ -272,29 +269,28 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-24 pb-16 bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">Vijay Gupta</h1>
-      <p class="text-xl md:text-2xl mb-6 animate-fade-in" style="animation-delay: 0.2s;">
+  <section class="pt-28 pb-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">Vijay Gupta</h1>
+      <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-8">
         Software Development Engineer | Building Scalable Systems
       </p>
-      <div class="flex justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s;">
-        <!-- <a href="#contact" class="bg-white text-blue-600 py-2 px-6 rounded-full font-semibold hover:bg-gray-100 transition">Get in Touch</a> -->
+      <div class="flex gap-4">
         <a href="#resume"
-          class="resume-link bg-transparent border-2 border-white text-white py-2 px-6 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition">View
+          class="resume-link text-blue-600 dark:text-blue-400 border border-gray-300 dark:border-gray-600 py-2 px-5 rounded font-medium hover:border-blue-600 dark:hover:border-blue-400 transition-colors text-sm">View
           Resume</a>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-white dark:bg-gray-800">
+  <section id="about" class="py-16 bg-slate-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">About Me</h2>
+      <h2 class="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">About Me</h2>
       <div class="flex flex-col md:flex-row items-center gap-8 animate-fade-in" style="animation-delay: 0.2s;">
         <div class="w-full md:w-1/3">
           <img src="images/profile.jpg" alt="Profile picture of Vijay Gupta"
-            class="rounded-lg shadow-lg w-full max-w-xs mx-auto">
+            class="rounded-lg shadow-sm w-full max-w-xs mx-auto">
         </div>
         <div class="w-full md:w-2/3">
           <h3 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Vijay Gupta</h3>
@@ -309,30 +305,26 @@
           <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">Building scalable, high-performance systems |
             Ex-Juspay, Vahan</p>
           <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-            I am a results-driven software engineer specializing in backend and distributed systems. With a proven track
-            record at high-growth startups, I architect and deliver robust, scalable solutions using technologies like
-            Haskell, Node.js, Kafka, Redis, AWS, and Kubernetes. My expertise spans system design, cloud infrastructure,
-            and performance optimization. I thrive in fast-paced environments, blending deep technical skills with a
-            collaborative, product-focused mindset to solve complex challenges and drive business impact.
+            Backend engineer focused on distributed systems and cost optimization. Currently at Juspay building NammaYatri's infrastructure — the kind of work where every millisecond and every rupee of infra cost matters. I work across the full backend depth: Redis slot optimization, Kafka consumer tuning, CloudWatch-based auto-scaling, and CPU profiling in Haskell.
           </p>
           <div class="flex flex-wrap gap-4 mt-6">
             <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="Facebook"><i class="fab fa-facebook-f text-xl"></i></a>
             <a href="https://twitter.com/vijaygupta1818" target="_blank"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="Twitter"><i class="fab fa-twitter text-xl"></i></a>
             <a href="https://www.instagram.com/vijayguptaa18/" target="_blank"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
             <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
             <a href="https://github.com/vijaygupta18" target="_blank"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
             <a href="mailto:vijayrauniyar1818@gmail.com"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               aria-label="Email"><i class="fas fa-envelope text-xl"></i></a>
           </div>
         </div>
@@ -341,9 +333,9 @@
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-gray-100 dark:bg-gray-900">
+  <section id="skills" class="py-16 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Skills / Tech Stack
+      <h2 class="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Skills / Tech Stack
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <div class="animate-fade-in" style="animation-delay: 0.2s;">
@@ -410,15 +402,15 @@
   </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="py-16 bg-white dark:bg-gray-800">
+  <section id="experience" class="py-16 bg-slate-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Work History &
+      <h2 class="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Work History &
         Timeline</h2>
       <div class="space-y-8">
         <!-- NammaYatri -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.2s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">NammaYatri - Software Development Engineer
             </h3>
@@ -464,9 +456,9 @@
           </div>
         </div>
         <!-- Juspay SDE -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.3s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Juspay - Software Development Engineer</h3>
             <p class="text-gray-600 dark:text-gray-300">Jan 2024 - Mar 2024 (3 mos) • Bengaluru, India • On-site</p>
@@ -492,9 +484,9 @@
           </div>
         </div>
         <!-- Juspay Product Engineer -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.4s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Juspay - Product Engineer</h3>
             <p class="text-gray-600 dark:text-gray-300">May 2023 - Dec 2023 (8 mos)</p>
@@ -523,9 +515,9 @@
           </div>
         </div>
         <!-- Vahan -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.5s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Vahan - Software Engineer-I</h3>
             <p class="text-gray-600 dark:text-gray-300">Jun 2022 - Mar 2023 (10 mos) • Bangalore Urban, India</p>
@@ -553,9 +545,9 @@
           </div>
         </div>
         <!-- Chegg India -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.6s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Subject Matter Expert</h3>
             <p class="text-gray-600 dark:text-gray-300">May 2021 - Apr 2022 (1 yr) • India</p>
@@ -572,9 +564,9 @@
           </div>
         </div>
         <!-- CodeChef -->
-        <div class="experience-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 relative animate-fade-in"
+        <div class="experience-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 relative animate-fade-in"
           style="animation-delay: 0.7s;">
-          <div class="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+          <div class="absolute left-0 top-0 w-1 h-full bg-gray-300 dark:bg-gray-600"></div>
           <div class="pl-6">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">College Chapter Representative</h3>
             <p class="text-gray-600 dark:text-gray-300">Jul 2020 - Feb 2022 (1 yr 8 mos)</p>
@@ -596,18 +588,18 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="portfolio" class="py-16 bg-gray-100 dark:bg-gray-900">
+  <section id="portfolio" class="py-16 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Projects</h2>
+      <h2 class="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Projects</h2>
       <div class="slider project-slider">
         <button class="slider-arrow slider-prev" aria-label="Previous Project"><i
             class="fas fa-chevron-left"></i></button>
         <div class="slider-track">
           <div class="slide">
-            <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 animate-fade-in"
+            <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 animate-fade-in"
               style="animation-delay: 0.2s;">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><a
-                  href="https://github.com/nammayatri/Master-Oogway" target="_blank">🐢 Master Oogway</a></h3>
+                  href="https://github.com/nammayatri/Master-Oogway" target="_blank"><i class="fas fa-shield-alt mr-1"></i> Master Oogway</a></h3>
               <div class="flex flex-wrap gap-2 my-3">
                 <span class="badge">Python</span>
                 <span class="badge">FastAPI</span>
@@ -628,16 +620,16 @@
               </ul>
               <div class="mt-4">
                 <a href="https://github.com/nammayatri/Master-Oogway"
-                  class="inline-block bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition"
+                  class="inline-block text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline transition-colors"
                   aria-label="View Master Oogway on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
-            <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 animate-fade-in"
+            <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 animate-fade-in"
               style="animation-delay: 0.3s;">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><a
-                  href="https://github.com/nammayatri/bus-route-tracker" target="_blank">🚌 Bus Route Tracker</a></h3>
+                  href="https://github.com/nammayatri/bus-route-tracker" target="_blank"><i class="fas fa-bus mr-1"></i> Bus Route Tracker</a></h3>
               <div class="flex flex-wrap gap-2 my-3">
                 <span class="badge">Python</span>
                 <span class="badge">Docker</span>
@@ -654,16 +646,16 @@
               </ul>
               <div class="mt-4">
                 <a href="https://github.com/nammayatri/bus-route-tracker"
-                  class="inline-block bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition"
+                  class="inline-block text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline transition-colors"
                   aria-label="View Bus Route Tracker on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
-            <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 animate-fade-in"
+            <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 animate-fade-in"
               style="animation-delay: 0.4s;">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><a
-                  href="https://gossipsdotcom.herokuapp.com/" target="_blank">💬 GossipDotCom</a></h3>
+                  href="https://gossipsdotcom.herokuapp.com/" target="_blank"><i class="fas fa-comments mr-1"></i> GossipDotCom</a></h3>
               <div class="flex flex-wrap gap-2 my-3">
                 <span class="badge">Node.js</span>
                 <span class="badge">Socket.IO</span>
@@ -680,16 +672,16 @@
               </ul>
               <div class="mt-4">
                 <a href="https://github.com/vijaygupta18/gossipsdotcom"
-                  class="inline-block bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition"
+                  class="inline-block text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline transition-colors"
                   aria-label="View GossipDotCom on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
-            <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 animate-fade-in"
+            <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 animate-fade-in"
               style="animation-delay: 0.5s;">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><a href="https://saavandl.herokuapp.com"
-                  target="_blank">🎵 SaavanDL</a></h3>
+                  target="_blank"><i class="fas fa-music mr-1"></i> SaavanDL</a></h3>
               <div class="flex flex-wrap gap-2 my-3">
                 <span class="badge">Node.js</span>
                 <span class="badge">Express.js</span>
@@ -704,16 +696,16 @@
               </ul>
               <div class="mt-4">
                 <a href="https://github.com/vijaygupta18/saavandl"
-                  class="inline-block bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition"
+                  class="inline-block text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline transition-colors"
                   aria-label="View SaavanDL on GitHub">GitHub</a>
               </div>
             </div>
           </div>
           <div class="slide">
-            <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 animate-fade-in"
+            <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 animate-fade-in"
               style="animation-delay: 0.6s;">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white"><a
-                  href="https://writemytext.herokuapp.com" target="_blank">✍️ Write My Text</a></h3>
+                  href="https://writemytext.herokuapp.com" target="_blank"><i class="fas fa-pen-fancy mr-1"></i> Write My Text</a></h3>
               <div class="flex flex-wrap gap-2 my-3">
                 <span class="badge">JavaScript</span>
                 <span class="badge">Web App</span>
@@ -727,7 +719,7 @@
               </ul>
               <div class="mt-4">
                 <a href="https://github.com/vijaygupta18/writemytext"
-                  class="inline-block bg-blue-500 text-white py-2 px-4 rounded-full font-semibold hover:bg-blue-600 transition"
+                  class="inline-block text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline transition-colors"
                   aria-label="View Write My Text on GitHub">GitHub</a>
               </div>
             </div>
@@ -739,17 +731,17 @@
   </section>
 
   <!-- Education Section -->
-  <section id="education" class="py-16 bg-white dark:bg-gray-800">
+  <section id="education" class="py-16 bg-slate-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Education &
+      <h2 class="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-white animate-fade-in">Education &
         Certifications</h2>
       <div class="space-y-12">
         <!-- Education -->
         <div class="animate-fade-in" style="animation-delay: 0.2s;">
           <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Education</h3>
           <div class="space-y-6">
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
-              <i class="fas fa-graduation-cap text-2xl text-blue-500"></i>
+            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
+              <i class="fas fa-graduation-cap text-xl text-gray-400 dark:text-gray-500"></i>
               <div>
                 <strong class="text-gray-900 dark:text-white">Kamla Nehru Institute of Technology, Sultanpur</strong>
                 <p class="text-gray-600 dark:text-gray-300">Aug 2018 - Jun 2022 • India</p>
@@ -757,8 +749,8 @@
                 <p class="text-gray-600 dark:text-gray-300">8.5 CGPA (Top 5% of class)</p>
               </div>
             </div>
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
-              <i class="fas fa-university text-2xl text-blue-500"></i>
+            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
+              <i class="fas fa-university text-xl text-gray-400 dark:text-gray-500"></i>
               <div>
                 <strong class="text-gray-900 dark:text-white">Swami Harsewanand Public School - India</strong>
                 <p class="text-gray-600 dark:text-gray-300">Intermediate, Science (2015 - 2017)</p>
@@ -774,57 +766,57 @@
                 class="fas fa-chevron-left"></i></button>
             <div class="slider-track">
               <div class="slide">
-                <div class="cert-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
                   <img src="images/coursera-logo.png" alt="Coursera logo" class="w-12 h-12 rounded">
                   <div>
                     <strong class="text-gray-900 dark:text-white">Applied Machine Learning in Python</strong>
                     <p class="text-gray-600 dark:text-gray-300">Coursera</p>
                     <a href="https://www.coursera.org/account/accomplishments/verify/S2JW93DGUNTA?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-                      target="_blank" class="text-blue-500 hover:underline">Show credential</a>
+                      target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
               <div class="slide">
-                <div class="cert-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
                   <img src="images/coursera-logo.png" alt="Coursera logo" class="w-12 h-12 rounded">
                   <div>
                     <strong class="text-gray-900 dark:text-white">Crash Course on Python</strong>
                     <p class="text-gray-600 dark:text-gray-300">Coursera</p>
                     <a href="https://www.coursera.org/account/accomplishments/verify/XPDSSHS4ETTM?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-                      target="_blank" class="text-blue-500 hover:underline">Show credential</a>
+                      target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
               <div class="slide">
-                <div class="cert-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
                   <img src="images/google.png" alt="Google logo" class="w-12 h-12 rounded">
                   <div>
                     <strong class="text-gray-900 dark:text-white">Google Hashcode</strong>
                     <p class="text-gray-600 dark:text-gray-300">Google</p>
                     <a href="https://drive.google.com/file/d/11wA6QK-q6-8gNTWZYjvftqXChd-ZUDFJ/view" target="_blank"
-                      class="text-blue-500 hover:underline">Show credential</a>
+                      class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
               <div class="slide">
-                <div class="cert-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
                   <img src="images/coursera-logo.png" alt="Coursera logo" class="w-12 h-12 rounded">
                   <div>
                     <strong class="text-gray-900 dark:text-white">HTML, CSS, and Javascript for Web Developers</strong>
                     <p class="text-gray-600 dark:text-gray-300">Coursera</p>
                     <a href="https://www.coursera.org/account/accomplishments/verify/5EY9CVSUVHY3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-                      target="_blank" class="text-blue-500 hover:underline">Show credential</a>
+                      target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
               <div class="slide">
-                <div class="cert-card bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
+                <div class="cert-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
                   <img src="images/coursera-logo.png" alt="Coursera logo" class="w-12 h-12 rounded">
                   <div>
                     <strong class="text-gray-900 dark:text-white">Python Data Structures</strong>
                     <p class="text-gray-600 dark:text-gray-300">Coursera</p>
                     <a href="https://www.coursera.org/account/accomplishments/verify/EC3VU38WGSU3?utm_campaign=sharing_cta&utm_content=cert_image&utm_medium=certificate&utm_product=course&utm_source=mobile"
-                      target="_blank" class="text-blue-500 hover:underline">Show credential</a>
+                      target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Show credential</a>
                   </div>
                 </div>
               </div>
@@ -836,8 +828,8 @@
         <!-- Volunteering -->
         <div class="animate-fade-in" style="animation-delay: 0.4s;">
           <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Volunteering</h3>
-          <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
-            <i class="fas fa-leaf text-2xl text-blue-500"></i>
+          <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
+            <i class="fas fa-leaf text-xl text-gray-400 dark:text-gray-500"></i>
             <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300">
               <li>Campaign Volunteer at Indian Road Safety Campaign</li>
               <li>Student Volunteer at Save Million Trees</li>
@@ -847,8 +839,8 @@
         <!-- Languages -->
         <div class="animate-fade-in" style="animation-delay: 0.5s;">
           <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Languages</h3>
-          <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6 flex items-start gap-4">
-            <i class="fas fa-language text-2xl text-blue-500"></i>
+          <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex items-start gap-4">
+            <i class="fas fa-language text-xl text-gray-400 dark:text-gray-500"></i>
             <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300">
               <li>English (Professional working proficiency)</li>
               <li>Hindi (Native or bilingual proficiency)</li>
@@ -859,9 +851,9 @@
         <div class="animate-fade-in" style="animation-delay: 0.6s;">
           <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Recommendations</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
               <div class="flex items-start gap-4">
-                <i class="fas fa-user-circle text-2xl text-blue-500"></i>
+                <i class="fas fa-user-circle text-xl text-gray-400 dark:text-gray-500"></i>
                 <div>
                   <strong class="text-gray-900 dark:text-white">Naman Samaiya</strong>
                   <p class="text-gray-600 dark:text-gray-300">SDE3 @Vahan Inc (YC S19) | IIIT Bhagalpur (Worked with
@@ -875,9 +867,9 @@
                 highest standards. Vijay is an asset to any company.
               </blockquote>
             </div>
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
               <div class="flex items-start gap-4">
-                <i class="fas fa-user-circle text-2xl text-blue-500"></i>
+                <i class="fas fa-user-circle text-xl text-gray-400 dark:text-gray-500"></i>
                 <div>
                   <strong class="text-gray-900 dark:text-white">Ketan Patil</strong>
                   <p class="text-gray-600 dark:text-gray-300">Manager at Vahan (Managed Vijay directly)</p>
@@ -892,9 +884,9 @@
                 sure he holds a bright future ahead of him.
               </blockquote>
             </div>
-            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
               <div class="flex items-start gap-4">
-                <i class="fas fa-user-circle text-2xl text-blue-500"></i>
+                <i class="fas fa-user-circle text-xl text-gray-400 dark:text-gray-500"></i>
                 <div>
                   <strong class="text-gray-900 dark:text-white">Aditya Kale</strong>
                   <p class="text-gray-600 dark:text-gray-300">SSE @Vahan | IIIT Pune (Worked with Vijay on same team)
@@ -914,62 +906,62 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-900">
+  <section id="contact" class="py-16 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center mb-4 text-gray-900 dark:text-white animate-fade-in">Contact Me</h2>
+      <h2 class="text-2xl font-semibold text-center mb-4 text-gray-900 dark:text-white animate-fade-in">Contact Me</h2>
       <h3 class="text-xl text-center text-gray-600 dark:text-gray-300 mb-12 animate-fade-in"
         style="animation-delay: 0.2s;">I would love to connect with you.</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <form id="contactForm" class="space-y-4" method="post" action="inc/sendEmail.php">
           <div>
             <input type="text" id="contactName" name="contactName" placeholder="Name"
-              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               minlength="2" required>
           </div>
           <div>
             <input type="email" id="contactEmail" name="contactEmail" placeholder="Email"
-              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               required>
           </div>
           <div>
             <input type="text" id="contactSubject" name="contactSubject" placeholder="Subject"
-              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
           </div>
           <div>
             <textarea id="contactMessage" name="contactMessage" placeholder="Message" rows="5"
-              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              class="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               required></textarea>
           </div>
           <div>
             <button type="submit"
-              class="bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-600 transition">Submit</button>
+              class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-2.5 px-5 rounded text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">Submit</button>
             <div id="submit-loader" class="hidden flex items-center gap-2 mt-2">
               <span class="text-gray-600 dark:text-gray-300">Sending...</span>
               <div class="flex space-x-1">
-                <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-100"></div>
-                <div class="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-200"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
               </div>
             </div>
           </div>
         </form>
         <div class="space-y-6">
           <div class="flex items-start gap-4 animate-fade-in" style="animation-delay: 0.3s;">
-            <i class="fas fa-map-marker-alt text-2xl text-blue-500"></i>
+            <i class="fas fa-map-marker-alt text-xl text-gray-400 dark:text-gray-500"></i>
             <div>
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Address</h3>
               <p class="text-gray-600 dark:text-gray-300">Bengaluru, Karnataka<br>India</p>
             </div>
           </div>
           <div class="flex items-start gap-4 animate-fade-in" style="animation-delay: 0.4s;">
-            <i class="fas fa-envelope text-2xl text-blue-500"></i>
+            <i class="fas fa-envelope text-xl text-gray-400 dark:text-gray-500"></i>
             <div>
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">You can also mail Me At</h3>
               <p class="text-gray-600 dark:text-gray-300">vijayrauniyar1818@gmail.com</p>
             </div>
           </div>
           <div class="flex items-start gap-4 animate-fade-in" style="animation-delay: 0.5s;">
-            <i class="fas fa-phone text-2xl text-blue-500"></i>
+            <i class="fas fa-phone text-xl text-gray-400 dark:text-gray-500"></i>
             <div>
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">You can Call Me</h3>
               <p class="text-gray-600 dark:text-gray-300">Mobile: (+91) 8565017450<br>WhatsApp: (+91) 8565017450</p>
@@ -991,23 +983,23 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8">
+  <footer class="bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-400 py-8 border-t border-gray-200 dark:border-gray-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex gap-6 mb-4 md:mb-0">
           <a href="https://www.facebook.com/people/Vijay-Gupta/100050936141588" target="_blank"
-            class="hover:text-blue-400 transition"><i class="fab fa-facebook-f text-xl"></i></a>
-          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="hover:text-blue-400 transition"><i
+            class="hover:text-gray-900 dark:hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/vijaygupta18/" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors"><i
               class="fab fa-linkedin-in text-xl"></i></a>
-          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="hover:text-blue-400 transition"><i
+          <a href="https://twitter.com/vijaygupta1818" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors"><i
               class="fab fa-twitter text-xl"></i></a>
-          <a href="https://github.com/vijaygupta18" target="_blank" class="hover:text-blue-400 transition"><i
+          <a href="https://github.com/vijaygupta18" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors"><i
               class="fab fa-github text-xl"></i></a>
-          <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="hover:text-blue-400 transition"><i
+          <a href="https://www.instagram.com/vijayguptaa18/" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors"><i
               class="fab fa-instagram text-xl"></i></a>
         </div>
-        <a href="#top" class="text-white hover:text-blue-400 transition"><i
-            class="fas fa-long-arrow-alt-up text-xl mr-2"></i>Back to Top</a>
+        <a href="#top" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"><i
+            class="fas fa-long-arrow-alt-up mr-1"></i>Back to Top</a>
       </div>
     </div>
   </footer>
@@ -1164,16 +1156,16 @@
       });
 
       // Create well-formatted message for the beautiful template
-      const enhancedMessage = `📋 SUBJECT: ${cleanSubject}
+      const enhancedMessage = `SUBJECT: ${cleanSubject}
 
-📧 SENDER EMAIL: ${cleanEmail}
+SENDER EMAIL: ${cleanEmail}
 
-💬 MESSAGE:
+MESSAGE:
 ${cleanMessage}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📝 This message was submitted through your portfolio contact form
-🌐 Source: https://vijaygupta18.github.io`;
+---
+This message was submitted through your portfolio contact form
+Source: https://vijaygupta18.github.io`;
 
       return {
         name: cleanName,
@@ -1207,7 +1199,7 @@ ${cleanMessage}
       // Rate limiting on client side
       const now = Date.now();
       if (now - lastSubmissionTime < 10000) { // 10 seconds
-        showMessage('⏰ Please wait 10 seconds between submissions.', 'warning');
+        showMessage('Please wait 10 seconds between submissions.', 'warning');
         return;
       }
 
@@ -1237,29 +1229,29 @@ ${cleanMessage}
         lastSubmissionTime = now;
 
         // Show success message
-        showMessage('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
+        showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
         contactForm.reset();
 
       } catch (error) {
         console.error('Failed to send email:', error);
 
         if (error.message && error.message.includes('Template ID not configured')) {
-          showMessage('❌ Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+          showMessage('Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
         } else if (error.message && error.message.includes('valid')) {
-          showMessage(`❌ ${error.message}`, 'warning');
+          showMessage(`${error.message}`, 'warning');
         } else if (error.text) {
           // EmailJS specific errors
           if (error.text.includes('rate')) {
-            showMessage('⏰ Too many requests. Please try again later.', 'warning');
+            showMessage('Too many requests. Please try again later.', 'warning');
           } else if (error.text.includes('template')) {
-            showMessage('❌ Email template error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+            showMessage('Email template error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
           } else if (error.text.includes('service')) {
-            showMessage('❌ Email service error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
+            showMessage('Email service error. Please contact me directly at vijayrauniyar1818@gmail.com', 'warning');
           } else {
-            showMessage(`❌ Email error: ${error.text}. Please contact me directly at vijayrauniyar1818@gmail.com`, 'warning');
+            showMessage(`Email error: ${error.text}. Please contact me directly at vijayrauniyar1818@gmail.com`, 'warning');
           }
         } else {
-          showMessage('❌ Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'warning');
+          showMessage('Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'warning');
         }
       } finally {
         // Reset submission guard and button

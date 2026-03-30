@@ -245,7 +245,7 @@
         scrollToSection('#education');
         line('<span class="tc-accent">DEGREES</span>');
         sep();
-        line('  <span class="tc-val">B.Tech — Information Technology</span>');
+        line('  <span class="tc-val">B.Tech — Computer Science</span>');
         line('  <span class="tc-muted">Kamla Nehru Institute of Technology, Sultanpur</span>');
         line('  <span class="tc-key">Aug 2018 – Jun 2022</span>  <span class="tc-muted">·</span>  <span class="tc-accent">8.5 CGPA (Top 5%)</span>');
         blank();
@@ -259,7 +259,7 @@
           'JavaScript (Intermediate)        — HackerRank',
           'Complete Node.js Developer       — Udemy',
         ];
-        certs.forEach(c => line('  <span class="tc-muted">✓</span> ' + esc(c)));
+        certs.forEach(c => line('  <span class="tc-muted"><i class="fa-solid fa-check fa-xs"></i></span> ' + esc(c)));
       },
 
       contact() {
@@ -293,7 +293,7 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
           }, 400);
-          line('  <span class="tc-success">✓ opened</span>');
+          line('  <span class="tc-success"><i class="fa-solid fa-check fa-xs"></i> opened</span>');
         }
       },
 
@@ -498,17 +498,17 @@
   ═══════════════════════════════════════════ */
 
   const PALETTE_CMDS = [
-    { name: 'About',        type: 'nav',    icon: '#', href: '#about' },
-    { name: 'Stack',        type: 'nav',    icon: '#', href: '#skills' },
-    { name: 'Work',         type: 'nav',    icon: '#', href: '#experience' },
-    { name: 'Builds',       type: 'nav',    icon: '#', href: '#projects' },
-    { name: 'Education',    type: 'nav',    icon: '#', href: '#education' },
-    { name: 'Contact',      type: 'nav',    icon: '#', href: '#contact' },
-    { name: 'Resume',       type: 'action', icon: '⌘', action: 'resume' },
-    { name: 'Toggle Theme', type: 'action', icon: '◑', action: 'theme' },
-    { name: 'GitHub',       type: 'link',   icon: '↗', href: 'https://github.com/vijaygupta18' },
-    { name: 'LinkedIn',     type: 'link',   icon: '↗', href: 'https://linkedin.com/in/vijaygupta18' },
-    { name: 'Twitter / X',  type: 'link',   icon: '↗', href: 'https://twitter.com/vijaygupta18' },
+    { name: 'About',        type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#about' },
+    { name: 'Stack',        type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#skills' },
+    { name: 'Work',         type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#experience' },
+    { name: 'Builds',       type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#projects' },
+    { name: 'Education',    type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#education' },
+    { name: 'Contact',      type: 'nav',    icon: '<i class="fa-solid fa-hashtag"></i>', href: '#contact' },
+    { name: 'Resume',       type: 'action', icon: '<i class="fa-solid fa-file-lines"></i>', action: 'resume' },
+    { name: 'Toggle Theme', type: 'action', icon: '<i class="fa-solid fa-circle-half-stroke"></i>', action: 'theme' },
+    { name: 'GitHub',       type: 'link',   icon: '<i class="fa-solid fa-arrow-up-right-from-square"></i>', href: 'https://github.com/vijaygupta18' },
+    { name: 'LinkedIn',     type: 'link',   icon: '<i class="fa-solid fa-arrow-up-right-from-square"></i>', href: 'https://linkedin.com/in/vijaygupta18' },
+    { name: 'Twitter / X',  type: 'link',   icon: '<i class="fa-solid fa-arrow-up-right-from-square"></i>', href: 'https://twitter.com/vijaygupta18' },
   ];
 
   const palette = document.getElementById('cmdPalette');

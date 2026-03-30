@@ -167,16 +167,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
 
-        const enhancedMessage = `📋 SUBJECT: ${cleanSubject}
+        const enhancedMessage = `SUBJECT: ${cleanSubject}
 
-📧 SENDER EMAIL: ${cleanEmail}
+SENDER EMAIL: ${cleanEmail}
 
-💬 MESSAGE:
+MESSAGE:
 ${cleanMessage}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📝 This message was submitted through your portfolio contact form
-🌐 Source: https://vijaygupta18.github.io`;
+---
+Submitted via portfolio contact form
+Source: https://vijaygupta18.github.io`;
 
         return {
             name: cleanName,
@@ -207,7 +207,7 @@ ${cleanMessage}
 
         const now = Date.now();
         if (now - lastSubmissionTime < 10000) {
-            showNotification('⏰ Please wait 10 seconds between submissions.', 'error');
+            showNotification('Please wait 10 seconds between submissions.', 'error');
             return;
         }
 
@@ -237,7 +237,7 @@ ${cleanMessage}
             lastSubmissionTime = now;
 
 
-            showNotification('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
+            showNotification('Message sent successfully. I will get back to you soon.', 'success');
             contactForm.reset();
 
 
@@ -247,22 +247,22 @@ ${cleanMessage}
             console.error('Failed to send email:', error);
 
             if (error.message && error.message.includes('Template ID not configured')) {
-                showNotification('❌ Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
+                showNotification('Email template not set up yet. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
             } else if (error.message && error.message.includes('valid')) {
-                showNotification(`❌ ${error.message}`, 'error');
+                showNotification(`${error.message}`, 'error');
             } else if (error.text) {
 
                 if (error.text.includes('rate')) {
-                    showNotification('⏰ Too many requests. Please try again later.', 'error');
+                    showNotification('Too many requests. Please try again later.', 'error');
                 } else if (error.text.includes('template')) {
-                    showNotification('❌ Email template error. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
+                    showNotification('Email template error. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
                 } else if (error.text.includes('service')) {
-                    showNotification('❌ Email service error. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
+                    showNotification('Email service error. Please contact me directly at vijayrauniyar1818@gmail.com', 'error');
                 } else {
-                    showNotification(`❌ Email error: ${error.text}. Please contact me directly at vijayrauniyar1818@gmail.com`, 'error');
+                    showNotification(`Email error: ${error.text}. Please contact me directly at vijayrauniyar1818@gmail.com`, 'error');
                 }
             } else {
-                showNotification('❌ Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'error');
+                showNotification('Failed to send message. Please try again or email me directly at vijayrauniyar1818@gmail.com', 'error');
             }
         } finally {
 
