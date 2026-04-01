@@ -314,9 +314,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    HERO — Interactive Terminal
 ───────────────────────────────── */
 #hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: calc(var(--nav-h) + 32px) var(--pad-x) 48px;
   background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
@@ -340,7 +340,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .term-window {
   border: 1px solid var(--border);
   border-radius: 10px 10px 0 0;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
 }
 
@@ -394,9 +394,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .term-body {
   background: #0a0a0a;
   padding: 24px 32px 20px;
-  height: clamp(460px, 72vh, 700px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  max-height: none;
+  height: auto;
+  overflow: visible;
   cursor: text;
   font-family: var(--ff-mono);
   font-size: 0.9rem;
