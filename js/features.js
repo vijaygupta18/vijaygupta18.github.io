@@ -512,7 +512,7 @@
 
         var resp = await fetch('https://text.pollinations.ai/', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({
             messages: messages,
             model: 'openai',
