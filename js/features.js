@@ -103,11 +103,11 @@
         sep();
         const facts = [
           ['role',     'Software Development Engineer @ Juspay'],
-          ['product',  'NammaYatri (India\'s largest open-source ride-hailing app)'],
+          ['product',  'NammaYatri — 200K+ rides/day, 5M+ daily transactions'],
           ['location', 'Bengaluru, India'],
           ['email',    'vijayrauniyar1818@gmail.com'],
           ['github',   'github.com/vijaygupta18'],
-          ['leetcode', 'leetcode.com/rdxvijay'],
+          ['leetcode', 'leetcode.com/rdxvijay (400+ problems)'],
         ];
         facts.forEach(([k, v]) => {
           line(
@@ -118,16 +118,18 @@
         });
         blank();
         line('  Software Engineer with 3+ years designing scalable backend');
-        line('  systems. Reduced latency by <span class="tc-accent">40%</span> and infra costs by <span class="tc-accent">50%</span>');
-        line('  using Redis, AWS, and Haskell.');
+        line('  systems at production scale. Drove <span class="tc-accent">$126K</span> annual savings,');
+        line('  <span class="tc-accent">45%</span> P95 latency reduction, and <span class="tc-accent">99.9%</span> availability.');
         blank();
         sep('·');
         line(
-          '  <span class="tc-accent">40%</span> latency cut  ' +
+          '  <span class="tc-accent">45%</span> P95 latency cut  ' +
           '<span class="tc-muted">·</span>  ' +
-          '<span class="tc-accent">50%</span> infra cost cut  ' +
+          '<span class="tc-accent">$126K</span> saved/yr  ' +
           '<span class="tc-muted">·</span>  ' +
-          '<span class="tc-accent">3+</span> years production'
+          '<span class="tc-accent">99.9%</span> uptime  ' +
+          '<span class="tc-muted">·</span>  ' +
+          '<span class="tc-accent">5M+</span> daily txns'
         );
         sep('·');
       },
@@ -137,14 +139,14 @@
         line('<span class="tc-muted">// Languages</span>');
         line(
           '<span class="tc-key">import</span> { ' +
-          '<span class="tc-val">Haskell, Python, C++, JavaScript, PureScript, SQL</span>' +
+          '<span class="tc-val">Haskell, Python, C++, JavaScript, TypeScript, SQL, Java</span>' +
           ' } <span class="tc-key">from</span> <span class="tc-str">"languages"</span>'
         );
         blank();
         line('<span class="tc-muted">// Data &amp; Messaging</span>');
         line(
           '<span class="tc-key">import</span> { ' +
-          '<span class="tc-val">Redis, Valkey, Kafka, RabbitMQ, PostgreSQL, Clickhouse</span>' +
+          '<span class="tc-val">Redis, Valkey, Kafka, RabbitMQ, PostgreSQL, ClickHouse</span>' +
           ' } <span class="tc-key">from</span> <span class="tc-str">"data-layer"</span>'
         );
         blank();
@@ -158,17 +160,24 @@
         line('<span class="tc-muted">// Cloud &amp; DevOps</span>');
         line(
           '<span class="tc-key">import</span> { ' +
-          '<span class="tc-val">AWS, Kubernetes, Docker, Git, CI_CD</span>' +
+          '<span class="tc-val">AWS, Kubernetes, Docker, Lambda, CI_CD, Autoscaling</span>' +
           ' } <span class="tc-key">from</span> <span class="tc-str">"infrastructure"</span>'
+        );
+        blank();
+        line('<span class="tc-muted">// Observability</span>');
+        line(
+          '<span class="tc-key">import</span> { ' +
+          '<span class="tc-val">Grafana, Prometheus, VictoriaMetrics, CloudWatch</span>' +
+          ' } <span class="tc-key">from</span> <span class="tc-str">"monitoring"</span>'
         );
         blank();
         line('<span class="tc-muted">// Engineering focus</span>');
         line(
           '<span class="tc-key">const</span> <span class="tc-val">focus</span> = [' +
           '<span class="tc-str">"System Design"</span>, ' +
-          '<span class="tc-str">"Performance Tuning"</span>, ' +
           '<span class="tc-str">"Distributed Systems"</span>, ' +
-          '<span class="tc-str">"DSA &amp; OOP"</span>]'
+          '<span class="tc-str">"Performance Tuning"</span>, ' +
+          '<span class="tc-str">"SRE &amp; Observability"</span>]'
         );
       },
 
@@ -181,21 +190,22 @@
         );
         line('  <span class="tc-muted">Software Development Engineer · Bengaluru</span>');
         sep('·');
-        line('  <span class="tc-key">Cost Optimization &amp; Efficiency</span>');
-        line('  <span class="tc-border">→</span> KV storage (Redis): DB cost cut <span class="tc-accent">40%</span>');
-        line('  <span class="tc-border">→</span> Table sharding + Redis slot opt: nodes reduced <span class="tc-accent">30%</span>');
-        line('  <span class="tc-border">→</span> AWS ALB cost down <span class="tc-accent">25%</span> via compression &amp; zone routing');
-        line('  <span class="tc-border">→</span> Redis → Valkey + zstd: <span class="tc-accent">50%</span> memory &amp; instance cost drop');
+        line('  <span class="tc-key">Architecture &amp; Scale</span>');
+        line('  <span class="tc-border">→</span> Multimodal transport: real-time GPS across <span class="tc-accent">3 cities</span>, <span class="tc-accent">10K+ DAU</span>');
+        line('  <span class="tc-border">→</span> Redis/Valkey KV: <span class="tc-accent">5M+ daily txns</span>, <span class="tc-accent">5K+ events/sec</span>');
+        line('  <span class="tc-border">→</span> Multi-cloud routing: zero-downtime cross-cloud deployments');
+        line('  <span class="tc-border">→</span> Core backend systems for <span class="tc-accent">200K+ rides/day</span> platform');
         blank();
-        line('  <span class="tc-key">Scalability &amp; Architecture</span>');
-        line('  <span class="tc-border">→</span> Auto-scaling Redis/RDS via custom CloudWatch metrics');
-        line('  <span class="tc-border">→</span> Multithreading in hot-path services, cut container needs');
-        line('  <span class="tc-border">→</span> Decoupled drainer for async sync to Clickhouse &amp; PostgreSQL');
+        line('  <span class="tc-key">Cost &amp; Reliability</span>');
+        line('  <span class="tc-border">→</span> <span class="tc-accent">$126K</span> annual savings, <span class="tc-accent">20%</span> AWS cost reduction');
+        line('  <span class="tc-border">→</span> Redis → Valkey + zstd: memory <span class="tc-accent">↓50%</span>, costs <span class="tc-accent">↓40%</span>');
+        line('  <span class="tc-border">→</span> 5xx errors <span class="tc-accent">↓75%</span>, maintained <span class="tc-accent">99.9%</span> availability');
         blank();
-        line('  <span class="tc-key">Performance &amp; Dev Efficiency</span>');
-        line('  <span class="tc-border">→</span> Backend latency reduced <span class="tc-accent">40%</span> via profiling &amp; I/O opt');
-        line('  <span class="tc-border">→</span> ART framework: QA time reduced <span class="tc-accent">60%</span>');
-        line('  <span class="tc-border">→</span> Dynamic real-time pricing engine + ETA predictor');
+        line('  <span class="tc-key">Performance &amp; AI</span>');
+        line('  <span class="tc-border">→</span> P95 API latency improved by <span class="tc-accent">45%</span> via profiling &amp; I/O opt');
+        line('  <span class="tc-border">→</span> In-memory GTFS service: latency <span class="tc-accent">↓60%</span> at <span class="tc-accent">5K+ req/sec</span>');
+        line('  <span class="tc-border">→</span> Vishwakarma: autonomous SRE agent, <span class="tc-accent">16</span> parallel investigations');
+        line('  <span class="tc-border">→</span> Mentored <span class="tc-accent">3+</span> engineers, <span class="tc-accent">40%</span> team growth');
         sep('·');
         blank();
 
@@ -206,10 +216,9 @@
         );
         line('  <span class="tc-muted">Software Development Engineer I · Bengaluru</span>');
         sep('·');
-        line('  <span class="tc-border">→</span> WhatsApp Bot redesign: API time <span class="tc-accent">↓40%</span>, engagement <span class="tc-accent">↑35%</span>');
-        line('  <span class="tc-border">→</span> Concurrent chat processing: telecalling costs <span class="tc-accent">↓32%</span>');
-        line('  <span class="tc-border">→</span> Uber fallback mechanism: <span class="tc-accent">98%</span> data accuracy during outages');
-        line('  <span class="tc-border">→</span> Automated status tracking via offline data warehouse uploads');
+        line('  <span class="tc-border">→</span> WhatsApp Bot for <span class="tc-accent">100K+</span> job seekers: <span class="tc-accent">45%</span> faster, <span class="tc-accent">35%</span> more engagement');
+        line('  <span class="tc-border">→</span> Concurrent chat (RabbitMQ): telecalling costs <span class="tc-accent">↓32%</span>, <span class="tc-accent">10K+</span> conversations');
+        line('  <span class="tc-border">→</span> Automated status tracking: manual monitoring <span class="tc-accent">↓70%</span>');
         sep('·');
       },
 
@@ -219,13 +228,13 @@
         line('<span class="tc-muted">' + esc(hdr) + '</span>');
         sep();
         const projects = [
-          ['location-healthcheck', 'Haskell, Redis Streams',       null,                                             '@ Juspay'],
+          ['vishwakarma',          'Python, FastAPI, LLM, K8s',   'github.com/vijaygupta18/Vishwakarma',             null],
+          ['location-healthcheck', 'Haskell, Kafka, Redis',        null,                                             '@ Juspay'],
           ['master-oogway',        'Python, FastAPI, Prometheus',  'github.com/nammayatri/Master-Oogway',            '@ Juspay'],
           ['bus-route-tracker',    'Python, Redis, Clickhouse',    'github.com/nammayatri/bus-route-tracker',        '@ Juspay'],
           ['multi-cloud-db-mgr',   'TypeScript, PostgreSQL, Redis','github.com/vijaygupta18/Multi-Cloud-DB-Manager',  null],
           ['nodesage',             'Node.js, Ollama, RAG',        'github.com/vijaygupta18/NodeSage',               null],
           ['k8s-dashboard',        'FastAPI, React, Kubernetes',   'github.com/vijaygupta18/k8s-dashboard',          null],
-          ['writemytext',          'JavaScript, Canvas API',       'github.com/vijaygupta18/writemytext',            null],
         ];
         projects.forEach(([name, stack, link, badge]) => {
           const nameCol = name.padEnd(30);
@@ -245,7 +254,7 @@
         scrollToSection('#education');
         line('<span class="tc-accent">DEGREES</span>');
         sep();
-        line('  <span class="tc-val">B.Tech — Computer Science</span>');
+        line('  <span class="tc-val">B.Tech — Information Technology</span>');
         line('  <span class="tc-muted">Kamla Nehru Institute of Technology, Sultanpur</span>');
         line('  <span class="tc-key">Aug 2018 – Jun 2022</span>  <span class="tc-muted">·</span>  <span class="tc-accent">8.5 CGPA (Top 5%)</span>');
         blank();
@@ -357,9 +366,9 @@
         line('       vijay [--hire] [--collaborate] [--coffee]');
         blank();
         line('<span class="tc-key">DESCRIPTION</span>');
-        line('       3+ years designing scalable backend systems.');
-        line('       Expert in Haskell, Redis, distributed systems.');
-        line('       Reduced latency 40%, infra costs 50%.');
+        line('       3+ years designing scalable backend systems at scale.');
+        line('       Expert in Haskell, Redis, distributed systems, SRE.');
+        line('       45% P95 latency cut, $126K saved, 99.9% availability.');
         blank();
         line('<span class="tc-key">SEE ALSO</span>');
         line('       contact(1), resume(1), github(1)');

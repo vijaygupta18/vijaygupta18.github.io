@@ -115,9 +115,9 @@
       <h2 class="section-title fade-in">About</h2>
       <div class="about-grid fade-in">
         <div class="about-main">
-          <p>Software Engineer with 3+ years designing scalable backend systems. Currently at Juspay building NammaYatri — infrastructure that processes millions of daily rides across India. The kind of work where every millisecond and every rupee of infra cost matters.</p>
-          <p>My work spans the full backend depth: Redis slot optimization, Kafka consumer tuning, CloudWatch-based auto-scaling, and CPU profiling in Haskell. I care about systems that are observable, cost-efficient, and stay up when traffic spikes unexpectedly.</p>
-          <p class="about-achievements">40% latency reduced · 50% infra cost cut · 3+ years production experience</p>
+          <p>Software Engineer with 3+ years designing scalable backend systems at production scale. Currently at Juspay building NammaYatri — India's largest open-source mobility platform serving 200K+ rides/day and processing 5M+ daily transactions. I own core backend systems where every millisecond and every dollar of infra cost is a design decision.</p>
+          <p>My work spans the full backend depth: Redis/Valkey KV infrastructure at 5K+ events/sec, multi-cloud routing with zero-downtime deployments, autonomous SRE agents, and CPU profiling in Haskell. I care about systems that are observable, cost-efficient, and stay up at 99.9% availability when traffic spikes unexpectedly.</p>
+          <p class="about-achievements">45% P95 latency cut · $126K annual savings · 99.9% availability · 5M+ daily transactions</p>
         </div>
         <div class="about-sidebar">
           <img src="images/profile2.jpg" alt="Vijay Gupta" class="about-photo" />
@@ -144,23 +144,26 @@
           <span class="code-filename">stack.ts</span>
         </div>
         <pre class="code-block__body"><code><span class="c-comment">// Languages</span>
-<span class="c-keyword">import</span> { <span class="c-ident">Haskell</span>, <span class="c-ident">Python</span>, <span class="c-ident">C++</span>, <span class="c-ident">JavaScript</span>, <span class="c-ident">PureScript</span>, <span class="c-ident">SQL</span> } <span class="c-keyword">from</span> <span class="c-string">"languages"</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Haskell</span>, <span class="c-ident">Python</span>, <span class="c-ident">C++</span>, <span class="c-ident">JavaScript</span>, <span class="c-ident">TypeScript</span>, <span class="c-ident">SQL</span>, <span class="c-ident">Java</span> } <span class="c-keyword">from</span> <span class="c-string">"languages"</span>
 
 <span class="c-comment">// Data &amp; Messaging</span>
-<span class="c-keyword">import</span> { <span class="c-ident">Redis</span>, <span class="c-ident">Valkey</span>, <span class="c-ident">Kafka</span>, <span class="c-ident">RabbitMQ</span>, <span class="c-ident">PostgreSQL</span>, <span class="c-ident">Clickhouse</span> } <span class="c-keyword">from</span> <span class="c-string">"data-layer"</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Redis</span>, <span class="c-ident">Valkey</span>, <span class="c-ident">Kafka</span>, <span class="c-ident">RabbitMQ</span>, <span class="c-ident">PostgreSQL</span>, <span class="c-ident">ClickHouse</span> } <span class="c-keyword">from</span> <span class="c-string">"data-layer"</span>
 
 <span class="c-comment">// Backend</span>
 <span class="c-keyword">import</span> { <span class="c-ident">Node.js</span>, <span class="c-ident">Express</span>, <span class="c-ident">REST_APIs</span>, <span class="c-ident">Microservices</span> } <span class="c-keyword">from</span> <span class="c-string">"backend"</span>
 
 <span class="c-comment">// Cloud &amp; DevOps</span>
-<span class="c-keyword">import</span> { <span class="c-ident">AWS</span>, <span class="c-ident">Kubernetes</span>, <span class="c-ident">Docker</span>, <span class="c-ident">Git</span>, <span class="c-ident">CI_CD</span> } <span class="c-keyword">from</span> <span class="c-string">"infrastructure"</span>
+<span class="c-keyword">import</span> { <span class="c-ident">AWS</span>, <span class="c-ident">Kubernetes</span>, <span class="c-ident">Docker</span>, <span class="c-ident">Lambda</span>, <span class="c-ident">CI_CD</span>, <span class="c-ident">Autoscaling</span> } <span class="c-keyword">from</span> <span class="c-string">"infrastructure"</span>
+
+<span class="c-comment">// Observability</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Grafana</span>, <span class="c-ident">Prometheus</span>, <span class="c-ident">VictoriaMetrics</span>, <span class="c-ident">CloudWatch</span> } <span class="c-keyword">from</span> <span class="c-string">"monitoring"</span>
 
 <span class="c-comment">// Engineering focus</span>
 <span class="c-keyword">const</span> <span class="c-ident">focus</span> = [
   <span class="c-string">"System Design"</span>,
-  <span class="c-string">"Performance Tuning"</span>,
   <span class="c-string">"Distributed Systems"</span>,
-  <span class="c-string">"DSA &amp; OOP"</span>,
+  <span class="c-string">"Performance Tuning"</span>,
+  <span class="c-string">"SRE &amp; Observability"</span>,
 ]</code></pre>
       </div>
     </div>
@@ -185,22 +188,23 @@
               <span class="tl-role">Software Development Engineer</span>
             </div>
             <ul class="tl-bullets">
-              <li class="tl-group">Cost Optimization &amp; Efficiency</li>
-              <li>Architected a high-throughput KV storage framework using Redis, cutting PostgreSQL database cost by <em class="metric">40%</em>.</li>
-              <li>Introduced table-level sharding and optimized Redis slot allocation, reducing memory overhead and Redis node count by <em class="metric">30%</em>.</li>
-              <li>Cut AWS ALB costs by <em class="metric">25%</em> via API response compression and zone-aware routing strategies.</li>
-              <li>Upgraded Redis → Valkey + zstd compression: <em class="metric">50%</em> decrease in memory usage and instance cost.</li>
-              <li class="tl-group">Scalability &amp; Architecture</li>
-              <li>Implemented auto-scaling for Redis and RDS using custom CloudWatch metrics for seamless traffic spike handling.</li>
-              <li>Decoupled the drainer service for async, resilient syncing to Clickhouse and PostgreSQL.</li>
-              <li>Reduced CPU bottlenecks via multithreading in high-throughput services, cutting container scaling needs.</li>
-              <li class="tl-group">Performance &amp; Developer Efficiency</li>
-              <li>Reduced backend latency by <em class="metric">40%</em> via CPU profiling, I/O optimization, and dependency trimming.</li>
-              <li>Built Automated Regression Testing (ART) framework — QA time reduced by <em class="metric">60%</em>.</li>
-              <li>Developed dynamic real-time pricing engine and ETA predictor, improving rider experience and reducing cancellations.</li>
+              <li class="tl-group">Architecture &amp; Scale</li>
+              <li>Designed end-to-end flow for <strong>multimodal transport</strong> — real-time GPS tracking across <em class="metric">3 cities</em> with <em class="metric">10K+ DAU</em>.</li>
+              <li>Architected Redis/Valkey KV infra to <em class="metric">5M+ daily transactions</em> and <em class="metric">5K+ events/sec</em> via autoscaling &amp; table-level sharding.</li>
+              <li>Implemented <strong>multi-cloud routing</strong> with cloud-aware Redis/Kafka connections, enabling <em class="metric">zero-downtime</em> cross-cloud deployments.</li>
+              <li>Designed and owned core backend systems for a platform serving <em class="metric">200K+ rides/day</em>.</li>
+              <li class="tl-group">Cost &amp; Reliability</li>
+              <li>Drove <em class="metric">$126K annual savings</em> and <em class="metric">20%</em> AWS cost reduction through EC2 right-sizing, AZ-aware routing, and storage efficiency.</li>
+              <li>Executed zero-downtime Redis→Valkey migration with zstd compression — memory <em class="metric">↓50%</em>, costs <em class="metric">↓40%</em>.</li>
+              <li>Owned production reliability and on-call — <em class="metric">75%</em> reduction in 5xx errors, maintained <em class="metric">99.9%</em> availability.</li>
+              <li class="tl-group">Performance &amp; AI</li>
+              <li>Improved <strong>P95 API latency by <em class="metric">45%</em></strong> by profiling critical paths, optimizing I/O and caching layers.</li>
+              <li>Built high-performance <strong>in-memory GTFS service</strong> with GraphQL preloading — hot-path latency <em class="metric">↓60%</em> at <em class="metric">5K+ req/sec</em>.</li>
+              <li>Built <a href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener"><strong>Vishwakarma</strong></a> — autonomous SRE agent running <em class="metric">16 parallel investigations</em>, cutting investigation time by <em class="metric">70%</em>.</li>
+              <li>Mentored <em class="metric">3+ engineers</em>, led design reviews and interview loops — <em class="metric">40%</em> team growth.</li>
             </ul>
             <div class="tl-tags">
-              <span class="tag">Haskell</span><span class="tag">PureScript</span><span class="tag">Redis (Valkey)</span><span class="tag">Kafka</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">Clickhouse</span>
+              <span class="tag">Haskell</span><span class="tag">Python</span><span class="tag">Redis (Valkey)</span><span class="tag">Kafka</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span>
             </div>
           </div>
         </article>
@@ -217,10 +221,9 @@
               <span class="tl-role">Software Development Engineer I</span>
             </div>
             <ul class="tl-bullets">
-              <li>Redesigned backend for an AI-driven WhatsApp Bot — API response time down <em class="metric">40%</em>, user engagement up <em class="metric">35%</em>.</li>
-              <li>Implemented concurrent chat processing, reducing telecalling costs by <em class="metric">32%</em> through automation.</li>
-              <li>Built fallback data collection for Uber, achieving <em class="metric">98%</em> data accuracy during system outages.</li>
-              <li>Automated application status tracking via offline data uploads to data warehouse.</li>
+              <li>Redesigned microservice architecture for AI-driven WhatsApp Bot supporting <em class="metric">100K+ job seekers</em> — <em class="metric">45%</em> faster responses, <em class="metric">35%</em> higher engagement.</li>
+              <li>Implemented concurrent chat processing with RabbitMQ — telecalling costs <em class="metric">↓32%</em>, handled <em class="metric">10K+</em> conversations.</li>
+              <li>Automated application status tracking via data warehouse integration — manual monitoring effort <em class="metric">↓70%</em>.</li>
             </ul>
             <div class="tl-tags">
               <span class="tag">Node.js</span><span class="tag">React.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span>
@@ -244,6 +247,21 @@
 
       <div class="projects-grid">
 
+        <article class="project-card fade-in" data-category="ai sre backend">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Vishwakarma</h3>
+              <a href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — Vishwakarma">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Autonomous SRE agent that ingests alerts from AlertManager &amp; CloudWatch, runs <strong class="metric-inline">16 parallel investigations</strong> across Prometheus, Kubernetes, Elasticsearch, and databases, delivers PDF RCA reports to Slack — cutting investigation time by <strong class="metric-inline">70%</strong>.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LLM</span><span class="tag">Kubernetes</span><span class="tag">Prometheus</span>
+            </div>
+          </div>
+        </article>
+
         <article class="project-card fade-in" data-category="backend infra">
           <div class="project-card__inner">
             <div class="project-meta">
@@ -252,7 +270,7 @@
                 <i class="fab fa-github" aria-hidden="true"></i>
               </a>
             </div>
-            <p class="project-desc">Unified database manager supporting multi-cloud deployments with automatic failover and read replica routing.</p>
+            <p class="project-desc">Unified multi-cloud database management platform to query PostgreSQL and Redis across AWS, GCP, and Azure simultaneously — parallel query execution, side-by-side comparison, <strong class="metric-inline">3-tier RBAC</strong>, Monaco SQL editor, and password-protected destructive operations.</p>
             <div class="project-tags">
               <span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
             </div>
@@ -295,9 +313,9 @@
               <h3 class="project-name">Location Tracking Healthcheck</h3>
               <span class="project-badge">@ Juspay</span>
             </div>
-            <p class="project-desc">Real-time system to detect stalled GPS updates for active drivers — improving dispatch accuracy by <strong class="metric-inline">20%</strong> across <strong class="metric-inline">200k+</strong> daily rides. Optimized Redis Streams cut location latency by 15%.</p>
+            <p class="project-desc">Real-time healthcheck pipeline using Kafka location streams to detect stalled drivers, with FCM-based alerting when location updates stop — improving GPS accuracy and reliability for <strong class="metric-inline">200K+</strong> rides/day.</p>
             <div class="project-tags">
-              <span class="tag">Haskell</span><span class="tag">Redis Streams</span>
+              <span class="tag">Haskell</span><span class="tag">Kafka</span><span class="tag">Redis</span>
             </div>
           </div>
         </article>
@@ -360,7 +378,7 @@
         <div class="edu-formal">
           <h3 class="edu-group-title">Degrees</h3>
           <div class="edu-entry">
-            <div class="edu-degree">B.Tech, Computer Science</div>
+            <div class="edu-degree">B.Tech, Information Technology</div>
             <div class="edu-school">Kamla Nehru Institute of Technology, Sultanpur</div>
             <div class="edu-meta"><span class="tag">2018 – 2022</span><span class="tag">8.5 CGPA</span></div>
           </div>
