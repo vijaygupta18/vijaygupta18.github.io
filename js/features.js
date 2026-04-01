@@ -99,7 +99,7 @@
       },
 
       whoami() {
-        scrollToSection('#about');
+        // scrollToSection('#about');
         line('<span class="tc-accent">VIJAY GUPTA</span>');
         sep();
         const facts = [
@@ -136,7 +136,7 @@
       },
 
       skills() {
-        scrollToSection('#skills');
+        // scrollToSection('#skills');
         line('<span class="tc-muted">// Languages</span>');
         line(
           '<span class="tc-key">import</span> { ' +
@@ -183,7 +183,7 @@
       },
 
       experience() {
-        scrollToSection('#experience');
+        // scrollToSection('#experience');
         /* ── Juspay ── */
         line(
           '  <span class="tc-accent">Juspay — NammaYatri</span>' +
@@ -224,7 +224,7 @@
       },
 
       projects() {
-        scrollToSection('#projects');
+        // scrollToSection('#projects');
         const hdr = '  ' + 'NAME'.padEnd(30) + 'STACK';
         line('<span class="tc-muted">' + esc(hdr) + '</span>');
         sep();
@@ -252,7 +252,7 @@
       },
 
       education() {
-        scrollToSection('#education');
+        // scrollToSection('#education');
         line('<span class="tc-accent">DEGREES</span>');
         sep();
         line('  <span class="tc-val">B.Tech — Information Technology</span>');
@@ -273,7 +273,7 @@
       },
 
       contact() {
-        scrollToSection('#contact');
+        // scrollToSection('#contact');
         line('<span class="tc-accent">GET IN TOUCH</span>');
         sep();
         const items = [
