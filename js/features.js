@@ -494,7 +494,7 @@
         return;
       }
 
-      const thinkingLine = line('<span class="tc-muted">  thinking...</span>');
+      var thinkingLine = line('<span class="tc-muted">  thinking...</span>');
       termInput.disabled = true;
       scrollBot();
 
@@ -506,15 +506,24 @@
           aiConversation = aiConversation.slice(-6);
         }
 
-        const messages = [
+        var messages = [
           { role: 'system', content: AI_SYSTEM_PROMPT },
-          ...aiConversation,
-        ];
+        ].concat(aiConversation);
 
-        const response = await puter.ai.chat(messages, { model: 'claude-3-5-sonnet' });
-        const answer = (response && response.message && response.message.content)
-          ? response.message.content
-          : (typeof response === 'string' ? response : 'No response received.');
+        var resp = await fetch('https://text.pollinations.ai/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: messages,
+            model: 'openai',
+          }),
+        });
+
+        if (!resp.ok) throw new Error('API returned ' + resp.status);
+
+        var answer = await resp.text();
+        answer = answer.trim();
+        if (!answer) throw new Error('Empty response');
 
         aiConversation.push({ role: 'assistant', content: answer });
 
@@ -522,8 +531,8 @@
         thinkingLine.remove();
 
         // Render response line by line
-        const lines = answer.split('\n');
-        lines.forEach(function(l) {
+        var answerLines = answer.split('\n');
+        answerLines.forEach(function(l) {
           line('  <span class="tc-val">' + esc(l) + '</span>');
         });
       } catch (err) {
