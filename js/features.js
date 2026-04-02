@@ -445,7 +445,7 @@
       try {
         var prompt = encodeURIComponent(query);
         var sys = encodeURIComponent(AI_SYSTEM);
-        var nonce = '&seed=' + Date.now();
+        var nonce = '&seed=' + (Date.now() % 4294967295);
         var url = 'https://text.pollinations.ai/' + prompt + '?model=openai&noCache=true' + nonce + '&system=' + sys;
 
         var resp = await fetch(url);
@@ -453,7 +453,7 @@
         // Retry once on server error
         if (resp.status >= 500) {
           await new Promise(function(r) { setTimeout(r, 1500); });
-          resp = await fetch(url.replace(/seed=\d+/, 'seed=' + Date.now()));
+          resp = await fetch(url.replace(/seed=\d+/, 'seed=' + (Date.now() % 4294967295)));
         }
 
         if (!resp.ok) throw new Error('API returned ' + resp.status);
