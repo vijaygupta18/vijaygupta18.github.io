@@ -342,6 +342,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: 10px 10px 0 0;
   overflow: hidden;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+  animation: term-window-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes term-window-in {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .term-titlebar {
@@ -369,10 +375,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   width: 12px;
   height: 12px;
   border-radius: 50%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.term-dot:hover { transform: scale(1.3); }
 .term-dot--close { background: #ff5f57; }
+.term-dot--close:hover { box-shadow: 0 0 8px #ff5f57aa; }
 .term-dot--min   { background: #ffbd2e; }
+.term-dot--min:hover { box-shadow: 0 0 8px #ffbd2eaa; }
 .term-dot--max   { background: #28c840; }
+.term-dot--max:hover { box-shadow: 0 0 8px #28c840aa; }
 
 .term-title {
   flex: 1;
@@ -410,6 +421,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .term-body:focus { outline: none; }
+.term-body:focus-within {
+  box-shadow: inset 0 0 60px rgba(100, 255, 218, 0.02);
+}
 
 /* thin scrollbar inside terminal */
 .term-body::-webkit-scrollbar       { width: 4px; }
@@ -484,6 +498,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .tl-echo {
   display: flex;
   gap: 8px;
+  animation: tl-echo-flash 0.6s ease both;
+}
+
+@keyframes tl-echo-flash {
+  0%   { background: rgba(100, 255, 218, 0.08); }
+  100% { background: transparent; }
 }
 
 /* ── Terminal Colours ── */
@@ -497,8 +517,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .tc-val     { color: var(--text); }
 .tc-str     { color: var(--accent); }
 .tc-border  { color: #333; }
-.tc-link    { color: #82aaff; text-decoration: underline; cursor: pointer; }
-.tc-link:hover { color: var(--accent); }
+.tc-link    { color: #82aaff; text-decoration: underline; cursor: pointer; transition: color 0.2s ease; }
+.tc-link:hover { color: var(--accent); text-shadow: 0 0 8px rgba(100, 255, 218, 0.3); }
 
 /* ── Prompt Row ── */
 .term-prompt-row {

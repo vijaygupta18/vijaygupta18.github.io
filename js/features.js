@@ -407,6 +407,7 @@
 
     /* ── AI command — uses Pollinations.ai GET endpoint (no CORS preflight) ── */
     var AI_WORKER_URL = 'https://portfolio-ai.vijay-gupta-932.workers.dev';
+    var aiHistory = [];
 
     function typewriter(el, text, speed) {
       return new Promise(function(resolve) {
@@ -445,7 +446,7 @@
         var resp = await fetch(AI_WORKER_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: query }),
+          body: JSON.stringify({ query: query, history: aiHistory }),
         });
 
         if (!resp.ok) {
@@ -456,6 +457,11 @@
         var data = await resp.json();
         var answer = (data.answer || '').trim();
         if (!answer) throw new Error('Empty response');
+
+        // Track conversation
+        aiHistory.push({ role: 'user', content: query });
+        aiHistory.push({ role: 'assistant', content: answer });
+        if (aiHistory.length > 10) aiHistory = aiHistory.slice(-6);
 
         // Remove thinking indicator
         thinkingLine.remove();
