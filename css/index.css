@@ -111,21 +111,27 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--accent);
   z-index: 1000;
   transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--accent), 0 0 16px rgba(200, 255, 0, 0.3);
 }
 
 /* ── Loader ── */
 #loader.hidden { display: none; }
 
-/* ── Fade-in ── */
+/* ── Fade-in with stagger ── */
 .fade-in {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.fade-in.visible:nth-child(2) { transition-delay: 0.08s; }
+.fade-in.visible:nth-child(3) { transition-delay: 0.16s; }
+.fade-in.visible:nth-child(4) { transition-delay: 0.24s; }
+.fade-in.visible:nth-child(5) { transition-delay: 0.32s; }
+.fade-in.visible:nth-child(6) { transition-delay: 0.40s; }
 
 /* ─────────────────────────────────
    NAVIGATION
@@ -135,9 +141,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   top: 0; left: 0; right: 0;
   z-index: 100;
   height: var(--nav-h);
-  background: var(--bg);
+  background: rgba(14, 14, 14, 0.8);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
   border-bottom: 1px solid transparent;
   transition: border-color var(--t-theme), background-color var(--t-theme);
+}
+
+[data-theme="light"] #header {
+  background: rgba(245, 244, 240, 0.8);
 }
 
 #header.scrolled {
@@ -419,6 +431,23 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: #1a1a1a;
   color: #e8e6e1;
 }
+
+.term-body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.term-body { position: relative; }
 
 .term-body:focus { outline: none; }
 .term-body:focus-within {
@@ -766,6 +795,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .timeline-entry:hover {
   border-color: var(--accent);
+  background: linear-gradient(90deg, rgba(200, 255, 0, 0.03) 0%, transparent 60%);
 }
 
 .tl-date {
@@ -895,7 +925,12 @@ strong.metric-inline {
   letter-spacing: 0.02em;
   transition: border-color var(--t), color var(--t);
 }
-.tag:hover { border-color: var(--accent); color: var(--text); }
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(200, 255, 0, 0.06);
+  box-shadow: 0 0 12px rgba(200, 255, 0, 0.08);
+}
 
 /* ─────────────────────────────────
    PROJECTS GRID
@@ -912,7 +947,13 @@ strong.metric-inline {
   background: var(--card);
   position: relative;
   overflow: hidden;
-  transition: background var(--t);
+  transition: background var(--t), box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+  background: color-mix(in srgb, var(--card) 90%, var(--accent));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(200, 255, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .project-card::before {
@@ -991,6 +1032,11 @@ strong.metric-inline {
 .edu-entry {
   padding: 24px 0;
   border-top: 1px solid var(--border);
+  transition: padding-left 0.25s ease, border-color 0.25s ease;
+}
+.edu-entry:hover {
+  padding-left: 12px;
+  border-top-color: var(--accent);
 }
 .edu-entry:last-child { border-bottom: 1px solid var(--border); }
 
@@ -1058,9 +1104,13 @@ strong.metric-inline {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: border-color var(--t);
+  transition: border-color 0.3s ease, transform 0.3s ease, padding-left 0.3s ease;
 }
-.rec-card:hover { border-left-color: var(--accent); }
+.rec-card:hover {
+  border-left-color: var(--accent);
+  transform: translateX(4px);
+  padding-left: 32px;
+}
 
 .rec-card p {
   font-family: var(--ff-serif);
@@ -1122,6 +1172,24 @@ strong.metric-inline {
   letter-spacing: 0.1em;
 }
 
+.form-field {
+  position: relative;
+}
+
+.form-field::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.form-field:focus-within::after {
+  width: 100%;
+  left: 0;
+}
+
 .form-field input,
 .form-field textarea {
   font-family: var(--ff-body);
@@ -1145,7 +1213,7 @@ strong.metric-inline {
 
 .form-field input:focus,
 .form-field textarea:focus {
-  border-bottom-color: var(--accent);
+  border-bottom-color: transparent;
 }
 
 .contact-info {
@@ -1194,10 +1262,13 @@ a.contact-val:hover { color: var(--accent); }
   gap: 12px;
   font-size: 0.9rem;
   color: var(--muted);
-  transition: color var(--t);
+  transition: color var(--t), transform 0.25s ease;
   padding: 6px 0;
 }
-.social-link:hover { color: var(--accent); }
+.social-link:hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
 .social-link i { width: 16px; }
 
 /* ─────────────────────────────────
@@ -1222,9 +1293,13 @@ a.contact-val:hover { color: var(--accent); }
 .footer-socials a {
   color: var(--muted);
   font-size: 0.95rem;
-  transition: color var(--t);
+  transition: color var(--t), transform 0.25s ease, text-shadow 0.25s ease;
 }
-.footer-socials a:hover { color: var(--accent); }
+.footer-socials a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+  text-shadow: 0 0 12px rgba(200, 255, 0, 0.4);
+}
 
 .footer-copy {
   font-family: var(--ff-mono);
