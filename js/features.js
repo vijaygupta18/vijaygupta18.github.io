@@ -408,6 +408,27 @@
     /* ── AI command — uses Pollinations.ai GET endpoint (no CORS preflight) ── */
     var AI_WORKER_URL = 'https://portfolio-ai.vijay-gupta-932.workers.dev';
 
+    function typewriter(el, text, speed) {
+      return new Promise(function(resolve) {
+        var i = 0;
+        var cursor = document.createElement('span');
+        cursor.className = 'ai-cursor';
+        el.appendChild(cursor);
+        function tick() {
+          if (i < text.length) {
+            el.insertBefore(document.createTextNode(text[i]), cursor);
+            i++;
+            scrollBot();
+            setTimeout(tick, speed);
+          } else {
+            cursor.remove();
+            resolve();
+          }
+        }
+        tick();
+      });
+    }
+
     async function handleAiQuery(query) {
       if (!query) {
         line('  <span class="tc-muted">Usage: </span><span class="tc-cmd">ai &lt;your question about vijay&gt;</span>');
@@ -416,7 +437,7 @@
         return;
       }
 
-      var thinkingLine = line('<span class="tc-muted">  thinking...</span>');
+      var thinkingLine = line('  <span class="ai-thinking">thinking <span class="dot"></span><span class="dot"></span><span class="dot"></span></span>');
       termInput.disabled = true;
       scrollBot();
 
@@ -439,11 +460,16 @@
         // Remove thinking indicator
         thinkingLine.remove();
 
-        // Render response line by line
+        // Typewriter effect line by line
         var answerLines = answer.split('\n');
-        answerLines.forEach(function(l) {
-          line('  <span class="tc-val">' + esc(l) + '</span>');
-        });
+        for (var i = 0; i < answerLines.length; i++) {
+          var el = document.createElement('div');
+          el.className = 'tl';
+          el.style.paddingLeft = '1em';
+          el.style.animation = 'none';
+          termOutput.appendChild(el);
+          await typewriter(el, answerLines[i], 18);
+        }
       } catch (err) {
         thinkingLine.remove();
         line('<span class="tc-error">  ai error: ' + esc(err.message || 'request failed') + '</span>');
