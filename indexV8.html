@@ -3,13 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vijay Gupta — Software Engineer. A navigable 3D portfolio of the distributed systems I build at Juspay / NammaYatri." />
-  <meta name="theme-color" content="#05030c" />
-  <title>Vijay Gupta — The Core // Live Infrastructure</title>
+  <title>Vijay Gupta — Distributed Systems Engineer</title>
+  <meta name="description" content="Backend engineer with ~4 years at production scale. Scaled Namma Yatri from 5K to 300K+ rides/day on Haskell, Redis, Kafka. $126K/year AWS savings, 45% P95 latency cut, 99.9% availability." />
+  <meta name="author" content="Vijay Gupta" />
+  <meta name="theme-color" content="#0a0a0c" />
 
-  <!-- Fonts -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="mask-icon" href="images/favicon.svg" color="#d9a367" />
+
+  <!-- Canonical + OG + Twitter cards -->
+  <link rel="canonical" href="https://vijaygupta18.github.io/" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Vijay Gupta" />
+  <meta property="og:url"         content="https://vijaygupta18.github.io/" />
+  <meta property="og:title"       content="Vijay Gupta — Distributed Systems Engineer" />
+  <meta property="og:description" content="Scaled Namma Yatri's backend from 5K to 300K+ rides/day. Haskell, Redis, Kafka, multi-cloud. $126K/yr AWS savings, 45% P95 latency cut, 99.9% availability. Open to senior backend / SRE / platform roles." />
+  <meta property="og:image"       content="https://vijaygupta18.github.io/images/og.jpg" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"   content="Vijay Gupta — portfolio preview with Saturn and orbital lines." />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@vijaygupta18" />
+  <meta name="twitter:creator"     content="@vijaygupta18" />
+  <meta name="twitter:title"       content="Vijay Gupta — Distributed Systems Engineer" />
+  <meta name="twitter:description" content="Scaled Namma Yatri's backend from 5K to 300K+ rides/day. $126K/yr AWS savings. 99.9% availability. Haskell · Redis · Kafka · multi-cloud." />
+  <meta name="twitter:image"       content="https://vijaygupta18.github.io/images/og.jpg" />
+
+  <!-- Preconnects to speed up first paint -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://portfolio-ai.vijay-gupta-932.workers.dev" crossorigin />
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syncopate:wght@700&display=swap" rel="stylesheet" />
 
   <!-- Three.js -->
@@ -777,6 +806,25 @@
     </section>
 
   </main>
+
+  <!-- ── PLANET FOCUS PANEL (docks on click) ── -->
+  <aside id="planetPanel" class="planet-panel" hidden aria-hidden="true">
+    <div class="pp-head">
+      <div class="pp-head-left">
+        <span class="pp-dot"></span>
+        <span class="pp-kicker">Focused</span>
+      </div>
+      <button id="ppClose" class="pp-close" aria-label="Return to tour">
+        esc <span>✕</span>
+      </button>
+    </div>
+    <div class="pp-body">
+      <h3 class="pp-name" id="ppName">Earth</h3>
+      <p class="pp-sub" id="ppSub">Third rock. Home.</p>
+      <dl class="pp-stats" id="ppStats"></dl>
+      <p class="pp-note" id="ppNote"></p>
+    </div>
+  </aside>
 
   <!-- ── RESUME MODAL ── -->
   <div id="resumeModal" class="modal" role="dialog" aria-modal="true" aria-label="Resume" hidden>

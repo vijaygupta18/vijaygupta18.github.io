@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe29a"/>
+      <stop offset="55%" stop-color="#ff9940"/>
+      <stop offset="100%" stop-color="#b2480a"/>
+    </radialGradient>
+  </defs>
+  <!-- deep-space square background -->
+  <rect width="64" height="64" rx="12" fill="#0a0a0c"/>
+  <!-- outer orbit -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#d9a367" stroke-opacity="0.45" stroke-width="1"/>
+  <!-- inner orbit -->
+  <circle cx="32" cy="32" r="16" fill="none" stroke="#d9a367" stroke-opacity="0.25" stroke-width="1"/>
+  <!-- sun -->
+  <circle cx="32" cy="32" r="8" fill="url(#sun)"/>
+  <!-- planet on outer orbit -->
+  <circle cx="52" cy="38" r="2.4" fill="#e4e5e9"/>
+  <!-- planet on inner orbit -->
+  <circle cx="20" cy="24" r="1.6" fill="#6ed3ff"/>
+</svg>

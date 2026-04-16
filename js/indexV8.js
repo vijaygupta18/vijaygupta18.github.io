@@ -289,14 +289,30 @@
   // r = equatorial radius (km), rot = sidereal rotation (days, negative = retrograde),
   // tilt = axial tilt (°), ecc = orbital eccentricity
   const PLANET_DATA = [
-    { key: 'mercury', name: 'Mercury', a: 0.387,  T: 0.2408,  r: 2439.7, rot: 58.646,  tilt: 0.034,  ecc: 0.2056, color: 0x8a8681, tex: TX_BASE + 'mercurymap.jpg' },
-    { key: 'venus',   name: 'Venus',   a: 0.7233, T: 0.6152,  r: 6051.8, rot: -243.02, tilt: 177.36, ecc: 0.0068, color: 0xe2c295, tex: TX_BASE + 'venusmap.jpg' },
-    { key: 'earth',   name: 'Earth',   a: 1.0000, T: 1.0000,  r: 6371,   rot: 0.9973,  tilt: 23.44,  ecc: 0.0167, color: 0x2a6cff, tex: TX_BASE + 'earthmap1k.jpg', special: 'earth' },
-    { key: 'mars',    name: 'Mars',    a: 1.5237, T: 1.8809,  r: 3389.5, rot: 1.0259,  tilt: 25.19,  ecc: 0.0934, color: 0xc1440e, tex: TX_BASE + 'marsmap1k.jpg' },
-    { key: 'jupiter', name: 'Jupiter', a: 5.2028, T: 11.862,  r: 69911,  rot: 0.4135,  tilt: 3.13,   ecc: 0.0489, color: 0xd8b684, tex: TX_BASE + 'jupitermap.jpg' },
-    { key: 'saturn',  name: 'Saturn',  a: 9.5388, T: 29.457,  r: 58232,  rot: 0.4440,  tilt: 26.73,  ecc: 0.0565, color: 0xd9c089, tex: TX_BASE + 'saturnmap.jpg', rings: 'saturn' },
-    { key: 'uranus',  name: 'Uranus',  a: 19.191, T: 84.011,  r: 25362,  rot: -0.7183, tilt: 97.77,  ecc: 0.0457, color: 0x81c9e4, tex: TX_BASE + 'uranusmap.jpg', rings: 'uranus' },
-    { key: 'neptune', name: 'Neptune', a: 30.069, T: 164.79,  r: 24622,  rot: 0.6713,  tilt: 28.32,  ecc: 0.0113, color: 0x2d62b5, tex: TX_BASE + 'neptunemap.jpg' }
+    { key: 'mercury', name: 'Mercury', a: 0.387,  T: 0.2408,  r: 2439.7, rot: 58.646,  tilt: 0.034,  ecc: 0.2056, color: 0x8a8681, tex: TX_BASE + 'mercurymap.jpg',
+      sub: 'Closest to the Sun.', moons: 0,
+      note: 'One year here is just 88 Earth days, but a day lasts 176 Earth days — a tidally tortured world of cratered daylight and deep-frozen shadow.' },
+    { key: 'venus',   name: 'Venus',   a: 0.7233, T: 0.6152,  r: 6051.8, rot: -243.02, tilt: 177.36, ecc: 0.0068, color: 0xe2c295, tex: TX_BASE + 'venusmap.jpg',
+      sub: 'Second planet. Earth\'s furnace twin.', moons: 0,
+      note: 'Rotates backwards. A day on Venus is longer than its year. Surface at 464 °C — hot enough to melt lead under crushing CO₂ clouds.' },
+    { key: 'earth',   name: 'Earth',   a: 1.0000, T: 1.0000,  r: 6371,   rot: 0.9973,  tilt: 23.44,  ecc: 0.0167, color: 0x2a6cff, tex: TX_BASE + 'earthmap1k.jpg', special: 'earth',
+      sub: 'Home. 4.5 billion years old and counting.', moons: 1,
+      note: 'The only place in the known universe with liquid water, oxygen, and — so far — everyone you\'ve ever met.' },
+    { key: 'mars',    name: 'Mars',    a: 1.5237, T: 1.8809,  r: 3389.5, rot: 1.0259,  tilt: 25.19,  ecc: 0.0934, color: 0xc1440e, tex: TX_BASE + 'marsmap1k.jpg',
+      sub: 'The red planet. Next candidate.', moons: 2,
+      note: 'Home of Olympus Mons — the largest volcano in the solar system at 21 km tall, nearly three times the height of Everest.' },
+    { key: 'jupiter', name: 'Jupiter', a: 5.2028, T: 11.862,  r: 69911,  rot: 0.4135,  tilt: 3.13,   ecc: 0.0489, color: 0xd8b684, tex: TX_BASE + 'jupitermap.jpg',
+      sub: 'Gas giant. Protector of the inner system.', moons: 95,
+      note: 'The Great Red Spot is a storm bigger than Earth that has been raging for at least 400 years. Jupiter\'s gravity is what shields the inner planets from most rogue comets.' },
+    { key: 'saturn',  name: 'Saturn',  a: 9.5388, T: 29.457,  r: 58232,  rot: 0.4440,  tilt: 26.73,  ecc: 0.0565, color: 0xd9c089, tex: TX_BASE + 'saturnmap.jpg', rings: 'saturn',
+      sub: 'Ringed gas giant. Signature of the sky.', moons: 146,
+      note: 'Those rings are 99.9% water ice, some chunks small as dust, some as large as mountains. Saturn is less dense than water — it would float, if you had a big enough tub.' },
+    { key: 'uranus',  name: 'Uranus',  a: 19.191, T: 84.011,  r: 25362,  rot: -0.7183, tilt: 97.77,  ecc: 0.0457, color: 0x81c9e4, tex: TX_BASE + 'uranusmap.jpg', rings: 'uranus',
+      sub: 'Ice giant. Rolls on its side.', moons: 28,
+      note: 'Axial tilt of 98° means Uranus orbits the Sun on its side. Each pole gets 42 years of continuous daylight followed by 42 years of darkness.' },
+    { key: 'neptune', name: 'Neptune', a: 30.069, T: 164.79,  r: 24622,  rot: 0.6713,  tilt: 28.32,  ecc: 0.0113, color: 0x2d62b5, tex: TX_BASE + 'neptunemap.jpg',
+      sub: 'The blue wanderer. Farthest planet.', moons: 16,
+      note: 'Wind speeds here exceed 2,100 km/h — the fastest in the solar system. Discovered by math before anyone ever saw it through a telescope.' }
   ];
 
   // Scaling — real distances & sizes are impossible to render at 1:1 (Neptune would be ~500km off-screen
@@ -707,6 +723,53 @@
     return outV;
   }
 
+  // focus mode: when user clicks a planet, camera docks to it and ignores scroll
+  let focusedKey = null;
+  let focusBlend = 0;            // 0 = scroll-driven, 1 = fully locked to focus
+  const FOCUS_TRANSITION = 0.8;  // seconds
+  let focusStart = 0;
+  let focusDir = 0;              // +1 entering, -1 leaving
+
+  function setFocusedPlanet(key) {
+    if (key) focusOldKey = key;      // remember current so unfocus transition still lerps
+    focusedKey = key;
+    focusStart = performance.now() / 1000;
+    focusDir = key ? 1 : -1;
+    // update planet panel + body hover class
+    const panel = document.getElementById('planetPanel');
+    if (panel) {
+      if (key) {
+        populatePlanetPanel(key);
+        panel.hidden = false;
+        requestAnimationFrame(() => panel.classList.add('is-open'));
+      } else {
+        panel.classList.remove('is-open');
+        setTimeout(() => { panel.hidden = true; }, 340);
+      }
+    }
+  }
+
+  function populatePlanetPanel(key) {
+    const pd = PLANET_DATA.find(p => p.key === key);
+    if (!pd) return;
+    const $n = (id) => document.getElementById(id);
+    $n('ppName').textContent = pd.name;
+    $n('ppSub').textContent  = pd.sub || '';
+    $n('ppNote').textContent = pd.note || '';
+    const stats = [
+      ['distance',   pd.a.toFixed(3) + ' AU'],
+      ['radius',     pd.r.toLocaleString('en-US') + ' km'],
+      ['orbit',      pd.T < 1 ? (pd.T * 365.25).toFixed(0) + ' days' : pd.T.toFixed(2) + ' years'],
+      ['day length', Math.abs(pd.rot).toFixed(2) + ' d' + (pd.rot < 0 ? ' (retrograde)' : '')],
+      ['axial tilt', pd.tilt.toFixed(2) + '°'],
+      ['eccentricity', pd.ecc.toFixed(4)],
+      ['moons',      (pd.moons ?? 0).toLocaleString('en-US')],
+    ];
+    const el = $n('ppStats');
+    el.innerHTML = stats.map(([k, v]) =>
+      `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+  }
+
   function applyCameraFromScroll() {
     if (!camera) return;
     const p = scrollProgress();
@@ -729,20 +792,57 @@
     _tmpOff.y += -mouse.y * 0.4;
 
     _tmpCamPos.addVectors(_tmpTgt, _tmpOff);
+
+    // blend toward focus mode if engaged
+    const now = performance.now() / 1000;
+    const elapsed = now - focusStart;
+    const raw01 = Math.min(1, elapsed / FOCUS_TRANSITION);
+    const eased = ease(raw01);
+    focusBlend = focusDir === 1 ? eased : (1 - eased);
+    focusBlend = clamp(focusBlend, 0, 1);
+
+    if (focusBlend > 0.002) {
+      // slow orbit around the focused planet
+      const focusP = planets.find(pp => pp.key === focusedKey) || planets.find(pp => pp.key === focusOldKey);
+      if (focusP) {
+        const rr = kmToUnits(focusP.data.r);
+        // pull distance relative to planet size — small planet → closer, big planet → farther
+        const orbitR = Math.max(2.2, rr * 4.5);
+        const angle = now * 0.25;
+        const ox = Math.cos(angle) * orbitR + mouse.x * 0.5;
+        const oy = 0.8 + rr * 0.4 - mouse.y * 0.3;
+        const oz = Math.sin(angle) * orbitR;
+        const fx = focusP.position.x + ox;
+        const fy = focusP.position.y + oy;
+        const fz = focusP.position.z + oz;
+        const fTgtX = focusP.position.x;
+        const fTgtY = focusP.position.y;
+        const fTgtZ = focusP.position.z;
+        _tmpCamPos.x = lerp(_tmpCamPos.x, fx, focusBlend);
+        _tmpCamPos.y = lerp(_tmpCamPos.y, fy, focusBlend);
+        _tmpCamPos.z = lerp(_tmpCamPos.z, fz, focusBlend);
+        _tmpTgt.x    = lerp(_tmpTgt.x,    fTgtX, focusBlend);
+        _tmpTgt.y    = lerp(_tmpTgt.y,    fTgtY, focusBlend);
+        _tmpTgt.z    = lerp(_tmpTgt.z,    fTgtZ, focusBlend);
+      }
+    }
+
     camera.position.copy(_tmpCamPos);
     camera.lookAt(_tmpTgt);
 
     // HUD label + target readout
     const activeIdx = Math.round(p * segs);
     const active = CAM_KEYFRAMES[clamp(activeIdx, 0, CAM_KEYFRAMES.length - 1)];
-    if (railCaption && railCaption.textContent !== active.label) railCaption.textContent = active.label;
-    if (hudTargetEl && hudTargetEl.textContent !== active.label)  hudTargetEl.textContent  = active.label;
-    if (active.target === 'sun') {
+    const labelTxt = focusedKey ? focusedKey.toUpperCase() : active.label;
+    const targetKey = focusedKey || active.target;
+    if (railCaption && railCaption.textContent !== labelTxt) railCaption.textContent = labelTxt;
+    if (hudTargetEl && hudTargetEl.textContent !== labelTxt)  hudTargetEl.textContent  = labelTxt;
+    if (targetKey === 'sun') {
       if (hudAuEl)     hudAuEl.textContent     = '0.00';
       if (hudRadiusEl) hudRadiusEl.textContent = '696,340';
       if (hudPeriodEl) hudPeriodEl.textContent = '—';
     } else {
-      const pd = PLANET_DATA.find(x => x.key === active.target);
+      const pd = PLANET_DATA.find(x => x.key === targetKey);
       if (pd) {
         if (hudAuEl)     hudAuEl.textContent     = pd.a.toFixed(2);
         if (hudRadiusEl) hudRadiusEl.textContent = pd.r.toLocaleString('en-US');
@@ -752,6 +852,7 @@
       }
     }
   }
+  let focusOldKey = null; // retained during unfocus transition so camera can still lerp back
 
   // ───────────────────────────────────────────────────────
   //   5. ANIMATION LOOP
@@ -1371,6 +1472,63 @@
   }
 
   // ───────────────────────────────────────────────────────
+  //   12d. PLANET RAYCAST — hover + click to focus
+  // ───────────────────────────────────────────────────────
+  function initPlanetPanel() {
+    const closeBtn = $('#ppClose');
+    const panel = $('#planetPanel');
+
+    // close handlers
+    closeBtn?.addEventListener('click', () => setFocusedPlanet(null));
+    panel?.addEventListener('click', (e) => {
+      if (e.target === panel) setFocusedPlanet(null);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && focusedKey) setFocusedPlanet(null);
+    });
+
+    // Raycast — attach to window since canvas has pointer-events:none but
+    // its position is fullscreen. We'll test against the canvas rect.
+    if (!canvas || typeof THREE === 'undefined') return;
+    const raycaster = new THREE.Raycaster();
+    const ndc = new THREE.Vector2();
+
+    function pickAt(clientX, clientY) {
+      if (!scene || !camera || !planets.length) return null;
+      const rect = canvas.getBoundingClientRect();
+      ndc.x = ((clientX - rect.left) / rect.width)  *  2 - 1;
+      ndc.y = ((clientY - rect.top)  / rect.height) * -2 + 1;
+      raycaster.setFromCamera(ndc, camera);
+      // Test against each planet mesh (not the whole group — avoids rings/trails)
+      const targets = planets.map(p => p.mesh).filter(Boolean);
+      const hits = raycaster.intersectObjects(targets, false);
+      if (!hits.length) return null;
+      const hitMesh = hits[0].object;
+      return planets.find(p => p.mesh === hitMesh) || null;
+    }
+
+    // hover cursor — attach on window
+    window.addEventListener('mousemove', (e) => {
+      // don't fight the DOM — if the target is an interactive element, skip
+      if (e.target && e.target.closest('a, button, input, textarea, select')) {
+        document.body.classList.remove('is-planet-hover');
+        return;
+      }
+      const p = pickAt(e.clientX, e.clientY);
+      document.body.classList.toggle('is-planet-hover', !!p);
+    }, { passive: true });
+
+    // click anywhere on page that isn't a UI element → try to focus a planet
+    window.addEventListener('click', (e) => {
+      if (e.target && e.target.closest('a, button, input, textarea, select, .panel, .hud-top, .hud-bottom, .hud-rail, .hud-audio, .planet-panel')) return;
+      const p = pickAt(e.clientX, e.clientY);
+      if (p) {
+        setFocusedPlanet(p.key);
+      }
+    });
+  }
+
+  // ───────────────────────────────────────────────────────
   //   13. MOUSE PARALLAX
   // ───────────────────────────────────────────────────────
   function initMouseParallax() {
@@ -1397,6 +1555,7 @@
     initAiTerminal();
     initDataStreams();
     initHeroTitle();
+    initPlanetPanel();
 
     // kick off boot then three.js (initThree is async — textures load in parallel)
     runBoot(async () => {
