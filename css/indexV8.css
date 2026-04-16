@@ -711,11 +711,11 @@ img { display: block; max-width: 100%; }
 .hero-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(56px, 11vw, 170px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  font-size: clamp(44px, 8vw, 122px);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   position: relative;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.85));
 }
@@ -2059,7 +2059,7 @@ img { display: block; max-width: 100%; }
   .hud-stat-sep { display: none; }
   .station { padding: 100px 16px 100px; }
   .station-head { margin-bottom: 32px; }
-  .hero-title { font-size: clamp(48px, 16vw, 100px); }
+  .hero-title { font-size: clamp(40px, 13vw, 80px); }
   .about-grid { grid-template-columns: 1fr; }
   .about-bio, .about-photo { grid-column: auto; grid-row: auto; }
   .stack-grid { grid-template-columns: 1fr; }
