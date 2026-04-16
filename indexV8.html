@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vijay Gupta — Software Engineer. A navigable 3D portfolio of the distributed systems I build at Juspay / NammaYatri." />
+  <meta name="theme-color" content="#05030c" />
+  <title>Vijay Gupta — The Core // Live Infrastructure</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/indexV8.css" />
+</head>
+<body>
+
+  <!-- ── BOOT OVERLAY ── -->
+  <div id="boot" class="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-brand">VG<span class="boot-brand-dot">.</span>OS</div>
+      <div class="boot-log" id="bootLog"></div>
+      <div class="boot-bar"><div class="boot-bar-fill" id="bootBarFill"></div></div>
+      <div class="boot-hint">// THE CORE — live infrastructure portfolio</div>
+    </div>
+  </div>
+
+  <!-- ── CURSOR ── -->
+  <div id="cursor" class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-label" id="cursorLabel"></div>
+  </div>
+
+  <!-- ── WEBGL CANVAS (fixed, behind UI) ── -->
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── HUD OVERLAY (fixed UI chrome) ── -->
+  <div class="hud">
+    <!-- Top bar -->
+    <header class="hud-top">
+      <a href="#hero" class="hud-brand" data-magnet>
+        <span class="hud-brand-dot"></span>
+        <span class="hud-brand-text">VG<i>.</i>core</span>
+      </a>
+      <nav class="hud-nav" aria-label="Primary">
+        <a href="#about" class="hud-link" data-section="about"><span class="hud-link-idx">01</span>About</a>
+        <a href="#stack" class="hud-link" data-section="stack"><span class="hud-link-idx">02</span>Stack</a>
+        <a href="#work" class="hud-link" data-section="work"><span class="hud-link-idx">03</span>Work</a>
+        <a href="#builds" class="hud-link" data-section="builds"><span class="hud-link-idx">04</span>Builds</a>
+        <a href="#education" class="hud-link" data-section="education"><span class="hud-link-idx">05</span>Edu</a>
+        <a href="#contact" class="hud-link" data-section="contact"><span class="hud-link-idx">06</span>Contact</a>
+      </nav>
+      <div class="hud-actions">
+        <select id="portfolioSwitcher" class="hud-switcher" aria-label="Switch portfolio version">
+          <option value="indexV1.html">V1</option>
+          <option value="indexV2.html">V2</option>
+          <option value="indexV3.html">V3</option>
+          <option value="indexV4.html">V4</option>
+          <option value="indexV5.html">V5</option>
+          <option value="index.html">V6</option>
+          <option value="indexV7.html">V7</option>
+          <option value="indexV8.html" selected>V8</option>
+        </select>
+        <a href="#" id="resumeNavBtn" class="hud-resume" data-magnet>
+          <span class="hud-resume-dot"></span>
+          Resume.pdf
+        </a>
+      </div>
+    </header>
+
+    <!-- Right rail (section ticks) -->
+    <aside class="hud-rail" aria-hidden="true">
+      <div class="rail-track"></div>
+      <div class="rail-ticks" id="railTicks"></div>
+      <div class="rail-caption" id="railCaption">HERO</div>
+    </aside>
+
+    <!-- Bottom status bar -->
+    <footer class="hud-bottom">
+      <div class="hud-bottom-left">
+        <span class="hud-stat"><span class="hud-stat-dot hud-stat-dot--live"></span>system online</span>
+        <span class="hud-stat-sep"></span>
+        <span class="hud-stat">uptime <b id="upTime">--:--:--</b></span>
+        <span class="hud-stat-sep"></span>
+        <span class="hud-stat">fps <b id="fpsCounter">--</b></span>
+      </div>
+      <div class="hud-bottom-right">
+        <span class="hud-stat">coords [<b id="camCoords">0,0,0</b>]</span>
+        <span class="hud-stat-sep"></span>
+        <span class="hud-stat"><i>scroll</i> / <i>drag</i> to navigate</span>
+      </div>
+    </footer>
+
+    <!-- Audio toggle -->
+    <button id="audioToggle" class="hud-audio" aria-label="Toggle ambient audio" aria-pressed="false">
+      <span class="wave"><span></span><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <!-- ── SCROLL DRIVER: one <section> per station. Canvas is fixed; scroll moves camera. ── -->
+  <main id="driver" class="driver">
+
+    <!-- ── 00. HERO / CORE ── -->
+    <section id="hero" class="station station--hero" data-cam="0">
+      <div class="station-inner hero-layout">
+        <div class="hero-left">
+          <div class="tag tag--live">
+            <span class="tag-dot"></span>
+            AVAILABLE · 5M+ txns/day in production right now
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-title-word">VIJAY</span>
+            <span class="hero-title-word hero-title-word--outline">GUPTA</span>
+          </h1>
+          <p class="hero-kicker">
+            <span class="kbd">01</span>
+            <span>SYSTEMS ARCHITECT · BACKEND · SRE</span>
+          </p>
+          <p class="hero-lead">
+            I build the infrastructure that powers <b>200K+ rides a day</b> across India.<br/>
+            You're looking at a <b>live replica</b> of it — each node below is a real service I own.
+          </p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn--primary" data-magnet>
+              <span>Hail the core</span>
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#work" class="btn btn--ghost" data-magnet>
+              <span>Trace the stack</span>
+            </a>
+          </div>
+          <ul class="hero-chips" aria-label="Stack">
+            <li>Haskell</li><li>Redis/Valkey</li><li>Kafka</li><li>Postgres</li><li>Clickhouse</li><li>AWS · GCP · Azure</li>
+          </ul>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <!-- This block is visually empty; the 3D core is behind it. We place a callout. -->
+          <div class="core-ident">
+            <div class="core-ident-head">
+              <span class="core-ident-dot"></span>
+              NODE // NAMMAYATRI-CORE
+            </div>
+            <dl class="core-ident-stats">
+              <div><dt>rides / day</dt><dd><b data-count="200000">0</b>+</dd></div>
+              <div><dt>txns / day</dt><dd><b data-count="5000000">0</b>+</dd></div>
+              <div><dt>availability</dt><dd><b>99.9</b>%</dd></div>
+              <div><dt>p95 latency</dt><dd>↓<b>45</b>%</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="scroll-cue-text">SCROLL TO ENTER</span>
+        <span class="scroll-cue-line"></span>
+      </div>
+    </section>
+
+    <!-- ── 01. ABOUT ── -->
+    <section id="about" class="station" data-cam="1">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">01 //</span>
+          <h2 class="station-title">Who built this.</h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="panel panel--lg about-bio">
+            <div class="panel-head">
+              <span class="panel-dot"></span>
+              <span class="panel-label">/etc/whoami</span>
+            </div>
+            <div class="panel-body">
+              <p class="about-lead">
+                Software Engineer, <b>nearly 4 years</b> at production scale.
+                Currently at <b>Namma Yatri</b> (spun out of Juspay in Mar 2024), shipping core backend for India's largest open-source mobility platform.
+              </p>
+              <p>
+                I own core systems where every millisecond and every dollar of infra cost is a design decision — Redis/Valkey KV at <b>5K+ events/sec</b>, multi-cloud routing with zero-downtime deploys, autonomous SRE agents, and CPU profiling in Haskell.
+              </p>
+              <p>
+                I care about systems that are <i>observable</i>, <i>cost-efficient</i>, and <i>stay up</i> when traffic spikes. I've also written a lot of Python, a healthy amount of Node, and mentored engineers through the hiring bar.
+              </p>
+              <ul class="about-facts">
+                <li><span class="fact-k">role</span><span class="fact-v">SDE @ Namma Yatri</span></li>
+                <li><span class="fact-k">based</span><span class="fact-v">Bengaluru, IN</span></li>
+                <li><span class="fact-k">focus</span><span class="fact-v">Distributed systems · SRE</span></li>
+                <li><span class="fact-k">open to</span><span class="fact-v">Remote · Relocation</span></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="panel about-photo">
+            <div class="photo-frame">
+              <img src="images/profile2.jpg" alt="Vijay Gupta" class="photo-img" loading="lazy"/>
+              <div class="photo-scan"></div>
+              <div class="photo-corners"><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="photo-meta">
+              <span class="photo-meta-k">CARRIER</span>
+              <span class="photo-meta-v">VG-1998</span>
+            </div>
+          </article>
+
+          <article class="panel about-stat about-stat--a">
+            <div class="stat-num"><b data-count="45">0</b><span class="stat-unit">%</span></div>
+            <p class="stat-desc">P95 API latency reduction via CPU profiling &amp; I/O tuning.</p>
+          </article>
+          <article class="panel about-stat about-stat--b">
+            <div class="stat-num">$<b data-count="126">0</b><span class="stat-unit">K</span></div>
+            <p class="stat-desc">Annual infra savings — EC2 right-sizing + AZ-aware routing.</p>
+          </article>
+          <article class="panel about-stat about-stat--c">
+            <div class="stat-num"><b data-count="70">0</b><span class="stat-unit">%</span></div>
+            <p class="stat-desc">Less incident investigation time — built an autonomous SRE agent.</p>
+          </article>
+          <article class="panel about-stat about-stat--d">
+            <div class="stat-num"><b data-count="99">0</b><span class="stat-unit">.9%</span></div>
+            <p class="stat-desc">Production availability sustained on-call.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 02. STACK ── -->
+    <section id="stack" class="station" data-cam="2">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">02 //</span>
+          <h2 class="station-title">The stack I speak.</h2>
+        </div>
+
+        <div class="stack-grid">
+          <div class="stack-col">
+            <div class="stack-col-head"><span class="stack-col-idx">a</span>LANGUAGES</div>
+            <div class="stack-chips">
+              <span class="chip chip--hot">Haskell</span>
+              <span class="chip chip--hot">Python</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">C++</span>
+              <span class="chip">Java</span>
+              <span class="chip">SQL</span>
+              <span class="chip">PureScript</span>
+            </div>
+          </div>
+          <div class="stack-col">
+            <div class="stack-col-head"><span class="stack-col-idx">b</span>DATA &amp; STREAM</div>
+            <div class="stack-chips">
+              <span class="chip chip--hot">Redis / Valkey</span>
+              <span class="chip chip--hot">Kafka</span>
+              <span class="chip">RabbitMQ</span>
+              <span class="chip chip--hot">PostgreSQL</span>
+              <span class="chip">ClickHouse</span>
+            </div>
+          </div>
+          <div class="stack-col">
+            <div class="stack-col-head"><span class="stack-col-idx">c</span>CLOUD &amp; OPS</div>
+            <div class="stack-chips">
+              <span class="chip chip--hot">AWS</span>
+              <span class="chip">GCP</span>
+              <span class="chip">Azure</span>
+              <span class="chip chip--hot">Kubernetes</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Lambda</span>
+              <span class="chip">CI/CD</span>
+            </div>
+          </div>
+          <div class="stack-col">
+            <div class="stack-col-head"><span class="stack-col-idx">d</span>OBSERVABILITY</div>
+            <div class="stack-chips">
+              <span class="chip chip--hot">Prometheus</span>
+              <span class="chip chip--hot">Grafana</span>
+              <span class="chip">VictoriaMetrics</span>
+              <span class="chip">CloudWatch</span>
+              <span class="chip">Jenkins</span>
+            </div>
+          </div>
+          <div class="stack-col stack-col--wide">
+            <div class="stack-col-head"><span class="stack-col-idx">e</span>DISCIPLINE</div>
+            <div class="stack-chips">
+              <span class="chip chip--accent">Distributed Systems</span>
+              <span class="chip chip--accent">System Design</span>
+              <span class="chip chip--accent">SRE &amp; On-call</span>
+              <span class="chip chip--accent">Performance Tuning</span>
+              <span class="chip chip--accent">Cost Optimization</span>
+              <span class="chip chip--accent">400+ DSA on LeetCode / CodeChef</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 03. WORK ── -->
+    <section id="work" class="station" data-cam="3">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">03 //</span>
+          <h2 class="station-title">Where I've operated.</h2>
+        </div>
+
+        <div class="work-timeline">
+
+          <article class="exp panel panel--lg">
+            <header class="exp-head">
+              <div>
+                <h3 class="exp-co">Namma Yatri <span class="exp-product">— current</span></h3>
+                <p class="exp-role">Software Development Engineer · Full-time</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-date">Mar 2024 — Present</span>
+                <span class="exp-loc">Bengaluru · On-site</span>
+              </div>
+            </header>
+
+            <div class="exp-body">
+              <div class="exp-grp">
+                <h4 class="exp-grp-title">architecture &amp; scale</h4>
+                <ul class="exp-list">
+                  <li>Implemented <b>multimodal journey planning</b> across multiple cities — autos, metro &amp; buses with efficient ETA calc and traffic-flow logic for route accuracy and travel predictability.</li>
+                  <li>Scaled Redis / Valkey KV infra to <em>5M+ daily transactions</em> and <em>5K+ events/sec</em> via table-level sharding, async Redis ops, pipeline usage &amp; autoscaling.</li>
+                  <li>Implemented multi-cloud routing with cloud-aware Redis / Kafka connections and client-aware routing — <em>zero-downtime</em> cross-cloud deployments.</li>
+                  <li>Owned core backend systems for a real-time mobility platform serving <em>200K+ rides/day</em>.</li>
+                </ul>
+              </div>
+              <div class="exp-grp">
+                <h4 class="exp-grp-title">cloud cost &amp; reliability</h4>
+                <ul class="exp-list">
+                  <li>Drove <em>$126K annual savings</em> and <em>20% AWS cost reduction</em> via EC2 right-sizing, AZ-aware routing and storage efficiency.</li>
+                  <li>Optimized Redis for cost: <b>zone-aware replica selection</b>, zstd compression, table-level sharding — memory <em>↓50%</em>, cost <em>↓40%</em>, cross-AZ traffic minimized, slot utilization up.</li>
+                  <li>Enabled autoscaling for Redis and RDS replicas; enforced <b>same-AZ metrics scraping</b> via VM agents + <b>Kyverno-based pod zone injection</b>; cut ALB costs through API response compression &amp; payload optimization.</li>
+                  <li>Owned on-call — <em>75%</em> drop in 5xx error rates, <em>99.9%</em> availability sustained.</li>
+                </ul>
+              </div>
+              <div class="exp-grp">
+                <h4 class="exp-grp-title">performance &amp; ai</h4>
+                <ul class="exp-list">
+                  <li>Enhanced backend / API performance: profiled critical paths, tuned req/resp handling, added <b>OkHttp connection pooling</b> for polling — API latency <em>↓~50%</em>.</li>
+                  <li>Built high-performance <b>in-memory GTFS service</b> with GraphQL preloading — hot-path read latency <em>↓60%</em> at 5K+ req/sec.</li>
+                  <li>Built <a href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener"><b>Vishwakarma</b></a> — autonomous SRE agent, 16 parallel investigations across Prometheus / K8s / Elasticsearch / DBs, PDF RCA to Slack. Investigation time <em>↓70%</em>.</li>
+                  <li>Built a robust <b>Automated Regression Testing (ART)</b> framework that records real production traffic and replays test flows to detect API response changes early — safer, smoother deployments.</li>
+                  <li>Built real-time <b>pricing data scraping &amp; analysis pipelines</b> for the Namma Yatri app — dynamic pricing insights &amp; informed decisioning.</li>
+                  <li>Mentored <em>3+ engineers</em>, led design reviews and interview loops — <em>40%</em> team growth while holding the hiring bar.</li>
+                </ul>
+              </div>
+            </div>
+
+            <footer class="exp-tags">
+              <span class="tag">Haskell</span><span class="tag">PureScript</span><span class="tag">Python</span><span class="tag">Redis / Valkey</span><span class="tag">Kafka</span><span class="tag">PostgreSQL</span><span class="tag">ClickHouse</span><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Kubernetes</span><span class="tag">Kyverno</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
+            </footer>
+          </article>
+
+          <article class="exp panel panel--lg">
+            <header class="exp-head">
+              <div>
+                <h3 class="exp-co">Juspay</h3>
+                <p class="exp-role">Software Development Engineer · Product Engineer · Full-time</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-date">Apr 2023 — Mar 2024</span>
+                <span class="exp-loc">Bengaluru · On-site</span>
+              </div>
+            </header>
+
+            <div class="exp-body">
+              <div class="exp-grp">
+                <h4 class="exp-grp-title">product engineer · may 2023 — dec 2023</h4>
+                <ul class="exp-list">
+                  <li>Built <b>KV</b> — a cost-saving framework on Redis that stores real-time database data efficiently, effectively downsizing the primary DB while maintaining seamless access and sync.</li>
+                  <li>Created a <b>drainer service</b> to move data from Redis streams into the DB and directly from Kafka into ClickHouse for analytics — shapes data internally and eliminates extra shaping services.</li>
+                  <li>Added multithreading to scheduler services with thread-safe execution — reduced pod count and improved CPU utilization.</li>
+                </ul>
+              </div>
+              <div class="exp-grp">
+                <h4 class="exp-grp-title">sde · apr 2023 — mar 2024</h4>
+                <ul class="exp-list">
+                  <li>Separated the <b>data drainer service</b> from the application — smoother flow into DB + ClickHouse, simpler deploys with no app / DB-type coupling.</li>
+                  <li>Reduced testing sandbox costs via automated <b>HPA</b> and pod-request optimization based on actual resource needs.</li>
+                </ul>
+              </div>
+            </div>
+
+            <footer class="exp-tags">
+              <span class="tag">PureScript</span><span class="tag">Haskell</span><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">ClickHouse</span><span class="tag">Kubernetes</span><span class="tag">HPA</span>
+            </footer>
+          </article>
+
+          <article class="exp panel panel--lg">
+            <header class="exp-head">
+              <div>
+                <h3 class="exp-co">Vahan</h3>
+                <p class="exp-role">Software Engineer – I · Full-time</p>
+              </div>
+              <div class="exp-meta">
+                <span class="exp-date">Jun 2022 — Mar 2023</span>
+                <span class="exp-loc">Bengaluru · On-site</span>
+              </div>
+            </header>
+
+            <div class="exp-body">
+              <ul class="exp-list">
+                <li>Built backend architecture for an <b>AI-driven WhatsApp Bot</b> that matches blue-collar workers (for Zomato, Swiggy, Zepto, Uber) to relevant jobs based on their responses.</li>
+                <li>Implemented <b>concurrent chat</b> capability in the WhatsApp Bot flow with RabbitMQ — <em>45%</em> faster responses, <em>35%</em> higher engagement, telecalling costs <em>↓32%</em>, handled <em>10K+</em> conversations.</li>
+                <li>Automated application status tracking via data-warehouse integration — manual monitoring effort <em>↓70%</em>.</li>
+              </ul>
+            </div>
+
+            <footer class="exp-tags">
+              <span class="tag">Node.js</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span>
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 04. BUILDS ── -->
+    <section id="builds" class="station" data-cam="4">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">04 //</span>
+          <h2 class="station-title">Things I've built.</h2>
+        </div>
+
+        <div class="builds-grid">
+
+          <article class="build panel build--featured" data-shape="octa">
+            <div class="build-head">
+              <span class="build-kind">Autonomous SRE</span>
+              <a class="build-link" href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">Vishwakarma</h3>
+            <p class="build-desc">Agentic SRE platform. Ingests alerts from AlertManager &amp; CloudWatch, runs <b>16 parallel investigations</b> across Prometheus, Kubernetes, Elasticsearch &amp; databases, delivers PDF RCA reports to Slack. <b>Investigation time ↓70%</b>.</p>
+            <div class="build-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LLM</span><span class="tag">Kubernetes</span><span class="tag">Prometheus</span><span class="tag">Elasticsearch</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="cube">
+            <div class="build-head">
+              <span class="build-kind">Infra Platform</span>
+              <a class="build-link" href="https://github.com/vijaygupta18/Multi-Cloud-DB-Manager" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">Multi-Cloud DB Manager</h3>
+            <p class="build-desc">Unified platform to query PostgreSQL &amp; Redis across AWS, GCP &amp; Azure simultaneously. Parallel execution, side-by-side diff, <b>3-tier RBAC</b>, Monaco editor, password-gated destructive ops.</p>
+            <div class="build-tags">
+              <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Docker</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="torus">
+            <div class="build-head">
+              <span class="build-kind">Realtime Pipeline</span>
+              <span class="build-badge">@ Juspay</span>
+            </div>
+            <h3 class="build-name">Location Tracking Healthcheck</h3>
+            <p class="build-desc">Real-time healthcheck pipeline using Kafka location streams to detect stalled drivers; FCM-based alerts when updates stop. Improved GPS reliability for <b>200K+ rides/day</b>.</p>
+            <div class="build-tags">
+              <span class="tag">Haskell</span><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">FCM</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="sphere">
+            <div class="build-head">
+              <span class="build-kind">AI / RCA</span>
+              <a class="build-link" href="https://github.com/nammayatri/Master-Oogway" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">Master Oogway</h3>
+            <p class="build-desc">Post-release observability with LLM-powered RCA. <b>MTTR ↓50%</b>, detection time <b>↓70%</b>.</p>
+            <div class="build-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Prometheus</span><span class="tag">Kubernetes</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="tetra">
+            <div class="build-head">
+              <span class="build-kind">Dev Tool</span>
+              <a class="build-link" href="https://github.com/vijaygupta18/NodeSage" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">NodeSage</h3>
+            <p class="build-desc">CLI tool to query any codebase with local LLMs (Ollama) + RAG. Ask a repo anything; no data leaves your machine.</p>
+            <div class="build-tags">
+              <span class="tag">Node.js</span><span class="tag">Ollama</span><span class="tag">RAG</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="ring">
+            <div class="build-head">
+              <span class="build-kind">Dashboard</span>
+              <a class="build-link" href="https://github.com/vijaygupta18/k8s-dashboard" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">k8s-dashboard</h3>
+            <p class="build-desc">Real-time Kubernetes cluster monitoring — pod health, resource utilization, events viewer.</p>
+            <div class="build-tags">
+              <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Kubernetes</span>
+            </div>
+          </article>
+
+          <article class="build panel" data-shape="prism">
+            <div class="build-head">
+              <span class="build-kind">Open Transit</span>
+              <a class="build-link" href="https://github.com/nammayatri/bus-route-tracker" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.41-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+            </div>
+            <h3 class="build-name">Bus Route Tracker</h3>
+            <p class="build-desc">Open-source platform to collect, confirm &amp; manage bus-stop + route data with real-time GPS and admin APIs.</p>
+            <div class="build-tags">
+              <span class="tag">Python</span><span class="tag">Kotlin</span><span class="tag">Redis</span><span class="tag">ClickHouse</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 05. EDUCATION ── -->
+    <section id="education" class="station" data-cam="5">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">05 //</span>
+          <h2 class="station-title">How I got calibrated.</h2>
+        </div>
+
+        <div class="edu-grid">
+          <article class="panel panel--lg edu-main">
+            <div class="panel-head">
+              <span class="panel-dot"></span>
+              <span class="panel-label">/edu/degrees</span>
+            </div>
+            <div class="edu-entries">
+              <div class="edu-entry">
+                <div class="edu-year">2018 — 2022</div>
+                <div class="edu-body">
+                  <h4 class="edu-degree">B.Tech · Information Technology</h4>
+                  <p class="edu-school">Kamla Nehru Institute of Technology, Sultanpur</p>
+                  <div class="edu-tags">
+                    <span class="tag tag--accent">8.5 CGPA</span>
+                    <span class="tag">Top 5%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="edu-entry">
+                <div class="edu-year">2015 — 2017</div>
+                <div class="edu-body">
+                  <h4 class="edu-degree">Higher Secondary · PCM</h4>
+                  <p class="edu-school">St. Handel Public School, Allahabad</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel edu-certs">
+            <div class="panel-head">
+              <span class="panel-dot"></span>
+              <span class="panel-label">/edu/certs</span>
+            </div>
+            <ul class="certs-list">
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/NSSLFNX9TL3Z" target="_blank" rel="noopener">
+                <span class="cert-name">Neural Networks &amp; Deep Learning</span>
+                <span class="cert-issuer">Coursera · DeepLearning.AI</span>
+              </a></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/WXKVWJTKYXYW" target="_blank" rel="noopener">
+                <span class="cert-name">Improving Deep Neural Networks</span>
+                <span class="cert-issuer">Coursera</span>
+              </a></li>
+              <li><a href="https://www.hackerrank.com/certificates/8f9d1de8a54e" target="_blank" rel="noopener">
+                <span class="cert-name">Problem Solving (Intermediate)</span>
+                <span class="cert-issuer">HackerRank</span>
+              </a></li>
+              <li><a href="https://www.hackerrank.com/certificates/a3f0b476e8f4" target="_blank" rel="noopener">
+                <span class="cert-name">JavaScript (Intermediate)</span>
+                <span class="cert-issuer">HackerRank</span>
+              </a></li>
+              <li><a href="https://www.udemy.com/certificate/UC-6fa5b5d6-e72b-490d-84eb-fd68dfb6b9bb/" target="_blank" rel="noopener">
+                <span class="cert-name">Complete Node.js Developer</span>
+                <span class="cert-issuer">Udemy</span>
+              </a></li>
+            </ul>
+            <div class="certs-foot">
+              <span>400+ DSA problems solved on LeetCode &amp; CodeChef</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 06. CONTACT ── -->
+    <section id="contact" class="station station--last" data-cam="6">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">06 //</span>
+          <h2 class="station-title">Hail the core.</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="contact-lead">Interesting problem? Ambitious build? Just want to talk distributed systems or Haskell? The transmission is open.</p>
+            <ul class="contact-list">
+              <li><a href="mailto:vijayrauniyar1818@gmail.com">
+                <span class="contact-k">email</span>
+                <span class="contact-v">vijayrauniyar1818@gmail.com</span>
+              </a></li>
+              <li><a href="tel:+918565017450">
+                <span class="contact-k">phone</span>
+                <span class="contact-v">+91 85650 17450</span>
+              </a></li>
+              <li><a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener">
+                <span class="contact-k">linkedin</span>
+                <span class="contact-v">/in/vijaygupta18</span>
+              </a></li>
+              <li><a href="https://github.com/vijaygupta18" target="_blank" rel="noopener">
+                <span class="contact-k">github</span>
+                <span class="contact-v">/vijaygupta18</span>
+              </a></li>
+              <li><a href="https://twitter.com/vijaygupta18" target="_blank" rel="noopener">
+                <span class="contact-k">x / twitter</span>
+                <span class="contact-v">@vijaygupta18</span>
+              </a></li>
+            </ul>
+          </div>
+
+          <form id="contactForm" class="contact-form panel" novalidate>
+            <div class="panel-head">
+              <span class="panel-dot"></span>
+              <span class="panel-label">/tx/compose</span>
+            </div>
+            <div class="panel-body">
+              <div class="field-row">
+                <label class="field">
+                  <span class="field-label">name</span>
+                  <input type="text" id="name" name="name" required autocomplete="name" placeholder="who this is from" />
+                </label>
+                <label class="field">
+                  <span class="field-label">email</span>
+                  <input type="email" id="email" name="email" required autocomplete="email" placeholder="reply channel" />
+                </label>
+              </div>
+              <label class="field">
+                <span class="field-label">subject</span>
+                <input type="text" id="subject" name="subject" placeholder="one line on what this is about" />
+              </label>
+              <label class="field">
+                <span class="field-label">message</span>
+                <textarea id="message" name="message" rows="5" required placeholder="transmit…"></textarea>
+              </label>
+              <button type="submit" class="btn btn--primary btn--wide">
+                <span>Transmit</span>
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <footer class="station-foot">
+          <span>© 2026 Vijay Gupta · hand-built with Three.js, Haskell in my heart, and zero frameworks</span>
+          <a href="#hero" class="back-top" data-magnet>
+            ↑ back to the core
+          </a>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── RESUME MODAL ── -->
+  <div id="resumeModal" class="modal" role="dialog" aria-modal="true" aria-label="Resume" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div class="modal-head-left">
+          <span class="panel-dot"></span>
+          <span class="modal-title">Vijay_Gupta_Resume.pdf</span>
+        </div>
+        <div class="modal-head-right">
+          <a href="images/VijayGupta_Resume.pdf" download class="modal-download">download ↓</a>
+          <button id="resumeClose" class="modal-close" aria-label="Close resume">×</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe src="images/VijayGupta_Resume.pdf#zoom=page-width" title="Vijay Gupta Resume" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- JS -->
+  <script src="js/indexV8.js"></script>
+</body>
+</html>
