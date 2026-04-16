@@ -2127,6 +2127,10 @@ body.is-planet-hover { cursor: pointer; }
   background: #fff;
 }
 
+/* submit button spinner */
+.btn-spin { animation: btnSpin 0.9s linear infinite; transform-origin: center; }
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+
 /* ── TOAST ── */
 .toast {
   position: fixed;

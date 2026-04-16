@@ -1076,61 +1076,110 @@
   }
 
   // ───────────────────────────────────────────────────────
-  //   11. CONTACT FORM (EmailJS optional)
+  //   11. CONTACT FORM — EmailJS (real Gmail delivery)
+  //   Uses the same service/template that's been live since V1.
   // ───────────────────────────────────────────────────────
+  const EMAILJS_CFG = {
+    publicKey:  'JJYrlbmwaCoxBgcHG',
+    serviceId:  'service_4wre7f9',
+    templateId: 'template_4alqdiv'
+  };
+
   function initContactForm() {
-    const form = $('#contactForm');
+    const form  = $('#contactForm');
     const toast = $('#toast');
     if (!form) return;
+
+    // Initialise EmailJS once with rate-limit + headless block (bot guard).
+    if (typeof emailjs !== 'undefined' && !form.dataset.ejsInit) {
+      try {
+        emailjs.init({
+          publicKey: EMAILJS_CFG.publicKey,
+          blockHeadless: true,
+          limitRate: { id: 'vg-portfolio', throttle: 10000 }
+        });
+        form.dataset.ejsInit = '1';
+      } catch (e) { console.warn('[emailjs] init failed:', e); }
+    }
 
     const showToast = (msg, isErr = false) => {
       if (!toast) return;
       toast.textContent = msg;
       toast.classList.toggle('is-error', isErr);
       toast.classList.add('is-show');
-      setTimeout(() => toast.classList.remove('is-show'), 3400);
+      setTimeout(() => toast.classList.remove('is-show'), 4000);
     };
+
+    // strip tags + cap length — mirror of the original clean()
+    const clean = (s) => String(s || '').replace(/<[^>]*>/g, '').slice(0, 2000).trim();
+    const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+    let submitting = false;
+    let lastSent   = 0;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const orig = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<span>Transmitting…</span>';
-
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        subject: form.subject.value.trim() || '(no subject)',
-        message: form.message.value.trim()
-      };
-
-      if (!data.name || !data.email || !data.message) {
-        showToast('Missing required fields.', true);
-        btn.disabled = false;
-        btn.innerHTML = orig;
+      if (submitting) return;
+      if (Date.now() - lastSent < 10000) {
+        showToast('Easy there — please wait a moment before sending again.', true);
         return;
       }
 
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      const setBtn = (html, disabled) => { btn.innerHTML = html; btn.disabled = !!disabled; };
+
+      const name    = clean(form.name.value);
+      const email   = clean(form.email.value);
+      const subject = clean(form.subject.value) || 'Portfolio contact';
+      const message = clean(form.message.value);
+
+      // validation
+      if (name.length < 2) {
+        showToast('Please enter your name.', true); return;
+      }
+      if (!isEmail(email)) {
+        showToast('Please enter a valid email so I can reply.', true); return;
+      }
+      if (message.length < 10) {
+        showToast('Add a bit more context — at least 10 characters.', true); return;
+      }
+
+      submitting = true;
+      setBtn(
+        '<svg viewBox="0 0 24 24" width="14" height="14" class="btn-spin">' +
+        '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="12 56"/>' +
+        '</svg><span>Sending…</span>',
+        true
+      );
+
       try {
-        // If EmailJS is wired up by the user, use it; otherwise fallback to mailto.
-        if (window.emailjs && typeof window.emailjs.send === 'function' && window.VG_EMAIL_CFG) {
-          const { serviceId, templateId, publicKey } = window.VG_EMAIL_CFG;
-          if (publicKey) window.emailjs.init(publicKey);
-          await window.emailjs.send(serviceId, templateId, data);
-          showToast('Transmission received. Acknowledged.');
-          form.reset();
-        } else {
-          const mailto = `mailto:vijayrauniyar1818@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} <${data.email}>\n\n${data.message}`)}`;
-          window.location.href = mailto;
-          showToast('Opening your mail client…');
+        if (typeof emailjs === 'undefined' || typeof emailjs.send !== 'function') {
+          throw new Error('Email service unavailable — try vijayrauniyar1818@gmail.com');
         }
+
+        await emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
+          name:     name,
+          email:    email,
+          title:    subject,
+          subject:  'Contact: ' + subject,
+          reply_to: email,
+          message:  `${subject}\n\n${message}\n\nFrom: ${name} <${email}>`,
+          time:     new Date().toLocaleString()
+        });
+
+        lastSent = Date.now();
+        form.reset();
+        showToast('Sent — I\u2019ll get back to you soon. Thanks!');
       } catch (err) {
-        console.error(err);
-        showToast('Transmission failed. Try again.', true);
+        console.error('[contact] send failed:', err);
+        const msg = (err && err.text) ? err.text
+                  : (err && err.message) ? err.message
+                  : 'Failed to send — email me directly at vijayrauniyar1818@gmail.com';
+        showToast(msg, true);
       } finally {
-        btn.disabled = false;
-        btn.innerHTML = orig;
+        submitting = false;
+        setBtn(orig, false);
       }
     });
   }
