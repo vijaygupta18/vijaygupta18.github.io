@@ -165,11 +165,14 @@
     };
   }
 
-  function runBoot(onDone) {
+  // runBoot now dismisses the overlay when BOTH the log timeline has
+  // finished AND the main scene's textures have loaded (or 10s timeout).
+  // Progress bar reflects max(timer, realTextureProgress).
+  function runBoot(scenePromise, onDone) {
     if (prefersReducedMotion) {
       bootEl.classList.add('is-done');
       if (bootBar) bootBar.style.width = '100%';
-      setTimeout(onDone, 100);
+      Promise.resolve(scenePromise).then(onDone);
       return;
     }
 
@@ -177,13 +180,18 @@
     const stopBootScene = startBootScene();
 
     const total = bootLines[bootLines.length - 1].t + 700;
-    // smooth continuous progress (independent of line timing)
     const progStart = performance.now();
     const progDur = total + 400;
+
+    let timerFrac = 0;
+    let texFrac   = 0;
+    textureProgressCb = (f) => { if (f > texFrac) texFrac = f; };
+
     function tickProgress() {
-      const p = Math.min(1, (performance.now() - progStart) / progDur);
-      if (bootBar) bootBar.style.width = (p * 100).toFixed(1) + '%';
-      if (p < 1) requestAnimationFrame(tickProgress);
+      timerFrac = Math.min(1, (performance.now() - progStart) / progDur);
+      const effective = Math.max(timerFrac * 0.85, texFrac);
+      if (bootBar) bootBar.style.width = (effective * 100).toFixed(1) + '%';
+      if (effective < 1) requestAnimationFrame(tickProgress);
     }
     requestAnimationFrame(tickProgress);
 
@@ -196,15 +204,23 @@
         bootLog.scrollTop = bootLog.scrollHeight;
       }, line.t);
     });
-    setTimeout(() => {
+
+    // Dismiss when BOTH: minimum boot time elapsed AND scene textures loaded.
+    // Bounded by a 10s safety timeout so a stuck CDN never hangs the UI.
+    const minTime = new Promise(r => setTimeout(r, total));
+    const sceneReady = Promise.race([
+      Promise.resolve(scenePromise),
+      new Promise(r => setTimeout(() => r(false), 10_000))
+    ]);
+
+    Promise.all([minTime, sceneReady]).then(([, ok]) => {
       if (bootBar) bootBar.style.width = '100%';
       setTimeout(() => {
         bootEl.classList.add('is-done');
-        onDone();
-        // tear down the mini scene a bit later so it fades with the panel
+        onDone(ok);
         setTimeout(stopBootScene, 900);
       }, 520);
-    }, total);
+    });
   }
 
   // ───────────────────────────────────────────────────────
@@ -279,6 +295,10 @@
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
   const clock = new THREE.Clock();
   let renderLoopId = null;
+
+  // Texture-load progress callback — set by runBoot so the boot bar can
+  // reflect real download progress instead of a timed estimate.
+  let textureProgressCb = null;
 
   // Texture CDNs (CORS-verified via jsDelivr)
   const TX_BASE  = 'https://cdn.jsdelivr.net/gh/jeromeetienne/threex.planets@master/images/';
@@ -373,8 +393,13 @@
     camera.position.set(0, 14, 42);
     camera.lookAt(0, 0, 0);
 
-    // ── TEXTURES — loaded in parallel ──
-    const loader = new THREE.TextureLoader();
+    // ── TEXTURES — loaded in parallel with real progress events ──
+    const loadingMgr = new THREE.LoadingManager();
+    loadingMgr.onProgress = (_url, loaded, total) => {
+      if (textureProgressCb && total > 0) textureProgressCb(loaded / total);
+    };
+    loadingMgr.onLoad = () => { if (textureProgressCb) textureProgressCb(1); };
+    const loader = new THREE.TextureLoader(loadingMgr);
     loader.crossOrigin = 'anonymous';
     const textureUrls = {
       sun:         TX_BASE + 'sunmap.jpg',
@@ -730,20 +755,27 @@
   let focusStart = 0;
   let focusDir = 0;              // +1 entering, -1 leaving
 
+  let planetPanelTrap = null;
   function setFocusedPlanet(key) {
     if (key) focusOldKey = key;      // remember current so unfocus transition still lerps
     focusedKey = key;
     focusStart = performance.now() / 1000;
     focusDir = key ? 1 : -1;
-    // update planet panel + body hover class
     const panel = document.getElementById('planetPanel');
     if (panel) {
       if (key) {
         populatePlanetPanel(key);
         panel.hidden = false;
-        requestAnimationFrame(() => panel.classList.add('is-open'));
+        panel.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => {
+          panel.classList.add('is-open');
+          if (planetPanelTrap) planetPanelTrap.release();
+          planetPanelTrap = trapFocus(panel);
+        });
       } else {
         panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        if (planetPanelTrap) { planetPanelTrap.release(); planetPanelTrap = null; }
         setTimeout(() => { panel.hidden = true; }, 340);
       }
     }
@@ -988,6 +1020,12 @@
   // ───────────────────────────────────────────────────────
   //   7. COUNTER ANIMATIONS (data-count)
   // ───────────────────────────────────────────────────────
+  function formatCounter(target) {
+    if (target >= 1000) return Math.floor(target).toLocaleString('en-US');
+    if (target % 1 !== 0) return target.toFixed(1);
+    return Math.floor(target).toString();
+  }
+
   function animateCounter(el, target, duration = 1800) {
     const start = performance.now();
     const isFloat = target % 1 !== 0;
@@ -995,19 +1033,24 @@
       const t = clamp((performance.now() - start) / duration, 0, 1);
       const eased = 1 - Math.pow(1 - t, 3);
       const val = target * eased;
-      if (target >= 1000) {
-        el.textContent = Math.floor(val).toLocaleString('en-US');
-      } else if (isFloat) {
-        el.textContent = val.toFixed(1);
-      } else {
-        el.textContent = Math.floor(val).toString();
-      }
+      el.textContent = (target >= 1000)  ? Math.floor(val).toLocaleString('en-US')
+                     : isFloat           ? val.toFixed(1)
+                                         : Math.floor(val).toString();
       if (t < 1) requestAnimationFrame(step);
     };
     step();
   }
 
   function initCounters() {
+    // Pre-set aria-label and role so screen readers announce the final value
+    // once, not the 0 -> N animation a hundred times.
+    $$('[data-count]').forEach(el => {
+      const n = Number(el.dataset.count);
+      if (!isNaN(n)) {
+        el.setAttribute('aria-label', formatCounter(n));
+        el.setAttribute('role', 'text');
+      }
+    });
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting && !e.target.dataset.counted) {
@@ -1020,6 +1063,40 @@
       });
     }, { threshold: 0.5 });
     $$('[data-count]').forEach(el => observer.observe(el));
+  }
+
+  // ── Focus trap helper — keeps Tab/Shift+Tab inside a container ──
+  function trapFocus(container) {
+    if (!container) return { release: () => {} };
+    const sel = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const getFocusable = () => Array.from(container.querySelectorAll(sel))
+      .filter(el => el.offsetParent !== null || el === document.activeElement);
+    const prevFocus = document.activeElement;
+
+    const onKey = (e) => {
+      if (e.key !== 'Tab') return;
+      const nodes = getFocusable();
+      if (!nodes.length) { e.preventDefault(); return; }
+      const first = nodes[0];
+      const last  = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    };
+    container.addEventListener('keydown', onKey);
+
+    // move focus into the container
+    const first = getFocusable()[0];
+    if (first) first.focus();
+
+    return {
+      release: () => {
+        container.removeEventListener('keydown', onKey);
+        if (prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus();
+      }
+    };
   }
 
   // ───────────────────────────────────────────────────────
@@ -1061,21 +1138,28 @@
                || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS Safari
     const resumeUrl = 'images/VijayGupta_Resume.pdf';
 
+    let trap = null;
+
     const open = (e) => {
       if (e) e.preventDefault();
       if (isIOS) {
-        // Navigate to the PDF in a new tab — iOS's native PDF viewer handles it well.
         window.open(resumeUrl, '_blank', 'noopener,noreferrer');
         return;
       }
       if (!modal) { window.open(resumeUrl, '_blank', 'noopener'); return; }
       modal.hidden = false;
-      requestAnimationFrame(() => modal.classList.add('is-open'));
+      modal.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        trap = trapFocus(modal.querySelector('.modal-panel') || modal);
+      });
       document.body.style.overflow = 'hidden';
     };
     const close = () => {
       if (!modal) return;
       modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      if (trap) { trap.release(); trap = null; }
       setTimeout(() => {
         modal.hidden = true;
         document.body.style.overflow = '';
@@ -1307,8 +1391,17 @@
 
       thinking.remove();
 
-      // render as ONE message, markdown-aware, with a soft fade-in
-      const html = aiRenderMarkdown(answer);
+      // render as ONE message, markdown-aware, with a soft fade-in.
+      // DOMPurify belts & braces in case the model ever returns something
+      // my escape + regex miss.
+      let html = aiRenderMarkdown(answer);
+      if (typeof DOMPurify !== 'undefined' && DOMPurify.sanitize) {
+        html = DOMPurify.sanitize(html, {
+          ALLOWED_TAGS: ['p', 'ul', 'ol', 'li', 'strong', 'em', 'code', 'a', 'br'],
+          ALLOWED_ATTR: ['href', 'target', 'rel'],
+          ALLOW_DATA_ATTR: false
+        });
+      }
       const { body } = aiAppendMsg(log, 'ai', html, { asHtml: true });
       body.classList.add('ai-reveal');
       aiScroll(log);
@@ -1595,11 +1688,14 @@
     initHeroTitle();
     initPlanetPanel();
 
-    // kick off boot then three.js (initThree is async — textures load in parallel)
-    runBoot(async () => {
-      let ok = false;
-      try { ok = await initThree(); }
-      catch (err) { console.error('[solar] init failed:', err); ok = false; }
+    // Kick boot and the main scene in parallel so texture downloads
+    // happen DURING the boot log, not after.
+    const scenePromise = initThree().catch(err => {
+      console.error('[solar] init failed:', err);
+      return false;
+    });
+
+    runBoot(scenePromise, (ok) => {
       if (!ok) {
         canvas.style.display = 'none';
         return;
