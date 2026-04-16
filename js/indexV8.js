@@ -25,20 +25,11 @@
   const bootEl = $('#boot');
 
   const bootLines = [
-    { t: 0,    cls: 'dim',  text: '> init vg.os kernel v8.0.1 ...' },
-    { t: 120,  cls: 'ok',   text: '[ OK ] kernel loaded' },
-    { t: 200,  cls: 'dim',  text: '> mount /dev/redis@0 ...' },
-    { t: 320,  cls: 'ok',   text: '[ OK ] redis cluster online · 5k events/sec' },
-    { t: 360,  cls: 'dim',  text: '> mount /dev/kafka@0 ...' },
-    { t: 460,  cls: 'ok',   text: '[ OK ] kafka brokers synced' },
-    { t: 500,  cls: 'dim',  text: '> open /multi-cloud-router ...' },
-    { t: 620,  cls: 'hi',   text: '[ RT ] aws · gcp · azure handshake complete' },
-    { t: 660,  cls: 'dim',  text: '> spawn vishwakarma sre daemon ...' },
-    { t: 780,  cls: 'ok',   text: '[ OK ] 16 parallel investigators armed' },
-    { t: 820,  cls: 'dim',  text: '> warmup gtfs in-memory cache ...' },
-    { t: 950,  cls: 'ok',   text: '[ OK ] hot-path preload · 5k req/sec ready' },
-    { t: 990,  cls: 'dim',  text: '> boot portfolio.render.three ...' },
-    { t: 1150, cls: 'hi',   text: '> THE CORE IS LIVE · SCROLL TO NAVIGATE' }
+    { t: 0,    cls: 'dim', text: 'loading real planetary textures from NASA archives' },
+    { t: 240,  cls: 'dim', text: 'computing Keplerian orbits · mercury → neptune' },
+    { t: 520,  cls: 'dim', text: 'placing Earth · cloud layer · city lights' },
+    { t: 780,  cls: 'dim', text: 'wiring VG.AI — trained on vijay\'s work' },
+    { t: 1040, cls: 'hi',  text: 'ready.' }
   ];
 
   function runBoot(onDone) {
@@ -49,22 +40,32 @@
       return;
     }
     const total = bootLines[bootLines.length - 1].t + 600;
-    bootLines.forEach((line) => {
+    // smooth continuous progress (independent of line timing)
+    const progStart = performance.now();
+    const progDur = total + 400;
+    function tickProgress() {
+      const p = Math.min(1, (performance.now() - progStart) / progDur);
+      if (bootBar) bootBar.style.width = (p * 100).toFixed(1) + '%';
+      if (p < 1) requestAnimationFrame(tickProgress);
+    }
+    requestAnimationFrame(tickProgress);
+
+    bootLines.forEach((line, idx) => {
       setTimeout(() => {
         const div = document.createElement('div');
         div.className = line.cls;
+        div.style.animationDelay = '0ms';
         div.textContent = line.text;
         bootLog.appendChild(div);
         bootLog.scrollTop = bootLog.scrollHeight;
-        bootBar.style.width = `${Math.min(100, (line.t / total) * 100)}%`;
       }, line.t);
     });
     setTimeout(() => {
-      bootBar.style.width = '100%';
+      if (bootBar) bootBar.style.width = '100%';
       setTimeout(() => {
         bootEl.classList.add('is-done');
         onDone();
-      }, 380);
+      }, 520);
     }, total);
   }
 
@@ -913,17 +914,74 @@
     requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; });
   }
 
-  function aiAppendMsg(log, kind, htmlOrText, { asHtml = false } = {}) {
+  // Minimal-but-correct markdown → HTML for chat answers.
+  // Handles: **bold**, *italic*, `code`, unordered (-,*) + ordered (1.) lists,
+  // line breaks, inline links, and escapes HTML first.
+  function aiRenderMarkdown(src) {
+    const raw = String(src).replace(/\r\n/g, '\n');
+    const lines = raw.split('\n');
+    const blocks = [];
+    let list = null; // { type: 'ul'|'ol', items: [] }
+    let para = null;
+
+    const flushPara = () => { if (para) { blocks.push(['p', para.join(' ')]); para = null; } };
+    const flushList = () => { if (list) { blocks.push([list.type, list.items]); list = null; } };
+
+    for (const raw of lines) {
+      const line = raw.replace(/\s+$/, '');
+      if (!line.trim()) { flushPara(); flushList(); continue; }
+      const u = /^\s*[-*]\s+(.+)/.exec(line);
+      const o = /^\s*(\d+)\.\s+(.+)/.exec(line);
+      if (u) {
+        flushPara();
+        if (!list || list.type !== 'ul') { flushList(); list = { type: 'ul', items: [] }; }
+        list.items.push(u[1]);
+      } else if (o) {
+        flushPara();
+        if (!list || list.type !== 'ol') { flushList(); list = { type: 'ol', items: [] }; }
+        list.items.push(o[2]);
+      } else {
+        flushList();
+        if (!para) para = [];
+        para.push(line);
+      }
+    }
+    flushPara(); flushList();
+
+    const inlineMd = (s) => {
+      let x = aiEscape(s);
+      // inline code `code`
+      x = x.replace(/`([^`]+?)`/g, '<code>$1</code>');
+      // bold **text**
+      x = x.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // italic *text* (avoid matching inside **..**)
+      x = x.replace(/(^|[\s(])\*([^*\n]+?)\*(?=$|[\s,.;:!?)])/g, '$1<em>$2</em>');
+      // autolink http(s)://
+      x = x.replace(/(https?:\/\/[^\s<)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+      return x;
+    };
+
+    return blocks.map(([tag, content]) => {
+      if (tag === 'p')  return `<p>${inlineMd(content)}</p>`;
+      if (tag === 'ul') return `<ul>${content.map(i => `<li>${inlineMd(i)}</li>`).join('')}</ul>`;
+      if (tag === 'ol') return `<ol>${content.map(i => `<li>${inlineMd(i)}</li>`).join('')}</ol>`;
+      return '';
+    }).join('');
+  }
+
+  function aiAppendMsg(log, kind, textOrHtml, { asHtml = false } = {}) {
     const el = document.createElement('div');
     el.className = `ai-msg ai-msg--${kind}`;
     const tag = document.createElement('span');
     tag.className = 'ai-msg-tag';
-    tag.textContent = kind === 'sys' ? '[sys]' :
+    tag.textContent = kind === 'sys'  ? 'sys' :
                       kind === 'user' ? 'you' :
-                      kind === 'err' ? '!err' : 'vg.ai';
-    const body = document.createElement('span');
+                      kind === 'err'  ? 'err' :
+                                        'vg.ai';
+    const body = document.createElement('div');
     body.className = 'ai-msg-body';
-    if (asHtml) body.innerHTML = htmlOrText; else body.textContent = htmlOrText;
+    if (asHtml) body.innerHTML = textOrHtml;
+    else body.textContent = textOrHtml;
     el.appendChild(tag);
     el.appendChild(body);
     log.appendChild(el);
@@ -931,45 +989,23 @@
     return { el, body };
   }
 
-  function aiTypewriter(bodyEl, text, speed = 14) {
-    return new Promise((resolve) => {
-      let i = 0;
-      const cursor = document.createElement('span');
-      cursor.className = 'ai-cursor';
-      bodyEl.textContent = '';
-      bodyEl.appendChild(cursor);
-      const tick = () => {
-        if (i < text.length) {
-          bodyEl.insertBefore(document.createTextNode(text[i]), cursor);
-          i++;
-          setTimeout(tick, speed);
-        } else {
-          cursor.remove();
-          resolve();
-        }
-      };
-      tick();
-    });
-  }
-
   async function aiSubmit(query, log, inputEl, sendBtn) {
     if (!query || !log) return;
-    // user message
+    // user turn
     aiAppendMsg(log, 'user', query);
 
     inputEl.value = '';
     inputEl.disabled = true;
     if (sendBtn) sendBtn.disabled = true;
 
-    // thinking indicator
+    // thinking — one bubble with pulsing dots
     const thinking = document.createElement('div');
-    thinking.className = 'ai-msg ai-msg--ai ai-thinking-wrap';
+    thinking.className = 'ai-msg ai-msg--ai';
     thinking.innerHTML = `
       <span class="ai-msg-tag">vg.ai</span>
-      <span class="ai-msg-body ai-thinking">
-        thinking
+      <div class="ai-msg-body ai-thinking">
         <span class="ai-thinking-dots"><span></span><span></span><span></span></span>
-      </span>`;
+      </div>`;
     log.appendChild(thinking);
     aiScroll(log);
 
@@ -988,30 +1024,21 @@
       const answer = (data.answer || '').trim();
       if (!answer) throw new Error('Empty response');
 
-      aiHistory.push({ role: 'user', content: query });
+      aiHistory.push({ role: 'user',      content: query });
       aiHistory.push({ role: 'assistant', content: answer });
       if (aiHistory.length > 10) aiHistory = aiHistory.slice(-6);
 
       thinking.remove();
 
-      // render line by line with typewriter
-      const lines = answer.split('\n');
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const { body } = aiAppendMsg(log, 'ai', '');
-        if (line.length > 140) {
-          // fast-render long lines to keep feeling snappy
-          body.textContent = line;
-        } else {
-          await aiTypewriter(body, line, 12);
-        }
-        aiScroll(log);
-      }
+      // render as ONE message, markdown-aware, with a soft fade-in
+      const html = aiRenderMarkdown(answer);
+      const { body } = aiAppendMsg(log, 'ai', html, { asHtml: true });
+      body.classList.add('ai-reveal');
+      aiScroll(log);
     } catch (err) {
       thinking.remove();
       aiAppendMsg(log, 'err',
-        `Transmission lost: ${aiEscape(err.message || 'request failed')}. ` +
-        `If this keeps happening try again — the worker may be warming up.`);
+        `Transmission failed: ${err.message || 'request failed'}. Try again in a sec — the worker may be waking up.`);
     } finally {
       inputEl.disabled = false;
       if (sendBtn) sendBtn.disabled = false;

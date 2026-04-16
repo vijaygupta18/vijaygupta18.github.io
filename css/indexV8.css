@@ -106,28 +106,26 @@ img { display: block; max-width: 100%; }
 .boot {
   position: fixed;
   inset: 0;
-  background: radial-gradient(120% 80% at 50% 50%, #06091a 0%, #04040a 60%, #000 100%);
+  background: #0a0a0c;
   z-index: 1000;
   display: grid;
   place-items: center;
   color: var(--text);
-  font-family: var(--font-mono);
-  transition: opacity 600ms var(--ease-out), visibility 600ms;
+  font-family: var(--font-body);
+  transition: opacity 700ms var(--ease-out), visibility 700ms;
 }
 .boot.is-done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transform: scale(1.05);
+  transition: opacity 700ms var(--ease-out), visibility 700ms, transform 700ms var(--ease-out);
 }
 .boot-inner {
-  width: min(720px, 90vw);
-  padding: 28px 32px;
-  border: 1px solid var(--edge);
-  background: linear-gradient(180deg, rgba(10,14,28,.75), rgba(6,8,18,.6));
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-glow-cy);
+  width: min(560px, 88vw);
+  padding: 34px 36px 30px;
   position: relative;
-  overflow: hidden;
+  text-align: left;
 }
 .boot-inner::before {
   display: none;
@@ -135,42 +133,93 @@ img { display: block; max-width: 100%; }
 .boot-brand {
   font-family: var(--font-body);
   font-weight: 600;
-  letter-spacing: -0.01em;
-  font-size: 14px;
+  letter-spacing: -0.015em;
+  font-size: 22px;
   color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  animation: bootBrandIn 700ms var(--ease-out);
 }
-.boot-brand-dot { color: var(--amber); margin: 0 2px; }
+@keyframes bootBrandIn {
+  0%   { opacity: 0; letter-spacing: 0.3em; }
+  100% { opacity: 1; letter-spacing: -0.015em; }
+}
+.boot-brand-dot {
+  color: var(--amber);
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 3px;
+}
+.boot-sub {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--text-dim);
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+  animation: bootLineIn 520ms var(--ease-out) 120ms both;
+}
 .boot-log {
-  font-size: 12.5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   color: var(--text-dim);
   min-height: 180px;
   white-space: pre-wrap;
-  line-height: 1.75;
+  line-height: 1.85;
+  margin-top: 24px;
+}
+.boot-log > div {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: bootLineIn 360ms var(--ease-out) forwards;
+}
+@keyframes bootLineIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 .boot-log .ok { color: var(--text); }
 .boot-log .warn { color: var(--amber); }
 .boot-log .hi { color: var(--amber); }
 .boot-log .dim { color: var(--text-mute); }
 .boot-bar {
-  margin-top: 20px;
-  height: 3px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 2px;
+  margin-top: 24px;
+  height: 1px;
+  background: var(--edge);
+  position: relative;
   overflow: hidden;
 }
 .boot-bar-fill {
-  height: 100%;
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
   width: 0%;
-  background: var(--amber);
+  background: var(--text);
   transition: width 120ms linear;
 }
+.boot-bar-fill::after {
+  content: "";
+  position: absolute;
+  right: -12px; top: -1px;
+  width: 12px; height: 3px;
+  background: var(--amber);
+  box-shadow: 0 0 8px rgba(217, 163, 103, 0.6);
+  border-radius: 2px;
+}
 .boot-hint {
-  margin-top: 18px;
-  font-size: 11px;
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
   color: var(--text-mute);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.boot-hint em {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  color: var(--text-dim);
 }
 
 /* ── CURSOR — decorative ring follows the real cursor (which is still visible) ── */
@@ -586,8 +635,9 @@ img { display: block; max-width: 100%; }
 /* ── HERO ── */
 .station--hero {
   min-height: 100vh;
-  padding-top: 160px;
-  padding-bottom: 120px;
+  max-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 80px;
 }
 .hero-layout {
   display: grid;
@@ -958,10 +1008,40 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.005em;
   flex-shrink: 0;
   padding-top: 2px;
-  min-width: 38px;
+  min-width: 40px;
 }
 .ai-msg--user .ai-msg-tag { color: var(--amber); }
 .ai-msg--ai .ai-msg-tag   { color: var(--text-dim); }
+
+/* AI response markdown styles */
+.ai-msg-body        { flex: 1; min-width: 0; }
+.ai-msg-body p      { margin: 0 0 8px; line-height: 1.6; }
+.ai-msg-body p:last-child { margin-bottom: 0; }
+.ai-msg-body ul,
+.ai-msg-body ol     { margin: 6px 0 10px; padding-left: 22px; }
+.ai-msg-body ul:last-child,
+.ai-msg-body ol:last-child { margin-bottom: 0; }
+.ai-msg-body li     { margin: 4px 0; line-height: 1.55; }
+.ai-msg-body li::marker { color: var(--text-mute); }
+.ai-msg-body strong { color: var(--text); font-weight: 600; }
+.ai-msg-body em     { color: var(--text); font-style: italic; font-family: var(--font-editorial); font-size: 1.04em; }
+.ai-msg-body code   {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 1px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+  color: var(--amber);
+}
+.ai-msg-body a { color: var(--amber); text-decoration: underline; text-underline-offset: 2px; }
+.ai-msg-body a:hover { color: var(--text); }
+
+.ai-reveal { animation: aiReveal 360ms var(--ease-out); }
+@keyframes aiReveal {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* thinking dots */
 .ai-thinking {
@@ -1170,22 +1250,20 @@ img { display: block; max-width: 100%; }
   padding: 18px;
 }
 .about-lead {
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: clamp(20px, 1.5vw, 24px);
+  font-family: var(--font-body);
+  font-size: 17px;
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.65;
   font-weight: 400;
   letter-spacing: -0.005em;
 }
-.about-lead b, .about-bio b { color: var(--amber); font-weight: 400; font-style: italic; font-family: var(--font-editorial); }
-.about-lead b, .about-lead i { font-style: italic; }
+.about-lead b, .about-bio b { color: var(--text); font-weight: 600; }
 .about-bio p {
   color: var(--text-dim);
   line-height: 1.72;
   font-size: 15.5px;
 }
-.about-bio i { color: var(--text); font-style: italic; }
+.about-bio i { color: var(--text); font-style: italic; font-family: var(--font-body); }
 
 .about-facts {
   list-style: none;
