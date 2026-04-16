@@ -796,6 +796,188 @@
   }
 
   // ───────────────────────────────────────────────────────
+  //   12a. AI TERMINAL (VG.AI · Cloudflare Worker · Gemini)
+  // ───────────────────────────────────────────────────────
+  const AI_WORKER_URL = 'https://portfolio-ai.vijay-gupta-932.workers.dev';
+  let aiHistory = [];
+
+  function aiEscape(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function aiScroll(log) {
+    requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; });
+  }
+
+  function aiAppendMsg(log, kind, htmlOrText, { asHtml = false } = {}) {
+    const el = document.createElement('div');
+    el.className = `ai-msg ai-msg--${kind}`;
+    const tag = document.createElement('span');
+    tag.className = 'ai-msg-tag';
+    tag.textContent = kind === 'sys' ? '[sys]' :
+                      kind === 'user' ? 'you' :
+                      kind === 'err' ? '!err' : 'vg.ai';
+    const body = document.createElement('span');
+    body.className = 'ai-msg-body';
+    if (asHtml) body.innerHTML = htmlOrText; else body.textContent = htmlOrText;
+    el.appendChild(tag);
+    el.appendChild(body);
+    log.appendChild(el);
+    aiScroll(log);
+    return { el, body };
+  }
+
+  function aiTypewriter(bodyEl, text, speed = 14) {
+    return new Promise((resolve) => {
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'ai-cursor';
+      bodyEl.textContent = '';
+      bodyEl.appendChild(cursor);
+      const tick = () => {
+        if (i < text.length) {
+          bodyEl.insertBefore(document.createTextNode(text[i]), cursor);
+          i++;
+          setTimeout(tick, speed);
+        } else {
+          cursor.remove();
+          resolve();
+        }
+      };
+      tick();
+    });
+  }
+
+  async function aiSubmit(query, log, inputEl, sendBtn) {
+    if (!query || !log) return;
+    // user message
+    aiAppendMsg(log, 'user', query);
+
+    inputEl.value = '';
+    inputEl.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
+
+    // thinking indicator
+    const thinking = document.createElement('div');
+    thinking.className = 'ai-msg ai-msg--ai ai-thinking-wrap';
+    thinking.innerHTML = `
+      <span class="ai-msg-tag">vg.ai</span>
+      <span class="ai-msg-body ai-thinking">
+        thinking
+        <span class="ai-thinking-dots"><span></span><span></span><span></span></span>
+      </span>`;
+    log.appendChild(thinking);
+    aiScroll(log);
+
+    try {
+      const resp = await fetch(AI_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, history: aiHistory })
+      });
+      if (!resp.ok) {
+        let errData = {};
+        try { errData = await resp.json(); } catch (_) {}
+        throw new Error(errData.error || `API returned ${resp.status}`);
+      }
+      const data = await resp.json();
+      const answer = (data.answer || '').trim();
+      if (!answer) throw new Error('Empty response');
+
+      aiHistory.push({ role: 'user', content: query });
+      aiHistory.push({ role: 'assistant', content: answer });
+      if (aiHistory.length > 10) aiHistory = aiHistory.slice(-6);
+
+      thinking.remove();
+
+      // render line by line with typewriter
+      const lines = answer.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const { body } = aiAppendMsg(log, 'ai', '');
+        if (line.length > 140) {
+          // fast-render long lines to keep feeling snappy
+          body.textContent = line;
+        } else {
+          await aiTypewriter(body, line, 12);
+        }
+        aiScroll(log);
+      }
+    } catch (err) {
+      thinking.remove();
+      aiAppendMsg(log, 'err',
+        `Transmission lost: ${aiEscape(err.message || 'request failed')}. ` +
+        `If this keeps happening try again — the worker may be warming up.`);
+    } finally {
+      inputEl.disabled = false;
+      if (sendBtn) sendBtn.disabled = false;
+      inputEl.focus();
+    }
+  }
+
+  function initAiTerminal() {
+    const form = $('#aiTermForm');
+    const input = $('#aiTermInput');
+    const sendBtn = form ? form.querySelector('.ai-term-send') : null;
+    const log = $('#aiTermLog');
+    const chips = $('#aiTermChips');
+    const clearBtn = $('#aiTermClear');
+    if (!form || !input || !log) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (q) aiSubmit(q, log, input, sendBtn);
+    });
+
+    chips?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.ai-chip');
+      if (!btn) return;
+      const q = btn.dataset.q || btn.textContent.trim();
+      aiSubmit(q, log, input, sendBtn);
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      aiHistory = [];
+      log.innerHTML = `
+        <div class="ai-msg ai-msg--sys">
+          <span class="ai-msg-tag">[sys]</span>
+          <span>Memory wiped. Fresh session — ask away.</span>
+        </div>`;
+    });
+  }
+
+  // ───────────────────────────────────────────────────────
+  //   12b. DATA STREAMS (side ambient hex/binary)
+  // ───────────────────────────────────────────────────────
+  function initDataStreams() {
+    const l = $('#dsTrackL');
+    const r = $('#dsTrackR');
+    if (!l || !r) return;
+    const hexChars = '0123456789ABCDEF';
+    const tokens = ['REDIS', 'KAFKA', 'OK', 'VALKEY', 'HTTP', 'TLS', 'ZSTD', 'HS', 'RPC', '200', '204', '404', 'P95', 'P99', 'RCA', 'SRE', 'IOPS', 'GB', 'TPS', 'EOF'];
+    const genLine = () => {
+      if (Math.random() < 0.25) {
+        return tokens[Math.floor(Math.random() * tokens.length)];
+      }
+      let s = '';
+      for (let i = 0; i < 4; i++) s += hexChars[Math.floor(Math.random() * hexChars.length)];
+      return s;
+    };
+    const buildFeed = () => {
+      let feed = '';
+      for (let i = 0; i < 160; i++) feed += genLine() + '\n';
+      return feed + feed; // double for seamless loop
+    };
+    l.textContent = buildFeed();
+    r.textContent = buildFeed();
+  }
+
+  // ───────────────────────────────────────────────────────
   //   12. AUDIO (ambient drone, WebAudio synth)
   // ───────────────────────────────────────────────────────
   function initAudio() {
@@ -885,6 +1067,8 @@
     initReveal();
     initMouseParallax();
     initAudio();
+    initAiTerminal();
+    initDataStreams();
 
     // kick off boot then three.js
     runBoot(() => {

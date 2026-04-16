@@ -43,6 +43,27 @@
   <!-- ── WEBGL CANVAS (fixed, behind UI) ── -->
   <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
+  <!-- ── VIGNETTE + SCAN OVERLAY — improves content readability ── -->
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ── DATA STREAMS (left/right ambient) ── -->
+  <div class="datastream datastream--l" aria-hidden="true">
+    <div class="datastream-track" id="dsTrackL"></div>
+  </div>
+  <div class="datastream datastream--r" aria-hidden="true">
+    <div class="datastream-track" id="dsTrackR"></div>
+  </div>
+
+  <!-- ── VIEWPORT CORNER BRACKETS ── -->
+  <div class="vp-brackets" aria-hidden="true">
+    <span class="vp-b vp-b--tl"></span>
+    <span class="vp-b vp-b--tr"></span>
+    <span class="vp-b vp-b--bl"></span>
+    <span class="vp-b vp-b--br"></span>
+  </div>
+
   <!-- ── HUD OVERLAY (fixed UI chrome) ── -->
   <div class="hud">
     <!-- Top bar -->
@@ -143,12 +164,59 @@
           </ul>
         </div>
 
-        <div class="hero-right" aria-hidden="true">
-          <!-- This block is visually empty; the 3D core is behind it. We place a callout. -->
+        <div class="hero-right">
+          <!-- AI Terminal — live interview of Vijay -->
+          <div class="ai-term panel panel--ai" role="region" aria-label="AI assistant terminal">
+            <div class="ai-term-head">
+              <div class="ai-term-head-left">
+                <span class="ai-term-avatar">
+                  <span class="ai-term-avatar-core"></span>
+                </span>
+                <div class="ai-term-title">
+                  <span class="ai-term-name">VG<i>.</i>AI</span>
+                  <span class="ai-term-sub">// trained on this portfolio · ask anything</span>
+                </div>
+              </div>
+              <div class="ai-term-head-right">
+                <span class="ai-term-pill"><span class="ai-term-pill-dot"></span>online</span>
+                <button type="button" class="ai-term-clear" id="aiTermClear" aria-label="Clear conversation">clear</button>
+              </div>
+            </div>
+
+            <div class="ai-term-log" id="aiTermLog" aria-live="polite">
+              <div class="ai-msg ai-msg--sys">
+                <span class="ai-msg-tag">[sys]</span>
+                <span>Hi — I'm <b>VG.AI</b>, a little agent that knows Vijay's work. Pick a prompt below, or ask me anything.</span>
+              </div>
+            </div>
+
+            <div class="ai-term-chips" id="aiTermChips" role="list">
+              <button type="button" class="ai-chip" data-q="What does Vijay do right now at Namma Yatri?">what does he do?</button>
+              <button type="button" class="ai-chip" data-q="Give me 3 most impactful technical wins from his time at Juspay / Namma Yatri.">biggest wins</button>
+              <button type="button" class="ai-chip" data-q="Walk me through Vishwakarma — why build another SRE tool?">why Vishwakarma?</button>
+              <button type="button" class="ai-chip" data-q="How does the multi-cloud Redis/Kafka routing work?">multi-cloud routing</button>
+              <button type="button" class="ai-chip" data-q="Is Vijay looking for a new role? What is he optimizing for?">is he hiring-ready?</button>
+            </div>
+
+            <form class="ai-term-input" id="aiTermForm" autocomplete="off">
+              <span class="ai-term-prompt">&gt;_</span>
+              <input type="text" id="aiTermInput" class="ai-term-input-field"
+                     placeholder="ask vg.ai · e.g. what's his haskell experience?"
+                     autocomplete="off" spellcheck="false" aria-label="Ask VG.AI" />
+              <button type="submit" class="ai-term-send" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Core identification readout (below AI terminal) -->
           <div class="core-ident">
             <div class="core-ident-head">
               <span class="core-ident-dot"></span>
               NODE // NAMMAYATRI-CORE
+              <span class="core-ident-telemetry" aria-hidden="true">
+                <span class="led"></span><span class="led"></span><span class="led"></span>
+              </span>
             </div>
             <dl class="core-ident-stats">
               <div><dt>rides / day</dt><dd><b data-count="200000">0</b>+</dd></div>
