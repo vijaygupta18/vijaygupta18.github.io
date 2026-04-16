@@ -26,12 +26,13 @@
   <!-- ── BOOT OVERLAY ── -->
   <div id="boot" class="boot" aria-hidden="true">
     <div class="boot-inner">
-      <div class="boot-brand">Vijay<span class="boot-brand-dot">·</span>Gupta</div>
-      <div class="boot-sub">A portfolio built around the real solar system.</div>
+      <canvas id="bootCanvas" class="boot-canvas" aria-hidden="true"></canvas>
+      <div class="boot-brand">VG<span class="boot-brand-dot">.</span>OS</div>
+      <div class="boot-sub">Booting <em>vijay.portfolio</em> · rendering the solar system.</div>
       <div class="boot-log" id="bootLog"></div>
       <div class="boot-bar"><div class="boot-bar-fill" id="bootBarFill"></div></div>
       <div class="boot-hint">
-        <span>preparing the scene</span>
+        <span>THE CORE — live infrastructure portfolio</span>
         <em>v8.0</em>
       </div>
     </div>
@@ -65,7 +66,8 @@
         <a href="#work" class="hud-link" data-section="work"><span class="hud-link-idx">03</span>Work</a>
         <a href="#builds" class="hud-link" data-section="builds"><span class="hud-link-idx">04</span>Builds</a>
         <a href="#education" class="hud-link" data-section="education"><span class="hud-link-idx">05</span>Edu</a>
-        <a href="#contact" class="hud-link" data-section="contact"><span class="hud-link-idx">06</span>Contact</a>
+        <a href="#recs" class="hud-link" data-section="recs"><span class="hud-link-idx">06</span>Said</a>
+        <a href="#contact" class="hud-link" data-section="contact"><span class="hud-link-idx">07</span>Contact</a>
       </nav>
       <div class="hud-actions">
         <select id="portfolioSwitcher" class="hud-switcher" aria-label="Switch portfolio version">
@@ -650,11 +652,49 @@
       </div>
     </section>
 
-    <!-- ── 06. CONTACT ── -->
-    <section id="contact" class="station station--last" data-cam="6">
+    <!-- ── 06. RECOMMENDATIONS ── -->
+    <section id="recs" class="station" data-cam="6">
       <div class="station-inner">
         <div class="station-head">
           <span class="station-idx">06</span>
+          <h2 class="station-title">What <em>people have said</em>.</h2>
+        </div>
+
+        <div class="recs-grid">
+
+          <blockquote class="rec-card">
+            <p class="rec-quote">Vijay was a fantastic person to work with — multi-skilled, insightful, and a person with very strong problem-solving skills. His focus keeps everything moving smoothly, deadlines are met, and whatever project he is working on meets the highest standards. An asset to any company.</p>
+            <footer class="rec-footer">
+              <span class="rec-name">Naman Samaiya</span>
+              <span class="rec-role">SDE3 @ Vahan · IIIT Bhagalpur</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="rec-card">
+            <p class="rec-quote">Vijay impressed me with his positive attitude and strong work ethic. Always eager to learn, great initiative on challenging projects. His technical skills are equally impressive — it was clear from the beginning that he has a great deal of potential.</p>
+            <footer class="rec-footer">
+              <span class="rec-name">Ketan Patil</span>
+              <span class="rec-role">Engineering Manager @ Vahan</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="rec-card">
+            <p class="rec-quote">Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched. He was always a key contributor to our team's projects. I highly recommend Vijay for any opportunity he pursues.</p>
+            <footer class="rec-footer">
+              <span class="rec-name">Aditya Kale</span>
+              <span class="rec-role">SSE @ Vahan · IIIT Pune</span>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 07. CONTACT ── -->
+    <section id="contact" class="station station--last" data-cam="7">
+      <div class="station-inner">
+        <div class="station-head">
+          <span class="station-idx">07</span>
           <h2 class="station-title">Let's <em>talk</em>.</h2>
         </div>
 

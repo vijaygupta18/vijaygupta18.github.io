@@ -25,12 +25,145 @@
   const bootEl = $('#boot');
 
   const bootLines = [
-    { t: 0,    cls: 'dim', text: 'loading real planetary textures from NASA archives' },
-    { t: 240,  cls: 'dim', text: 'computing Keplerian orbits · mercury → neptune' },
-    { t: 520,  cls: 'dim', text: 'placing Earth · cloud layer · city lights' },
-    { t: 780,  cls: 'dim', text: 'wiring VG.AI — trained on vijay\'s work' },
-    { t: 1040, cls: 'hi',  text: 'ready.' }
+    { t: 0,    cls: 'dim',  text: '> init vg.os kernel v8.0.1 ...' },
+    { t: 120,  cls: 'ok',   text: '[ OK ] kernel loaded' },
+    { t: 200,  cls: 'dim',  text: '> mount /dev/redis@0 ...' },
+    { t: 320,  cls: 'ok',   text: '[ OK ] redis cluster online · 5K events/sec' },
+    { t: 360,  cls: 'dim',  text: '> mount /dev/kafka@0 ...' },
+    { t: 460,  cls: 'ok',   text: '[ OK ] kafka brokers synced' },
+    { t: 500,  cls: 'dim',  text: '> open /multi-cloud-router ...' },
+    { t: 620,  cls: 'hi',   text: '[ RT ] aws · gcp · azure handshake complete' },
+    { t: 660,  cls: 'dim',  text: '> spawn vishwakarma sre daemon ...' },
+    { t: 780,  cls: 'ok',   text: '[ OK ] 16 parallel investigators armed' },
+    { t: 820,  cls: 'dim',  text: '> load nasa planetary textures ...' },
+    { t: 960,  cls: 'ok',   text: '[ OK ] sun · 8 planets · moon · saturn rings ready' },
+    { t: 1000, cls: 'dim',  text: '> solve kepler · position mercury → neptune ...' },
+    { t: 1160, cls: 'hi',   text: '> THE CORE IS LIVE · SCROLL TO NAVIGATE' }
   ];
+
+  // Mini Three.js solar system that lives in the boot overlay.
+  // Lightweight (no textures) so it's instantly alive while the main
+  // scene does its texture-heavy load in the background.
+  function startBootScene() {
+    const bc = $('#bootCanvas');
+    if (!bc || typeof THREE === 'undefined') return () => {};
+    const w = bc.clientWidth || 360, h = bc.clientHeight || 160;
+    const r = new THREE.WebGLRenderer({ canvas: bc, alpha: true, antialias: true });
+    r.setPixelRatio(Math.min(devicePixelRatio, 2));
+    r.setSize(w, h, false);
+    const s = new THREE.Scene();
+    const c = new THREE.PerspectiveCamera(42, w / h, 0.1, 120);
+    c.position.set(0, 5, 18);
+    c.lookAt(0, 0, 0);
+
+    s.add(new THREE.AmbientLight(0xffffff, 0.15));
+    const sunL = new THREE.PointLight(0xffe7b0, 2.5, 60, 1.1);
+    s.add(sunL);
+
+    // sun
+    const sun = new THREE.Mesh(
+      new THREE.SphereGeometry(1.3, 40, 40),
+      new THREE.MeshBasicMaterial({ color: 0xffd089 })
+    );
+    s.add(sun);
+    const corona = new THREE.Mesh(
+      new THREE.SphereGeometry(1.65, 32, 32),
+      new THREE.MeshBasicMaterial({
+        color: 0xff9a55, transparent: true, opacity: 0.22,
+        side: THREE.BackSide, depthWrite: false
+      })
+    );
+    s.add(corona);
+
+    // 6 planets — relative sizes + orbits, no textures
+    const specs = [
+      { r: 2.6,  size: 0.14, color: 0xa89788, speed: 2.1 },  // Mercury
+      { r: 3.6,  size: 0.23, color: 0xd6ad7f, speed: 1.65 }, // Venus
+      { r: 4.8,  size: 0.26, color: 0x5d8fdd, speed: 1.3 },  // Earth
+      { r: 6.2,  size: 0.20, color: 0xc1440e, speed: 1.0 },  // Mars
+      { r: 8.6,  size: 0.62, color: 0xd8b684, speed: 0.55 }, // Jupiter
+      { r: 11.2, size: 0.52, color: 0xd9c089, speed: 0.35, ring: true } // Saturn
+    ];
+    const plist = specs.map((spec, i) => {
+      const m = new THREE.Mesh(
+        new THREE.SphereGeometry(spec.size, 28, 28),
+        new THREE.MeshStandardMaterial({
+          color: spec.color,
+          emissive: spec.color, emissiveIntensity: 0.15,
+          roughness: 0.85, metalness: 0.05
+        })
+      );
+      s.add(m);
+
+      // trail
+      const pts = [];
+      for (let j = 0; j <= 96; j++) {
+        const th = (j / 96) * Math.PI * 2;
+        pts.push(new THREE.Vector3(Math.cos(th) * spec.r, 0, Math.sin(th) * spec.r));
+      }
+      const trail = new THREE.LineLoop(
+        new THREE.BufferGeometry().setFromPoints(pts),
+        new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.08 })
+      );
+      s.add(trail);
+
+      // saturn ring (simple)
+      if (spec.ring) {
+        const rg = new THREE.RingGeometry(spec.size * 1.4, spec.size * 2.2, 64);
+        const rm = new THREE.MeshBasicMaterial({
+          color: 0xe8d2a0, transparent: true, opacity: 0.5,
+          side: THREE.DoubleSide, depthWrite: false
+        });
+        const ring = new THREE.Mesh(rg, rm);
+        ring.rotation.x = Math.PI / 2 - 0.3;
+        m.add(ring);
+      }
+      return Object.assign({ mesh: m, phase: i * 1.1 }, spec);
+    });
+
+    // starfield dust
+    const starCount = 400;
+    const sg = new THREE.BufferGeometry();
+    const sp = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const rr = 18 + Math.random() * 42;
+      const th = Math.random() * Math.PI * 2;
+      const ph = Math.acos(2 * Math.random() - 1);
+      sp[i*3]   = rr * Math.sin(ph) * Math.cos(th);
+      sp[i*3+1] = rr * Math.sin(ph) * Math.sin(th);
+      sp[i*3+2] = rr * Math.cos(ph);
+    }
+    sg.setAttribute('position', new THREE.BufferAttribute(sp, 3));
+    s.add(new THREE.Points(sg, new THREE.PointsMaterial({
+      color: 0xffffff, size: 0.07, transparent: true, opacity: 0.7,
+      sizeAttenuation: true, depthWrite: false
+    })));
+
+    // scene tilt so orbits read as 3D
+    s.rotation.x = 0.45;
+
+    let running = true;
+    const t0 = performance.now();
+    function tick() {
+      if (!running) return;
+      const t = (performance.now() - t0) / 1000;
+      sun.rotation.y = t * 0.5;
+      corona.scale.setScalar(1 + Math.sin(t * 1.4) * 0.04);
+      plist.forEach(p => {
+        const a = t * p.speed + p.phase;
+        p.mesh.position.set(Math.cos(a) * p.r, 0, Math.sin(a) * p.r);
+        p.mesh.rotation.y = a * 2;
+      });
+      s.rotation.y = t * 0.06;
+      r.render(s, c);
+      requestAnimationFrame(tick);
+    }
+    tick();
+    return () => {
+      running = false;
+      try { r.dispose(); } catch (_) {}
+    };
+  }
 
   function runBoot(onDone) {
     if (prefersReducedMotion) {
@@ -39,7 +172,11 @@
       setTimeout(onDone, 100);
       return;
     }
-    const total = bootLines[bootLines.length - 1].t + 600;
+
+    // kick off the mini 3D solar system immediately
+    const stopBootScene = startBootScene();
+
+    const total = bootLines[bootLines.length - 1].t + 700;
     // smooth continuous progress (independent of line timing)
     const progStart = performance.now();
     const progDur = total + 400;
@@ -50,11 +187,10 @@
     }
     requestAnimationFrame(tickProgress);
 
-    bootLines.forEach((line, idx) => {
+    bootLines.forEach((line) => {
       setTimeout(() => {
         const div = document.createElement('div');
         div.className = line.cls;
-        div.style.animationDelay = '0ms';
         div.textContent = line.text;
         bootLog.appendChild(div);
         bootLog.scrollTop = bootLog.scrollHeight;
@@ -65,6 +201,8 @@
       setTimeout(() => {
         bootEl.classList.add('is-done');
         onDone();
+        // tear down the mini scene a bit later so it fades with the panel
+        setTimeout(stopBootScene, 900);
       }, 520);
     }, total);
   }
@@ -536,15 +674,16 @@
   //   that body's moving position with a fixed offset.
   // ───────────────────────────────────────────────────────
   const CAM_KEYFRAMES = [
-    { target: 'sun',     offset: [0,  16, 42], label: 'SUN' },      // Hero: inner solar system overview
-    { target: 'earth',   offset: [3,  2.2, 4.8], label: 'EARTH' },  // About: home planet
-    { target: 'mars',    offset: [2.4, 1.5, 3.5], label: 'MARS' },  // Stack: red techy world
-    { target: 'jupiter', offset: [5,  3,   7],   label: 'JUPITER' },// Work: biggest gas giant
-    { target: 'saturn',  offset: [6,  4,   8],   label: 'SATURN' },// Builds: iconic rings
-    { target: 'neptune', offset: [3,  2,   5],   label: 'NEPTUNE' },// Education: far, deep
-    { target: 'earth',   offset: [2,  1.5, 3.5], label: 'EARTH' }   // Contact: back home
+    { target: 'sun',     offset: [0,  16, 42], label: 'SUN' },       // Hero
+    { target: 'earth',   offset: [3,  2.2, 4.8], label: 'EARTH' },   // About
+    { target: 'mars',    offset: [2.4, 1.5, 3.5], label: 'MARS' },   // Stack
+    { target: 'jupiter', offset: [5,  3,   7],   label: 'JUPITER' },// Work
+    { target: 'saturn',  offset: [6,  4,   8],   label: 'SATURN' }, // Builds
+    { target: 'uranus',  offset: [3,  1.8, 4.5], label: 'URANUS' }, // Edu
+    { target: 'neptune', offset: [3,  2,   5],   label: 'NEPTUNE' },// Recs
+    { target: 'earth',   offset: [2,  1.5, 3.5], label: 'EARTH' }    // Contact
   ];
-  const STATIONS = ['HERO', 'ABOUT', 'STACK', 'WORK', 'BUILDS', 'EDU', 'CONTACT'];
+  const STATIONS = ['HERO', 'ABOUT', 'STACK', 'WORK', 'BUILDS', 'EDU', 'RECS', 'CONTACT'];
 
   function scrollProgress() {
     const docH = document.documentElement.scrollHeight - window.innerHeight;
@@ -698,17 +837,19 @@
   const hudRadiusEl = $('#hudTargetRadius');
   const hudPeriodEl = $('#hudTargetPeriod');
 
+  const SECTION_ID_MAP = { edu: 'education', recs: 'recs' };
+  const stationToId = (name) => SECTION_ID_MAP[name.toLowerCase()] || name.toLowerCase();
+
   function buildRail() {
     if (!railContainer) return;
     railContainer.innerHTML = '';
-    STATIONS.forEach((name, i) => {
+    STATIONS.forEach((name) => {
       const tick = document.createElement('button');
       tick.className = 'rail-tick';
       tick.setAttribute('aria-label', `Jump to ${name}`);
-      tick.dataset.section = name.toLowerCase() === 'edu' ? 'education' : name.toLowerCase();
+      tick.dataset.section = stationToId(name);
       tick.addEventListener('click', () => {
-        const id = tick.dataset.section;
-        const target = document.getElementById(id);
+        const target = document.getElementById(tick.dataset.section);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
       railContainer.appendChild(tick);
@@ -726,10 +867,7 @@
     const hudLinks = $$('.hud-link');
     hudLinks.forEach(link => {
       const sec = link.dataset.section;
-      const idx = STATIONS.findIndex(s => {
-        const id = s.toLowerCase() === 'edu' ? 'education' : s.toLowerCase();
-        return id === sec;
-      });
+      const idx = STATIONS.findIndex(s => stationToId(s) === sec);
       link.classList.toggle('is-active', idx === activeIdx);
     });
   }
