@@ -1677,8 +1677,9 @@ img { display: block; max-width: 100%; }
 /* ── EDUCATION ── */
 .edu-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1fr 1.4fr;
   gap: 18px;
+  align-items: start;
 }
 .edu-entries {
   display: flex;
@@ -1714,33 +1715,39 @@ img { display: block; max-width: 100%; }
 
 .certs-list {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 8px;
 }
 .certs-list li a {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  transition: background 180ms, border-color 180ms;
+  border: 1px solid var(--edge);
+  background: rgba(255,255,255,0.015);
+  transition: background 180ms, border-color 180ms, transform 180ms;
+  height: 100%;
+}
+.certs-list li a:hover {
+  transform: translateY(-1px);
 }
 .certs-list li a:hover {
   background: rgba(0,245,255,0.06);
   border-color: rgba(0,245,255,0.18);
 }
 .cert-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text);
+  line-height: 1.35;
 }
 .cert-issuer {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--text-mute);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 .certs-foot {
   margin-top: 12px;
@@ -2018,6 +2025,7 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 780px) {
+  .certs-list { grid-template-columns: 1fr; }
   .hud-nav { display: none; }
   .hud-top {
     border-radius: 14px;
