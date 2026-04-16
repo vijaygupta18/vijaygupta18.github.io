@@ -179,9 +179,11 @@
     // kick off the mini 3D solar system immediately
     const stopBootScene = startBootScene();
 
-    const total = bootLines[bootLines.length - 1].t + 700;
+    // Target ~2s total before the boot starts fading.
+    // last-line t (1160) + 400 tail + 400 settle = ~1960ms → ≈ 2s.
+    const total = bootLines[bootLines.length - 1].t + 400;
     const progStart = performance.now();
-    const progDur = total + 400;
+    const progDur = total + 260;
 
     let timerFrac = 0;
     let texFrac   = 0;
@@ -218,8 +220,8 @@
       setTimeout(() => {
         bootEl.classList.add('is-done');
         onDone(ok);
-        setTimeout(stopBootScene, 900);
-      }, 520);
+        setTimeout(stopBootScene, 700);
+      }, 400);
     });
   }
 
