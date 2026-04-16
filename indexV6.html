@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vijay Gupta — Backend Engineer specializing in distributed systems, Haskell, and cloud infrastructure." />
+  <title>Vijay Gupta — Backend Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <!-- Scroll Progress -->
+  <div id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Loader (hidden by JS immediately) -->
+  <div id="loader" class="hidden" aria-hidden="true"></div>
+
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-brand">VG</a>
+
+      <ul id="navMenu" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Stack</a></li>
+        <li><a href="#experience" class="nav-link">Work</a></li>
+        <li><a href="#projects" class="nav-link">Builds</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#" id="resumeNavBtn" class="nav-link nav-link--resume">Resume</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <select id="portfolioSwitcher" aria-label="Switch portfolio version">
+          <option value="indexV1.html">V1</option>
+          <option value="indexV2.html">V2</option>
+          <option value="indexV3.html">V3</option>
+          <option value="indexV4.html">V4</option>
+          <option value="indexV5.html">V5</option>
+          <option value="indexV6.html" selected>V6</option>
+          <option value="indexV7.html">V7</option>
+          <option value="indexV8.html">V8</option>
+        </select>
+        <button id="themeToggle" aria-label="Switch to light mode"><i class="fa-solid fa-sun"></i></button>
+        <button id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── HERO: Interactive Terminal ── -->
+  <section id="hero">
+    <div class="term-wrap">
+      <div class="term-window">
+
+        <!-- Title bar -->
+        <div class="term-titlebar" aria-hidden="true">
+          <div class="term-dots">
+            <span class="term-dot term-dot--close"></span>
+            <span class="term-dot term-dot--min"></span>
+            <span class="term-dot term-dot--max"></span>
+          </div>
+          <span class="term-title">vijay@portfolio ~ — zsh</span>
+          <span class="term-titlebar-hint"><i class="fa-solid fa-keyboard fa-xs" aria-hidden="true"></i> K</span>
+        </div>
+
+        <!-- Terminal body -->
+        <div class="term-body" id="termBody" tabindex="0" role="region" aria-label="Interactive terminal. Type help for available commands.">
+          <div id="termOutput" aria-live="polite" aria-atomic="false"></div>
+          <div class="term-prompt-row" id="termPromptRow">
+            <span class="term-ps1" aria-hidden="true">vijay@portfolio:~$&nbsp;</span>
+            <input
+              type="text"
+              id="termInput"
+              class="term-input"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Terminal command input. Type help for available commands."
+            />
+          </div>
+        </div>
+
+      </div>
+      <!-- status bar below window -->
+      <div class="term-statusline" aria-label="Status">
+        <span class="status-dot" aria-hidden="true"><i class="fa-solid fa-circle fa-xs"></i></span>
+        <span>All systems operational</span>
+        <span class="term-statusline-sep">·</span>
+        <span>uptime 3y+</span>
+        <span class="term-statusline-right">scroll down to browse · Ctrl+K to search</span>
+      </div>
+    </div>
+    <!-- kept hidden so index.js typing-animation no-ops cleanly -->
+    <span id="dynamicText" hidden aria-hidden="true"></span>
+    <!-- kept for index.js resume modal binding -->
+    <a id="resumeBtn" href="#" hidden aria-hidden="true"></a>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="section" data-file="about.json">
+    <div class="container">
+      <h2 class="section-title fade-in">About</h2>
+      <div class="about-grid fade-in">
+        <div class="about-main">
+          <p>Software Engineer with 3+ years designing scalable backend systems at production scale. Currently at Juspay building NammaYatri — India's largest open-source mobility platform serving 200K+ rides/day and processing 5M+ daily transactions. I own core backend systems where every millisecond and every dollar of infra cost is a design decision.</p>
+          <p>My work spans the full backend depth: Redis/Valkey KV infrastructure at 5K+ events/sec, multi-cloud routing with zero-downtime deployments, autonomous SRE agents, and CPU profiling in Haskell. I care about systems that are observable, cost-efficient, and stay up at 99.9% availability when traffic spikes unexpectedly.</p>
+          <p class="about-achievements">45% P95 latency cut · $126K annual savings · 99.9% availability · 5M+ daily transactions</p>
+        </div>
+        <div class="about-sidebar">
+          <img src="images/profile2.jpg" alt="Vijay Gupta" class="about-photo" />
+          <ul class="about-facts">
+            <li><span class="fact-key">role</span><span class="fact-val">SDE @ Juspay</span></li>
+            <li><span class="fact-key">location</span><span class="fact-val">Bengaluru, India</span></li>
+            <li><span class="fact-key">focus</span><span class="fact-val">Distributed Systems</span></li>
+            <li><span class="fact-key">open to</span><span class="fact-val">Remote / Relocation</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="section section--surface" data-file="stack.ts">
+    <div class="container">
+      <h2 class="section-title fade-in">Stack</h2>
+      <div class="code-block fade-in" role="region" aria-label="Technology stack as code">
+        <div class="code-block__header">
+          <span class="code-dot code-dot--red"></span>
+          <span class="code-dot code-dot--yellow"></span>
+          <span class="code-dot code-dot--green"></span>
+          <span class="code-filename">stack.ts</span>
+        </div>
+        <pre class="code-block__body"><code><span class="c-comment">// Languages</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Haskell</span>, <span class="c-ident">Python</span>, <span class="c-ident">C++</span>, <span class="c-ident">JavaScript</span>, <span class="c-ident">TypeScript</span>, <span class="c-ident">SQL</span>, <span class="c-ident">Java</span> } <span class="c-keyword">from</span> <span class="c-string">"languages"</span>
+
+<span class="c-comment">// Data &amp; Messaging</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Redis</span>, <span class="c-ident">Valkey</span>, <span class="c-ident">Kafka</span>, <span class="c-ident">RabbitMQ</span>, <span class="c-ident">PostgreSQL</span>, <span class="c-ident">ClickHouse</span> } <span class="c-keyword">from</span> <span class="c-string">"data-layer"</span>
+
+<span class="c-comment">// Backend</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Node.js</span>, <span class="c-ident">Express</span>, <span class="c-ident">REST_APIs</span>, <span class="c-ident">Microservices</span> } <span class="c-keyword">from</span> <span class="c-string">"backend"</span>
+
+<span class="c-comment">// Cloud &amp; DevOps</span>
+<span class="c-keyword">import</span> { <span class="c-ident">AWS</span>, <span class="c-ident">Kubernetes</span>, <span class="c-ident">Docker</span>, <span class="c-ident">Lambda</span>, <span class="c-ident">CI_CD</span>, <span class="c-ident">Autoscaling</span> } <span class="c-keyword">from</span> <span class="c-string">"infrastructure"</span>
+
+<span class="c-comment">// Observability</span>
+<span class="c-keyword">import</span> { <span class="c-ident">Grafana</span>, <span class="c-ident">Prometheus</span>, <span class="c-ident">VictoriaMetrics</span>, <span class="c-ident">CloudWatch</span> } <span class="c-keyword">from</span> <span class="c-string">"monitoring"</span>
+
+<span class="c-comment">// Engineering focus</span>
+<span class="c-keyword">const</span> <span class="c-ident">focus</span> = [
+  <span class="c-string">"System Design"</span>,
+  <span class="c-string">"Distributed Systems"</span>,
+  <span class="c-string">"Performance Tuning"</span>,
+  <span class="c-string">"SRE &amp; Observability"</span>,
+]</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience" class="section" data-file="experience.json">
+    <div class="container">
+      <h2 class="section-title fade-in">Work</h2>
+
+      <div class="timeline">
+
+        <article class="timeline-entry fade-in">
+          <div class="tl-date">
+            <span>May 2023</span>
+            <span class="tl-date__sep">—</span>
+            <span>Present</span>
+          </div>
+          <div class="tl-body">
+            <div class="tl-header">
+              <h3 class="tl-company">Juspay — NammaYatri</h3>
+              <span class="tl-role">Software Development Engineer</span>
+            </div>
+            <ul class="tl-bullets">
+              <li class="tl-group">Architecture &amp; Scale</li>
+              <li>Designed end-to-end flow for <strong>multimodal transport</strong> — real-time GPS tracking across <em class="metric">3 cities</em> with <em class="metric">10K+ DAU</em>.</li>
+              <li>Architected Redis/Valkey KV infra to <em class="metric">5M+ daily transactions</em> and <em class="metric">5K+ events/sec</em> via autoscaling &amp; table-level sharding.</li>
+              <li>Implemented <strong>multi-cloud routing</strong> with cloud-aware Redis/Kafka connections, enabling <em class="metric">zero-downtime</em> cross-cloud deployments.</li>
+              <li>Designed and owned core backend systems for a platform serving <em class="metric">200K+ rides/day</em>.</li>
+              <li class="tl-group">Cost &amp; Reliability</li>
+              <li>Drove <em class="metric">$126K annual savings</em> and <em class="metric">20%</em> AWS cost reduction through EC2 right-sizing, AZ-aware routing, and storage efficiency.</li>
+              <li>Executed zero-downtime Redis→Valkey migration with zstd compression — memory <em class="metric">↓50%</em>, costs <em class="metric">↓40%</em>.</li>
+              <li>Owned production reliability and on-call — <em class="metric">75%</em> reduction in 5xx errors, maintained <em class="metric">99.9%</em> availability.</li>
+              <li class="tl-group">Performance &amp; AI</li>
+              <li>Improved <strong>P95 API latency by <em class="metric">45%</em></strong> by profiling critical paths, optimizing I/O and caching layers.</li>
+              <li>Built high-performance <strong>in-memory GTFS service</strong> with GraphQL preloading — hot-path latency <em class="metric">↓60%</em> at <em class="metric">5K+ req/sec</em>.</li>
+              <li>Built <a href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener"><strong>Vishwakarma</strong></a> — autonomous SRE agent running <em class="metric">16 parallel investigations</em>, cutting investigation time by <em class="metric">70%</em>.</li>
+              <li>Mentored <em class="metric">3+ engineers</em>, led design reviews and interview loops — <em class="metric">40%</em> team growth.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Haskell</span><span class="tag">Python</span><span class="tag">Redis (Valkey)</span><span class="tag">Kafka</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span><span class="tag">Kubernetes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-entry fade-in">
+          <div class="tl-date">
+            <span>Jun 2022</span>
+            <span class="tl-date__sep">—</span>
+            <span>Apr 2023</span>
+          </div>
+          <div class="tl-body">
+            <div class="tl-header">
+              <h3 class="tl-company">Vahan</h3>
+              <span class="tl-role">Software Development Engineer I</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Redesigned microservice architecture for AI-driven WhatsApp Bot supporting <em class="metric">100K+ job seekers</em> — <em class="metric">45%</em> faster responses, <em class="metric">35%</em> higher engagement.</li>
+              <li>Implemented concurrent chat processing with RabbitMQ — telecalling costs <em class="metric">↓32%</em>, handled <em class="metric">10K+</em> conversations.</li>
+              <li>Automated application status tracking via data warehouse integration — manual monitoring effort <em class="metric">↓70%</em>.</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Node.js</span><span class="tag">React.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">RabbitMQ</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="section section--surface" data-file="builds.json">
+    <div class="container">
+      <h2 class="section-title fade-in">Builds</h2>
+
+      <!-- Hidden carousel shells for JS compatibility -->
+      <div id="projectsCarousel" style="display:none" aria-hidden="true"></div>
+      <button id="projectsPrev" style="display:none" aria-hidden="true"></button>
+      <button id="projectsNext" style="display:none" aria-hidden="true"></button>
+
+      <div class="projects-grid">
+
+        <article class="project-card fade-in" data-category="ai sre backend">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Vishwakarma</h3>
+              <a href="https://github.com/vijaygupta18/Vishwakarma" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — Vishwakarma">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Autonomous SRE agent that ingests alerts from AlertManager &amp; CloudWatch, runs <strong class="metric-inline">16 parallel investigations</strong> across Prometheus, Kubernetes, Elasticsearch, and databases, delivers PDF RCA reports to Slack — cutting investigation time by <strong class="metric-inline">70%</strong>.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LLM</span><span class="tag">Kubernetes</span><span class="tag">Prometheus</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="backend infra">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Multi-Cloud DB Manager</h3>
+              <a href="https://github.com/vijaygupta18/Multi-Cloud-DB-Manager" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — Multi-Cloud DB Manager">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Unified multi-cloud database management platform to query PostgreSQL and Redis across AWS, GCP, and Azure simultaneously — parallel query execution, side-by-side comparison, <strong class="metric-inline">3-tier RBAC</strong>, Monaco SQL editor, and password-protected destructive operations.</p>
+            <div class="project-tags">
+              <span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="ai tools">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">NodeSage</h3>
+              <a href="https://github.com/vijaygupta18/NodeSage" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — NodeSage">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">CLI tool for codebase understanding using local LLMs with RAG architecture — ask questions about any repo.</p>
+            <div class="project-tags">
+              <span class="tag">Node.js</span><span class="tag">Ollama</span><span class="tag">RAG</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="infra devops">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">k8s-dashboard</h3>
+              <a href="https://github.com/vijaygupta18/k8s-dashboard" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — k8s-dashboard">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Kubernetes cluster monitoring dashboard with real-time metrics, pod health visualization, and resource utilization charts.</p>
+            <div class="project-tags">
+              <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Kubernetes</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="backend infra">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Location Tracking Healthcheck</h3>
+              <span class="project-badge">@ Juspay</span>
+            </div>
+            <p class="project-desc">Real-time healthcheck pipeline using Kafka location streams to detect stalled drivers, with FCM-based alerting when location updates stop — improving GPS accuracy and reliability for <strong class="metric-inline">200K+</strong> rides/day.</p>
+            <div class="project-tags">
+              <span class="tag">Haskell</span><span class="tag">Kafka</span><span class="tag">Redis</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="ai backend">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Master Oogway</h3>
+              <a href="https://github.com/nammayatri/Master-Oogway" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — Master Oogway">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Post-release observability platform with LLM-powered RCA. Reduced MTTR by <strong class="metric-inline">50%</strong> and incident detection time by <strong class="metric-inline">70%</strong>.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Prometheus</span><span class="tag">Kubernetes</span><span class="tag">AI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card fade-in" data-category="backend tools">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">Bus Route Tracker</h3>
+              <a href="https://github.com/nammayatri/bus-route-tracker" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — Bus Route Tracker">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Open-source platform to collect, confirm, and manage bus stop &amp; route data with real-time GPS tracking and RESTful admin APIs.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Redis</span><span class="tag">Clickhouse</span><span class="tag">Kotlin</span>
+            </div>
+          </div>
+        </article>
+
+<article class="project-card fade-in" data-category="web tools">
+          <div class="project-card__inner">
+            <div class="project-meta">
+              <h3 class="project-name">WriteMyText</h3>
+              <a href="https://github.com/vijaygupta18/writemytext" target="_blank" rel="noopener" class="project-link" aria-label="GitHub — WriteMyText">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="project-desc">Convert typed text into handwritten-style images using Canvas API with custom font rendering and styling options.</p>
+            <div class="project-tags">
+              <span class="tag">JavaScript</span><span class="tag">Canvas API</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education" class="section" data-file="education.json">
+    <div class="container">
+      <h2 class="section-title fade-in">Education</h2>
+      <div class="edu-grid fade-in">
+
+        <div class="edu-formal">
+          <h3 class="edu-group-title">Degrees</h3>
+          <div class="edu-entry">
+            <div class="edu-degree">B.Tech, Information Technology</div>
+            <div class="edu-school">Kamla Nehru Institute of Technology, Sultanpur</div>
+            <div class="edu-meta"><span class="tag">2018 – 2022</span><span class="tag">8.5 CGPA</span></div>
+          </div>
+          <div class="edu-entry">
+            <div class="edu-degree">Higher Secondary (PCM)</div>
+            <div class="edu-school">St. Handel Public School, Allahabad</div>
+            <div class="edu-meta"><span class="tag">2015 – 2017</span></div>
+          </div>
+        </div>
+
+        <div class="edu-certs">
+          <h3 class="edu-group-title">Certifications</h3>
+          <ul class="cert-list">
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/NSSLFNX9TL3Z" target="_blank" rel="noopener">Neural Networks &amp; Deep Learning <span class="cert-issuer">— Coursera / DeepLearning.AI</span></a></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/WXKVWJTKYXYW" target="_blank" rel="noopener">Improving Deep Neural Networks <span class="cert-issuer">— Coursera</span></a></li>
+            <li><a href="https://www.hackerrank.com/certificates/8f9d1de8a54e" target="_blank" rel="noopener">Problem Solving (Intermediate) <span class="cert-issuer">— HackerRank</span></a></li>
+            <li><a href="https://www.hackerrank.com/certificates/c82f1d88ae10" target="_blank" rel="noopener">Python (Basic) <span class="cert-issuer">— HackerRank</span></a></li>
+            <li><a href="https://www.hackerrank.com/certificates/a3f0b476e8f4" target="_blank" rel="noopener">JavaScript (Intermediate) <span class="cert-issuer">— HackerRank</span></a></li>
+            <li><a href="https://www.udemy.com/certificate/UC-6fa5b5d6-e72b-490d-84eb-fd68dfb6b9bb/" target="_blank" rel="noopener">The Complete Node.js Developer Course <span class="cert-issuer">— Udemy</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RECOMMENDATIONS ── -->
+  <section id="recommendations" class="section section--surface" data-file="recommendations.json">
+    <div class="container">
+      <h2 class="section-title fade-in">Recommendations</h2>
+
+      <!-- Hidden carousel shells for JS compatibility -->
+      <div id="recommendationsCarousel" style="display:none" aria-hidden="true"></div>
+      <button id="recommendationsPrev" style="display:none" aria-hidden="true"></button>
+      <button id="recommendationsNext" style="display:none" aria-hidden="true"></button>
+
+      <div class="recs-grid">
+
+        <blockquote class="rec-card fade-in">
+          <p>"Vijay was a fantastic person to work with — multi-skilled, insightful, and a person with very strong problem-solving skills. His focus keeps everything moving smoothly, deadlines are met, and whatever project he is working on meets the highest standards. An asset to any company."</p>
+          <footer class="rec-footer">
+            <span class="rec-name">Naman Samaiya</span>
+            <span class="rec-role">SDE3 @ Vahan · IIIT Bhagalpur</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="rec-card fade-in">
+          <p>"Vijay impressed me with his positive attitude and strong work ethic. Always eager to learn, great initiative on challenging projects. His technical skills are equally impressive — it was clear from the beginning that he has a great deal of potential."</p>
+          <footer class="rec-footer">
+            <span class="rec-name">Ketan Patil</span>
+            <span class="rec-role">Engineering Manager @ Vahan</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="rec-card fade-in">
+          <p>"Vijay's technical knowledge, attention to detail, and problem-solving skills are unmatched. He was always a key contributor to our team's projects. I highly recommend Vijay for any opportunity he pursues."</p>
+          <footer class="rec-footer">
+            <span class="rec-name">Aditya Kale</span>
+            <span class="rec-role">SSE @ Vahan · IIIT Pune</span>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="section" data-file="contact.json">
+    <div class="container">
+      <h2 class="section-title fade-in">Contact</h2>
+      <div class="contact-grid fade-in">
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?" />
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me what you're thinking…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--submit">Send message</button>
+        </form>
+
+        <div class="contact-info">
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="contact-key">location</span>
+              <span class="contact-val">Bangalore, India</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-key">email</span>
+              <a href="mailto:vijayrauniyar1818@gmail.com" class="contact-val">vijayrauniyar1818@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/vijaygupta18" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://twitter.com/vijaygupta18" target="_blank" rel="noopener" class="social-link" aria-label="Twitter / X">
+              <i class="fab fa-x-twitter" aria-hidden="true"></i>
+              <span>Twitter</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner container">
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/vijaygupta18" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/vijaygupta18" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/vijaygupta18" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+      </div>
+      <p class="footer-copy">© 2025 Vijay Gupta</p>
+      <a href="#hero" class="footer-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up fa-xs"></i> top</a>
+    </div>
+  </footer>
+
+  <!-- ── RESUME MODAL ── -->
+  <div id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <span class="modal-title">Vijay Gupta — Resume</span>
+        <button id="resumeClose" aria-label="Close resume">×</button>
+      </div>
+      <div class="modal-body">
+        <iframe src="images/Vijay2025.pdf" title="Vijay Gupta Resume" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette -->
+  <div id="cmdPalette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="cmd-backdrop"></div>
+    <div class="cmd-panel">
+      <div class="cmd-input-wrap">
+        <span class="cmd-prompt" aria-hidden="true">$</span>
+        <input type="text" id="cmdInput" placeholder="navigate to…" autocomplete="off" spellcheck="false" aria-label="Command input" role="combobox" aria-expanded="true" aria-controls="cmdResults" />
+        <kbd class="cmd-esc">esc</kbd>
+      </div>
+      <ul class="cmd-results" id="cmdResults" role="listbox" aria-label="Navigation options"></ul>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/index.js"></script>
+  <script src="js/features.js"></script>
+</body>
+</html>
