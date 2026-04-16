@@ -1044,6 +1044,68 @@
   }
 
   // ───────────────────────────────────────────────────────
+  //   12c. HERO TITLE — 3D char split + mouse-tracked tilt
+  // ───────────────────────────────────────────────────────
+  function initHeroTitle() {
+    const title = $('#heroTitle');
+    if (!title) return;
+    const words = $$('.hero-title-word', title);
+
+    // split each word into .tw-char spans with --d for stagger
+    let delayIdx = 0;
+    words.forEach((word) => {
+      const text = word.dataset.text || word.textContent || '';
+      word.textContent = '';
+      for (const ch of text) {
+        const span = document.createElement('span');
+        if (ch === ' ') {
+          span.className = 'tw-char tw-space';
+          span.innerHTML = '&nbsp;';
+        } else {
+          span.className = 'tw-char';
+          span.textContent = ch;
+        }
+        span.style.setProperty('--d', String(delayIdx++));
+        word.appendChild(span);
+      }
+    });
+
+    if (prefersReducedMotion || isTouch) return;
+
+    // mouse-tracked tilt on the whole title — clamped
+    const heroSection = $('#hero');
+    if (!heroSection) return;
+    let rafId = null;
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = title.getBoundingClientRect();
+      const localX = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5..0.5
+      const localY = (e.clientY - rect.top)  / rect.height - 0.5;
+      tx = clamp(-localY * 18, -14, 14);  // rotateX inverts Y
+      ty = clamp( localX * 22, -16, 16);  // rotateY
+      if (!rafId) rafId = requestAnimationFrame(applyTilt);
+    }, { passive: true });
+
+    heroSection.addEventListener('mouseleave', () => {
+      tx = 0; ty = 0;
+      if (!rafId) rafId = requestAnimationFrame(applyTilt);
+    });
+
+    function applyTilt() {
+      cx = lerp(cx, tx, 0.12);
+      cy = lerp(cy, ty, 0.12);
+      title.style.setProperty('--rx', cx.toFixed(2) + 'deg');
+      title.style.setProperty('--ry', cy.toFixed(2) + 'deg');
+      if (Math.abs(cx - tx) > 0.05 || Math.abs(cy - ty) > 0.05) {
+        rafId = requestAnimationFrame(applyTilt);
+      } else {
+        rafId = null;
+      }
+    }
+  }
+
+  // ───────────────────────────────────────────────────────
   //   13. MOUSE PARALLAX
   // ───────────────────────────────────────────────────────
   function initMouseParallax() {
@@ -1069,6 +1131,7 @@
     initAudio();
     initAiTerminal();
     initDataStreams();
+    initHeroTitle();
 
     // kick off boot then three.js
     runBoot(() => {
