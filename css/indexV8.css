@@ -28,6 +28,7 @@
   --magenta:      #c96677;  /* error state only */
   --magenta-soft: rgba(201, 102, 119, 0.12);
   --lime:         #c9cdd4;  /* collapsed into neutral */
+  --online:       #58d68d;  /* classic status-green — only for live/online dots */
 
   --accent:   var(--amber);
   --accent-2: var(--cyan);
@@ -550,7 +551,8 @@ img { display: block; max-width: 100%; }
   background: var(--text-mute);
 }
 .hud-stat-dot--live {
-  background: var(--amber);
+  background: var(--online);
+  box-shadow: 0 0 8px rgba(88, 214, 141, 0.55);
   animation: pulseDot 1.8s ease-in-out infinite;
 }
 .hud-stat-sep {
@@ -967,7 +969,8 @@ img { display: block; max-width: 100%; }
 .ai-term-pill-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--amber);
+  background: var(--online);
+  box-shadow: 0 0 6px rgba(88, 214, 141, 0.55);
   animation: pulseDot 1.6s ease-in-out infinite;
 }
 .ai-term-clear {
