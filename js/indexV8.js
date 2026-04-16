@@ -1076,31 +1076,16 @@
   }
 
   // ───────────────────────────────────────────────────────
-  //   11. CONTACT FORM — EmailJS (real Gmail delivery)
-  //   Uses the same service/template that's been live since V1.
+  //   11. CONTACT FORM — proxied through the Cloudflare Worker
+  //   The EmailJS private key lives as a Worker secret, so it's
+  //   never exposed to the browser.
   // ───────────────────────────────────────────────────────
-  const EMAILJS_CFG = {
-    publicKey:  'JJYrlbmwaCoxBgcHG',
-    serviceId:  'service_4wre7f9',
-    templateId: 'template_4alqdiv'
-  };
+  const CONTACT_ENDPOINT = 'https://portfolio-ai.vijay-gupta-932.workers.dev/contact';
 
   function initContactForm() {
     const form  = $('#contactForm');
     const toast = $('#toast');
     if (!form) return;
-
-    // Initialise EmailJS once with rate-limit + headless block (bot guard).
-    if (typeof emailjs !== 'undefined' && !form.dataset.ejsInit) {
-      try {
-        emailjs.init({
-          publicKey: EMAILJS_CFG.publicKey,
-          blockHeadless: true,
-          limitRate: { id: 'vg-portfolio', throttle: 10000 }
-        });
-        form.dataset.ejsInit = '1';
-      } catch (e) { console.warn('[emailjs] init failed:', e); }
-    }
 
     const showToast = (msg, isErr = false) => {
       if (!toast) return;
@@ -1110,8 +1095,7 @@
       setTimeout(() => toast.classList.remove('is-show'), 4000);
     };
 
-    // strip tags + cap length — mirror of the original clean()
-    const clean = (s) => String(s || '').replace(/<[^>]*>/g, '').slice(0, 2000).trim();
+    const clean   = (s) => String(s || '').replace(/<[^>]*>/g, '').slice(0, 4000).trim();
     const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
     let submitting = false;
@@ -1120,30 +1104,25 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submitting) return;
-      if (Date.now() - lastSent < 10000) {
+      if (Date.now() - lastSent < 10_000) {
         showToast('Easy there — please wait a moment before sending again.', true);
         return;
       }
 
-      const btn = form.querySelector('button[type="submit"]');
-      const orig = btn.innerHTML;
+      const btn    = form.querySelector('button[type="submit"]');
+      const orig   = btn.innerHTML;
       const setBtn = (html, disabled) => { btn.innerHTML = html; btn.disabled = !!disabled; };
 
       const name    = clean(form.name.value);
       const email   = clean(form.email.value);
       const subject = clean(form.subject.value) || 'Portfolio contact';
       const message = clean(form.message.value);
+      const website = form.website ? form.website.value : ''; // honeypot
 
-      // validation
-      if (name.length < 2) {
-        showToast('Please enter your name.', true); return;
-      }
-      if (!isEmail(email)) {
-        showToast('Please enter a valid email so I can reply.', true); return;
-      }
-      if (message.length < 10) {
-        showToast('Add a bit more context — at least 10 characters.', true); return;
-      }
+      // client-side validation (mirrored server-side for defense-in-depth)
+      if (name.length < 2)     { showToast('Please enter your name.', true); return; }
+      if (!isEmail(email))     { showToast('Please enter a valid email so I can reply.', true); return; }
+      if (message.length < 10) { showToast('Add a bit more context — at least 10 characters.', true); return; }
 
       submitting = true;
       setBtn(
@@ -1154,29 +1133,25 @@
       );
 
       try {
-        if (typeof emailjs === 'undefined' || typeof emailjs.send !== 'function') {
-          throw new Error('Email service unavailable — try vijayrauniyar1818@gmail.com');
-        }
-
-        await emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
-          name:     name,
-          email:    email,
-          title:    subject,
-          subject:  'Contact: ' + subject,
-          reply_to: email,
-          message:  `${subject}\n\n${message}\n\nFrom: ${name} <${email}>`,
-          time:     new Date().toLocaleString()
+        const resp = await fetch(CONTACT_ENDPOINT, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, subject, message, website })
         });
+
+        let data = {};
+        try { data = await resp.json(); } catch (_) {}
+
+        if (!resp.ok) {
+          throw new Error(data.error || ('Send failed (' + resp.status + ')'));
+        }
 
         lastSent = Date.now();
         form.reset();
         showToast('Sent — I\u2019ll get back to you soon. Thanks!');
       } catch (err) {
         console.error('[contact] send failed:', err);
-        const msg = (err && err.text) ? err.text
-                  : (err && err.message) ? err.message
-                  : 'Failed to send — email me directly at vijayrauniyar1818@gmail.com';
-        showToast(msg, true);
+        showToast(err.message || 'Failed to send — email me directly at vijayrauniyar1818@gmail.com', true);
       } finally {
         submitting = false;
         setBtn(orig, false);
