@@ -2208,7 +2208,6 @@ body.is-planet-hover { cursor: pointer; }
   .hud-link-idx { display: none; }
   .station { padding: 110px 22px 110px; }
   .station-head { margin-bottom: 34px; }
-  .datastream { opacity: 0.2; width: 10px; }
   .about-photo { flex-direction: column; align-items: stretch; }
   .about-photo .photo-frame { flex: 0 0 auto; aspect-ratio: 4/5; }
 }
@@ -2217,8 +2216,7 @@ body.is-planet-hover { cursor: pointer; }
 @media (max-width: 780px) {
   body { overflow-x: hidden; }
   .certs-list { grid-template-columns: 1fr; }
-  .datastream, .vp-brackets { display: none; }
-  .scanlines, .grain { opacity: 0.04; }
+  .grain { opacity: 0.04; }
 
   .hud-top {
     top: 10px;

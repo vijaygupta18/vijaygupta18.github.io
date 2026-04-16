@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — lost in space · Vijay Gupta</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --text: #eeeeee;
+      --dim: #a0a0a6;
+      --mute: #6b7084;
+      --amber: #d9a367;
+      --edge: rgba(255, 255, 255, 0.08);
+      --edge-hi: rgba(255, 255, 255, 0.18);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+    }
+    body {
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      position: relative;
+    }
+
+    /* star field */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .stars span {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    /* orbital drift — a lone planet on a tilted orbit */
+    .orbit {
+      position: fixed;
+      top: 50%; left: 50%;
+      width: 620px; height: 200px;
+      transform: translate(-50%, -50%) rotate(-14deg);
+      border: 1px solid rgba(217, 163, 103, 0.18);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orbit .planet {
+      position: absolute;
+      top: 50%; left: 0;
+      width: 16px; height: 16px;
+      background: var(--amber);
+      border-radius: 50%;
+      box-shadow: 0 0 24px rgba(217, 163, 103, 0.55);
+      transform: translate(-50%, -50%);
+      animation: orbit 22s linear infinite;
+    }
+    @keyframes orbit {
+      0%   { transform: rotate(0deg)   translateX(310px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(310px) rotate(-360deg); }
+    }
+
+    .frame {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 520px;
+    }
+    .tag {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--amber);
+      margin-bottom: 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: blink 1.8s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.35; }
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: clamp(52px, 9vw, 104px);
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+      margin-bottom: 10px;
+    }
+    h1 em {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--amber);
+      letter-spacing: -0.01em;
+    }
+    p.sub {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--dim);
+      max-width: 420px;
+      margin: 0 auto 32px;
+    }
+    p.sub em {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic;
+      color: var(--text);
+      font-size: 1.08em;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      background: var(--text);
+      color: #18181b;
+      border-radius: 10px;
+      border: 1px solid var(--text);
+      text-decoration: none;
+      transition: transform 180ms, background 180ms;
+    }
+    .cta:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+    .meta {
+      margin-top: 44px;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--mute);
+      letter-spacing: 0.02em;
+    }
+    .meta code {
+      color: var(--dim);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--edge);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="orbit" aria-hidden="true"><span class="planet"></span></div>
+
+  <main class="frame">
+    <div class="tag">404 · signal lost</div>
+    <h1>Lost in <em>space.</em></h1>
+    <p class="sub">That page isn't on this side of the galaxy. Let's get you back <em>home</em> — the real solar system is waiting.</p>
+    <a class="cta" href="/">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to the portfolio
+    </a>
+    <p class="meta">wandered off from <code id="path">/…</code></p>
+  </main>
+
+  <script>
+    // sprinkle stars
+    (() => {
+      const root = document.getElementById('stars');
+      const n = Math.min(160, Math.round(window.innerWidth * window.innerHeight / 14000));
+      const f = document.createDocumentFragment();
+      for (let i = 0; i < n; i++) {
+        const s = document.createElement('span');
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.top  = (Math.random() * 100) + '%';
+        const sz = Math.random() < 0.2 ? 3 : (Math.random() < 0.4 ? 2 : 1);
+        s.style.width = s.style.height = sz + 'px';
+        s.style.opacity = (0.3 + Math.random() * 0.55).toFixed(2);
+        f.appendChild(s);
+      }
+      root.appendChild(f);
+      const el = document.getElementById('path');
+      if (el) el.textContent = (location.pathname || '/') + (location.search || '');
+    })();
+  </script>
+</body>
+</html>

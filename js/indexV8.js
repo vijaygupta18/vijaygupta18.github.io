@@ -1049,18 +1049,32 @@
   //   10. RESUME MODAL
   // ───────────────────────────────────────────────────────
   function initResumeModal() {
-    const modal = $('#resumeModal');
+    const modal  = $('#resumeModal');
     const opener = $('#resumeNavBtn');
     const closer = $('#resumeClose');
-    if (!modal || !opener) return;
+    if (!opener) return;
+
+    // iOS Safari refuses to render PDFs inside <iframe>, so route iOS to a
+    // new-tab open and skip the modal entirely.
+    const ua = navigator.userAgent || '';
+    const isIOS = (/iP(ad|hone|od)/.test(ua) && !window.MSStream)
+               || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS Safari
+    const resumeUrl = 'images/VijayGupta_Resume.pdf';
 
     const open = (e) => {
       if (e) e.preventDefault();
+      if (isIOS) {
+        // Navigate to the PDF in a new tab — iOS's native PDF viewer handles it well.
+        window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      if (!modal) { window.open(resumeUrl, '_blank', 'noopener'); return; }
       modal.hidden = false;
       requestAnimationFrame(() => modal.classList.add('is-open'));
       document.body.style.overflow = 'hidden';
     };
     const close = () => {
+      if (!modal) return;
       modal.classList.remove('is-open');
       setTimeout(() => {
         modal.hidden = true;
@@ -1069,9 +1083,9 @@
     };
     opener.addEventListener('click', open);
     closer?.addEventListener('click', close);
-    modal.querySelector('.modal-backdrop')?.addEventListener('click', close);
+    modal?.querySelector('.modal-backdrop')?.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+      if (e.key === 'Escape' && modal?.classList.contains('is-open')) close();
     });
   }
 
