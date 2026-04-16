@@ -716,18 +716,31 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin-bottom: 24px;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.85));
 }
 .hero-title-word {
   display: block;
-  background: linear-gradient(180deg, #ffffff 0%, #cbd0e3 50%, #7e87a2 100%);
+  color: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #e6ecff 45%, #9ab0d8 100%);
   -webkit-background-clip: text;
           background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 30px rgba(0, 245, 255, 0.35),
+    0 0 60px rgba(0, 0, 0, 0.9);
 }
+/* second word: neon outline + cyan inner glow so it's legible against any scene */
 .hero-title-word--outline {
-  color: transparent;
-  -webkit-text-stroke: 1.2px var(--edge-hi);
-  background: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px rgba(0, 245, 255, 0.9);
+  background: linear-gradient(180deg, rgba(0, 245, 255, 0.22), rgba(255, 61, 154, 0.12));
+  -webkit-background-clip: text;
+          background-clip: text;
+  text-shadow:
+    0 0 22px rgba(0, 245, 255, 0.55),
+    0 0 44px rgba(0, 245, 255, 0.25),
+    0 0 80px rgba(0, 0, 0, 0.85);
 }
 .hero-kicker {
   display: inline-flex;
